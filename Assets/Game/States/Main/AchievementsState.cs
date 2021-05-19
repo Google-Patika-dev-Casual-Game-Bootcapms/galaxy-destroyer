@@ -28,10 +28,7 @@ namespace SpaceShooterProject.State
 
         protected override void OnUpdate()
         {
-            if (achievementsComponent.IsCompleted()) 
-            {
-                SendTrigger((int)StateTriggers.RETURN_MAIN_MENU_FROM_ACHIEVEMENTS);
-            }
+            
         }
     }
 }
