@@ -5,79 +5,147 @@ namespace SpaceShooterProject.Component
     using Devkit.Base.Component;
     using UnityEngine;
 
-    public class GachaComponent : IComponent
+    public class GachaComponent : MonoBehaviour, IComponent
     {
-        private AccountComponent accountComponent;
-
+        // Pools
         List<int> permanentCards = new List<int>();
         List<int> temporalCards = new List<int>();
-        int permanentCardNumber = 4;
-        int temporalCardNumber = 2;
+        List<int> spaceshipParts = new List<int>();
+
+        // Counts
+        private int _permanentCardCount = 4;
+        private int _temporalCardCount = 2;
+        private int _spaceshipPartCount = 10;
+
+        private int _goldMultiplier = 50;
+        private int _dice;
 
         public void Initialize(ComponentContainer componentContainer)
         {
-            accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
+            //TODO add necessary components
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            for (int i = 0; i < permanentCardNumber; i++)
+            AddItemsToList();
+        }
+
+        private void AddItemsToList()
+        {
+            for (int i = 0; i < _permanentCardCount; i++)
             {
                 permanentCards.Add(i);
             }
-            for (int i = 0; i < temporalCardNumber; i++)
+
+            for (int i = 0; i < _temporalCardCount; i++)
             {
                 temporalCards.Add(i);
             }
+
+            for (int i = 0; i < _spaceshipPartCount; i++)
+            {
+                spaceshipParts.Add(i);
+            }
         }
 
-        public void GetChest()
+        public void OpenBronzeChest()
         {
-            int rnd = Random.Range(0, 20);
-            if (rnd == 0)
-            {
-                //%5 ihtimal
+            // 4 Permanent Card %25
+            // 2 Temporal Card %25
+            // Spaceship Part %25
+            // Gold %25
+            _dice = Random.Range(1, 5);
+
+            if (_dice == 1)
                 GetPermanentCard();
-            }
-            else if (rnd == 1)
-            {
-                //%5 ihtimal
+            else if (_dice == 2)
+                GetSpaceshipPart();
+            else if (_dice == 3)
                 GetTemporalCard();
-            }
             else
+                GetGold();
+        }
+
+        public void OpenSilverChest()
+        {
+            // 4 Permanent Card %30
+            // 2 Temporal Card %30
+            // Spaceship Part %30
+            // Gold %10
+            _dice = Random.Range(1, 11);
+
+            if (_dice <= 3)
+                GetPermanentCard();
+            else if (_dice <= 6)
+                GetSpaceshipPart();
+            else if (_dice <= 9)
+                GetTemporalCard();
+            else
+                GetGold();
+        }
+
+        public void OpenGoldenChest()
+        {
+            // 4 Permanent Card %40
+            // 2 Temporal Card %20
+            // Spaceship Part %40
+            _dice = Random.Range(1, 11);
+
+            if (_dice <= 4)
+                GetPermanentCard();
+            else if (_dice <= 8)
+                GetSpaceshipPart();
+            else
+                GetTemporalCard();
+        }
+
+        private int GetGold()
+        {
+            // TODO Stabilize gold amount. Add level multiplier for gold amount
+            _dice = Random.Range(1, 11);
+            int temp = _goldMultiplier * _dice;
+            Debug.Log("Gold Amount: " + temp);
+            return temp;
+        }
+
+
+        private int GetSpaceshipPart()
+        {
+            if (spaceshipParts.Count == 0)
             {
-                //%90 ihtimal
-                //GetStars()
-                Debug.Log("Sandýktan Star çýktý");
+                GetGold();
+                return -1;
             }
+
+            int spaceshipIndex = Random.Range(0, spaceshipParts.Count);
+            spaceshipParts.RemoveAt(spaceshipIndex);
+            return spaceshipIndex;
         }
 
         private int GetTemporalCard()
         {
+            if (permanentCards.Count == 0)
+            {
+                GetGold();
+                return -1;
+            }
+
             int cardIndex = Random.Range(0, temporalCards.Count);
-            int temp = temporalCards[cardIndex];
-            Debug.Log("TemporalCard: " + temp);
-            return temp;
+            return cardIndex;
         }
 
         private int GetPermanentCard()
         {
             if (permanentCards.Count == 0)
             {
-                //tüm permanent kartlar açýlmýþ
-                //GetStars()
+                GetGold();
                 return -1;
             }
-            else
-            {
-                int cardIndex = Random.Range(0, permanentCards.Count);
-                int temp = permanentCards[cardIndex];
-                permanentCards.RemoveAt(cardIndex);
-                Debug.Log("PermanentCard: " + temp);
-                return temp;
-            }
+
+            int cardIndex = Random.Range(0, permanentCards.Count);
+            permanentCards.RemoveAt(cardIndex);
+            return cardIndex;
         }
     }
 }
-
