@@ -5,7 +5,7 @@ namespace SpaceShooterProject.Component
     using UnityEngine;
     public class LoadComponent
     {
-        
+        public static bool fileNotExist = false;
         public static T Load<T>(){
             string path = Directory.GetCurrentDirectory();
             path = path + "/Data/" + "accountData.txt";
@@ -28,7 +28,7 @@ namespace SpaceShooterProject.Component
             }
             catch (System.Exception ex)
             {
-                
+                fileNotExist = true;
             }
             return data;
         }

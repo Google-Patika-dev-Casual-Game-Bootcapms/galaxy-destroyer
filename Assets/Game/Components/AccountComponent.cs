@@ -10,8 +10,12 @@ namespace SpaceShooterProject.Component
         private GamePlayComponent gamePlayComponent;
         private CurrencyComponent currencyComponent;
         private AudioComponent audioComponent;
+
         //TODO: Add inventory system reference when inventory component created!!!
+        // private InventoryComponent inventoryComponent;
+
         //TODO: Add copilot system reference when inventory component created!!!
+        // private CopilotComponent copilotComponent;
 
         public void Initialize(ComponentContainer componentContainer)
         {
@@ -19,6 +23,8 @@ namespace SpaceShooterProject.Component
             gamePlayComponent = componentContainer.GetComponent("GamePlayComponent") as GamePlayComponent;
             currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
             audioComponent = componentContainer.GetComponent("AudioComponent") as AudioComponent;
+            // inventoryComponent = componentContainer.GetComponent("InventoryComponent") as InventoryComponent;
+            // copilotComponent = componentContainer.GetComponent("CopilotComponent") as CopilotComponent;
             
             Debug.Log("<color=green>Account Component initialized!</color>");
 
@@ -26,7 +32,27 @@ namespace SpaceShooterProject.Component
             //TODO: serialize data
             //TODO: fill account data
 
-            accountData = LoadComponent.Load<AccountData>();
+            accountData = LoadComponent.Load<AccountData>(); // Try to read from the path. If there is no txt file, initialize from components.
+            
+            if(LoadComponent.fileNotExist == true){
+                accountData.Name = "Name"; // What should be the name?
+                accountData.PlayerLevel = 1;
+                /*
+                accountData.CompletedAchievements = achievementsComponent.GetCompletedAchievements();
+                /accountData.LastReachedLevel = gamePlayComponent.GetLastReachedComponent();
+                accountData.MaxScore = gamePlayComponent.GetMaxScore();
+                accountData.OwnedSpaceShips = inventoryComponent.GetOwnedSpaceShips();
+                accountData.SpaceShipUpgradeDatas = inventoryComponent.GetSpaceShipUpgradeDatas();
+                accountData.OwnedCards = inventoryComponent.GetOwnedCards();
+                accountData.OwnedPowerUps = inventoryComponent.GetOwnedPowerUps();
+                accountData.LastSelectedSpaceShip = inventoryComponent.GetLastSelectedSpaceShip();
+                accountData.AudioSetting = audioComponent.GetAudioSetting();
+                accountData.OwnedGold = currencyComponent.GetOwnedGold();
+                accountData.OwnedDiamond = currencyComponent.GetOwnedDiamond();
+                accountData.CopilotSetting = copilotComponent.GetCopilotSetting();
+                */
+            }
+
         }
 
         public void Save(){
