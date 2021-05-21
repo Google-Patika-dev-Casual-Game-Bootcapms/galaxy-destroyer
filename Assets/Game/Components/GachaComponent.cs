@@ -105,7 +105,6 @@ namespace SpaceShooterProject.Component
             // TODO Stabilize gold amount. Add level multiplier for gold amount
             _dice = Random.Range(1, 11);
             int temp = _goldMultiplier * _dice;
-            Debug.Log("Gold Amount: " + temp);
             return temp;
         }
 
