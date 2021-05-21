@@ -9,7 +9,6 @@ using UnityEditor;
 
 public class LevelEditorComponent : EditorWindow
 {
-
     public static LevelEditorComponent window;
     public string NewLevelName = String.Empty;
 
@@ -30,7 +29,6 @@ public class LevelEditorComponent : EditorWindow
             _savedLevelNames = new List<string>();
         }
 
-
         NewLevelName = GUI.TextField(new Rect(10, 10, position.width, 20), NewLevelName, 25);
 
         if (GUI.Button(new Rect(10, 40, position.width, 20), "Save Level"))
@@ -44,6 +42,7 @@ public class LevelEditorComponent : EditorWindow
         }
 
         GUILayout.BeginArea(new Rect(10, 110, position.width, position.height));
+
         for (int i = 0; i < _savedLevelNames.Count; i++)
         {
             if (GUILayout.Button(_savedLevelNames[i]))
@@ -51,8 +50,8 @@ public class LevelEditorComponent : EditorWindow
                 LoadLevelDataFromJson(_savedLevelNames[i]);
             }
         }
-        GUILayout.EndArea();
 
+        GUILayout.EndArea();
     }
 
     public void CreateLevelButtons()
@@ -90,7 +89,6 @@ public class LevelEditorComponent : EditorWindow
     {
         LevelData levelData = new LevelData();
 
-
         levelData.CameraHeight = 2f * Camera.main.orthographicSize;
         levelData.CameraWidth = levelData.CameraHeight * Camera.main.aspect;
 
@@ -102,6 +100,7 @@ public class LevelEditorComponent : EditorWindow
             levelItemData.Position = item.transform.position;
             levelItemData.Rotation = item.transform.eulerAngles;
             levelData.LevelCharacters.Add(levelItemData);
+            Debug.Log(item.gameObject.name + "GameObject is added to the list to save");
         }
 
         var data = JsonUtility.ToJson(levelData);
@@ -117,20 +116,6 @@ public class LevelEditorComponent : EditorWindow
         var levelData = JsonUtility.FromJson<LevelData>(data);
         LoadScene(levelData);
     }
-
-    private void LoadScene(LevelData levelData)
-    {
-        ClearScene();
-
-        foreach (var levelItem in levelData.LevelCharacters)
-        {
-            var levelItemObject = CharacterGeneratorComponent.instance.InstantiateLevelCharacter(levelItem.Type);
-            var levelItemObjectData = levelItemObject.GetComponent<CharacterType>();
-            levelItemObjectData.transform.localScale = levelItem.Scale;
-            levelItemObjectData.transform.position = levelItem.Position;
-            levelItemObjectData.transform.eulerAngles = levelItem.Rotation;
-        }
-    }  
 
     public string ReadDataFromText(string path)
     {
@@ -154,6 +139,22 @@ public class LevelEditorComponent : EditorWindow
         return data;
     }
 
+    private void LoadScene(LevelData levelData)
+    {
+        ClearScene();
+        Debug.Log("Scene is Cleaned");
+        // add the game object types you want to update
+        foreach (var levelItem in levelData.LevelCharacters)
+        {
+            var levelItemObject = CharacterGeneratorComponent.instance.InstantiateLevelCharacter(levelItem.Type);
+            var levelItemObjectData = levelItemObject.GetComponent<CharacterType>();
+            levelItemObjectData.transform.localScale = levelItem.Scale;
+            levelItemObjectData.transform.position = levelItem.Position;
+            levelItemObjectData.transform.eulerAngles = levelItem.Rotation;
+            Debug.Log(levelItemObject.name + " GameObject is created and updated in the scene");
+        }
+    }  
+    
     private void ClearScene()
     {
         var levelItems = GameObject.FindObjectsOfType<CharacterType>();
@@ -161,6 +162,7 @@ public class LevelEditorComponent : EditorWindow
         foreach (var rect in levelItems)
         {
             DestroyImmediate(rect.gameObject);
+            Debug.Log(rect.gameObject.name + " GameObject is deleted");
         }
     }
 
@@ -186,6 +188,51 @@ public class LevelEditorComponent : EditorWindow
 #endif
 
 
+public class CharacterGeneratorComponent : MonoBehaviour
+{
+    public static CharacterGeneratorComponent instance;
+
+    public GameObject flyEnemyNPCPrefab;
+    public GameObject stableEnemyNPCPrefab;
+    public GameObject nonFlyEnemyNPCPrefab;
+    public GameObject levelEndMonsterPrefab;
+    public GameObject friendNPCPrefab;
+    public GameObject boxPrefab;
+    // TODO: If the first assignment will not be made in Unity use >> flyEnemyNPCPrefab = Resources.Load<GameObject>("flyEnemyNPCPrefab");
+
+    private void Awake()
+    {
+        instance = this;
+    }
+    
+    public GameObject InstantiateLevelCharacter(ECharacterType type)
+    {
+        GameObject shape;
+        switch (type)
+        {
+            case ECharacterType.flyEnemyNPC:
+                shape = Instantiate(flyEnemyNPCPrefab) as GameObject;
+                break;
+            case ECharacterType.stableEnemyNPC:
+                shape = Instantiate(stableEnemyNPCPrefab) as GameObject;
+                break;
+            case ECharacterType.nonFlyEnemyNPC:
+                shape = Instantiate(nonFlyEnemyNPCPrefab) as GameObject;
+                break;
+            case ECharacterType.levelEndMonster:
+                shape = Instantiate(levelEndMonsterPrefab) as GameObject;
+                break;
+            case ECharacterType.friendNPC:
+                shape = Instantiate(friendNPCPrefab) as GameObject;
+                break;
+            default:
+                shape = Instantiate(boxPrefab) as GameObject;
+                break;
+        }
+        return shape;
+    }
+}
+
 [Serializable]
 public class LevelData
 {
@@ -209,7 +256,6 @@ public class LevelCharacterData
     public Vector3 Position;
     public Vector3 Rotation;
     public Vector3 Scale;
-    public Material Material;
 }
 
 public enum ECharacterType
