@@ -51,8 +51,8 @@ namespace SpaceShooterProject.Component
 
         public void OpenBronzeChest()
         {
-            // 4 Permanent Card %25
-            // 2 Temporal Card %25
+            // Permanent Card %25
+            // Temporal Card %25
             // Spaceship Part %25
             // Gold %25
             _dice = Random.Range(1, 5);
@@ -69,8 +69,8 @@ namespace SpaceShooterProject.Component
 
         public void OpenSilverChest()
         {
-            // 4 Permanent Card %30
-            // 2 Temporal Card %30
+            // Permanent Card %30
+            // Temporal Card %30
             // Spaceship Part %30
             // Gold %10
             _dice = Random.Range(1, 11);
@@ -87,8 +87,8 @@ namespace SpaceShooterProject.Component
 
         public void OpenGoldenChest()
         {
-            // 4 Permanent Card %40
-            // 2 Temporal Card %20
+            // Permanent Card %40
+            // Temporal Card %20
             // Spaceship Part %40
             _dice = Random.Range(1, 11);
 
@@ -104,8 +104,8 @@ namespace SpaceShooterProject.Component
         {
             // TODO Stabilize gold amount. Add level multiplier for gold amount
             _dice = Random.Range(1, 11);
-            int temp = _goldMultiplier * _dice;
-            return temp;
+            int goldAmount = _goldMultiplier * _dice;
+            return goldAmount;
         }
 
 
@@ -117,21 +117,16 @@ namespace SpaceShooterProject.Component
                 return -1;
             }
 
-            int spaceshipIndex = Random.Range(0, spaceshipParts.Count);
-            spaceshipParts.RemoveAt(spaceshipIndex);
-            return spaceshipIndex;
+            int spaceshipPartIndex = Random.Range(0, spaceshipParts.Count);
+            int temp = spaceshipParts[spaceshipPartIndex];
+            spaceshipParts.RemoveAt(spaceshipPartIndex);
+            return temp;
         }
 
         private int GetTemporalCard()
         {
-            if (permanentCards.Count == 0)
-            {
-                GetGold();
-                return -1;
-            }
-
-            int cardIndex = Random.Range(0, temporalCards.Count);
-            return cardIndex;
+            int temporalCardIndex = Random.Range(0, temporalCards.Count);
+            return temporalCardIndex;
         }
 
         private int GetPermanentCard()
@@ -142,9 +137,10 @@ namespace SpaceShooterProject.Component
                 return -1;
             }
 
-            int cardIndex = Random.Range(0, permanentCards.Count);
-            permanentCards.RemoveAt(cardIndex);
-            return cardIndex;
+            int permanentCardIndex = Random.Range(0, permanentCards.Count);
+            int temp = permanentCards[permanentCardIndex];
+            permanentCards.RemoveAt(permanentCardIndex);
+            return temp;
         }
     }
 }
