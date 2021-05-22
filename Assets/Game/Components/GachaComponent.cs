@@ -39,7 +39,7 @@ namespace SpaceShooterProject.Component
         // TODO Check: if chest's return 10-19,Temporal Card
         // TODO Check: if chest's return 20-29, Spaceship Part
         // TODO Check: if chest's return % _defaultGoldAmount == 0, Gold. 
-        
+
         // TODO Optimize chest possibilities
 
         public void Initialize(ComponentContainer componentContainer)
@@ -155,13 +155,7 @@ namespace SpaceShooterProject.Component
         private int GetSpaceshipPart()
         {
             if (spaceshipParts.Count == 0)
-            {
-                _dice = Random.Range(0, 2);
-                if (_dice == 0)
-                    return GetGold();
-                return GetTemporalCard();
-            }
-
+                return OutOfItem();
 
             int spaceshipPartIndex = Random.Range(0, spaceshipParts.Count);
             int temp = spaceshipParts[spaceshipPartIndex];
@@ -178,17 +172,20 @@ namespace SpaceShooterProject.Component
         private int GetPermanentCard()
         {
             if (permanentCards.Count == 0)
-            {
-                _dice = Random.Range(0, 2);
-                if (_dice == 0)
-                    return GetGold();
-                return GetTemporalCard();
-            }
+                return OutOfItem();
 
             int permanentCardIndex = Random.Range(0, permanentCards.Count);
             int temp = permanentCards[permanentCardIndex];
             permanentCards.RemoveAt(permanentCardIndex);
             return temp;
+        }
+
+        private int OutOfItem()
+        {
+            _dice = Random.Range(0, 2);
+            if (_dice == 0)
+                return GetGold();
+            return GetTemporalCard();
         }
     }
 }
