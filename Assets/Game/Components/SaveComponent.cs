@@ -10,7 +10,10 @@ namespace SpaceShooterProject.Component
         public static void Save(AccountData accountData){
 
             string path = Directory.GetCurrentDirectory();
-            path = path + "/Data/" + "accountData.txt";
+            Debug.Log("Path:"+path);
+            path = path + "/Data";
+            Directory.CreateDirectory(path);
+            path += "/accountData.txt";
             var data = JsonUtility.ToJson(accountData);
 
             using (FileStream fs = new FileStream(path, FileMode.Create))

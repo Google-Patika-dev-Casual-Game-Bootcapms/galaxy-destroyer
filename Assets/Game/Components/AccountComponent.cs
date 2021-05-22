@@ -5,6 +5,8 @@ namespace SpaceShooterProject.Component
     using UnityEngine;
     public class AccountComponent : IComponent
     {
+
+        #region Variables        
         private AccountData accountData;
         private AchievementsComponent achievementsComponent;
         private GamePlayComponent gamePlayComponent;
@@ -16,6 +18,8 @@ namespace SpaceShooterProject.Component
 
         //TODO: Add copilot system reference when inventory component created!!!
         // private CopilotComponent copilotComponent;
+
+        #endregion        
 
         public void Initialize(ComponentContainer componentContainer)
         {
@@ -32,33 +36,45 @@ namespace SpaceShooterProject.Component
             //TODO: serialize data
             //TODO: fill account data
 
-            accountData = LoadComponent.Load<AccountData>(); // Try to read from the path. If there is no txt file, initialize from components.
-            
-            if(LoadComponent.fileNotExist == true){
-                accountData.Name = "Name"; // What should be the name?
-                accountData.PlayerLevel = 1;
-                /*
-                accountData.CompletedAchievements = achievementsComponent.GetCompletedAchievements();
-                /accountData.LastReachedLevel = gamePlayComponent.GetLastReachedComponent();
-                accountData.MaxScore = gamePlayComponent.GetMaxScore();
-                accountData.OwnedSpaceShips = inventoryComponent.GetOwnedSpaceShips();
-                accountData.SpaceShipUpgradeDatas = inventoryComponent.GetSpaceShipUpgradeDatas();
-                accountData.OwnedCards = inventoryComponent.GetOwnedCards();
-                accountData.OwnedPowerUps = inventoryComponent.GetOwnedPowerUps();
-                accountData.LastSelectedSpaceShip = inventoryComponent.GetLastSelectedSpaceShip();
-                accountData.AudioSetting = audioComponent.GetAudioSetting();
-                accountData.OwnedGold = currencyComponent.GetOwnedGold();
-                accountData.OwnedDiamond = currencyComponent.GetOwnedDiamond();
-                accountData.CopilotSetting = copilotComponent.GetCopilotSetting();
-                */
-            }
+            LoadComponent loadComponent = new LoadComponent();
 
+            accountData = loadComponent.Load<AccountData>(); // Try to read from the path. If there is no txt file, initialize from components.
+            //loadcomponent.InitializeByDefault += FirstInitialization;
+            if(loadComponent.fileNotExist){
+                Debug.Log("File not exist. Initializing for first time usage:");
+                FirstInitialization();
+            }
+            Debug.Log(GetPlayerName());
+
+        }
+
+        private void FirstInitialization()
+        {
+            Debug.Log("Entered first initialization");
+            accountData.Name = "Name"; // Kullanıcıya nasıl sorabiliriz bunu?
+            accountData.PlayerLevel = 1;
+            /* // Getter metodlar eklendiğinde aktif hale getirilecek!
+            accountData.CompletedAchievements = achievementsComponent.GetCompletedAchievements();
+            /accountData.LastReachedLevel = gamePlayComponent.GetLastReachedComponent();
+            accountData.MaxScore = gamePlayComponent.GetMaxScore();
+            accountData.OwnedSpaceShips = inventoryComponent.GetOwnedSpaceShips();
+            accountData.SpaceShipUpgradeDatas = inventoryComponent.GetSpaceShipUpgradeDatas();
+            accountData.OwnedCards = inventoryComponent.GetOwnedCards();
+            accountData.OwnedPowerUps = inventoryComponent.GetOwnedPowerUps();
+            accountData.LastSelectedSpaceShip = inventoryComponent.GetLastSelectedSpaceShip();
+            accountData.AudioSetting = audioComponent.GetAudioSetting();
+            accountData.OwnedGold = currencyComponent.GetOwnedGold();
+            accountData.OwnedDiamond = currencyComponent.GetOwnedDiamond();
+            accountData.CopilotSetting = copilotComponent.GetCopilotSetting();
+            */
+            Save();
         }
 
         public void Save(){
             SaveComponent.Save(accountData);
         }
 
+#region Getter Methods for Account Data
         public string GetPlayerName() {
             return accountData.Name;
         }
@@ -100,8 +116,8 @@ namespace SpaceShooterProject.Component
         }
 
         // TODO: Ses ayarı için getter method ekle
-        public int GetAudioSetting() {
-            return accountData.AudioSetting;
+        public int GetAudioLevel() {
+            return accountData.AudioLevel;
         }
 
         public int GetOwnedGold() {
@@ -116,9 +132,9 @@ namespace SpaceShooterProject.Component
         public int[] GetCopilotSetting(){
             return accountData.CopilotSetting;
         }
-
+#endregion
     }
-
+#region Account Data Struct
     [Serializable]
     public struct AccountData 
     {
@@ -133,7 +149,7 @@ namespace SpaceShooterProject.Component
         public int[] OwnedPowerUps;// Inventory Component?
         public UpgradeData LastSelectedSpaceShip;// Inventory Component?
         // Ses ayarını nasıl tutalım?
-        public int AudioSetting;
+        public int AudioLevel;
         public int OwnedGold;// Currency Component
         public int OwnedDiamond;// Currency Component
         // Co-pilot bilgisini nasıl tutalım?
@@ -147,7 +163,7 @@ namespace SpaceShooterProject.Component
         public int SpaceShipPart;
         public int PartLevel;
     }
-
+#endregion
  
 }
 

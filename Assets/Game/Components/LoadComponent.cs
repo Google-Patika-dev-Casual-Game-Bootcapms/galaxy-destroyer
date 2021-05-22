@@ -3,17 +3,38 @@ namespace SpaceShooterProject.Component
     using System.IO;
     using Devkit.Base.Component;
     using UnityEngine;
+
+    //public delegate void FirstTimeInitialization();
+
     public class LoadComponent
     {
-        public static bool fileNotExist = false;
-        public static T Load<T>(){
+        public bool fileNotExist = false;
+        //public event FirstTimeInitialization InitializeByDefault;
+
+        public T Load<T>(){
             string path = Directory.GetCurrentDirectory();
             path = path + "/Data/" + "accountData.txt";
-            var data = ReadDataFromPath(path);
-            return JsonUtility.FromJson<T>(data);
+            string data = null;
+            if(File.Exists(path)){
+                data = ReadDataFromPath(path); 
+                return JsonUtility.FromJson<T>(data);
+            }else {
+                Debug.Log("Else loop");
+                /*if(InitializeByDefault != null){
+                    InitializeByDefault();
+                }
+                InitializeByDefault += this.DebugFunc;*/
+                fileNotExist = true;
+                return default(T);
+            }
+            
         }
 
-        private static string ReadDataFromPath(string path)
+       /*private void DebugFunc(){
+            Debug.Log("Debug print");
+        }*/
+
+        private string ReadDataFromPath(string path)
         {
             string data = null;
             try
@@ -28,7 +49,7 @@ namespace SpaceShooterProject.Component
             }
             catch (System.Exception ex)
             {
-                fileNotExist = true;
+
             }
             return data;
         }
