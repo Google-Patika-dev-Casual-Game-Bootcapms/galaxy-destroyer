@@ -22,17 +22,17 @@ namespace SpaceShooterProject.State
 
         protected override void OnEnter()
         {
-            Debug.Log("Splash State On Enter");
+            Debug.Log("Splash State OnEnter");
         }
 
         protected override void OnExit()
         {
-            Debug.Log("Splash State On Exit");
+            Debug.Log("Splash State OnExit");
         }
 
         protected override void OnUpdate()
         {
-            //Debug.Log("Splash State On Update");
+            Debug.Log("Splash State OnUpdate");
         }
     }
 }
