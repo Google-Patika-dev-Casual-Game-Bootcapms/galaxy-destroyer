@@ -42,8 +42,9 @@ namespace SpaceShooterProject.Component
                 spaceshipParts.Add(i);
             }
         }
-
-        public void OpenBronzeChest()
+        
+        //TODO Check: if chest's return >= _goldMultiplier, its gold. 
+        public int OpenBronzeChest()
         {
             // Permanent Card %25
             // Temporal Card %25
@@ -52,16 +53,15 @@ namespace SpaceShooterProject.Component
             _dice = Random.Range(1, 5);
 
             if (_dice == 1)
-                GetPermanentCard();
-            else if (_dice == 2)
-                GetSpaceshipPart();
-            else if (_dice == 3)
-                GetTemporalCard();
-            else
-                GetGold();
+                return GetPermanentCard();
+            if (_dice == 2)
+                return GetSpaceshipPart();
+            if (_dice == 3)
+                return GetTemporalCard();
+            return GetGold();
         }
 
-        public void OpenSilverChest()
+        public int OpenSilverChest()
         {
             // Permanent Card %30
             // Temporal Card %30
@@ -70,16 +70,15 @@ namespace SpaceShooterProject.Component
             _dice = Random.Range(1, 11);
 
             if (_dice <= 3)
-                GetPermanentCard();
-            else if (_dice <= 6)
-                GetSpaceshipPart();
-            else if (_dice <= 9)
-                GetTemporalCard();
-            else
-                GetGold();
+                return GetPermanentCard();
+            if (_dice <= 6)
+                return GetSpaceshipPart();
+            if (_dice <= 9)
+                return GetTemporalCard();
+            return GetGold();
         }
 
-        public void OpenGoldenChest()
+        public int OpenGoldenChest()
         {
             // Permanent Card %40
             // Temporal Card %20
@@ -87,11 +86,10 @@ namespace SpaceShooterProject.Component
             _dice = Random.Range(1, 11);
 
             if (_dice <= 4)
-                GetPermanentCard();
-            else if (_dice <= 8)
-                GetSpaceshipPart();
-            else
-                GetTemporalCard();
+                return GetPermanentCard();
+            if (_dice <= 8)
+                return GetSpaceshipPart();
+            return GetTemporalCard();
         }
 
         private int GetGold()
@@ -107,8 +105,7 @@ namespace SpaceShooterProject.Component
         {
             if (spaceshipParts.Count == 0)
             {
-                GetGold();
-                return -1;
+                return GetGold();
             }
 
             int spaceshipPartIndex = Random.Range(0, spaceshipParts.Count);
@@ -127,8 +124,7 @@ namespace SpaceShooterProject.Component
         {
             if (permanentCards.Count == 0)
             {
-                GetGold();
-                return -1;
+                return GetGold();
             }
 
             int permanentCardIndex = Random.Range(0, permanentCards.Count);
