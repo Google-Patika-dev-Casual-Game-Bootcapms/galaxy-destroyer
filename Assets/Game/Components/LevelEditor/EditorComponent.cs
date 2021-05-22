@@ -9,6 +9,8 @@ using UnityEditor;
 
 public class LevelEditorComponent : EditorWindow
 {
+    #region Level Editor Unity Window
+
     public static LevelEditorComponent window;
     public string NewLevelName = String.Empty;
 
@@ -65,6 +67,7 @@ public class LevelEditorComponent : EditorWindow
             Debug.Log("Test is completed");
         }
     }
+    #endregion
 
     private void SaveLevelDataAsJson(string levelName)
     {
@@ -129,13 +132,11 @@ public class LevelEditorComponent : EditorWindow
                     data = reader.ReadToEnd();
                 }
             }
-
         }
         catch (System.Exception ex)
         {
             Debug.Log(ex);
         }
-
         return data;
     }
 
@@ -187,7 +188,7 @@ public class LevelEditorComponent : EditorWindow
 
 #endif
 
-
+#region CharacterGeneratorComponent
 public class CharacterGeneratorComponent : MonoBehaviour
 {
     public static CharacterGeneratorComponent instance;
@@ -232,6 +233,7 @@ public class CharacterGeneratorComponent : MonoBehaviour
         return shape;
     }
 }
+#endregion
 
 [Serializable]
 public class LevelData
