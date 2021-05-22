@@ -9,7 +9,6 @@ namespace SpaceShooterProject.Component
     {
         // Pools
         List<int> permanentCards = new List<int>();
-        List<int> temporalCards = new List<int>();
         List<int> spaceshipParts = new List<int>();
 
         // Counts
@@ -36,11 +35,6 @@ namespace SpaceShooterProject.Component
             for (int i = 0; i < _permanentCardCount; i++)
             {
                 permanentCards.Add(i);
-            }
-
-            for (int i = 0; i < _temporalCardCount; i++)
-            {
-                temporalCards.Add(i);
             }
 
             for (int i = 0; i < _spaceshipPartCount; i++)
@@ -125,7 +119,7 @@ namespace SpaceShooterProject.Component
 
         private int GetTemporalCard()
         {
-            int temporalCardIndex = Random.Range(0, temporalCards.Count);
+            int temporalCardIndex = Random.Range(0, _temporalCardCount);
             return temporalCardIndex;
         }
 
