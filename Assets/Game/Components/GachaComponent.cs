@@ -46,8 +46,8 @@ namespace SpaceShooterProject.Component
             // TODO Gold must send to Wallet Component
             // TODO Cards and Spaceship Parts must send to Inventory Component
             
-            // TODO Check: if json is created, read data. else, run functions and write to json
-            // TODO Update json when chest functions called
+            // TODO Check: if json list is created, read data. else, run functions and write to json list
+            // TODO Update json list when chest functions called
             SetUpEnds();
             AddItemsToList();
         }
