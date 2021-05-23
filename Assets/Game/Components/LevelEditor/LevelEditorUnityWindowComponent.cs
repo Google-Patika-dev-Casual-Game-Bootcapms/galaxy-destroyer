@@ -26,6 +26,10 @@ public class LevelEditorUnityWindowComponent : EditorWindow
             _savedLevelNames = new List<string>();
         }
 
+        GUILayout.TextArea("You can use this toolbar at run time or after run time.");
+        
+        GUILayout.BeginArea(new Rect(10, 50, position.width, position.height));
+        
         NewLevelName = GUI.TextField(new Rect(10, 10, position.width, 20), NewLevelName, 25);
 
         if (GUI.Button(new Rect(10, 40, position.width, 20), "Save Level"))

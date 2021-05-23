@@ -23,7 +23,6 @@ public class EditorComponent : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
- 
         instance = this;
         DontDestroyOnLoad( this.gameObject );
     }
