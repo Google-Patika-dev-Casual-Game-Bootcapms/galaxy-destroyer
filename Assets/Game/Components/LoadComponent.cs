@@ -4,35 +4,16 @@ namespace SpaceShooterProject.Component
     using Devkit.Base.Component;
     using UnityEngine;
 
-    //public delegate void FirstTimeInitialization();
-
     public class LoadComponent
     {
-        //public bool fileNotExist = false;
-        //public event FirstTimeInitialization InitializeByDefault;
-
         public T Load<T>(string accountDataPath){
 
-            Debug.Log("LOAD COMPONENT :  " + accountDataPath);
-            string data = null;
-            if(File.Exists(accountDataPath)){
-                data = ReadDataFromPath(accountDataPath); 
-                return JsonUtility.FromJson<T>(data);
-            }else {
-                Debug.Log("Else loop");
-                /*if(InitializeByDefault != null){
-                    InitializeByDefault();
-                }
-                InitializeByDefault += this.DebugFunc;*/
-                //fileNotExist = true;
-                return default(T);
-            }
+            //Debug.Log("LOAD COMPONENT :  " + accountDataPath);
+            string data;
+            data = ReadDataFromPath(accountDataPath);
+            return JsonUtility.FromJson<T>(data);
             
         }
-
-       /*private void DebugFunc(){
-            Debug.Log("Debug print");
-        }*/
 
         private string ReadDataFromPath(string path)
         {

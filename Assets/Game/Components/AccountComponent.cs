@@ -13,13 +13,17 @@ namespace SpaceShooterProject.Component
         private GamePlayComponent gamePlayComponent;
         private CurrencyComponent currencyComponent;
         private AudioComponent audioComponent;
-        private string accountDataPath; 
 
         //TODO: Add inventory system reference when inventory component created!!!
-        // private InventoryComponent inventoryComponent;
+            // private InventoryComponent inventoryComponent;
 
         //TODO: Add copilot system reference when inventory component created!!!
-        // private CopilotComponent copilotComponent;
+            // private CopilotComponent copilotComponent;
+
+        private string accountDataPath;
+        private string accountDataFile;
+        private LoadComponent loadComponent;
+        private SaveComponent saveComponent;
 
         #endregion        
 
@@ -29,36 +33,45 @@ namespace SpaceShooterProject.Component
             gamePlayComponent = componentContainer.GetComponent("GamePlayComponent") as GamePlayComponent;
             currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
             audioComponent = componentContainer.GetComponent("AudioComponent") as AudioComponent;
-            // inventoryComponent = componentContainer.GetComponent("InventoryComponent") as InventoryComponent;
-            // copilotComponent = componentContainer.GetComponent("CopilotComponent") as CopilotComponent;
+            // TODO: Activate below components when they are created
+                // inventoryComponent = componentContainer.GetComponent("InventoryComponent") as InventoryComponent;
+                // copilotComponent = componentContainer.GetComponent("CopilotComponent") as CopilotComponent;
             
-            Debug.Log("<color=green>Account Component initialized!</color>");
+            //Debug.Log("<color=green>Account Component initialized!</color>");
 
-            accountDataPath = Application.persistentDataPath + "/" + "accountData.txt";
-            //accountDataPath = Application.persistentDataPath + "/" + accountData.Name + ".txt";  ???
-            //Kaydedilen Account nameini çekmek için bir DB bağlantısı gerekli mi ?   
+            accountDataFile = "accountData.txt";
+            accountDataPath = Application.persistentDataPath + "/" + accountDataFile;
             
-            LoadComponent loadComponent = new LoadComponent();
+            loadComponent = new LoadComponent();
+            saveComponent = new SaveComponent();
 
-            accountData = loadComponent.Load<AccountData>(accountDataPath); // Try to read from the path. If there is no txt file, initialize from components.
-            //loadcomponent.InitializeByDefault += FirstInitialization;
-            
-            if(accountData.Name == null){
-                Debug.Log("File not exist. Initializing for first time usage:");
-                Firstinitialize();
+            if(File.Exists(accountDataPath)){
+                //Debug.Log("File exists and successfully read.");
+                accountData = loadComponent.Load<AccountData>(accountDataPath);
+            } else {
+                //Debug.Log("Initialize for first time");
+                InitializeForFirstTime();
             }
-            Debug.Log(GetPlayerName());
+            
+            //Debug.Log("Name:" + GetPlayerName());
 
         }
 
-        private void Firstinitialize()
-        {
-            Debug.Log("Entered first initialization");
-            accountData.Name = "Name"; // Kullanıcıya nasıl sorabiliriz bunu?
+        private void InitializeForFirstTime(){
+            //Debug.Log("Entered first initialization");
+            accountData.Name = "Name"; // TODO: Ask for name to the user
             accountData.PlayerLevel = 1;
-            /* // Getter metodlar eklendiğinde aktif hale getirilecek!
-            accountData.CompletedAchievements = achievementsComponent.GetCompletedAchievements();
-            /accountData.LastReachedLevel = gamePlayComponent.GetLastReachedComponent();
+            
+            // TODO: Assign default values for other components in the future
+            
+            saveComponent.Save(accountData, accountDataPath);
+        }
+
+        public void SaveBeforeClosing(){
+            // TODO: Activate below when corresponding methods are created.
+            
+            /*accountData.CompletedAchievements = achievementsComponent.GetCompletedAchievements();
+            accountData.LastReachedLevel = gamePlayComponent.GetLastReachedComponent();
             accountData.MaxScore = gamePlayComponent.GetMaxScore();
             accountData.OwnedSpaceShips = inventoryComponent.GetOwnedSpaceShips();
             accountData.SpaceShipUpgradeDatas = inventoryComponent.GetSpaceShipUpgradeDatas();
@@ -70,11 +83,7 @@ namespace SpaceShooterProject.Component
             accountData.OwnedDiamond = currencyComponent.GetOwnedDiamond();
             accountData.CopilotSetting = copilotComponent.GetCopilotSetting();
             */
-            Save();
-        }
-
-        public void Save(){            
-            SaveComponent.Save(accountData, accountDataPath);
+            saveComponent.Save(accountData, accountDataPath);
         }
 
 #region Getter Methods for Account Data
@@ -118,7 +127,6 @@ namespace SpaceShooterProject.Component
             return accountData.LastSelectedSpaceShip;
         }
 
-        // TODO: Ses ayarı için getter method ekle
         public int GetAudioLevel() {
             return accountData.AudioLevel;
         }
@@ -131,7 +139,6 @@ namespace SpaceShooterProject.Component
             return accountData.OwnedDiamond;
         }
 
-        // TODO: Co-pilot bilgisi için getter method ekle
         public int[] GetCopilotSetting(){
             return accountData.CopilotSetting;
         }
@@ -146,17 +153,15 @@ namespace SpaceShooterProject.Component
         public int[] CompletedAchievements;//   Achievement Component
         public int LastReachedLevel;//  Gameplay Component
         public int MaxScore;//  Gameplay Component
-        public int[] OwnedSpaceShips;// Inventory Component?
-        public UpgradeData[] SpaceShipUpgradeDatas;// Inventory Component?
-        public int[] OwnedCards;// Inventory Component?
-        public int[] OwnedPowerUps;// Inventory Component?
-        public UpgradeData LastSelectedSpaceShip;// Inventory Component?
-        // Ses ayarını nasıl tutalım?
-        public int AudioLevel;
+        public int[] OwnedSpaceShips;// Inventory Component
+        public UpgradeData[] SpaceShipUpgradeDatas;// Inventory Component
+        public int[] OwnedCards;// Inventory Component
+        public int[] OwnedPowerUps;// Inventory Component
+        public UpgradeData LastSelectedSpaceShip;// Inventory Component
+        public int AudioLevel;// Audio Component
         public int OwnedGold;// Currency Component
         public int OwnedDiamond;// Currency Component
-        // Co-pilot bilgisini nasıl tutalım?
-        public int[] CopilotSetting;
+        public int[] CopilotSetting;// Copilot Component
     }
 
     [Serializable]
