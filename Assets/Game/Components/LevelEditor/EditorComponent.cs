@@ -1,80 +1,39 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
-
-#if UNITY_EDITOR
 using UnityEditor;
 
-public class LevelEditorComponent : EditorWindow
+public class EditorComponent : MonoBehaviour
 {
-    #region Level Editor Unity Window
-
-    public static LevelEditorComponent window;
-    public string NewLevelName = String.Empty;
-
-    private List<string> _savedLevelNames = new List<string>();
-
-    [MenuItem("Tools/LevelEditor")]
-    public static void CreateWindow()
-    {
-        window = (LevelEditorComponent)EditorWindow.GetWindow(typeof(LevelEditorComponent)); //create a window
-        window.title = "Level Editor";
-    }
-
-    void OnGUI()
-    {
-        if (window == null)
-        {
-            CreateWindow();
-            _savedLevelNames = new List<string>();
-        }
-
-        NewLevelName = GUI.TextField(new Rect(10, 10, position.width, 20), NewLevelName, 25);
-
-        if (GUI.Button(new Rect(10, 40, position.width, 20), "Save Level"))
-        {
-            SaveLevelDataAsJson(NewLevelName);
-        }
-
-        if (GUI.Button(new Rect(10, 70, position.width, 20), "Show Saved Levels"))
-        {
-            CreateLevelButtons();
-        }
-
-        GUILayout.BeginArea(new Rect(10, 110, position.width, position.height));
-
-        for (int i = 0; i < _savedLevelNames.Count; i++)
-        {
-            if (GUILayout.Button(_savedLevelNames[i]))
-            {
-                LoadLevelDataFromJson(_savedLevelNames[i]);
-            }
-        }
-
-        GUILayout.EndArea();
-    }
-
-    public void CreateLevelButtons()
-    {
-        _savedLevelNames = new List<string>();
-
-        _savedLevelNames = GetLevelNames();
-
-        if (GUI.Button(new Rect(10, 90, position.width, 20), "Level1"))
-        {
-            Debug.Log("Test is completed");
-        }
-    }
+    public static EditorComponent instance;
+    
+    #region CharacterGenerator Field Declarations
+    public GameObject flyEnemyNPCPrefab;
+    public GameObject stableEnemyNPCPrefab;
+    public GameObject nonFlyEnemyNPCPrefab;
+    public GameObject levelEndMonsterPrefab;
+    public GameObject friendNPCPrefab;
+    public GameObject boxPrefab;
+    // TODO: If the first assignment will not be made in Unity use >> flyEnemyNPCPrefab = Resources.Load<GameObject>("flyEnemyNPCPrefab");
     #endregion
-
-    private void SaveLevelDataAsJson(string levelName)
+    private void Awake()
+    {
+        if (instance != null && instance != this) 
+        {
+            Destroy(this.gameObject);
+        }
+ 
+        instance = this;
+        DontDestroyOnLoad( this.gameObject );
+    }
+    public void SaveLevelDataAsJson(string levelName)
     {
         // get all charactertype object in the scene
         var itemsToSave = FindObjectsOfType<CharacterType>();
 
         string path = Application.dataPath + "/Resources/" + levelName + ".txt";
+        
         // save all level data as JSON data
         var data = SerializeMapData(itemsToSave);
 
@@ -88,7 +47,7 @@ public class LevelEditorComponent : EditorWindow
         AssetDatabase.Refresh();
     }
 
-    private string SerializeMapData(CharacterType[] itemsToSave)
+    private string  SerializeMapData(CharacterType[] itemsToSave)
     {
         LevelData levelData = new LevelData();
 
@@ -120,7 +79,7 @@ public class LevelEditorComponent : EditorWindow
         LoadScene(levelData);
     }
 
-    public string ReadDataFromText(string path)
+    private string ReadDataFromText(string path)
     {
         string data = null;
         try
@@ -147,7 +106,7 @@ public class LevelEditorComponent : EditorWindow
         // add the game object types you want to update
         foreach (var levelItem in levelData.LevelCharacters)
         {
-            var levelItemObject = CharacterGeneratorComponent.instance.InstantiateLevelCharacter(levelItem.Type);
+            var levelItemObject = InstantiateLevelCharacter(levelItem.Type);
             var levelItemObjectData = levelItemObject.GetComponent<CharacterType>();
             levelItemObjectData.transform.localScale = levelItem.Scale;
             levelItemObjectData.transform.position = levelItem.Position;
@@ -162,12 +121,12 @@ public class LevelEditorComponent : EditorWindow
 
         foreach (var rect in levelItems)
         {
-            DestroyImmediate(rect.gameObject);
             Debug.Log(rect.gameObject.name + " GameObject is deleted");
+            DestroyImmediate(rect.gameObject);
         }
     }
-
-    private List<string> GetLevelNames()
+    
+    public List<string> GetLevelNames()
     {
         List<string> levelNames = new List<string>();
 
@@ -181,32 +140,10 @@ public class LevelEditorComponent : EditorWindow
             string fullName = foundFile.Name;
             levelNames.Add(fullName);
         }
-
         return levelNames;
     }
-}
-
-#endif
-
-#region CharacterGeneratorComponent
-public class CharacterGeneratorComponent : MonoBehaviour
-{
-    public static CharacterGeneratorComponent instance;
-
-    public GameObject flyEnemyNPCPrefab;
-    public GameObject stableEnemyNPCPrefab;
-    public GameObject nonFlyEnemyNPCPrefab;
-    public GameObject levelEndMonsterPrefab;
-    public GameObject friendNPCPrefab;
-    public GameObject boxPrefab;
-    // TODO: If the first assignment will not be made in Unity use >> flyEnemyNPCPrefab = Resources.Load<GameObject>("flyEnemyNPCPrefab");
-
-    private void Awake()
-    {
-        instance = this;
-    }
-    
-    public GameObject InstantiateLevelCharacter(ECharacterType type)
+    #region CharacterGenerator
+    private GameObject InstantiateLevelCharacter(ECharacterType type)
     {
         GameObject shape;
         switch (type)
@@ -232,9 +169,11 @@ public class CharacterGeneratorComponent : MonoBehaviour
         }
         return shape;
     }
+    #endregion
+    
 }
-#endregion
 
+#region EditorData
 [Serializable]
 public class LevelData
 {
@@ -271,4 +210,4 @@ public enum ECharacterType
     friendNPC,
     box
 }
-
+#endregion

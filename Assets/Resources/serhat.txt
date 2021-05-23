@@ -1,1 +1,0 @@
-{"LevelCharacters":[],"CameraHeight":10.0,"CameraWidth":18.962963104248048}
