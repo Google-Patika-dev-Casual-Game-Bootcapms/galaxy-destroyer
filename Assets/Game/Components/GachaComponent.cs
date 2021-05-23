@@ -5,7 +5,7 @@ namespace SpaceShooterProject.Component
     using Devkit.Base.Component;
     using UnityEngine;
 
-    public class GachaComponent : MonoBehaviour, IComponent
+    public class GachaComponent : IComponent
     {
         // TODO Set up access modifiers
         // Pools
@@ -38,40 +38,20 @@ namespace SpaceShooterProject.Component
         // TODO Check: if chest's return 0-9, Permanent Card
         // TODO Check: if chest's return 10-19,Temporal Card
         // TODO Check: if chest's return 20-29, Spaceship Part
-        // TODO Check: if chest's return % _defaultGoldAmount == 0, Gold. 
-
-        // TODO Optimize chest possibilities
 
         public void Initialize(ComponentContainer componentContainer)
         {
-            // TODO add necessary components
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
+            // TODO Add necessary components
+            // TODO Which component will call OpenChest functions?
+            // TODO Gold must send to Wallet Component
+            // TODO Cards and Spaceship Parts must send to Inventory Component
+            
+            // TODO Check: if json is created, read data. else, run functions and write to json
+            // TODO Update json when chest functions called
             SetUpEnds();
             AddItemsToList();
-
-            TestGoldenChest();
         }
-
-        private void TestGoldenChest()
-        {
-            for (int i = 0; i < 100; i++)
-            {
-                int returnCheck = OpenGoldenChest();
-                if (returnCheck < 10)
-                    Debug.Log("Permanent Card: " + returnCheck);
-                else if (returnCheck < 20)
-                    Debug.Log("Temporal Card: " + returnCheck);
-                else if (returnCheck < 30)
-                    Debug.Log("Spaceship Part: " + returnCheck);
-                else if (returnCheck % _defaultGoldAmount == 0)
-                    Debug.Log("Gold: " + returnCheck);
-            }
-        }
-
+        
         private void SetUpEnds()
         {
             _permanentCardEnd = _permanentCardCount + _permanentCardStart;
@@ -92,6 +72,7 @@ namespace SpaceShooterProject.Component
             }
         }
 
+        // TODO Optimize chest possibilities
         public int OpenBronzeChest()
         {
             // Permanent Card %25
