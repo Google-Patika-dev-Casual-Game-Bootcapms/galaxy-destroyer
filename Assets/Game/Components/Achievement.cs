@@ -25,6 +25,7 @@ namespace SpaceShooterProject.Component
         public int GoalCount { get => goalCount; }
         public int CurrentCount { get => CurrentCount; }
         public int Prize { get => prize; }
+        public bool IsAchived { get => isAchived; set => isAchived = value; }
         #endregion
 
         //raises current count and if currentcount equal or greater than goalcount Notify() observers..
@@ -34,11 +35,7 @@ namespace SpaceShooterProject.Component
 
             currentCount++;
 
-            if (currentCount >= goalCount)
-            {
-                isAchived = true;
-                Notify();
-            }
+            if (currentCount >= goalCount) Notify();
         }
 
         //notify observers..

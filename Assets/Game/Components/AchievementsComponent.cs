@@ -63,7 +63,7 @@ namespace SpaceShooterProject.Component
 
         public void OnNext(Achievement value)
         {
-            throw new NotImplementedException();
+            value.IsAchived = true;
         }
     }
 }
