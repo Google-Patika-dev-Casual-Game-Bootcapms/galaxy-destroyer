@@ -8,15 +8,15 @@ namespace SpaceShooterProject.Component
 
     public class LoadComponent
     {
-        public bool fileNotExist = false;
+        //public bool fileNotExist = false;
         //public event FirstTimeInitialization InitializeByDefault;
 
-        public T Load<T>(){
-            string path = Directory.GetCurrentDirectory();
-            path = path + "/Data/" + "accountData.txt";
+        public T Load<T>(string accountDataPath){
+
+            Debug.Log("LOAD COMPONENT :  " + accountDataPath);
             string data = null;
-            if(File.Exists(path)){
-                data = ReadDataFromPath(path); 
+            if(File.Exists(accountDataPath)){
+                data = ReadDataFromPath(accountDataPath); 
                 return JsonUtility.FromJson<T>(data);
             }else {
                 Debug.Log("Else loop");
@@ -24,7 +24,7 @@ namespace SpaceShooterProject.Component
                     InitializeByDefault();
                 }
                 InitializeByDefault += this.DebugFunc;*/
-                fileNotExist = true;
+                //fileNotExist = true;
                 return default(T);
             }
             
@@ -47,9 +47,9 @@ namespace SpaceShooterProject.Component
                     }
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception ex )
             {
-
+                Debug.Log("Generic Exception Handler:" + ex );
             }
             return data;
         }

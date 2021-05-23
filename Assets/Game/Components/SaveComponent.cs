@@ -7,16 +7,12 @@ namespace SpaceShooterProject.Component
     public class SaveComponent
     {
         
-        public static void Save(AccountData accountData){
+        public static void Save<T>(T dataObject , string accountDataPath){
+            
+            Debug.Log("SAVE COMPONENT : " + accountDataPath);          
+            var data = JsonUtility.ToJson(dataObject);
 
-            string path = Directory.GetCurrentDirectory();
-            Debug.Log("Path:"+path);
-            path = path + "/Data";
-            Directory.CreateDirectory(path);
-            path += "/accountData.txt";
-            var data = JsonUtility.ToJson(accountData);
-
-            using (FileStream fs = new FileStream(path, FileMode.Create))
+            using (FileStream fs = new FileStream(accountDataPath, FileMode.Create))
             {
                 using (StreamWriter writer = new StreamWriter(fs))
                 {

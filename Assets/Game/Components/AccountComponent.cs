@@ -1,6 +1,7 @@
 namespace SpaceShooterProject.Component 
 {
     using System;
+    using System.IO;
     using Devkit.Base.Component;
     using UnityEngine;
     public class AccountComponent : IComponent
@@ -12,6 +13,7 @@ namespace SpaceShooterProject.Component
         private GamePlayComponent gamePlayComponent;
         private CurrencyComponent currencyComponent;
         private AudioComponent audioComponent;
+        private string accountDataPath; 
 
         //TODO: Add inventory system reference when inventory component created!!!
         // private InventoryComponent inventoryComponent;
@@ -32,23 +34,24 @@ namespace SpaceShooterProject.Component
             
             Debug.Log("<color=green>Account Component initialized!</color>");
 
-            //TODO: read account data from local storage
-            //TODO: serialize data
-            //TODO: fill account data
-
+            accountDataPath = Application.persistentDataPath + "/" + "accountData.txt";
+            //accountDataPath = Application.persistentDataPath + "/" + accountData.Name + ".txt";  ???
+            //Kaydedilen Account nameini çekmek için bir DB bağlantısı gerekli mi ?   
+            
             LoadComponent loadComponent = new LoadComponent();
 
-            accountData = loadComponent.Load<AccountData>(); // Try to read from the path. If there is no txt file, initialize from components.
+            accountData = loadComponent.Load<AccountData>(accountDataPath); // Try to read from the path. If there is no txt file, initialize from components.
             //loadcomponent.InitializeByDefault += FirstInitialization;
-            if(loadComponent.fileNotExist){
+            
+            if(accountData.Name == null){
                 Debug.Log("File not exist. Initializing for first time usage:");
-                FirstInitialization();
+                Firstinitialize();
             }
             Debug.Log(GetPlayerName());
 
         }
 
-        private void FirstInitialization()
+        private void Firstinitialize()
         {
             Debug.Log("Entered first initialization");
             accountData.Name = "Name"; // Kullanıcıya nasıl sorabiliriz bunu?
@@ -70,8 +73,8 @@ namespace SpaceShooterProject.Component
             Save();
         }
 
-        public void Save(){
-            SaveComponent.Save(accountData);
+        public void Save(){            
+            SaveComponent.Save(accountData, accountDataPath);
         }
 
 #region Getter Methods for Account Data
