@@ -8,6 +8,7 @@ namespace SpaceShooterProject.Component
     public class Achievement : ScriptableObject, IObservable<Achievement>
     {
         #region Variables
+        [SerializeField] private int id;
         [SerializeField] private string achievementName;
         [SerializeField, TextArea(1, 4)] private string description;
         [SerializeField] private Sprite icon;
@@ -19,6 +20,7 @@ namespace SpaceShooterProject.Component
         #endregion
 
         #region  Properties
+        public int Id { get => id; }
         public string Name { get => achievementName; }
         public Sprite Icon { get => icon; }
         public string Descrption { get => description; }

@@ -51,6 +51,11 @@ namespace SpaceShooterProject.Component
             return null;
         }
 
+        public void OnNext(Achievement value)
+        {
+            value.IsAchived = true;
+        }
+
         public void OnCompleted()
         {
             throw new NotImplementedException();
@@ -59,11 +64,6 @@ namespace SpaceShooterProject.Component
         public void OnError(Exception error)
         {
             throw new NotImplementedException();
-        }
-
-        public void OnNext(Achievement value)
-        {
-            value.IsAchived = true;
         }
     }
 }
