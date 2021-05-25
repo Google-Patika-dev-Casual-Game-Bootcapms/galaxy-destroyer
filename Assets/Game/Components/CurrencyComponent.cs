@@ -9,50 +9,59 @@ namespace SpaceShooterProject.Component
     {
         #region Variables
             private AccountComponent accountComponent;
-            private int OwnedGold,OwnedDiamond;
+            private int ownedGold,ownedDiamond;
+            private bool isGoldEnough,isDiamondEnough;
         #endregion
 
         public void Initialize(ComponentContainer componentContainer)
         {
             accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
 
-            OwnedDiamond = accountComponent.GetOwnedDiamond();
-            OwnedGold = accountComponent.GetOwnedGold();
+            ownedDiamond = accountComponent.GetOwnedDiamond();
+            ownedGold = accountComponent.GetOwnedGold();
         }
 
         #region Currency Methods
-            void EarnGold(int goldIncome)
+            public void EarnGold(int goldIncome)
             {
-                OwnedGold += goldIncome;
+                ownedGold += goldIncome;
             }
 
-            void EarnDiamond(int diamondIncome)
+            public void EarnDiamond(int diamondIncome)
             {
-                OwnedDiamond += diamondIncome;
+                ownedDiamond += diamondIncome;
             }
 
-            void SpendGold(int goldOutcome)
+            public bool SpendGold(int goldOutcome)
             {
-                if(OwnedGold < goldOutcome)
+                if(ownedGold < goldOutcome)
                 {
                     //TODO give an error
+                    isGoldEnough = false;
                 }
                 else
                 {
-                    OwnedGold -= goldOutcome;
+                    ownedGold -= goldOutcome;
+                    isGoldEnough=true;
                 }
+                
+                return isGoldEnough;
             }
 
-            void SpendDiamond(int diamondOutcome)
+            public bool SpendDiamond(int diamondOutcome)
             {
-                if(OwnedDiamond < diamondOutcome)
+                if(ownedDiamond < diamondOutcome)
                 {
                     //TODO give an error
+                    isDiamondEnough=false;
                 }
                 else
                 {
-                    OwnedDiamond -= diamondOutcome;
+                    ownedDiamond -= diamondOutcome;
+                    isDiamondEnough = true;
                 }
+
+                return isDiamondEnough;
             }
 
 
@@ -61,12 +70,12 @@ namespace SpaceShooterProject.Component
         #region Getter Methods
             int GetOwnedGold()
             {
-                return OwnedGold;
+                return ownedGold;
             }
 
             int GetOwnedDiamond()
             {
-                return OwnedDiamond;
+                return ownedDiamond;
             }
         #endregion
     }
