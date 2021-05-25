@@ -8,15 +8,35 @@ namespace SpaceShooterProject.Component
 
     public class IntroComponent : MonoBehaviour, IComponent
     {
+
+        [SerializeField]
+        private UIComponent uiComponent;
+        [SerializeField]
+        private LoadingIcon loadingIcon;
+        [SerializeField]
+        private Logo logo;
+        [SerializeField]
+        private KodluyoruzLogo kodluyoruzLogo;
+
         public void Initialize(ComponentContainer componentContainer)
         {
-            
+            uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
+            StartCoroutine("SplashAnimation");
+            loadingIcon.gameObject.SetActive(true);
         }
 
         public bool IsCompleted()
         {
             return true;
         }
+
+        private IEnumerator SplashAnimation()
+        {
+            kodluyoruzLogo.StartCoroutine("KodluyoruzLogoAnimation");
+            yield return new WaitForSeconds(3f);
+            logo.StartCoroutine("GalaxyLogoAnimation");
+        }
+
     }
 }
 
