@@ -15,52 +15,52 @@
 			gameStatesComponent = componentContainer.GetComponent("GameStatesComponent") as GameStatesComponent;
 		}
 
-		// public int[] GetCopilotSetting(){
+		public int[] GetCopilotSetting(){
+			//TODO: write setting codes
+		}
 
-		// }
+		public IEnumerable WaitfOritPower(){
+			float cooldown = 5.0f;
+			float timer = 0f;
+			int addBulletPower = 1;
+			int maxBulletPower = 10;
+			int currentBulletPower = ship.bulletPower;
 
-		// public int WaitfOritPower(){
-		// 	float cooldown = 5.0f;
-		// 	float timer = 0f;
-		// 	int addBulletPower = 1;
-		// 	int maxBulletPower = 10;
-		// 	int currentBulletPower = ship.bulletPower;
-
-		// 	while(true){
+			while(true){
 				
-		// 		if(gameStatesComponent.CurrentState !=  gameStatesComponent.Gameplay){
+				if(gameStatesComponent.CurrentState !=  gameStatesComponent.Gameplay){
 					
-		// 			break;
-		// 		}
-		// 		else{
-		// 			if(timer >= cooldown ){
-		// 				timer = 0f;
-		// 				currentBulletPower += addBulletPower;
-		// 				if(currentBulletPower>=maxBulletPower){
-		// 					break;
-		// 				}
-		// 			}
-		// 		}
-		// 		yield return currentBulletPower;
-		// 	}
-		// }
+					break;
+				}
+				else{
+					if(timer >= cooldown ){
+						timer = 0f;
+						currentBulletPower += addBulletPower;
+						if(currentBulletPower>=maxBulletPower){
+							break;
+						}
+					}
+				}
+				yield return currentBulletPower;
+			}
+		}
 
 		
-		// public void FirethRower(){
+		public void FirethRower(){
+			//TODO: write second co-pilot codes
+		}
 
-		// }
-
-		// public void GotyoUrback(){
-
-		// }
+		public void GotyoUrback(){
+			//TODO: write third co-pilot codes
+		}
 		
-		// public void NowyoUdont(){
-
-		// }
+		public void NowyoUdont(){
+			//TODO: write fourth co-pilot codes
+		}
 		
-		// public void ShocKwave(){
-
-		// }
+		public void ShocKwave(){
+			//TODO: write fifth co-pilot codes
+		}
 
 	}
 }
