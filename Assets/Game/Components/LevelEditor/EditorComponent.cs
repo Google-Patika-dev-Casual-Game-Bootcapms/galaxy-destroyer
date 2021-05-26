@@ -180,6 +180,8 @@ public class LevelData
 
     public float CameraHeight;
     public float CameraWidth;
+    
+    //TODO:Add, on which planet will the scene begin, for example jupyter
 
     public LevelData()
     {
@@ -191,6 +193,7 @@ public class LevelData
 public class LevelCharacterData
 {
     //TODO: Add types of gameobjects data you have
+    //TODO: gets the rotation wrong, needs to be fixed
 
     public ECharacterType Type;
     public Vector3 Position;
