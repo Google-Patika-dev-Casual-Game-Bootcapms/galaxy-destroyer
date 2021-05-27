@@ -15,7 +15,27 @@ public class EditorComponent : MonoBehaviour
     public GameObject levelEndMonsterPrefab;
     public GameObject friendNPCPrefab;
     public GameObject boxPrefab;
-    // TODO: If the first assignment will not be made in Unity use >> flyEnemyNPCPrefab = Resources.Load<GameObject>("flyEnemyNPCPrefab");
+    public GameObject marsPrefab;
+    public GameObject neptunePrefab;
+    public GameObject uranusPrefab;
+    public GameObject saturnPrefab;
+    #endregion
+    #region Assign CharacterGenerator Field Declarations
+    /*
+    private void Start()
+    {
+        flyEnemyNPCPrefab = Resources.Load<GameObject>("flyEnemyNPCPrefab");
+        stableEnemyNPCPrefab = Resources.Load<GameObject>("stableEnemyNPCPrefab");
+        nonFlyEnemyNPCPrefab = Resources.Load<GameObject>("nonFlyEnemyNPCPrefab");
+        levelEndMonsterPrefab = Resources.Load<GameObject>("levelEndMonsterPrefab");
+        friendNPCPrefab = Resources.Load<GameObject>("friendNPCPrefab");
+        boxPrefab = Resources.Load<GameObject>("boxPrefab");
+        marsPrefab = Resources.Load<GameObject>("marsPrefab");
+        neptunePrefab = Resources.Load<GameObject>("neptunePrefab");
+        uranusPrefab = Resources.Load<GameObject>("uranusPrefab");
+        saturnPrefab = Resources.Load<GameObject>("saturnPrefab");
+    }
+    */
     #endregion
     private void Awake()
     {
@@ -26,6 +46,7 @@ public class EditorComponent : MonoBehaviour
         instance = this;
         DontDestroyOnLoad( this.gameObject );
     }
+
     public void SaveLevelDataAsJson(string levelName)
     {
         // get all charactertype object in the scene
@@ -162,8 +183,20 @@ public class EditorComponent : MonoBehaviour
             case ECharacterType.friendNPC:
                 shape = Instantiate(friendNPCPrefab) as GameObject;
                 break;
-            default:
+            case ECharacterType.box:
                 shape = Instantiate(boxPrefab) as GameObject;
+                break;
+            case ECharacterType.mars:
+                shape = Instantiate(marsPrefab) as GameObject;
+                break;
+            case ECharacterType.neptune:
+                shape = Instantiate(neptunePrefab) as GameObject;
+                break;
+            case ECharacterType.uranus:
+                shape = Instantiate(uranusPrefab) as GameObject;
+                break;
+            default:
+                shape = Instantiate(saturnPrefab) as GameObject;
                 break;
         }
         return shape;
@@ -210,6 +243,10 @@ public enum ECharacterType
     nonFlyEnemyNPC,
     levelEndMonster,
     friendNPC,
-    box
+    box,
+    mars,
+    neptune,
+    uranus,
+    saturn
 }
 #endregion

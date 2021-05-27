@@ -473,12 +473,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4989b4e3b446c4ba4fdb34df360c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyEnemyNPCPrefab: {fileID: 4911774252866039550, guid: 9a955dcd34806ca4095fd0c7eda7d1e3, type: 3}
-  stableEnemyNPCPrefab: {fileID: 4911774252866039550, guid: 9a955dcd34806ca4095fd0c7eda7d1e3, type: 3}
-  nonFlyEnemyNPCPrefab: {fileID: 4911774252866039550, guid: 9a955dcd34806ca4095fd0c7eda7d1e3, type: 3}
-  levelEndMonsterPrefab: {fileID: 4911774252866039550, guid: 9a955dcd34806ca4095fd0c7eda7d1e3, type: 3}
-  friendNPCPrefab: {fileID: 4911774252866039550, guid: 9a955dcd34806ca4095fd0c7eda7d1e3, type: 3}
-  boxPrefab: {fileID: 4911774252866039550, guid: 9a955dcd34806ca4095fd0c7eda7d1e3, type: 3}
+  flyEnemyNPCPrefab: {fileID: 0}
+  stableEnemyNPCPrefab: {fileID: 0}
+  nonFlyEnemyNPCPrefab: {fileID: 0}
+  levelEndMonsterPrefab: {fileID: 0}
+  friendNPCPrefab: {fileID: 0}
+  boxPrefab: {fileID: 0}
+  marsPrefab: {fileID: 0}
+  neptunePrefab: {fileID: 0}
+  uranusPrefab: {fileID: 0}
+  saturnPrefab: {fileID: 0}
 --- !u!4 &1279030659
 Transform:
   m_ObjectHideFlags: 0
