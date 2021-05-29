@@ -10,20 +10,32 @@
     {
         private InventoryData inventoryData;
 
+        private AccountComponent accountComponent;
+        private string accountDataPath;
+        private string accountDataFile;
+
         private int spaceShipCount;
         private int temporalCardCount;
         private int permanentCardCount;
 
         public void Initialize(ComponentContainer componentContainer)
         {
+            accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
+
             // To-Do: Assign values when necessary components are created!
             // spaceShipCount = SpaceShips.GetSpaceShipCount(); ?
             // temporalCardCount = Cards.GetTemporalCardCount(); ?
             // permanentCardCount = Cards.GetPermanentCardCount(); ?
 
-            if (true)
+            accountDataFile = "accountData.txt";
+            accountDataPath = Application.persistentDataPath + "/" + accountDataFile;
+
+            if (File.Exists(accountDataPath))
             {
-                // Load Data
+                inventoryData.OwnedPermanentCards = accountComponent.GetOwnedPermanentCards();
+                inventoryData.OwnedTemporalCards = accountComponent.GetOwnedTemporalCards();
+                inventoryData.OwnedSpaceShips = accountComponent.GetOwnedSpaceShips();
+                inventoryData.CollectedSpaceShipParts = accountComponent.GetCollectedSpaceShipParts();
             }
             else
             {
@@ -40,7 +52,7 @@
             inventoryData.OwnedSpaceShips = new List<int>();
             inventoryData.CollectedSpaceShipParts = new int[spaceShipCount];
         }
-        
+
         // Get return value from Gacha Component and add looted item to inventory
         public void AddItem(int chestReturn)
         {
@@ -55,7 +67,7 @@
             else if (chestReturn >= 20 && chestReturn < spaceShipCount * 4)
             {
                 int index = chestReturn - 20;
-                
+
                 while (index > spaceShipCount)
                 {
                     index -= 4;
