@@ -1,6 +1,8 @@
 namespace SpaceShooterProject.State 
 {
+    using Devkit.Base.Component;
     using Devkit.HSM;
+    using SpaceShooterProject.Component;
     using UnityEngine;
 
     public class LoadingState : StateMachine

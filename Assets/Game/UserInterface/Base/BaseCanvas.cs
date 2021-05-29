@@ -10,7 +10,7 @@ namespace SpaceShooterProject.UserInterface
     {
         private Canvas canvasComponent = null;
         [SerializeField]
-        private ICanvasElement[] canvasElements;
+        private ICanvasElement[] canvasElements;    
 
         protected ComponentContainer componentContainer;
 
@@ -18,6 +18,7 @@ namespace SpaceShooterProject.UserInterface
         {
             this.componentContainer = componentContainer;
             canvasComponent = this.GetComponent<Canvas>();
+            canvasElements = transform.GetComponentsInChildren<ICanvasElement>();
 
             PreInit();
             Init();
