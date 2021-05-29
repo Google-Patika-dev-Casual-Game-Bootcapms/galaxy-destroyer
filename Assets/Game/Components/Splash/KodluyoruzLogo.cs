@@ -5,18 +5,6 @@ using UnityEngine.UI;
 
 public class KodluyoruzLogo : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private IEnumerator KodluyoruzLogoAnimation()
     {
         Color alpha = GetComponent<Image>().color;
