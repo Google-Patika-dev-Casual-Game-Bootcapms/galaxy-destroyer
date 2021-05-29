@@ -32,10 +32,11 @@
 
             if (File.Exists(accountDataPath))
             {
-                inventoryData.OwnedPermanentCards = accountComponent.GetOwnedPermanentCards();
-                inventoryData.OwnedTemporalCards = accountComponent.GetOwnedTemporalCards();
-                inventoryData.OwnedSpaceShips = accountComponent.GetOwnedSpaceShips();
-                inventoryData.CollectedSpaceShipParts = accountComponent.GetCollectedSpaceShipParts();
+                //todo Account Component'e aşağıdaki metodlar yazılınca yorumdan çıkarılacak
+                // inventoryData.OwnedPermanentCards = accountComponent.GetOwnedPermanentCards();
+                // inventoryData.OwnedTemporalCards = accountComponent.GetOwnedTemporalCards();
+                // inventoryData.OwnedSpaceShips = accountComponent.GetOwnedSpaceShips();
+                // inventoryData.CollectedSpaceShipParts = accountComponent.GetCollectedSpaceShipParts();
             }
             else
             {
