@@ -52,7 +52,6 @@ namespace SpaceShooterProject.Component
 
         private void OnGUI()
         {
-            GUILayout.TextArea("You can load level at runtime or after run time.");
             GUILayout.BeginArea(new Rect(15, 20, position.width, position.height));
 
             NewLevelName = GUI.TextField(new Rect(10, 10, position.width, 20), NewLevelName, 25);
@@ -83,7 +82,7 @@ namespace SpaceShooterProject.Component
         public void SaveLevelDataAsJson(string levelName)
         {
             var itemsToSave = FindObjectsOfType<GameObjectType>();
-            string path = Application.dataPath + "/Resources/" + levelName + ".txt";
+            string path = Application.dataPath + "/Resources/" + levelName + ".json";
             var data = SerializeMapData(itemsToSave);
 
             using (FileStream fs = new FileStream(path, FileMode.Create))
@@ -153,6 +152,7 @@ namespace SpaceShooterProject.Component
 
             foreach (var levelItem in levelData.LevelCharacters)
             {
+                Debug.Log("I am in foreach");
                 var levelItemObject = InstantiateLevelCharacter(levelItem.Type);
                 var levelItemObjectData = levelItemObject.GetComponent<GameObjectType>();
                 levelItemObjectData.transform.localScale = levelItem.Scale;
@@ -180,7 +180,7 @@ namespace SpaceShooterProject.Component
             string partialName = string.Empty;
 
             DirectoryInfo hdDirectoryInWhichToSearch = new DirectoryInfo(Application.dataPath + "/Resources");
-            FileSystemInfo[] filesAndDirs = hdDirectoryInWhichToSearch.GetFileSystemInfos("*" + partialName + "*.txt");
+            FileSystemInfo[] filesAndDirs = hdDirectoryInWhichToSearch.GetFileSystemInfos("*" + partialName + "*.json");
 
             foreach (FileSystemInfo foundFile in filesAndDirs)
             {
