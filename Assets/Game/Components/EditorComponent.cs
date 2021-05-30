@@ -91,6 +91,7 @@ public class EditorComponent : EditorWindow, IComponent
             levelItemData.Type = item.Type;
             levelItemData.Scale = item.transform.localScale;
             levelItemData.Position = item.transform.position;
+            //TODO :Rotation value is wrong in json but it's true in world
             levelItemData.Rotation = item.transform.localRotation;
             levelData.LevelCharacters.Add(levelItemData);
         }
