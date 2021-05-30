@@ -5,205 +5,203 @@ using System.IO;
 using System;
 using UnityEditor;
 
-namespace SpaceShooterProject.Component
-{
 #if UNITY_EDITOR
-    public class EditorComponent : EditorWindow, IComponent
+public class EditorComponent : EditorWindow, IComponent
+{
+    private static EditorComponent window;
+
+    private List<string> _savedLevelNames = new List<string>();
+    private string NewLevelName = String.Empty;
+
+    public void Initialize(ComponentContainer componentContainer)
     {
-        private static EditorComponent window;
+        throw new NotImplementedException();
+    }
 
-        private List<string> _savedLevelNames = new List<string>();
-        private string NewLevelName = String.Empty;
+    [MenuItem("Tools/LevelEditor")]
+    private static void CreateWindow()
+    {
+        window = (EditorComponent)EditorWindow.GetWindow(typeof(EditorComponent)); //create a window
+        window.titleContent.text = "Level Editor";
+    }
 
-        public void Initialize(ComponentContainer componentContainer)
+    private void OnGUI()
+    {
+        if (window == null)
         {
-            throw new NotImplementedException();
+            CreateWindow();
+            _savedLevelNames = new List<string>();
         }
 
-        [MenuItem("Tools/LevelEditor")]
-        private static void CreateWindow()
+        NewLevelName = GUI.TextField(new Rect(10, 10, position.width, 20), NewLevelName, 25);
+
+        if (GUI.Button(new Rect(10, 40, position.width, 20), "Save Level"))
         {
-            window = (EditorComponent)EditorWindow.GetWindow(typeof(EditorComponent)); //create a window
-            window.titleContent.text = "Level Editor";
+            SaveLevelDataAsJson(NewLevelName);
         }
 
-        private void OnGUI()
+        if (GUI.Button(new Rect(10, 70, position.width, 20), "Show Saved Levels"))
         {
-            if (window == null)
-            {
-                CreateWindow();
-                _savedLevelNames = new List<string>();
-            }
+            _savedLevelNames = new List<string>();
+            _savedLevelNames = GetLevelNames();
+        }
 
-            NewLevelName = GUI.TextField(new Rect(10, 10, position.width, 20), NewLevelName, 25);
-
-            if (GUI.Button(new Rect(10, 40, position.width, 20), "Save Level"))
-            {
-                SaveLevelDataAsJson(NewLevelName);
-            }
-
-            if (GUI.Button(new Rect(10, 70, position.width, 20), "Show Saved Levels"))
-            {
-                _savedLevelNames = new List<string>();
-                _savedLevelNames = GetLevelNames();
-            }
-
-            GUILayout.BeginArea(new Rect(10, 150, position.width, position.height));
+        GUILayout.BeginArea(new Rect(10, 150, position.width, position.height));
            
-            for (int i = 0; i < _savedLevelNames.Count; i++)
+        for (int i = 0; i < _savedLevelNames.Count; i++)
+        {
+            if (GUILayout.Button(_savedLevelNames[i]))
             {
-                if (GUILayout.Button(_savedLevelNames[i]))
+                LoadLevelDataFromJson(_savedLevelNames[i]);
+            }
+        }
+
+        GUILayout.EndArea();
+    }
+    public void SaveLevelDataAsJson(string levelName)
+    {
+        var itemsToSave = FindObjectsOfType<GameObjectType>();
+        string path = Application.dataPath + "/Resources/" + levelName + ".txt";
+        var data = SerializeMapData(itemsToSave);
+
+        using (FileStream fs = new FileStream(path, FileMode.Create))
+        {
+            using (StreamWriter writer = new StreamWriter(fs))
+            {
+                writer.Write(data);
+            }
+        }
+        AssetDatabase.Refresh();
+    }
+
+    private string SerializeMapData(GameObjectType[] itemsToSave)
+    {
+        LevelData levelData = new LevelData();
+
+        levelData.CameraHeight = 2f * Camera.main.orthographicSize;
+        levelData.CameraWidth = levelData.CameraHeight * Camera.main.aspect;
+
+        foreach (var item in itemsToSave)
+        {
+            LevelCharacterData levelItemData = new LevelCharacterData();
+            levelItemData.Type = item.Type;
+            levelItemData.Scale = item.transform.localScale;
+            levelItemData.Position = item.transform.position;
+            levelItemData.Rotation = item.transform.eulerAngles;
+            levelData.LevelCharacters.Add(levelItemData);
+        }
+
+        var data = JsonUtility.ToJson(levelData);
+
+        return data;
+    }
+
+    public void LoadLevelDataFromJson(string fileName)
+    {
+        string path = Application.dataPath + "/Resources/" + fileName;
+        var data = ReadDataFromText(path);
+        var levelData = JsonUtility.FromJson<LevelData>(data);
+        LoadScene(levelData);
+    }
+
+    private string ReadDataFromText(string path)
+    {
+        string data = null;
+        try
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Open))
+            {
+                using (StreamReader reader = new StreamReader(fs))
                 {
-                    LoadLevelDataFromJson(_savedLevelNames[i]);
+                    data = reader.ReadToEnd();
                 }
             }
-
-            GUILayout.EndArea();
         }
-        public void SaveLevelDataAsJson(string levelName)
+        catch (System.Exception ex)
         {
-            var itemsToSave = FindObjectsOfType<GameObjectType>();
-            string path = Application.dataPath + "/Resources/" + levelName + ".txt";
-            var data = SerializeMapData(itemsToSave);
-
-            using (FileStream fs = new FileStream(path, FileMode.Create))
-            {
-                using (StreamWriter writer = new StreamWriter(fs))
-                {
-                    writer.Write(data);
-                }
-            }
-            AssetDatabase.Refresh();
+            Debug.Log(ex);
         }
+        return data;
+    }
 
-        private string SerializeMapData(GameObjectType[] itemsToSave)
+    private void LoadScene(LevelData levelData)
+    {
+        ClearScene();
+
+        foreach (var levelItem in levelData.LevelCharacters)
         {
-            LevelData levelData = new LevelData();
-
-            levelData.CameraHeight = 2f * Camera.main.orthographicSize;
-            levelData.CameraWidth = levelData.CameraHeight * Camera.main.aspect;
-
-            foreach (var item in itemsToSave)
-            {
-                LevelCharacterData levelItemData = new LevelCharacterData();
-                levelItemData.Type = item.Type;
-                levelItemData.Scale = item.transform.localScale;
-                levelItemData.Position = item.transform.position;
-                levelItemData.Rotation = item.transform.eulerAngles;
-                levelData.LevelCharacters.Add(levelItemData);
-            }
-
-            var data = JsonUtility.ToJson(levelData);
-
-            return data;
-        }
-
-        public void LoadLevelDataFromJson(string fileName)
-        {
-            string path = Application.dataPath + "/Resources/" + fileName;
-            var data = ReadDataFromText(path);
-            var levelData = JsonUtility.FromJson<LevelData>(data);
-            LoadScene(levelData);
-        }
-
-        private string ReadDataFromText(string path)
-        {
-            string data = null;
-            try
-            {
-                using (FileStream fs = new FileStream(path, FileMode.Open))
-                {
-                    using (StreamReader reader = new StreamReader(fs))
-                    {
-                        data = reader.ReadToEnd();
-                    }
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Debug.Log(ex);
-            }
-            return data;
-        }
-
-        private void LoadScene(LevelData levelData)
-        {
-            ClearScene();
-
-            foreach (var levelItem in levelData.LevelCharacters)
-            {
-                var levelItemObject = InstantiateLevelCharacter(levelItem.Type);
-                var levelItemObjectData = levelItemObject.GetComponent<GameObjectType>();
-                levelItemObjectData.transform.localScale = levelItem.Scale;
-                levelItemObjectData.transform.position = levelItem.Position;
-                levelItemObjectData.transform.eulerAngles = levelItem.Rotation;
-            }
-        }
-
-        private void ClearScene()
-        {
-            var levelItems = GameObject.FindObjectsOfType<GameObjectType>();
-            foreach (var rect in levelItems)
-                DestroyImmediate(rect.gameObject);
-        }
-
-        public List<string> GetLevelNames()
-        {
-            List<string> levelNames = new List<string>();
-
-            string partialName = string.Empty;
-
-            DirectoryInfo hdDirectoryInWhichToSearch = new DirectoryInfo(Application.dataPath + "/Resources");
-            FileSystemInfo[] filesAndDirs = hdDirectoryInWhichToSearch.GetFileSystemInfos("*" + partialName + "*.txt");
-
-            foreach (FileSystemInfo foundFile in filesAndDirs)
-            {
-                string fullName = foundFile.Name;
-                levelNames.Add(fullName);
-            }
-            return levelNames;
-        }
-       
-        private GameObject InstantiateLevelCharacter(EGameObjectType type)
-        {
-            GameObject shape;
-            switch (type)
-            {
-                case EGameObjectType.flyEnemyNPC:
-                    shape = Instantiate(Resources.Load<GameObject>("flyEnemyNPCPrefab")) as GameObject;
-                    break;
-                case EGameObjectType.stableEnemyNPC:
-                    shape = Instantiate(Resources.Load<GameObject>("stableEnemyNPCPrefab")) as GameObject;
-                    break;
-                case EGameObjectType.nonFlyEnemyNPC:
-                    shape = Instantiate(Resources.Load<GameObject>("nonFlyEnemyNPCPrefab")) as GameObject;
-                    break;
-                case EGameObjectType.levelEndMonster:
-                    shape = Instantiate(Resources.Load<GameObject>("levelEndMonsterPrefab")) as GameObject;
-                    break;
-                case EGameObjectType.friendNPC:
-                    shape = Instantiate(Resources.Load<GameObject>("friendNPCPrefab")) as GameObject;
-                    break;
-                case EGameObjectType.box:
-                    shape = Instantiate(Resources.Load<GameObject>("boxPrefab")) as GameObject;
-                    break;
-                case EGameObjectType.mars:
-                    shape = Instantiate(Resources.Load<GameObject>("marsPrefab")) as GameObject;
-                    break;
-                case EGameObjectType.neptune:
-                    shape = Instantiate(Resources.Load<GameObject>("neptunePrefab")) as GameObject;
-                    break;
-                case EGameObjectType.uranus:
-                    shape = Instantiate(Resources.Load<GameObject>("uranusPrefab")) as GameObject;
-                    break;
-                default:
-                    shape = Instantiate(Resources.Load<GameObject>("saturnPrefab")) as GameObject;
-                    break;
-            }
-            return shape;
+            var levelItemObject = InstantiateLevelCharacter(levelItem.Type);
+            var levelItemObjectData = levelItemObject.GetComponent<GameObjectType>();
+            levelItemObjectData.transform.localScale = levelItem.Scale;
+            levelItemObjectData.transform.position = levelItem.Position;
+            levelItemObjectData.transform.eulerAngles = levelItem.Rotation;
         }
     }
+
+    private void ClearScene()
+    {
+        var levelItems = GameObject.FindObjectsOfType<GameObjectType>();
+        foreach (var rect in levelItems)
+            DestroyImmediate(rect.gameObject);
+    }
+
+    public List<string> GetLevelNames()
+    {
+        List<string> levelNames = new List<string>();
+
+        string partialName = string.Empty;
+
+        DirectoryInfo hdDirectoryInWhichToSearch = new DirectoryInfo(Application.dataPath + "/Resources");
+        FileSystemInfo[] filesAndDirs = hdDirectoryInWhichToSearch.GetFileSystemInfos("*" + partialName + "*.txt");
+
+        foreach (FileSystemInfo foundFile in filesAndDirs)
+        {
+            string fullName = foundFile.Name;
+            levelNames.Add(fullName);
+        }
+        return levelNames;
+    }
+       
+    private GameObject InstantiateLevelCharacter(EGameObjectType type)
+    {
+        GameObject shape;
+        switch (type)
+        {
+            case EGameObjectType.flyEnemyNPC:
+                shape = Instantiate(Resources.Load<GameObject>("flyEnemyNPCPrefab")) as GameObject;
+                break;
+            case EGameObjectType.stableEnemyNPC:
+                shape = Instantiate(Resources.Load<GameObject>("stableEnemyNPCPrefab")) as GameObject;
+                break;
+            case EGameObjectType.nonFlyEnemyNPC:
+                shape = Instantiate(Resources.Load<GameObject>("nonFlyEnemyNPCPrefab")) as GameObject;
+                break;
+            case EGameObjectType.levelEndMonster:
+                shape = Instantiate(Resources.Load<GameObject>("levelEndMonsterPrefab")) as GameObject;
+                break;
+            case EGameObjectType.friendNPC:
+                shape = Instantiate(Resources.Load<GameObject>("friendNPCPrefab")) as GameObject;
+                break;
+            case EGameObjectType.box:
+                shape = Instantiate(Resources.Load<GameObject>("boxPrefab")) as GameObject;
+                break;
+            case EGameObjectType.mars:
+                shape = Instantiate(Resources.Load<GameObject>("marsPrefab")) as GameObject;
+                break;
+            case EGameObjectType.neptune:
+                shape = Instantiate(Resources.Load<GameObject>("neptunePrefab")) as GameObject;
+                break;
+            case EGameObjectType.uranus:
+                shape = Instantiate(Resources.Load<GameObject>("uranusPrefab")) as GameObject;
+                break;
+            default:
+                shape = Instantiate(Resources.Load<GameObject>("saturnPrefab")) as GameObject;
+                break;
+        }
+        return shape;
+    }
 }
+
 #endif
 
 
