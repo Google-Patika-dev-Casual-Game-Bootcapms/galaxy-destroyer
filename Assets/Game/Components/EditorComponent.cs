@@ -12,10 +12,10 @@ public class EditorComponent : EditorWindow, IComponent
 
     private List<string> _savedLevelNames = new List<string>();
     private string NewLevelName = String.Empty;
-
+    public ComponentContainer myComponent;
     public void Initialize(ComponentContainer componentContainer)
     {
-        throw new NotImplementedException();
+        myComponent = componentContainer;
     }
 
     [MenuItem("Tools/LevelEditor")]
