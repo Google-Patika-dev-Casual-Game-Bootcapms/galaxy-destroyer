@@ -11,12 +11,17 @@ namespace SpaceShooterProject.UserInterface
 
         public void Activate()
         {
-            StartCoroutine(ANIMATION_COROUTINE_NAME);
+           
         }
 
         public void Deactivate()
         {
             StopCoroutine(ANIMATION_COROUTINE_NAME);
+        }
+
+        public void PlayLoadingAnimation() 
+        {
+            StartCoroutine(ANIMATION_COROUTINE_NAME);
         }
 
         private IEnumerator PlayRotateAnimation()
