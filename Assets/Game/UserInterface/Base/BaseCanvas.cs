@@ -8,11 +8,15 @@ namespace SpaceShooterProject.UserInterface
     [RequireComponent(typeof(Canvas))]
     public abstract class BaseCanvas : MonoBehaviour
     {
+        public delegate void ReturnToMainMenuDelegate();
+        public event ReturnToMainMenuDelegate OnReturnToMainMenu;
+
         private Canvas canvasComponent = null;
         [SerializeField]
         private ICanvasElement[] canvasElements;    
 
         protected ComponentContainer componentContainer;
+
 
         public void Initialize(ComponentContainer componentContainer)
         {
@@ -59,6 +63,14 @@ namespace SpaceShooterProject.UserInterface
 
         protected virtual void PreInit() { }
         protected virtual void Init() { }
+
+        public void ReturnToMainMenu()
+        {
+            if (OnReturnToMainMenu != null)
+            {
+                OnReturnToMainMenu();
+            }
+        }
     }
 }
 
