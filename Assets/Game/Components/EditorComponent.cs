@@ -12,17 +12,6 @@ namespace SpaceShooterProject.Component
     {
         private static EditorComponent window;
 
-        private GameObject flyEnemyNPCPrefab;
-        private GameObject stableEnemyNPCPrefab;
-        private GameObject nonFlyEnemyNPCPrefab;
-        private GameObject levelEndMonsterPrefab;
-        private GameObject friendNPCPrefab;
-        private GameObject boxPrefab;
-        private GameObject marsPrefab;
-        private GameObject neptunePrefab;
-        private GameObject uranusPrefab;
-        private GameObject saturnPrefab;
-
         private List<string> _savedLevelNames = new List<string>();
         private string NewLevelName = String.Empty;
 
@@ -46,10 +35,8 @@ namespace SpaceShooterProject.Component
                 _savedLevelNames = new List<string>();
             }
 
-            GUILayout.TextArea("You can load level at runtime or after run time.");
-            GUILayout.BeginArea(new Rect(15, 20, position.width, position.height));
-
             NewLevelName = GUI.TextField(new Rect(10, 10, position.width, 20), NewLevelName, 25);
+
             if (GUI.Button(new Rect(10, 40, position.width, 20), "Save Level"))
             {
                 SaveLevelDataAsJson(NewLevelName);
@@ -104,7 +91,6 @@ namespace SpaceShooterProject.Component
                 levelItemData.Position = item.transform.position;
                 levelItemData.Rotation = item.transform.eulerAngles;
                 levelData.LevelCharacters.Add(levelItemData);
-                Debug.Log(item.gameObject.name + "GameObject is added to the list to save");
             }
 
             var data = JsonUtility.ToJson(levelData);
@@ -151,19 +137,14 @@ namespace SpaceShooterProject.Component
                 levelItemObjectData.transform.localScale = levelItem.Scale;
                 levelItemObjectData.transform.position = levelItem.Position;
                 levelItemObjectData.transform.eulerAngles = levelItem.Rotation;
-                Debug.Log(levelItemObject.name + " GameObject is created and updated in the scene");
             }
         }
 
         private void ClearScene()
         {
             var levelItems = GameObject.FindObjectsOfType<GameObjectType>();
-
             foreach (var rect in levelItems)
-            {
-                Debug.Log(rect.gameObject.name + " GameObject is deleted");
                 DestroyImmediate(rect.gameObject);
-            }
         }
 
         public List<string> GetLevelNames()
@@ -243,8 +224,6 @@ public class LevelData
 [Serializable]
 public class LevelCharacterData
 {
-    //TODO: gets the rotation wrong, needs to be fixed
-
     public EGameObjectType Type;
     public Vector3 Position;
     public Vector3 Rotation;
@@ -253,8 +232,6 @@ public class LevelCharacterData
 
 public enum EGameObjectType
 {
-    //TODO: Add types of gameobjects you have
-
     flyEnemyNPC,
     stableEnemyNPC,
     nonFlyEnemyNPC,
