@@ -10,7 +10,19 @@ public class EditorComponent : EditorWindow, IComponent
 {
     private List<string> _savedLevelNames = new List<string>();
     private string NewLevelName = String.Empty;
+
     public ComponentContainer myComponent;
+
+    public GameObject flyEnemyNPCPrefab;
+    public GameObject stableEnemyNPCPrefab;
+    public GameObject nonFlyEnemyNPCPrefab;
+    public GameObject levelEndMonsterPrefab;
+    public GameObject friendNPCPrefab;
+    public GameObject boxPrefab;
+    public GameObject marsPrefab;
+    public GameObject neptunePrefab;
+    public GameObject uranusPrefab;
+    public GameObject saturnPrefab;
 
     public void Initialize(ComponentContainer componentContainer)
     {
@@ -53,7 +65,7 @@ public class EditorComponent : EditorWindow, IComponent
     public void SaveLevelDataAsJson(string levelName)
     {
         var itemsToSave = FindObjectsOfType<GameObjectType>();
-        string path = Application.dataPath + "/Resources/" + levelName + ".txt";
+        string path = Application.dataPath + "/Resources/" + levelName + ".json";
         var data = SerializeMapData(itemsToSave);
 
         using (FileStream fs = new FileStream(path, FileMode.Create))
@@ -144,7 +156,7 @@ public class EditorComponent : EditorWindow, IComponent
         string partialName = string.Empty;
 
         DirectoryInfo hdDirectoryInWhichToSearch = new DirectoryInfo(Application.dataPath + "/Resources");
-        FileSystemInfo[] filesAndDirs = hdDirectoryInWhichToSearch.GetFileSystemInfos("*" + partialName + "*.txt");
+        FileSystemInfo[] filesAndDirs = hdDirectoryInWhichToSearch.GetFileSystemInfos("*" + partialName + "*.json");
 
         foreach (FileSystemInfo foundFile in filesAndDirs)
         {
@@ -160,34 +172,34 @@ public class EditorComponent : EditorWindow, IComponent
         switch (type)
         {
             case EGameObjectType.flyEnemyNPC:
-                shape = Instantiate(Resources.Load<GameObject>("flyEnemyNPCPrefab")) as GameObject;
+                shape = Instantiate(flyEnemyNPCPrefab) as GameObject;
                 break;
             case EGameObjectType.stableEnemyNPC:
-                shape = Instantiate(Resources.Load<GameObject>("stableEnemyNPCPrefab")) as GameObject;
+                shape = Instantiate(stableEnemyNPCPrefab) as GameObject;
                 break;
             case EGameObjectType.nonFlyEnemyNPC:
-                shape = Instantiate(Resources.Load<GameObject>("nonFlyEnemyNPCPrefab")) as GameObject;
+                shape = Instantiate(nonFlyEnemyNPCPrefab) as GameObject;
                 break;
             case EGameObjectType.levelEndMonster:
-                shape = Instantiate(Resources.Load<GameObject>("levelEndMonsterPrefab")) as GameObject;
+                shape = Instantiate(levelEndMonsterPrefab) as GameObject;
                 break;
             case EGameObjectType.friendNPC:
-                shape = Instantiate(Resources.Load<GameObject>("friendNPCPrefab")) as GameObject;
+                shape = Instantiate(friendNPCPrefab) as GameObject;
                 break;
             case EGameObjectType.box:
-                shape = Instantiate(Resources.Load<GameObject>("boxPrefab")) as GameObject;
+                shape = Instantiate(boxPrefab) as GameObject;
                 break;
             case EGameObjectType.mars:
-                shape = Instantiate(Resources.Load<GameObject>("marsPrefab")) as GameObject;
+                shape = Instantiate(marsPrefab) as GameObject;
                 break;
             case EGameObjectType.neptune:
-                shape = Instantiate(Resources.Load<GameObject>("neptunePrefab")) as GameObject;
+                shape = Instantiate(neptunePrefab) as GameObject;
                 break;
             case EGameObjectType.uranus:
-                shape = Instantiate(Resources.Load<GameObject>("uranusPrefab")) as GameObject;
+                shape = Instantiate(uranusPrefab) as GameObject;
                 break;
             default:
-                shape = Instantiate(Resources.Load<GameObject>("saturnPrefab")) as GameObject;
+                shape = Instantiate(saturnPrefab) as GameObject;
                 break;
         }
         return shape;
