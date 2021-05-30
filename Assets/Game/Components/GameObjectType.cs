@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class GameObjectType : MonoBehaviour
 {
-    public EGameObjectType Type;  
+    public EGameObjectType Type;
 }
