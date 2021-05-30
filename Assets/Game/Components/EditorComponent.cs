@@ -24,22 +24,9 @@ namespace SpaceShooterProject.Component
         private List<string> _savedLevelNames = new List<string>();
         private string NewLevelName = String.Empty;
 
-        public ComponentContainer myComponent;
-
         public void Initialize(ComponentContainer componentContainer)
         {
-            myComponent = componentContainer;
-
-            flyEnemyNPCPrefab = Resources.Load<GameObject>("flyEnemyNPCPrefab");
-            stableEnemyNPCPrefab = Resources.Load<GameObject>("stableEnemyNPCPrefab");
-            nonFlyEnemyNPCPrefab = Resources.Load<GameObject>("nonFlyEnemyNPCPrefab");
-            levelEndMonsterPrefab = Resources.Load<GameObject>("levelEndMonsterPrefab");
-            friendNPCPrefab = Resources.Load<GameObject>("friendNPCPrefab");
-            boxPrefab = Resources.Load<GameObject>("boxPrefab");
-            marsPrefab = Resources.Load<GameObject>("marsPrefab");
-            neptunePrefab = Resources.Load<GameObject>("neptunePrefab");
-            uranusPrefab = Resources.Load<GameObject>("uranusPrefab");
-            saturnPrefab = Resources.Load<GameObject>("saturnPrefab");
+            throw new NotImplementedException();
         }
 
         [MenuItem("Tools/LevelEditor")]
@@ -198,33 +185,43 @@ namespace SpaceShooterProject.Component
             {
                 case EGameObjectType.flyEnemyNPC:
                     shape = Instantiate(flyEnemyNPCPrefab) as GameObject;
+                    Resources.Load<GameObject>(shape.name);
                     break;
                 case EGameObjectType.stableEnemyNPC:
                     shape = Instantiate(stableEnemyNPCPrefab) as GameObject;
+                    Resources.Load<GameObject>(shape.name);
                     break;
                 case EGameObjectType.nonFlyEnemyNPC:
                     shape = Instantiate(nonFlyEnemyNPCPrefab) as GameObject;
+                    Resources.Load<GameObject>(shape.name);
                     break;
                 case EGameObjectType.levelEndMonster:
                     shape = Instantiate(levelEndMonsterPrefab) as GameObject;
+                    Resources.Load<GameObject>(shape.name);
                     break;
                 case EGameObjectType.friendNPC:
                     shape = Instantiate(friendNPCPrefab) as GameObject;
+                    Resources.Load<GameObject>(shape.name);
                     break;
                 case EGameObjectType.box:
                     shape = Instantiate(boxPrefab) as GameObject;
+                    Resources.Load<GameObject>(shape.name);
                     break;
                 case EGameObjectType.mars:
                     shape = Instantiate(marsPrefab) as GameObject;
+                    Resources.Load<GameObject>(shape.name);
                     break;
                 case EGameObjectType.neptune:
                     shape = Instantiate(neptunePrefab) as GameObject;
+                    Resources.Load<GameObject>(shape.name);
                     break;
                 case EGameObjectType.uranus:
                     shape = Instantiate(uranusPrefab) as GameObject;
+                    Resources.Load<GameObject>(shape.name);
                     break;
                 default:
                     shape = Instantiate(saturnPrefab) as GameObject;
+                    Resources.Load<GameObject>(shape.name);
                     break;
             }
             return shape;
