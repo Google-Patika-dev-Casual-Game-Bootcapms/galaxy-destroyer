@@ -176,52 +176,41 @@ namespace SpaceShooterProject.Component
             }
             return levelNames;
         }
-
+       
         private GameObject InstantiateLevelCharacter(EGameObjectType type)
         {
             GameObject shape;
-            shape = null;
             switch (type)
             {
                 case EGameObjectType.flyEnemyNPC:
-                    shape = Instantiate(flyEnemyNPCPrefab) as GameObject;
-                    Resources.Load<GameObject>(shape.name);
+                    shape = Instantiate(Resources.Load<GameObject>("flyEnemyNPCPrefab")) as GameObject;
                     break;
                 case EGameObjectType.stableEnemyNPC:
-                    shape = Instantiate(stableEnemyNPCPrefab) as GameObject;
-                    Resources.Load<GameObject>(shape.name);
+                    shape = Instantiate(Resources.Load<GameObject>("stableEnemyNPCPrefab")) as GameObject;
                     break;
                 case EGameObjectType.nonFlyEnemyNPC:
-                    shape = Instantiate(nonFlyEnemyNPCPrefab) as GameObject;
-                    Resources.Load<GameObject>(shape.name);
+                    shape = Instantiate(Resources.Load<GameObject>("nonFlyEnemyNPCPrefab")) as GameObject;
                     break;
                 case EGameObjectType.levelEndMonster:
-                    shape = Instantiate(levelEndMonsterPrefab) as GameObject;
-                    Resources.Load<GameObject>(shape.name);
+                    shape = Instantiate(Resources.Load<GameObject>("levelEndMonsterPrefab")) as GameObject;
                     break;
                 case EGameObjectType.friendNPC:
-                    shape = Instantiate(friendNPCPrefab) as GameObject;
-                    Resources.Load<GameObject>(shape.name);
+                    shape = Instantiate(Resources.Load<GameObject>("friendNPCPrefab")) as GameObject;
                     break;
                 case EGameObjectType.box:
-                    shape = Instantiate(boxPrefab) as GameObject;
-                    Resources.Load<GameObject>(shape.name);
+                    shape = Instantiate(Resources.Load<GameObject>("boxPrefab")) as GameObject;
                     break;
                 case EGameObjectType.mars:
-                    shape = Instantiate(marsPrefab) as GameObject;
-                    Resources.Load<GameObject>(shape.name);
+                    shape = Instantiate(Resources.Load<GameObject>("marsPrefab")) as GameObject;
                     break;
                 case EGameObjectType.neptune:
-                    shape = Instantiate(neptunePrefab) as GameObject;
-                    Resources.Load<GameObject>(shape.name);
+                    shape = Instantiate(Resources.Load<GameObject>("neptunePrefab")) as GameObject;
                     break;
                 case EGameObjectType.uranus:
-                    shape = Instantiate(uranusPrefab) as GameObject;
-                    Resources.Load<GameObject>(shape.name);
+                    shape = Instantiate(Resources.Load<GameObject>("uranusPrefab")) as GameObject;
                     break;
                 default:
-                    shape = Instantiate(saturnPrefab) as GameObject;
-                    Resources.Load<GameObject>(shape.name);
+                    shape = Instantiate(Resources.Load<GameObject>("saturnPrefab")) as GameObject;
                     break;
             }
             return shape;
