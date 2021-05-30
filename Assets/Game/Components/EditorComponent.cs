@@ -10,8 +10,6 @@ namespace SpaceShooterProject.Component
 #if UNITY_EDITOR
     public class EditorComponent : EditorWindow, IComponent
     {
-        private static EditorComponent window;
-
         private GameObject flyEnemyNPCPrefab;
         private GameObject stableEnemyNPCPrefab;
         private GameObject nonFlyEnemyNPCPrefab;
@@ -45,20 +43,15 @@ namespace SpaceShooterProject.Component
         }
 
         [MenuItem("Tools/LevelEditor")]
-        private static void CreateWindow()
+        static void Init()
         {
-            window = (EditorComponent)EditorWindow.GetWindow(typeof(EditorComponent)); //create a window
-            window.titleContent.text = "Level Editor";
+            // Get existing open window or if none, make a new one:
+            EditorComponent window = (EditorComponent)EditorWindow.GetWindow(typeof(EditorComponent));
+            window.Show();
         }
 
         private void OnGUI()
         {
-            if (window == null)
-            {
-                CreateWindow();
-                _savedLevelNames = new List<string>();
-            }
-
             GUILayout.TextArea("You can load level at runtime or after run time.");
             GUILayout.BeginArea(new Rect(15, 20, position.width, position.height));
 
@@ -75,7 +68,7 @@ namespace SpaceShooterProject.Component
             }
 
             GUILayout.BeginArea(new Rect(10, 150, position.width, position.height));
-           
+
             for (int i = 0; i < _savedLevelNames.Count; i++)
             {
                 if (GUILayout.Button(_savedLevelNames[i]))
@@ -84,6 +77,7 @@ namespace SpaceShooterProject.Component
                 }
             }
 
+            GUILayout.EndArea();
             GUILayout.EndArea();
         }
         public void SaveLevelDataAsJson(string levelName)
