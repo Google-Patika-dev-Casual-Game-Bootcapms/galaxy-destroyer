@@ -7,11 +7,20 @@ namespace SpaceShooterProject.UserInterface
 
     public class SplashCanvas : BaseCanvas
     {
+        [SerializeField]
+        private Logo publisherLogo;
+        [SerializeField]
+        private Logo appLogo;
+        [SerializeField]
+        private LoadingIcon loadingIcon;
+
+        private const float animationTime = 1.0f;
+
         private bool isIntroAnimCompleted;
 
         protected override void Init()
         {
-            
+
         }
 
         public void PlayIntroAnimation()
@@ -21,8 +30,26 @@ namespace SpaceShooterProject.UserInterface
 
         private IEnumerator IntroAnimation() 
         {
-            yield return new WaitForSeconds(2);
+            loadingIcon.gameObject.SetActive(false);
+            appLogo.gameObject.SetActive(false);
+
+            publisherLogo.PlayFadeInAnimation(animationTime);
+
+            yield return new WaitForSeconds(animationTime);
+            
+            publisherLogo.PlayFadeOutAnimation(animationTime);
+
+            yield return new WaitForSeconds(animationTime);
+
+            appLogo.gameObject.SetActive(true);
+            appLogo.PlayFadeInAnimation(animationTime);
+
+            yield return new WaitForSeconds(animationTime);
+
             isIntroAnimCompleted = true;
+
+            loadingIcon.gameObject.SetActive(true);
+            loadingIcon.PlayLoadingAnimation();
         }
 
         public bool IsIntroCompleted() 
