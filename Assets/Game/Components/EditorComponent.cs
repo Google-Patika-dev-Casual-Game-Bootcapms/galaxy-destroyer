@@ -8,31 +8,24 @@ using UnityEditor;
 #if UNITY_EDITOR
 public class EditorComponent : EditorWindow, IComponent
 {
-    private static EditorComponent window;
-
     private List<string> _savedLevelNames = new List<string>();
     private string NewLevelName = String.Empty;
     public ComponentContainer myComponent;
+
     public void Initialize(ComponentContainer componentContainer)
     {
         myComponent = componentContainer;
     }
 
     [MenuItem("Tools/LevelEditor")]
-    private static void CreateWindow()
+    private static void Init()
     {
-        window = (EditorComponent)EditorWindow.GetWindow(typeof(EditorComponent)); //create a window
-        window.titleContent.text = "Level Editor";
+        EditorComponent window = (EditorComponent)EditorWindow.GetWindow(typeof(EditorComponent));
+        window.Show();
     }
 
     private void OnGUI()
     {
-        if (window == null)
-        {
-            CreateWindow();
-            _savedLevelNames = new List<string>();
-        }
-
         NewLevelName = GUI.TextField(new Rect(10, 10, position.width, 20), NewLevelName, 25);
 
         if (GUI.Button(new Rect(10, 40, position.width, 20), "Save Level"))
@@ -41,8 +34,7 @@ public class EditorComponent : EditorWindow, IComponent
         }
 
         if (GUI.Button(new Rect(10, 70, position.width, 20), "Show Saved Levels"))
-        {
-            _savedLevelNames = new List<string>();
+        {           
             _savedLevelNames = GetLevelNames();
         }
 
