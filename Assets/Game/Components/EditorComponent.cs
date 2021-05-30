@@ -91,7 +91,7 @@ public class EditorComponent : EditorWindow, IComponent
             levelItemData.Type = item.Type;
             levelItemData.Scale = item.transform.localScale;
             levelItemData.Position = item.transform.position;
-            levelItemData.Rotation = item.transform.eulerAngles;
+            levelItemData.Rotation = item.transform.localRotation;
             levelData.LevelCharacters.Add(levelItemData);
         }
 
@@ -138,7 +138,7 @@ public class EditorComponent : EditorWindow, IComponent
             var levelItemObjectData = levelItemObject.GetComponent<GameObjectType>();
             levelItemObjectData.transform.localScale = levelItem.Scale;
             levelItemObjectData.transform.position = levelItem.Position;
-            levelItemObjectData.transform.eulerAngles = levelItem.Rotation;
+            levelItemObjectData.transform.localRotation = levelItem.Rotation;
         }
     }
 
@@ -228,7 +228,7 @@ public class LevelCharacterData
 {
     public EGameObjectType Type;
     public Vector3 Position;
-    public Vector3 Rotation;
+    public Quaternion Rotation;
     public Vector3 Scale;
 }
 
