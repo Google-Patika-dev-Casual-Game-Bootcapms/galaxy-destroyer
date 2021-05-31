@@ -5,6 +5,7 @@ using System.IO;
 using System;
 using UnityEditor;
 
+
 #if UNITY_EDITOR
 public class EditorComponent : EditorWindow, IComponent
 {
@@ -206,43 +207,4 @@ public class EditorComponent : EditorWindow, IComponent
         return shape;
     }
 }
-
 #endif
-
-
-[Serializable]
-public class LevelData
-{
-    public List<LevelCharacterData> LevelCharacters;
-
-    public float CameraHeight;
-    public float CameraWidth;
-
-    public LevelData()
-    {
-        LevelCharacters = new List<LevelCharacterData>();
-    }
-}
-
-[Serializable]
-public class LevelCharacterData
-{
-    public EGameObjectType Type;
-    public Vector3 Position;
-    public Quaternion Rotation;
-    public Vector3 Scale;
-}
-
-public enum EGameObjectType
-{
-    flyEnemyNPC,
-    stableEnemyNPC,
-    nonFlyEnemyNPC,
-    levelEndMonster,
-    friendNPC,
-    box,
-    mars,
-    neptune,
-    uranus,
-    saturn
-}
