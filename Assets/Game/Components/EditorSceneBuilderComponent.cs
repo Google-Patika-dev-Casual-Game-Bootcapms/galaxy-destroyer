@@ -1,6 +1,8 @@
 using Devkit.Base.Component;
 using System.IO;
 using UnityEngine;
+using System.Collections.Generic;
+using System;
 
 public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
 {
@@ -35,12 +37,10 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
         string data = null;
         try
         {
-            using (FileStream fs = new FileStream(path, FileMode.Open))
+            using FileStream fs = new FileStream(path, FileMode.Open);
+            using (StreamReader reader = new StreamReader(fs))
             {
-                using (StreamReader reader = new StreamReader(fs))
-                {
-                    data = reader.ReadToEnd();
-                }
+                data = reader.ReadToEnd();
             }
         }
         catch (System.Exception ex)
@@ -60,7 +60,7 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
             var levelItemObjectData = levelItemObject.GetComponent<GameObjectType>();
             levelItemObjectData.transform.localScale = levelItem.Scale;
             levelItemObjectData.transform.position = levelItem.Position;
-            levelItemObjectData.transform.localRotation = levelItem.Rotation;
+            levelItemObjectData.transform.localRotation = levelItem.Rotation;        //TODO: Rotation value is wrong in json but it's true in world
         }
     }
 
@@ -108,4 +108,41 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
         }
         return shape;
     }
+}
+
+[Serializable]
+public class LevelData
+{
+    public List<LevelCharacterData> LevelCharacters;
+
+    public float CameraHeight;
+    public float CameraWidth;
+
+    public LevelData()
+    {
+        LevelCharacters = new List<LevelCharacterData>();
+    }
+}
+
+[Serializable]
+public class LevelCharacterData
+{
+    public EGameObjectType Type;
+    public Vector3 Position;
+    public Quaternion Rotation;
+    public Vector3 Scale;
+}
+
+public enum EGameObjectType
+{
+    flyEnemyNPC,
+    stableEnemyNPC,
+    nonFlyEnemyNPC,
+    levelEndMonster,
+    friendNPC,
+    box,
+    mars,
+    neptune,
+    uranus,
+    saturn
 }
