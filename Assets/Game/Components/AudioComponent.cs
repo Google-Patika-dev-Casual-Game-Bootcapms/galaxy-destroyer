@@ -12,7 +12,6 @@ namespace SpaceShooterProject.Component
             Debug.Log("Audio Component initialized!");
         }
         
-        // public static AudioComponent instance;
 
         [SerializeField]
         Sound[] sounds;
