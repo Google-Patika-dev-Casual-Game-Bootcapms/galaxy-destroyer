@@ -7,11 +7,9 @@ namespace SpaceShooterProject.Component
 
     public class CurrencyComponent : IComponent
     {
-        #region Variables
             private AccountComponent accountComponent;
             private int ownedGold,ownedDiamond;
             private bool isGoldEnough,isDiamondEnough;
-        #endregion
 
         public void Initialize(ComponentContainer componentContainer)
         {
