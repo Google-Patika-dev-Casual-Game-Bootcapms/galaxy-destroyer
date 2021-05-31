@@ -17,6 +17,7 @@ namespace SpaceShooterProject
         private TutorialComponent tutorialComponent;
         private IntroComponent introComponent;
         private EditorComponent editorComponent;
+        private EditorSceneBuilderComponent editorSceneBuilderComponent;
 
         private AppState appState;
       
@@ -36,6 +37,7 @@ namespace SpaceShooterProject
             CreateGamePlayComponent();
             CreateTutorialComponent();
             CreateEditorComponent();
+            CreateEditorSceneBuilderComponent();
 
             InitializeComponents();
 
@@ -101,6 +103,11 @@ namespace SpaceShooterProject
             editorComponent = new EditorComponent();
             componentContainer.AddComponent("EditorComponent", editorComponent);
         }
+        private void CreateEditorSceneBuilderComponent()
+        {
+            editorSceneBuilderComponent = new EditorSceneBuilderComponent();
+            componentContainer.AddComponent("LevelEditorSceneBuilderComponent", editorSceneBuilderComponent);
+        }
 
         private void InitializeComponents()
         {
@@ -112,6 +119,7 @@ namespace SpaceShooterProject
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
             editorComponent.Initialize(componentContainer);
+            editorSceneBuilderComponent.Initialize(componentContainer);
         }
 
         private void CreateAppState()
