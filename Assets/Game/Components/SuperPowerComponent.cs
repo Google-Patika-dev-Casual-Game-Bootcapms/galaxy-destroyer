@@ -135,18 +135,18 @@ namespace SpaceShooterProject.Component
                 if (maxLevel > level)
                 {
                     level++;
-                    Debug.Log(type + " Level = " + level);
+                    //Debug.Log(type + " Level = " + level);
                 }
                 else
                 {
-                    Debug.Log(type + ": At the last level you can no longer raise");
+                    //Debug.Log(type + ": At the last level you can no longer raise");
                 }
 
             }
 
             public int GetUpgradePrice()
             {
-                Debug.Log(upgradePriceArray[level] + " " + type + "  Price");
+                //Debug.Log(upgradePriceArray[level] + " " + type + "  Price");
                 return upgradePriceArray[level];
 
             }
