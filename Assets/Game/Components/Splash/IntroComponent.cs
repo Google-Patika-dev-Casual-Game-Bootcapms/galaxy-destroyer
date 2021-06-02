@@ -1,6 +1,7 @@
 namespace SpaceShooterProject.Component 
 {
     using Devkit.Base.Component;
+    using SpaceShooterProject.UserInterface;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -8,37 +9,25 @@ namespace SpaceShooterProject.Component
 
     public class IntroComponent : MonoBehaviour, IComponent
     {
-
-        [SerializeField]
         private UIComponent uiComponent;
-        [SerializeField]
-        private LoadingIcon loadingIcon;
-        [SerializeField]
-        private Logo logo;
-        [SerializeField]
-        private KodluyoruzLogo kodluyoruzLogo;
+        private SplashCanvas splashCanvas;
 
         public void Initialize(ComponentContainer componentContainer)
         {
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
-            StartCoroutine("SplashAnimation");
-            
+            splashCanvas = uiComponent.GetCanvas(UIComponent.MenuName.SPLASH) as SplashCanvas;
         }
 
-        public bool IsCompleted()
+        public bool IsIntroAnimationCompleted()
         {
-            return true;
+            return splashCanvas.IsIntroCompleted();
         }
 
-        private IEnumerator SplashAnimation()
+        public void StartIntro()
         {
-            kodluyoruzLogo.StartCoroutine("KodluyoruzLogoAnimation");
-            yield return new WaitForSeconds(3f);
-            logo.StartCoroutine("GalaxyLogoAnimation");
-            yield return new WaitForSeconds(3f);
-            loadingIcon.gameObject.SetActive(true);
+            uiComponent.EnableCanvas(UIComponent.MenuName.SPLASH);
+            splashCanvas.PlayIntroAnimation();
         }
-
     }
 }
 
