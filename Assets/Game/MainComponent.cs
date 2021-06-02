@@ -18,6 +18,7 @@ namespace SpaceShooterProject
         private IntroComponent introComponent;
         private EditorComponent editorComponent;
         private EditorSceneBuilderComponent editorSceneBuilderComponent;
+        private InventoryComponent inventoryComponent;
 
         private AppState appState;
       
@@ -38,6 +39,8 @@ namespace SpaceShooterProject
             CreateTutorialComponent();
             CreateEditorComponent();
             CreateEditorSceneBuilderComponent();
+            CreateInventoryComponent();
+
 
             InitializeComponents();
 
@@ -109,6 +112,12 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("LevelEditorSceneBuilderComponent", editorSceneBuilderComponent);
         }
 
+        private void CreateInventoryComponent()
+        {
+            inventoryComponent = gameObject.AddComponent<InventoryComponent>();
+            componentContainer.AddComponent("InventoryComponent", inventoryComponent);
+        }
+
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
@@ -120,6 +129,8 @@ namespace SpaceShooterProject
             gamePlayComponent.Initialize(componentContainer);
             editorComponent.Initialize(componentContainer);
             editorSceneBuilderComponent.Initialize(componentContainer);
+            inventoryComponent.Initialize(componentContainer);
+
         }
 
         private void CreateAppState()
