@@ -12,16 +12,15 @@ namespace SpaceShooterProject.Component
             Debug.Log("Audio Component initialized!");
         }
         
-
         [SerializeField]
         Sound[] sounds;
 
-        public void PlaySound(string _name)
+        public void PlaySound(string soundName)
         {
             for(int i=0 ; i<sounds.Length ; i++)
             {
                 
-                if(sounds[i].name == _name)
+                if(sounds[i].name == soundName)
                 {
                     sounds[i].SetSource(gameObject.AddComponent<AudioSource>());
                     sounds[i].Play();
@@ -31,15 +30,15 @@ namespace SpaceShooterProject.Component
             }
 
             //no sound with _name
-             Debug.LogWarning("AudioComponent: Sound not found in list" + _name);
+             Debug.LogWarning("AudioComponent: Sound not found in list" + soundName);
 
         }
 
-        public void PlayMusic(string music)
+        public void PlayMusic(string musicName)
         {
             for(int i=0 ; i<sounds.Length ; i++)
             {
-                if(sounds[i].name == music)
+                if(sounds[i].name == musicName)
                 {
                     sounds[i].SetSource(gameObject.AddComponent<AudioSource>());
                     sounds[i].Play();
@@ -63,9 +62,9 @@ namespace SpaceShooterProject.Component
 
         public AudioSource source;
 
-        public void SetSource(AudioSource _source)
+        public void SetSource(AudioSource audioSource)
         {
-            source = _source;
+            source = audioSource;
             source.clip = clip;
         }
 
@@ -74,5 +73,7 @@ namespace SpaceShooterProject.Component
             source.Play();
         }
 
+
     }
 }
+
