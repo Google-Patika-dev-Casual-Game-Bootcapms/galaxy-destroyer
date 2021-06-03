@@ -17,8 +17,10 @@ namespace SpaceShooterProject
         private TutorialComponent tutorialComponent;
         private IntroComponent introComponent;
         private InventoryComponent inventoryComponent;
-
+        
         private AppState appState;
+        private InGameInputSystem inputSystem;
+
 
         private void Awake()
         {
@@ -36,6 +38,7 @@ namespace SpaceShooterProject
             CreateGamePlayComponent();
             CreateTutorialComponent();
             CreateInventoryComponent();
+            CreateInputSystem();
 
             InitializeComponents();
 
@@ -48,6 +51,10 @@ namespace SpaceShooterProject
             appState.Update();
         }
 
+        private void CreateInputSystem(){
+            inputSystem = new InGameInputSystem();
+            componentContainer.AddComponent("InGameInputSystem",inputSystem);
+        }
         private void CreateAccountComponent()
         {
             accountComponent = new AccountComponent();
@@ -113,6 +120,7 @@ namespace SpaceShooterProject
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
+            
         }
 
         private void CreateAppState()
