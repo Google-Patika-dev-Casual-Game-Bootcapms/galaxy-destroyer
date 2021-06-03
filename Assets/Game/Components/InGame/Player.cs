@@ -10,18 +10,26 @@ namespace SpaceShooterProject.Component {
         private InGameInputSystem inputSystemReferance ;
         public void Init()
         {
-            throw new System.NotImplementedException();
+           
         }
         public void PreInit()
         {
-            throw new System.NotImplementedException();
+          
         }
 
         public void CallUpdate()
         {
-            throw new System.NotImplementedException();
+            
+            
         }
+        
         public void OnTouchUp()
+        {
+            
+            
+        }
+
+        public void OnTouchEnter()
         {
             
         }
@@ -29,6 +37,9 @@ namespace SpaceShooterProject.Component {
         public void InjectInpuSystem(InGameInputSystem inputSystem){
             inputSystemReferance = inputSystem;
             inputSystemReferance.OnScreenTouch += OnScrenTouch;
+            inputSystemReferance.OnScreenTouchEnter += OnTouchEnter;
+            inputSystemReferance.OnScreenTouchExit += OnTouchUp;
+            
 
         }
 
@@ -40,6 +51,8 @@ namespace SpaceShooterProject.Component {
         public void OnDestruct()
         {
             inputSystemReferance.OnScreenTouch -= OnScrenTouch;
+            inputSystemReferance.OnScreenTouchEnter -= OnTouchEnter;
+            inputSystemReferance.OnScreenTouchExit -= OnTouchUp;
         }
 
         

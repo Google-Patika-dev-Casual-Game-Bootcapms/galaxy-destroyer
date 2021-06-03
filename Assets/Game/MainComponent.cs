@@ -120,6 +120,7 @@ namespace SpaceShooterProject
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
+            inputSystem.Initialize(componentContainer);
             
         }
 

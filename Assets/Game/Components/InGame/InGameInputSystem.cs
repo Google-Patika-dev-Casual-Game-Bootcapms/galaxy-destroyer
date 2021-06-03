@@ -10,11 +10,38 @@ namespace SpaceShooterProject.Component
     {
         public delegate void TouchMessageDelegate();
         public event TouchMessageDelegate OnScreenTouch; 
+        public event TouchMessageDelegate OnScreenTouchEnter; 
+        public event TouchMessageDelegate OnScreenTouchExit; 
         public void CallUpdate()
         {
-            if(Input.touchCount>0){
-                if(OnScreenTouch != null){
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("OnTouchEnter");
+                if (OnScreenTouch != null) 
+                {
                     OnScreenTouch();
+                }
+                
+                
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                Debug.Log("Mouse's position="+Input.mousePosition);
+                if (OnScreenTouchEnter != null) 
+                {
+                    OnScreenTouchEnter();
+                }
+                
+
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                Debug.Log("Mouse's last position="+Input.mousePosition);
+                if (OnScreenTouchExit != null) 
+                {
+                    OnScreenTouchExit();
                 }
             }
         }
