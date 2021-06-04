@@ -8,16 +8,16 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
 {
     public ComponentContainer myComponent;
 
-    public GameObject flyEnemyNPCPrefab;
-    public GameObject stableEnemyNPCPrefab;
-    public GameObject nonFlyEnemyNPCPrefab;
-    public GameObject levelEndMonsterPrefab;
-    public GameObject friendNPCPrefab;
-    public GameObject boxPrefab;
-    public GameObject marsPrefab;
-    public GameObject neptunePrefab;
-    public GameObject uranusPrefab;
-    public GameObject saturnPrefab;
+    [SerializeField] private GameObject flyEnemyNPCPrefab;
+    [SerializeField] private GameObject stableEnemyNPCPrefab;
+    [SerializeField] private GameObject nonFlyEnemyNPCPrefab;
+    [SerializeField] private GameObject levelEndMonsterPrefab;
+    [SerializeField] private GameObject friendNPCPrefab;
+    [SerializeField] private GameObject boxPrefab;
+    [SerializeField] private GameObject marsPrefab;
+    [SerializeField] private GameObject neptunePrefab;
+    [SerializeField] private GameObject uranusPrefab;
+    [SerializeField] private GameObject saturnPrefab;
 
     public void Initialize(ComponentContainer componentContainer)
     {
@@ -60,7 +60,7 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
             var levelItemObjectData = levelItemObject.GetComponent<GameObjectType>();
             levelItemObjectData.transform.localScale = levelItem.Scale;
             levelItemObjectData.transform.position = levelItem.Position;
-            levelItemObjectData.transform.localRotation = levelItem.Rotation;        //TODO: Rotation value is wrong in json but it's true in world
+            levelItemObjectData.transform.eulerAngles = levelItem.Rotation;            //TODO: Rotation value is wrong in json but it's true in world
         }
     }
 
@@ -129,7 +129,7 @@ public class LevelCharacterData
 {
     public EGameObjectType Type;
     public Vector3 Position;
-    public Quaternion Rotation;
+    public Vector3 Rotation;
     public Vector3 Scale;
 }
 
