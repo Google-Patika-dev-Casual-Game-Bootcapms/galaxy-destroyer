@@ -1,4 +1,3 @@
-using Devkit.Base.Component;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -7,28 +6,21 @@ using UnityEditor;
 
 
 #if UNITY_EDITOR
-public class EditorComponent : EditorWindow, IComponent
+public class EditorComponent : EditorWindow
 {
     private List<string> _savedLevelNames = new List<string>();
     private string NewLevelName = String.Empty;
 
-    public ComponentContainer myComponent;
-
-    public GameObject flyEnemyNPCPrefab;
-    public GameObject stableEnemyNPCPrefab;
-    public GameObject nonFlyEnemyNPCPrefab;
-    public GameObject levelEndMonsterPrefab;
-    public GameObject friendNPCPrefab;
-    public GameObject boxPrefab;
-    public GameObject marsPrefab;
-    public GameObject neptunePrefab;
-    public GameObject uranusPrefab;
-    public GameObject saturnPrefab;
-
-    public void Initialize(ComponentContainer componentContainer)
-    {
-        myComponent = componentContainer;
-    }
+    [SerializeField] private GameObject flyEnemyNPCPrefab;
+    [SerializeField] private GameObject stableEnemyNPCPrefab;
+    [SerializeField] private GameObject nonFlyEnemyNPCPrefab;
+    [SerializeField] private GameObject levelEndMonsterPrefab;
+    [SerializeField] private GameObject friendNPCPrefab;
+    [SerializeField] private GameObject boxPrefab;
+    [SerializeField] private GameObject marsPrefab;
+    [SerializeField] private GameObject neptunePrefab;
+    [SerializeField] private GameObject uranusPrefab;
+    [SerializeField] private GameObject saturnPrefab;   
 
     [MenuItem("Tools/LevelEditor")]
     private static void Init()
@@ -91,9 +83,8 @@ public class EditorComponent : EditorWindow, IComponent
             LevelCharacterData levelItemData = new LevelCharacterData();
             levelItemData.Type = item.Type;
             levelItemData.Scale = item.transform.localScale;
-            levelItemData.Position = item.transform.position;
-            //TODO :Rotation value is wrong in json but it's true in world
-            levelItemData.Rotation = item.transform.localRotation;
+            levelItemData.Position = item.transform.position;           
+            levelItemData.Rotation = item.transform.eulerAngles;         //TODO :Rotation value is wrong in json but it's true in world
             levelData.LevelCharacters.Add(levelItemData);
         }
 
@@ -140,7 +131,7 @@ public class EditorComponent : EditorWindow, IComponent
             var levelItemObjectData = levelItemObject.GetComponent<GameObjectType>();
             levelItemObjectData.transform.localScale = levelItem.Scale;
             levelItemObjectData.transform.position = levelItem.Position;
-            levelItemObjectData.transform.localRotation = levelItem.Rotation;
+            levelItemObjectData.transform.eulerAngles = levelItem.Rotation;
         }
     }
 
