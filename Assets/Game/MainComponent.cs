@@ -16,7 +16,6 @@ namespace SpaceShooterProject
         private NotificationComponent notificationComponent;
         private TutorialComponent tutorialComponent;
         private IntroComponent introComponent;
-        private EditorComponent editorComponent;
         private EditorSceneBuilderComponent editorSceneBuilderComponent;
 
         private AppState appState;
@@ -36,7 +35,6 @@ namespace SpaceShooterProject
             CreateNotificationComponent();
             CreateGamePlayComponent();
             CreateTutorialComponent();
-            CreateEditorComponent();
             CreateEditorSceneBuilderComponent();
 
             InitializeComponents();
@@ -98,11 +96,7 @@ namespace SpaceShooterProject
             tutorialComponent = new TutorialComponent();
             componentContainer.AddComponent("TutorialComponent", tutorialComponent);
         }
-        private void CreateEditorComponent()
-        {
-            editorComponent = new EditorComponent();
-            componentContainer.AddComponent("EditorComponent", editorComponent);
-        }
+        
         private void CreateEditorSceneBuilderComponent()
         {
             editorSceneBuilderComponent = new EditorSceneBuilderComponent();
@@ -118,7 +112,6 @@ namespace SpaceShooterProject
             audioComponent.Initialize(componentContainer);
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
-            editorComponent.Initialize(componentContainer);
             editorSceneBuilderComponent.Initialize(componentContainer);
         }
 
