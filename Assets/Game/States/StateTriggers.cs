@@ -8,6 +8,8 @@ namespace SpaceShooterProject.State
         SPLASH_COMPLETED,
         RETURN_MAIN_MENU_FROM_ACHIEVEMENTS,
         OPEN_ACHIEVEMENT,
+        OPEN_CARD,
+        OPEN_SPACESHIP,
         GO_TO_MARKET_REQUEST,
         GO_TO_MAIN_MENU_REQUEST,
         GO_TO_ACHIEVEMENTS_REQUEST,
