@@ -17,6 +17,7 @@ namespace SpaceShooterProject.State
         protected override void OnEnter()
         {
             Debug.Log("Intro state On Enter");
+            introComponent.StartIntro();
         }
 
         protected override void OnExit()
@@ -28,7 +29,7 @@ namespace SpaceShooterProject.State
         {
             Debug.Log("Intro state On Update");
             
-            if (introComponent.IsCompleted()) 
+            if (introComponent.IsIntroAnimationCompleted()) 
             {
                 SendTrigger((int)StateTriggers.SPLASH_LOADING);
             }

@@ -16,6 +16,7 @@ namespace SpaceShooterProject
         private NotificationComponent notificationComponent;
         private TutorialComponent tutorialComponent;
         private IntroComponent introComponent;
+        private InventoryComponent inventoryComponent;
 
         private AppState appState;
 
@@ -34,6 +35,7 @@ namespace SpaceShooterProject
             CreateNotificationComponent();
             CreateGamePlayComponent();
             CreateTutorialComponent();
+            CreateInventoryComponent();
 
             InitializeComponents();
 
@@ -95,6 +97,12 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("TutorialComponent", tutorialComponent);
         }
 
+        private void CreateInventoryComponent()
+        {
+            inventoryComponent = gameObject.AddComponent<InventoryComponent>();
+            componentContainer.AddComponent("InventoryComponent", inventoryComponent);
+        }
+
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
@@ -104,6 +112,7 @@ namespace SpaceShooterProject
             audioComponent.Initialize(componentContainer);
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
+            inventoryComponent.Initialize(componentContainer);
         }
 
         private void CreateAppState()
