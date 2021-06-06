@@ -16,12 +16,12 @@ namespace SpaceShooterProject.State
         private EndGameState endGameState;
 
         private UIComponent uiComponent;
-        private InGameCanvas inGameCanvas;
+        private ProvisionCanvas provisionCanvas;
 
         public GameState(ComponentContainer componentContainer)
         {
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
-            inGameCanvas = uiComponent.GetCanvas(UIComponent.MenuName.IN_GAME) as InGameCanvas; 
+            provisionCanvas = uiComponent.GetCanvas(UIComponent.MenuName.PROVISION) as ProvisionCanvas; 
 
             prepareGameState = new PrepareGameState(componentContainer);
             inGameState = new InGameState(componentContainer);
@@ -43,8 +43,7 @@ namespace SpaceShooterProject.State
 
         protected override void OnEnter()
         {
-            uiComponent.EnableCanvas(UIComponent.MenuName.IN_GAME);
-            inGameCanvas.OnReturnToMainMenu += ReturnToMainMenu;
+            uiComponent.EnableCanvas(UIComponent.MenuName.PROVISION);
         }
 
         private void ReturnToMainMenu()
@@ -54,7 +53,7 @@ namespace SpaceShooterProject.State
 
         protected override void OnExit()
         {
-            inGameCanvas.OnReturnToMainMenu -= ReturnToMainMenu;
+            provisionCanvas.OnReturnToMainMenu -= ReturnToMainMenu;
         }
 
         protected override void OnUpdate()
