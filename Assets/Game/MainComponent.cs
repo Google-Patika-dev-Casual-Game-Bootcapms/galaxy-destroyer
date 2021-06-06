@@ -41,16 +41,18 @@ namespace SpaceShooterProject
             CreateInventoryComponent();
             CreateCoPilotComponent();
             InitializeComponents();
-
             CreateAppState();
             appState.Enter();
         }
 
         
-
         public void Update()
         {
             appState.Update();
+            if (coPilotComponent)
+            {
+                coPilotComponent.CoPilotUpdate();
+            }
         }
 
         private void CreateAccountComponent()
