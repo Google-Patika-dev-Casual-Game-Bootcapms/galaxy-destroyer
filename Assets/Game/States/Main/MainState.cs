@@ -11,22 +11,24 @@ namespace SpaceShooterProject.State
         private MainMenuState mainMenuState;
         private MarketState marketState;
         private SpaceShipUpgradeState spaceShipUpgradeState;
-        private SpaceShipSelectionState spaceShipSelectionState;
+        private GarageState spaceShipSelectionState;
         private AchievementsState achievementsState;
         private SettingsState settingsState;
         private InventoryState inventoryState;
         private CoPilotSelectionState coPilotSelectionState;
+        private CreditsState creditsState;
 
         public MainState(ComponentContainer componentContainer)
         {
             mainMenuState = new MainMenuState(componentContainer);
             marketState = new MarketState(componentContainer);
-            spaceShipSelectionState = new SpaceShipSelectionState(componentContainer);
+            spaceShipSelectionState = new GarageState(componentContainer);
             spaceShipUpgradeState = new SpaceShipUpgradeState(componentContainer);
             achievementsState = new AchievementsState(componentContainer);
             settingsState = new SettingsState(componentContainer);
             inventoryState = new InventoryState(componentContainer);
             coPilotSelectionState = new CoPilotSelectionState(componentContainer);
+            creditsState = new CreditsState(componentContainer);
 
             this.AddSubState(mainMenuState);
             this.AddSubState(marketState);
@@ -35,6 +37,8 @@ namespace SpaceShooterProject.State
             this.AddSubState(achievementsState);
             this.AddSubState(settingsState);
             this.AddSubState(inventoryState);
+            this.AddSubState(coPilotSelectionState);
+            this.AddSubState(creditsState);
 
             SetupMarketTransitions();
             SetupAchievementsTransitions();
@@ -43,6 +47,7 @@ namespace SpaceShooterProject.State
             SetupSettingsTransition();
             SetupInventoryState();
             SetupCoPilotTransition();
+            SetupCreditsTransition();
         }
 
         private void SetupMarketTransitions()
@@ -59,7 +64,7 @@ namespace SpaceShooterProject.State
 
         private void SetupSpaceShipSelectionTransitions()
         {
-            this.AddTransition(mainMenuState, spaceShipSelectionState, (int)StateTriggers.GO_TO_SPACE_SHIP_SELECTION_REQUEST);
+            this.AddTransition(mainMenuState, spaceShipSelectionState, (int)StateTriggers.GO_TO_GARAGE_REQUEST);
             this.AddTransition(spaceShipSelectionState, mainMenuState, (int)StateTriggers.GO_TO_MAIN_MENU_REQUEST);
         }
 
@@ -85,6 +90,12 @@ namespace SpaceShooterProject.State
         {
             this.AddTransition(mainMenuState, coPilotSelectionState, (int)StateTriggers.GO_TO_CO_PILOT_REQUEST);
             this.AddTransition(coPilotSelectionState, mainMenuState, (int)StateTriggers.GO_TO_MAIN_MENU_REQUEST);
+        }
+
+        private void SetupCreditsTransition()
+        {
+            this.AddTransition(mainMenuState, creditsState, (int)StateTriggers.GO_TO_CREDITS);
+            this.AddTransition(creditsState, mainMenuState, (int)StateTriggers.GO_TO_MAIN_MENU_REQUEST);
         }
 
         protected override void OnEnter()

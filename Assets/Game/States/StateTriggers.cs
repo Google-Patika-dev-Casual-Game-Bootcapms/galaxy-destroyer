@@ -12,7 +12,7 @@ namespace SpaceShooterProject.State
         GO_TO_MAIN_MENU_REQUEST,
         GO_TO_ACHIEVEMENTS_REQUEST,
         GO_TO_SPACE_SHIP_UPGRADE_REQUEST,
-        GO_TO_SPACE_SHIP_SELECTION_REQUEST,
+        GO_TO_GARAGE_REQUEST,
         GO_TO_SETTINGS_REQUEST,
         GO_TO_INVENTORY_REQUEST,
         GO_TO_CO_PILOT_REQUEST,
@@ -21,7 +21,8 @@ namespace SpaceShooterProject.State
         PAUSE_GAME_REQUEST,
         RESUME_GAME_REQUEST,
         GAME_OVER,
-        REPLAY_GAME_REQUEST
+        REPLAY_GAME_REQUEST,
+        GO_TO_CREDITS
     }
 }
 
