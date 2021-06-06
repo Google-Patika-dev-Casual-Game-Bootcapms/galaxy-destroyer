@@ -32,6 +32,16 @@ namespace SpaceShooterProject.Component.CoPilot
 		public void SelectCoPilot(CoPilotBase.CoPilotType targetCoPilotType)
 		{
 			activeCoPilot = coPilotDict[targetCoPilotType];
+			
+		}
+
+		public void CoPilotUpdate()
+		{
+			if (activeCoPilot == null)
+			{
+				return;
+			}
+			activeCoPilot.CoPilotUpdate();
 		}
 
 		// public int[] GetCopilotSetting(){

@@ -1,10 +1,11 @@
+using Devkit.Base.Component;
 using UnityEngine;
 
 namespace SpaceShooterProject.Component.CoPilot
 {
-    [CreateAssetMenu(fileName = "CoPilot",menuName = "CoPilots/CoPilotBase")]
-    public class CoPilotBase : ScriptableObject
+    public class CoPilotBase
     {
+        //todo CoPilot isimleri değişecek
         public enum CoPilotType
         {
             CoPilot1,
@@ -14,7 +15,31 @@ namespace SpaceShooterProject.Component.CoPilot
             CoPilot5
         }
 
-        public CoPilotType coPilotType;
+        public CoPilotBase(CoPilotType targetType)
+        {
+            coPilotType = targetType;
+        }
         
+        public CoPilotType coPilotType;
+        public virtual void CoPilotUpdate()
+        {
+            
+        }
     }
+    
+    public class CoPilot1 : CoPilotBase
+    {
+        public CoPilot1(CoPilotType targetType) : base(targetType)
+        {
+            
+        }
+
+        public override void CoPilotUpdate()
+        {
+            base.CoPilotUpdate();
+            Debug.Log("CO1");
+        }
+    }
+
+    
 }
