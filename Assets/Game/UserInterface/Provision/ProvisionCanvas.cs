@@ -24,6 +24,10 @@ namespace SpaceShooterProject.UserInterface
         public event ProvisionSuperPowerDelegate OnSuperPowerLaserRequest;
         public event ProvisionSuperPowerDelegate OnSuperPowerShieldRequest;
         public event ProvisionSuperPowerDelegate OnSuperPowerMegaBombRequest;
+        public event ProvisionDelegate OnSettingsRequest;
+        public event ProvisionDelegate OnStartRequest;
+
+
 
         [SerializeField] private RectTransform backgroundImage;
         [SerializeField] private TMP_Text ownedGold, health, power;
@@ -84,6 +88,23 @@ namespace SpaceShooterProject.UserInterface
             }
         }
 
+        public void RequestSettings()
+        {
+            if (OnSettingsRequest != null)
+            {
+                Debug.Log("On Settings Request Send...");
+                OnSettingsRequest();
+            }
+        }
+
+        public void RequestStart()
+        {
+            if (OnStartRequest != null)
+            {
+                Debug.Log("On Start Request Send...");
+                OnStartRequest();
+            }
+        }
 
         private Vector2 GetCanvasSize()
         {
