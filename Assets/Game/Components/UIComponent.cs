@@ -146,7 +146,7 @@ namespace SpaceShooterProject.Component
                     activeCanvas = cardCanvas;
                     break;
                 case MenuName.SPACESHIP:
-                    activeCanvas = cardCanvas;
+                    activeCanvas = spaceshipCanvas;
                     break;
                 case MenuName.GARAGE:
                     activeCanvas = garageCanvas;
