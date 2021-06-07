@@ -17,6 +17,8 @@ namespace SpaceShooterProject
         private TutorialComponent tutorialComponent;
         private IntroComponent introComponent;
         private InventoryComponent inventoryComponent;
+        private SuperPowerComponent superPowerComponent;
+
 
         private AppState appState;
 
@@ -36,6 +38,7 @@ namespace SpaceShooterProject
             CreateGamePlayComponent();
             CreateTutorialComponent();
             CreateInventoryComponent();
+            CreateSuperPowerComponent();
 
             InitializeComponents();
 
@@ -103,6 +106,12 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("InventoryComponent", inventoryComponent);
         }
 
+        private void CreateSuperPowerComponent()
+        {
+            superPowerComponent = new SuperPowerComponent();
+            componentContainer.AddComponent("SuperPowerComponent", superPowerComponent);
+        }
+
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
@@ -113,6 +122,7 @@ namespace SpaceShooterProject
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
+            superPowerComponent.Initialize(componentContainer);
         }
 
         private void CreateAppState()
