@@ -10,6 +10,7 @@ namespace SpaceShooterProject.State
         OPEN_ACHIEVEMENT,
         OPEN_CARD,
         OPEN_SPACESHIP,
+        RETURN_TO_INVENTORY,
         GO_TO_MARKET_REQUEST,
         GO_TO_MAIN_MENU_REQUEST,
         GO_TO_ACHIEVEMENTS_REQUEST,
