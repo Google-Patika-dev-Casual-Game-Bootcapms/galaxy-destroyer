@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using DG.Tweening;
-using TMPro;
 using UnityEngine.UI;
 
 namespace SpaceShooterProject.UserInterface
@@ -10,6 +6,8 @@ namespace SpaceShooterProject.UserInterface
     public class MainMenuCanvas : BaseCanvas
     {
         public delegate void MenuRequestDelegate();
+
+        public delegate void MenuPlanetSelectionDelegate();
 
         public event MenuRequestDelegate OnInGameMenuRequest;
         public event MenuRequestDelegate OnSettingsMenuRequest;
@@ -19,72 +17,17 @@ namespace SpaceShooterProject.UserInterface
         public event MenuRequestDelegate OnGarageMenuRequest;
         public event MenuRequestDelegate OnCoPilotMenuRequest;
         public event MenuRequestDelegate OnCreditsMenuRequest;
+        public event MenuPlanetSelectionDelegate OnNextPlanetButtonRequest;
+        public event MenuPlanetSelectionDelegate OnPreviousPlanetButtonRequest;
 
-        [SerializeField] private GameObject planets;
-        [SerializeField] private float animationDuration;
-        [SerializeField] private int activePlanetIndex = 0;
-        [SerializeField] private TMP_Text planetName;
         [SerializeField] private RectTransform backgroundImage;
 
-        private List<RectTransform> planetList;
-        private bool planetMoveCompleted = true;
+        [SerializeField] private PlanetUIController planetUIController;
 
         protected override void Init()
         {
             backgroundImage.sizeDelta = GetCanvasSize();
-            planetList = planets.GetComponentsInChildren<RectTransform>().ToList();
-            planetName.text = planetList[0].gameObject.name;
-        }
-
-        public void RightButton()
-        {
-            if (planetMoveCompleted)
-            {
-                planetMoveCompleted = false;
-                for (var i = 0; i < planetList.Count; i++)
-                {
-                    if (i == planetList.Count - 1)
-                        MovePlanet(planetList[i], planetList[0]);
-                    else
-                        MovePlanet(planetList[i], planetList[i + 1]);
-                }
-
-                activePlanetIndex--;
-                if (activePlanetIndex < 0)
-                    activePlanetIndex = planetList.Count - 1;
-                planetName.text = planetList[activePlanetIndex].gameObject.name;
-            }
-        }
-
-        public void LeftButton()
-        {
-            if (planetMoveCompleted)
-            {
-                planetMoveCompleted = false;
-
-                for (var i = 0; i < planetList.Count; i++)
-                {
-                    if (i == 0)
-                        MovePlanet(planetList[i], planetList[planetList.Count - 1]);
-                    else
-                        MovePlanet(planetList[i], planetList[i - 1]);
-                }
-
-                activePlanetIndex++;
-                if (activePlanetIndex > planetList.Count - 1)
-                    activePlanetIndex = 0;
-                planetName.text = planetList[activePlanetIndex].gameObject.name;
-            }
-        }
-
-        public void MovePlanet(RectTransform self, RectTransform target)
-        {
-            self.DOMove(target.position, animationDuration)
-                .SetEase(Ease.InOutSine);
-            self.DOScale(target.localScale, animationDuration)
-                .OnStart(() => { planetMoveCompleted = false; })
-                .SetEase(Ease.InOutSine)
-                .OnComplete(() => { planetMoveCompleted = true; });
+            planetUIController.Init();
         }
 
         private Vector2 GetCanvasSize()
@@ -168,14 +111,18 @@ namespace SpaceShooterProject.UserInterface
             }
         }
 
-        public GameObject ActivePlanet()
+        public void OnNextPlanetButtonClick()
         {
-            return planetList[activePlanetIndex].gameObject;
+            if (OnNextPlanetButtonRequest != null)
+                OnNextPlanetButtonRequest();
         }
 
-        public string ActivePlanetName()
+        public void OnPreviousPlanetButtonClick()
         {
-            return ActivePlanet().name;
+            if (OnPreviousPlanetButtonRequest != null)
+                OnPreviousPlanetButtonRequest();
         }
+
+        public PlanetUIController PlanetUIController => planetUIController;
     }
 }
