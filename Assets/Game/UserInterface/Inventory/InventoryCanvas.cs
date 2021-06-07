@@ -1,7 +1,6 @@
 ﻿namespace SpaceShooterProject.UserInterface
 {
     using System.Collections.Generic;
-    using System.Linq;
     using UnityEngine;
     using DG.Tweening;
     using TMPro;
@@ -12,34 +11,50 @@
 
     public class InventoryCanvas : BaseCanvas, IComponent
     {
-        //StateTriggers ve UIComponent içine Enum'lar ve fonksiyonları eklendi
-       
+        //Events
         public delegate void InventoryRequestDelegate();
-
-        public event InventoryRequestDelegate OnReturnToInventory; //SpaceshipCanvas ve CardCanvas kullanmalı
-
-        //SpaceshipCanvas ve CardCanvas geçişleri için InventoryState içinde kullanılmalı
         public event InventoryRequestDelegate OnCardShowRequest;
         public event InventoryRequestDelegate OnSpaceshipShowRequest;
         
-
-
+        //Fields
         //[SerializeField] private float animationDuration;
         [SerializeField] private int activeCardIndex = 0;
         [SerializeField] private int activeSpaceshipIndex = 0;
         [SerializeField] private RectTransform backgroundImage;
         [SerializeField] private Sprite ownedCardSprite;
+        [SerializeField] private List<Button> buttons;
 
+        private InventoryComponent inventoryComponent;
 
         protected override void Init()
         {
-            var inventory = componentContainer.GetComponent("InventoryComponent") as InventoryComponent;
+            inventoryComponent = componentContainer.GetComponent("InventoryComponent") as InventoryComponent;
             backgroundImage.sizeDelta = GetCanvasSize();
+            CalculateAllCardButtonPlaces(2, 3, 2);
         }
 
+        public void CalculateAllCardButtonPlaces(int rowNumber, int columnNumber, int yOffset)
+        {
+            Vector2 canvasSize = GetCanvasSize();
+            float xBase = canvasSize.x / (columnNumber + 1);
+            float yBase = canvasSize.y / (rowNumber + 1 + yOffset + 1); // last +1 is for header
+
+            int cardIndex = 0;
+            for(int row = (rowNumber + yOffset); row > rowNumber; row--)
+            {
+                for(int column = 1; column <= columnNumber; column++)
+                {
+                    buttons[cardIndex].GetComponent<RectTransform>().anchoredPosition = new Vector3(xBase * column, yBase * row, buttons[cardIndex].transform.position.z);
+                    print("New Position After Function: " + buttons[cardIndex].transform.position);
+                    cardIndex++;
+                }
+            }
+        }
+
+        #region Transitions
         /*
-         * Transition to CardCanvas
-         */
+        * Transition to CardCanvas
+        */
         public void RequestCardShow()
         {
             if (OnCardShowRequest != null)
@@ -58,22 +73,27 @@
                 OnSpaceshipShowRequest();
             }
         }
+        #endregion
 
-        public void RequestReturnToInventory()
+        #region ButtonControllers
+        //TODO: generate generic function for both permanent and temporary cards to control them easily
+        public void ChangeButtonImage()
         {
-            if (OnReturnToInventory != null)
-            {
-                OnReturnToInventory();
-            }
+            buttons[inventoryComponent.GetOwnedPermanentCards()[activeCardIndex]].GetComponent<Image>().sprite = ownedCardSprite;
         }
 
-        // TODO: Get card data and change the card 
-        public void ChangeCardButtonImage()
+        public void ActivateButton()
         {
-            EventSystem.current.currentSelectedGameObject.GetComponent<Image>().sprite = ownedCardSprite;
+            buttons[inventoryComponent.GetOwnedPermanentCards()[activeCardIndex]].GetComponent<Button>().enabled = true;
         }
 
+        public void DeactivateButton()
+        {
+            buttons[inventoryComponent.GetOwnedPermanentCards()[activeCardIndex]].GetComponent<Button>().enabled = false;
+        }
+        #endregion
 
+        #region GetCanvasSize
         private Vector2 GetCanvasSize()
         {
             Vector2 screenSize = new Vector2(Screen.width, Screen.height);
@@ -90,5 +110,6 @@
 
             return new Vector2(screenSize.x / scaleFactor, screenSize.y / scaleFactor);
         }
+        #endregion
     }
 }

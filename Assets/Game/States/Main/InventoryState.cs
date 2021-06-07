@@ -20,8 +20,8 @@
         {
             uiComponent.EnableCanvas(UIComponent.MenuName.INVENTORY);
             inventoryCanvas.OnReturnToMainMenu += OnReturnToMainMenu;
-            inventoryCanvas.OnCardShowRequest += OnCardShowRequest; //lazımlı
-            inventoryCanvas.OnSpaceshipShowRequest += OnSpaceshipShowRequest; //lazımlı
+            inventoryCanvas.OnCardShowRequest += OnCardShowRequest;
+            inventoryCanvas.OnSpaceshipShowRequest += OnSpaceshipShowRequest;
         }
 
         private void OnReturnToMainMenu()
@@ -29,13 +29,11 @@
             SendTrigger((int)StateTriggers.GO_TO_MAIN_MENU_REQUEST);
         }
 
-        //InventoryCanvas çağırıyor
         private void OnCardShowRequest()
         {
             SendTrigger((int)StateTriggers.OPEN_CARD);
         }
 
-        //InventoryCanvas çağırıyor
         private void OnSpaceshipShowRequest()
         {
             SendTrigger((int)StateTriggers.OPEN_SPACESHIP);
@@ -43,6 +41,8 @@
 
         protected override void OnExit()
         {
+            inventoryCanvas.OnCardShowRequest -= OnCardShowRequest;
+            inventoryCanvas.OnSpaceshipShowRequest -= OnSpaceshipShowRequest;
             inventoryCanvas.OnReturnToMainMenu -= OnReturnToMainMenu;
         }
 
