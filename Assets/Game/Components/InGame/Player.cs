@@ -8,6 +8,8 @@ namespace SpaceShooterProject.Component {
     public class Player : MonoBehaviour, IUpdatable, IInitializable, IDestructible
     {
         private InGameInputSystem inputSystemReferance ;
+      
+
         public void Init()
         {
            
@@ -31,7 +33,10 @@ namespace SpaceShooterProject.Component {
 
         public void OnTouchEnter()
         {
-            
+            gameObject.transform.position = Vector2.MoveTowards(transform.position,
+                                                                Input.mousePosition,
+                                                                1000f * Time.deltaTime);
+        
         }
 
         public void InjectInpuSystem(InGameInputSystem inputSystem){
@@ -45,7 +50,7 @@ namespace SpaceShooterProject.Component {
 
         private void OnScrenTouch()
         {
-            //TODO Move
+            
         }
 
         public void OnDestruct()
