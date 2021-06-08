@@ -24,7 +24,7 @@ namespace SpaceShooterProject.UserInterface
         public event ProvisionSuperPowerDelegate OnSuperPowerLaserRequest;
         public event ProvisionSuperPowerDelegate OnSuperPowerShieldRequest;
         public event ProvisionSuperPowerDelegate OnSuperPowerMegaBombRequest;
-        public event ProvisionDelegate OnSettingsRequest;
+        public event ProvisionDelegate OnPauseRequest;
         public event ProvisionDelegate OnStartRequest;
 
 
@@ -88,12 +88,12 @@ namespace SpaceShooterProject.UserInterface
             }
         }
 
-        public void RequestSettings()
+        public void RequestPause()
         {
-            if (OnSettingsRequest != null)
+            if (OnPauseRequest != null)
             {
-                Debug.Log("On Settings Request Send...");
-                OnSettingsRequest();
+                Debug.Log("On Pause Request Send...");
+                OnPauseRequest();
             }
         }
 

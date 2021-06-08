@@ -33,11 +33,13 @@ namespace SpaceShooterProject.State
             AddSubState(pauseGameState);
             AddSubState(endGameState);
 
+            
             AddTransition(prepareGameState, inGameState, (int)StateTriggers.PLAY_GAME_REQUEST);
             AddTransition(inGameState, pauseGameState, (int)StateTriggers.PAUSE_GAME_REQUEST);
             AddTransition(pauseGameState, inGameState, (int)StateTriggers.RESUME_GAME_REQUEST);
             AddTransition(inGameState, endGameState, (int)StateTriggers.GAME_OVER);
             AddTransition(endGameState, prepareGameState, (int)StateTriggers.REPLAY_GAME_REQUEST);
+            AddTransition(prepareGameState, pauseGameState, (int)StateTriggers.PAUSE_GAME_REQUEST);
 
         }
 

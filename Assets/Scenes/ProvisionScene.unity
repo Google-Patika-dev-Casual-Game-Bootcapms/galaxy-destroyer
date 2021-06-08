@@ -3270,7 +3270,7 @@ GameObject:
   - component: {fileID: 605815274}
   - component: {fileID: 605815273}
   m_Layer: 5
-  m_Name: SettingsButton
+  m_Name: PauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
