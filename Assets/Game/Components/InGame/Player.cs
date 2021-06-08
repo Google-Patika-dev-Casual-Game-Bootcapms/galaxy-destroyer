@@ -12,6 +12,7 @@ namespace SpaceShooterProject.Component {
         private ObjectPooler ObjectPooler;
 
         private Transform myTransform;
+        private float shipSpeed = 10f;
 
         public void Init()
         {
@@ -44,12 +45,12 @@ namespace SpaceShooterProject.Component {
             
         }
 
-        public void OnTouchEnter()
+        public void OnTouch()
         {
             var screenPoz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             gameObject.transform.position = Vector2.MoveTowards(transform.position,
                 screenPoz,
-                10f * Time.deltaTime);
+                shipSpeed * Time.deltaTime);
         
            // var screenLimitX = Screen.width/Screen.currentResolution.width;
            // var screenLimitY = Screen.height/Screen.currentResolution.height;
@@ -63,7 +64,7 @@ namespace SpaceShooterProject.Component {
         public void InjectInpuSystem(InGameInputSystem inputSystem){
             inputSystemReferance = inputSystem;
             inputSystemReferance.OnScreenTouch += OnScrenTouch;
-            inputSystemReferance.OnScreenTouchEnter += OnTouchEnter;
+            inputSystemReferance.OnScreenTouchEnter += OnTouch;
             inputSystemReferance.OnScreenTouchExit += OnTouchUp;
             
 
@@ -77,7 +78,7 @@ namespace SpaceShooterProject.Component {
         public void OnDestruct()
         {
             inputSystemReferance.OnScreenTouch -= OnScrenTouch;
-            inputSystemReferance.OnScreenTouchEnter -= OnTouchEnter;
+            inputSystemReferance.OnScreenTouchEnter -= OnTouch;
             inputSystemReferance.OnScreenTouchExit -= OnTouchUp;
         }
         void Shoot()
