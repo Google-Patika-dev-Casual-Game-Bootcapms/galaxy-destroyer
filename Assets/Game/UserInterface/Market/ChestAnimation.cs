@@ -12,16 +12,4 @@ public class ChestAnimation : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetBool("isOpening", false);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            animator.SetBool("isOpening", true);
-        }
-        {
-
-        }
-    }
 }
