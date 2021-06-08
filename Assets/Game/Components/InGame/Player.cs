@@ -47,9 +47,9 @@ namespace SpaceShooterProject.Component {
 
         public void OnTouch()
         {
-            var screenPoz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var screenPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             gameObject.transform.position = Vector2.MoveTowards(transform.position,
-                screenPoz,
+                screenPos,
                 shipSpeed * Time.deltaTime);
         
            // var screenLimitX = Screen.width/Screen.currentResolution.width;
