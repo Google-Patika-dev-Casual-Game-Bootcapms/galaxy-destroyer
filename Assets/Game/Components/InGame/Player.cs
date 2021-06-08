@@ -51,11 +51,12 @@ namespace SpaceShooterProject.Component {
                 screenPoz,
                 10f * Time.deltaTime);
         
-            var screenLimitX = Screen.width/Screen.currentResolution.width;
-            var screenLimitY = Screen.height/Screen.currentResolution.height;
-            Debug.Log(screenLimitX+screenLimitY);
-            gameObject.transform.position = new Vector2(Mathf.Clamp(gameObject.transform.position.x,0f,600f),
-                Mathf.Clamp(gameObject.transform.position.y,0f,1000f));
+           // var screenLimitX = Screen.width/Screen.currentResolution.width;
+           // var screenLimitY = Screen.height/Screen.currentResolution.height;
+           // TODO min max ekran değerleri için fonksiyon yazılacak
+           
+            gameObject.transform.position = new Vector2(Mathf.Clamp(gameObject.transform.position.x,-2.5f,2.5f),
+                Mathf.Clamp(gameObject.transform.position.y,-4.5f,4.5f));
 
         }
 
