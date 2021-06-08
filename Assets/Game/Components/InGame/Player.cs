@@ -8,6 +8,22 @@ namespace SpaceShooterProject.Component {
     public class Player : MonoBehaviour, IUpdatable, IInitializable, IDestructible
     {
         private InGameInputSystem inputSystemReferance ;
+<<<<<<< Updated upstream
+        [SerializeField]
+        private ObjectPooler ObjectPooler;
+       
+        private Transform myTransform;
+=======
+<<<<<<< HEAD
+        private ScreenBounds screenBounds;
+        private float shipSpeed = 1000f;
+      
+>>>>>>> Stashed changes
+
+        public void Init()
+        {
+          
+=======
         [SerializeField]
         private ObjectPooler ObjectPooler;
        
@@ -18,6 +34,10 @@ namespace SpaceShooterProject.Component {
            
         
             InvokeRepeating("Shoot", .33f, .33f);
+<<<<<<< Updated upstream
+=======
+>>>>>>> 38c4454ee6ad82c5611e617453ce845492b0f912
+>>>>>>> Stashed changes
         }
         public void PreInit()
         {
@@ -26,8 +46,17 @@ namespace SpaceShooterProject.Component {
 
         public void CallUpdate()
         {
+<<<<<<< Updated upstream
             Shoot();
             myTransform = transform;
+=======
+<<<<<<< HEAD
+
+=======
+            Shoot();
+            myTransform = transform;
+>>>>>>> 38c4454ee6ad82c5611e617453ce845492b0f912
+>>>>>>> Stashed changes
         }
         
         public void OnTouchUp()
@@ -40,8 +69,19 @@ namespace SpaceShooterProject.Component {
         {
             gameObject.transform.position = Vector2.MoveTowards(transform.position,
                                                                 Input.mousePosition,
+<<<<<<< Updated upstream
                                                                 1000f * Time.deltaTime);
 
+=======
+<<<<<<< HEAD
+                                                                shipSpeed * Time.deltaTime);
+            screenBounds.Bounds();                                                   
+        
+=======
+                                                                1000f * Time.deltaTime);
+
+>>>>>>> 38c4454ee6ad82c5611e617453ce845492b0f912
+>>>>>>> Stashed changes
         }
 
         public void InjectInpuSystem(InGameInputSystem inputSystem){
