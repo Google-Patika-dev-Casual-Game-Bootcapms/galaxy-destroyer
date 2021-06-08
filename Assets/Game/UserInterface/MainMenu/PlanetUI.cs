@@ -15,11 +15,13 @@ public class PlanetUI : MonoBehaviour
 
     private PlanetUI previousPlanet;
     private PlanetUI nextPlanet;
+    private Tween moveTween;
+    private Tween scaleTween;
     private bool isActive;
 
     public void Move(RectTransform self, RectTransform target)
     {
-        self.DOMove(target.position, animationDuration)
+        moveTween = self.DOMove(target.position, animationDuration)
             .SetUpdate(UpdateType.Fixed)
             .SetEase(moveEase)
             .OnComplete(() =>
@@ -28,7 +30,7 @@ public class PlanetUI : MonoBehaviour
                     OnAnimationsCompleted();
             });
 
-        self.DOScale(target.localScale, animationDuration)
+        scaleTween = self.DOScale(target.localScale, animationDuration)
             .SetUpdate(UpdateType.Fixed)
             .SetEase(scaleEase)
             .OnComplete(() => OnAnimationsCompleted());
@@ -51,6 +53,12 @@ public class PlanetUI : MonoBehaviour
         transform.localScale = Vector3.one * activeScaleAmount;
     }
 
+    public void CompleteAllAnimations()
+    {
+        moveTween.Complete();
+        scaleTween.Complete();
+    }
+
     public RectTransform Transform => transform;
 
     public string Name => name;
@@ -60,5 +68,4 @@ public class PlanetUI : MonoBehaviour
         get => isActive;
         set => isActive = value;
     }
-
 }

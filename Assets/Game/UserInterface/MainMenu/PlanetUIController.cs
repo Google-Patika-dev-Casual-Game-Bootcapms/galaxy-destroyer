@@ -105,4 +105,10 @@ public class PlanetUIController : MonoBehaviour, IInitializable
             completedAnimationCounter = 0;
         }
     }
+
+    public void CompleteAllPlanetAnimations()
+    {
+        planets.ForEach(planet => { planet.CompleteAllAnimations(); });
+        allPlanetAnimationsCompleted = true;
+    }
 }
