@@ -9,7 +9,7 @@ namespace SpaceShooterProject.UserInterface
     using SpaceShooterProject.Component;
     using UnityEngine.EventSystems;
 
-    public class ProvisionCanvas : BaseCanvas, IComponent
+    public class ProvisionCanvas : BaseCanvas
     {
         
         private CurrencyComponent currencyComponent;
@@ -106,6 +106,7 @@ namespace SpaceShooterProject.UserInterface
             }
         }
 
+        //TODO: GetCanvasSize() Function is going to add in Base Canvas
         private Vector2 GetCanvasSize()
         {
             Vector2 screenSize = new Vector2(Screen.width, Screen.height);

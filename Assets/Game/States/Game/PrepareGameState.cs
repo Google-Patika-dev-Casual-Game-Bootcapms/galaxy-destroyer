@@ -27,8 +27,8 @@ namespace SpaceShooterProject.State
             provisionCanvas.OnSuperPowerLaserRequest += superPowerComponent.UpgradeSuperPower;
             provisionCanvas.OnSuperPowerShieldRequest += superPowerComponent.UpgradeSuperPower;
             provisionCanvas.OnSuperPowerMegaBombRequest += superPowerComponent.UpgradeSuperPower;
-            provisionCanvas.OnNextShipSelectionRequest += () => { Debug.Log("NextShip"); };
-            provisionCanvas.OnPreviousShipSelectionRequest += () => { Debug.Log("PreviousShip"); };
+            provisionCanvas.OnNextShipSelectionRequest += RequestNextShip;
+            provisionCanvas.OnPreviousShipSelectionRequest += RequestPreviousShip;
             provisionCanvas.OnPauseRequest += RequestPause;
             provisionCanvas.OnStartRequest += RequestInGame;
         }
@@ -38,8 +38,8 @@ namespace SpaceShooterProject.State
             provisionCanvas.OnSuperPowerLaserRequest -= superPowerComponent.UpgradeSuperPower;
             provisionCanvas.OnSuperPowerShieldRequest -= superPowerComponent.UpgradeSuperPower;
             provisionCanvas.OnSuperPowerMegaBombRequest -= superPowerComponent.UpgradeSuperPower;
-            provisionCanvas.OnNextShipSelectionRequest -= () => { Debug.Log("NextShip"); };
-            provisionCanvas.OnPreviousShipSelectionRequest -= () => { Debug.Log("PreviousShip"); };
+            provisionCanvas.OnNextShipSelectionRequest -= RequestNextShip;
+            provisionCanvas.OnPreviousShipSelectionRequest -= RequestPreviousShip;
             provisionCanvas.OnPauseRequest -= RequestPause;
             provisionCanvas.OnStartRequest -= RequestInGame;
         }
@@ -57,6 +57,16 @@ namespace SpaceShooterProject.State
         private void RequestPause()
         {
             SendTrigger((int)StateTriggers.PAUSE_GAME_REQUEST);
+        }
+
+        private void RequestNextShip()
+        {
+            
+        }
+
+        private void RequestPreviousShip()
+        {
+
         }
     }
 }
