@@ -5,9 +5,7 @@ namespace SpaceShooterProject.UserInterface
 {
 
     public class GarageCanvas : BaseCanvas
-    {
-
-        public delegate void RequestUpgradeDelegate();
+    {   
 
         [SerializeField] private RectTransform backgroundImage;
 
@@ -30,10 +28,15 @@ namespace SpaceShooterProject.UserInterface
 
         protected override void Init()
         {
+
             backgroundImage.sizeDelta = GetCanvasSize();
+            var buttons = GetComponentsInChildren<Button>();
+
+            foreach(Button fakeButton in buttons)
+            {
+                fakeButton.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
+            }
         }
-
-
     }
 }
 
