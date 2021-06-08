@@ -30,7 +30,7 @@
         {
             inventoryComponent = componentContainer.GetComponent("InventoryComponent") as InventoryComponent;
             backgroundImage.sizeDelta = GetCanvasSize();
-            CalculateAllCardButtonPlaces(2, 3, 2);
+            //CalculateAllCardButtonPlaces(2, 3, 2);
         }
 
         public void CalculateAllCardButtonPlaces(int rowNumber, int columnNumber, int yOffset)
