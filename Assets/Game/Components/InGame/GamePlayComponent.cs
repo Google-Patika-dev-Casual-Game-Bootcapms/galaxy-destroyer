@@ -27,6 +27,14 @@ namespace SpaceShooterProject.Component
             inputSystem.CallUpdate();
             player.CallUpdate();
         }
+
+        public void CallFixedUpdate()
+        {
+        }
+
+        public void CallLateUpdate()
+        {
+        }
     }
 }
 

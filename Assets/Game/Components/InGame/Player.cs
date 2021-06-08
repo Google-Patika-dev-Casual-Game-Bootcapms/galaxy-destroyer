@@ -10,13 +10,11 @@ namespace SpaceShooterProject.Component {
         private InGameInputSystem inputSystemReferance ;
         [SerializeField]
         private ObjectPooler ObjectPooler;
-       
+
         private Transform myTransform;
 
         public void Init()
         {
-           
-        
             InvokeRepeating("Shoot", .33f, .33f);
         }
         public void PreInit()
@@ -27,9 +25,19 @@ namespace SpaceShooterProject.Component {
         public void CallUpdate()
         {
             Shoot();
-            myTransform = transform;
+           
         }
-        
+
+        public void CallFixedUpdate()
+        {
+            
+        }
+
+        public void CallLateUpdate()
+        {
+            
+        }
+
         public void OnTouchUp()
         {
             
@@ -38,9 +46,16 @@ namespace SpaceShooterProject.Component {
 
         public void OnTouchEnter()
         {
+            var screenPoz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             gameObject.transform.position = Vector2.MoveTowards(transform.position,
-                                                                Input.mousePosition,
-                                                                1000f * Time.deltaTime);
+                screenPoz,
+                10f * Time.deltaTime);
+        
+            var screenLimitX = Screen.width/Screen.currentResolution.width;
+            var screenLimitY = Screen.height/Screen.currentResolution.height;
+            Debug.Log(screenLimitX+screenLimitY);
+            gameObject.transform.position = new Vector2(Mathf.Clamp(gameObject.transform.position.x,0f,600f),
+                Mathf.Clamp(gameObject.transform.position.y,0f,1000f));
 
         }
 

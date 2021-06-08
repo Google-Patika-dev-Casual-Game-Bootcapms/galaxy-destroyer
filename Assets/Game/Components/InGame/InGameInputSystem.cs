@@ -46,6 +46,16 @@ namespace SpaceShooterProject.Component
             }
         }
 
+        public void CallFixedUpdate()
+        {
+            
+        }
+
+        public void CallLateUpdate()
+        {
+            
+        }
+
         public void Initialize(ComponentContainer componentContainer)
         {
             
