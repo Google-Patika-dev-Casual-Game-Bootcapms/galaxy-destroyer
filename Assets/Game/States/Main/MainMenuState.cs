@@ -90,6 +90,7 @@ namespace SpaceShooterProject.State
             mainMenuCanvas.OnNextPlanetButtonRequest -= mainMenuCanvas.PlanetUIController.NextPlanet;
             mainMenuCanvas.OnPreviousPlanetButtonRequest -= mainMenuCanvas.PlanetUIController.PreviousPlanet;
             mainMenuCanvas.PlanetUIController.UnSubscribeAllPlanetAnimationCompletionEvents();
+            mainMenuCanvas.PlanetUIController.CompleteAllPlanetAnimations();
 
             Debug.Log("MainMenuState OnExit");
         }
