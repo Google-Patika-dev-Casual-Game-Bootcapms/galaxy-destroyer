@@ -73,7 +73,6 @@ namespace SpaceShooterProject.Component
     {
         public string name;
         public AudioClip clip;
-
         public AudioSource source;
 
         public void SetSource(AudioSource audioSource)
