@@ -5,7 +5,17 @@ namespace SpaceShooterProject.UserInterface
 {
 
     public class GarageCanvas : BaseCanvas
-    {   
+    {
+        public delegate void RequestUpdateDelegate();
+
+        public event RequestUpdateDelegate OnShieldUpgradeRequest;
+        public event RequestUpdateDelegate OnMegaBombUpgradeRequest;
+        public event RequestUpdateDelegate OnLaserUpgradeRequest;
+        public event RequestUpdateDelegate OnMagnetUpgradeRequest;
+        public event RequestUpdateDelegate OnHealthUpgradeRequest;
+        public event RequestUpdateDelegate OnMissilesUpgradeRequest;
+        public event RequestUpdateDelegate OnWingCannonUpgradeRequest;
+        public event RequestUpdateDelegate OnMainCannonUpgradeRequest;
 
         [SerializeField] private RectTransform backgroundImage;
 
@@ -37,6 +47,66 @@ namespace SpaceShooterProject.UserInterface
                 fakeButton.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
             }
         }
+
+        public void OnShieldUpgradeClick()
+        {
+            if(OnShieldUpgradeRequest != null)
+            {
+                OnShieldUpgradeRequest();
+            }
+        }
+
+        public void OnMegaBombUpgradeClick()
+        {
+            if (OnMegaBombUpgradeRequest != null)
+            {
+                OnMegaBombUpgradeRequest();
+            }
+        }
+
+        public void OnLaserUpgradeClick()
+        {
+            if (OnLaserUpgradeRequest != null)
+            {
+                OnLaserUpgradeRequest();
+            }
+        }
+        public void OnMagnetUpgradeClick()
+        {
+            if (OnMagnetUpgradeRequest != null)
+            {
+                OnMagnetUpgradeRequest();
+            }
+        }
+        public void OnHealthUpgradeClick()
+        {
+            if (OnHealthUpgradeRequest != null)
+            {
+                OnHealthUpgradeRequest();
+            }
+        }
+        public void OnMissilesUpgradeClick()
+        {
+            if (OnMissilesUpgradeRequest != null)
+            {
+                OnMissilesUpgradeRequest();
+            }
+        }
+        public void OnWingCannonUpgradeClick()
+        {
+            if (OnWingCannonUpgradeRequest != null)
+            {
+                OnWingCannonUpgradeRequest();
+            }
+        }
+        public void OnMainCannonUpgradeClick()
+        {
+            if (OnMainCannonUpgradeRequest != null)
+            {
+                OnMainCannonUpgradeRequest();
+            }
+        }
+
     }
 }
 
