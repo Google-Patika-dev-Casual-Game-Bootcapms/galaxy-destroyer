@@ -512,7 +512,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 20949025}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1650227982}
+        m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
+          Assembly-CSharp
+        m_MethodName: OnHealthUpgradeClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &39105621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,7 +1034,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 61691029}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1650227982}
+        m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
+          Assembly-CSharp
+        m_MethodName: OnMissilesUpgradeClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &70893043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +1061,7 @@ GameObject:
   - component: {fileID: 70893046}
   - component: {fileID: 70893045}
   m_Layer: 5
-  m_Name: LazerUpgradeButton
+  m_Name: LaserUpgradeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1104,7 +1130,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 70893046}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1650227982}
+        m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
+          Assembly-CSharp
+        m_MethodName: OnLaserUpgradeClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &70893046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,10 +1216,10 @@ RectTransform:
   m_Father: {fileID: 1031879221}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -974.38776}
-  m_SizeDelta: {x: 790, y: 139.9058}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 139.9058}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &93314051
 MonoBehaviour:
@@ -1710,7 +1749,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &197018049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2225,7 +2264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &329951133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2591,7 +2630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &412772969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2811,7 +2850,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 458751989}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1650227982}
+        m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
+          Assembly-CSharp
+        m_MethodName: OnMegaBombUpgradeClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &458751989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2862,7 +2914,7 @@ GameObject:
   - component: {fileID: 463729795}
   - component: {fileID: 463729794}
   m_Layer: 5
-  m_Name: LazerLevel
+  m_Name: LaserLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3235,10 +3287,10 @@ RectTransform:
   m_Father: {fileID: 1031879221}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -374.76453}
-  m_SizeDelta: {x: 790, y: 139.9058}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 139.9058}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &534093058
 MonoBehaviour:
@@ -3369,10 +3421,10 @@ RectTransform:
   m_Father: {fileID: 1031879221}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -224.8587}
-  m_SizeDelta: {x: 790, y: 139.9058}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 139.9058}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &559813145
 MonoBehaviour:
@@ -3503,10 +3555,10 @@ RectTransform:
   m_Father: {fileID: 1031879221}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -524.6703}
-  m_SizeDelta: {x: 790, y: 139.9058}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 139.9058}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &585244100
 MonoBehaviour:
@@ -3755,7 +3807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &679317545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4501,7 +4553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &798733211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4877,7 +4929,7 @@ GameObject:
   - component: {fileID: 887772977}
   - component: {fileID: 887772979}
   m_Layer: 5
-  m_Name: MainCannonButton
+  m_Name: MainCannonUpgradeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4985,7 +5037,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 887772977}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1650227982}
+        m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
+          Assembly-CSharp
+        m_MethodName: OnMainCannonUpgradeClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &899029911
 GameObject:
   m_ObjectHideFlags: 0
@@ -5267,7 +5332,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 906432700}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1650227982}
+        m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
+          Assembly-CSharp
+        m_MethodName: OnShieldUpgradeClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &906432700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5742,10 +5820,10 @@ RectTransform:
   m_Father: {fileID: 1031879221}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -824.48193}
-  m_SizeDelta: {x: 790, y: 139.9058}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 139.9058}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1001883934
 MonoBehaviour:
@@ -6097,7 +6175,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -101}
-  m_SizeDelta: {x: 800, y: 1199.2465}
+  m_SizeDelta: {x: 800, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1031879222
 MonoBehaviour:
@@ -6196,7 +6274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1037175009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7472,10 +7550,10 @@ RectTransform:
   m_Father: {fileID: 1031879221}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -74.9529}
-  m_SizeDelta: {x: 790, y: 139.9058}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 139.9058}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1281472934
 MonoBehaviour:
@@ -8005,7 +8083,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1330175783}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1650227982}
+        m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
+          Assembly-CSharp
+        m_MethodName: OnWingCannonUpgradeClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1342702184
 GameObject:
   m_ObjectHideFlags: 0
@@ -8634,7 +8725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8693,10 +8784,10 @@ RectTransform:
   m_Father: {fileID: 1031879221}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -674.5761}
-  m_SizeDelta: {x: 790, y: 139.9058}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 139.9058}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1540289250
 MonoBehaviour:
@@ -9079,7 +9170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1602609767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9673,7 +9764,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650227977}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -9983,10 +10074,10 @@ RectTransform:
   m_Father: {fileID: 1031879221}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -1124.2936}
-  m_SizeDelta: {x: 790, y: 139.9058}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 139.9058}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1676628919
 MonoBehaviour:
@@ -10656,7 +10747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1871157741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11381,7 +11472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2136069482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11634,7 +11725,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2140876679}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1650227982}
+        m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
+          Assembly-CSharp
+        m_MethodName: OnMagnetUpgradeClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2140876679
 MonoBehaviour:
   m_ObjectHideFlags: 0
