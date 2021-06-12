@@ -13,7 +13,7 @@ namespace SpaceShooterProject.UserInterface
         [SerializeField]
         private CoPilotAvatar coPilotAvatar;
 
-        public void SetCurrenctCoPilotData(/*CoPilotData data*/) //TODO Pass co pilot data into this method!!!
+        public void SetCurrentCoPilotData(/*CoPilotData data*/) //TODO Pass co pilot data into this method!!!
         {
             
         }
