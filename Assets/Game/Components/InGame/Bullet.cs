@@ -2,7 +2,7 @@ using System.Collections;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class BulletControl : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 3; 
 
