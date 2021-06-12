@@ -69,7 +69,6 @@ namespace SpaceShooterProject.State
         private void SetupQuoteTransitions()
         {
             this.AddTransition(mainMenuState, quoteState, (int)StateTriggers.GO_TO_QUOTE_REQUEST);
-            this.AddTransition(quoteState, mainMenuState, (int)StateTriggers.GO_TO_MAIN_MENU_REQUEST);
         }
 
         private void SetupAchievementsTransitions()
