@@ -7,7 +7,7 @@ namespace SpaceShooterProject.UserInterface
         public delegate void RequestNextCoPilotDelegate();
         public delegate void SelectCoPilotDelegate();
         public event RequestNextCoPilotDelegate OnNextCoPilotRequest;
-        public event RequestNextCoPilotDelegate OnPreviousPilotRequest;
+        public event RequestNextCoPilotDelegate OnPreviousCoPilotRequest;
         public event SelectCoPilotDelegate OnCoPilotSelected;
 
         [SerializeField]
@@ -28,9 +28,9 @@ namespace SpaceShooterProject.UserInterface
 
         public void OnPreviousCoPilotButtonClick()
         {
-            if (OnPreviousPilotRequest != null)
+            if (OnPreviousCoPilotRequest != null)
             {
-                OnPreviousPilotRequest();
+                OnPreviousCoPilotRequest();
             }
         }
 
