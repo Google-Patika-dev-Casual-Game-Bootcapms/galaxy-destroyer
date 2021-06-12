@@ -30,6 +30,7 @@ namespace SpaceShooterProject.State
             mainMenuCanvas.OnGarageMenuRequest += OnGarageMenuRequest;
             mainMenuCanvas.OnCoPilotMenuRequest += OnCoPilotMenuRequest;
             mainMenuCanvas.OnCreditsMenuRequest += OnCreditsMenuRequest;
+            mainMenuCanvas.OnQuoteMenuRequest += OnQuoteMenuRequest;
 
             mainMenuCanvas.OnNextPlanetButtonRequest += mainMenuCanvas.PlanetUIController.NextPlanet;
             mainMenuCanvas.OnPreviousPlanetButtonRequest += mainMenuCanvas.PlanetUIController.PreviousPlanet;
@@ -71,6 +72,10 @@ namespace SpaceShooterProject.State
         {
             SendTrigger((int) StateTriggers.GO_TO_SETTINGS_REQUEST);
         }
+        private void OnQuoteMenuRequest()
+        {
+            SendTrigger((int)StateTriggers.GO_TO_QUOTE_REQUEST);
+        }
 
         private void RequestInGameMenu()
         {
@@ -86,6 +91,7 @@ namespace SpaceShooterProject.State
             mainMenuCanvas.OnInventoryMenuRequest -= OnInventoryMenuRequest;
             mainMenuCanvas.OnCoPilotMenuRequest -= OnCoPilotMenuRequest;
             mainMenuCanvas.OnCreditsMenuRequest -= OnCreditsMenuRequest;
+            mainMenuCanvas.OnQuoteMenuRequest -= OnQuoteMenuRequest;
 
             mainMenuCanvas.OnNextPlanetButtonRequest -= mainMenuCanvas.PlanetUIController.NextPlanet;
             mainMenuCanvas.OnPreviousPlanetButtonRequest -= mainMenuCanvas.PlanetUIController.PreviousPlanet;
