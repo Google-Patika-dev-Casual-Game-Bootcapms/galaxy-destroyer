@@ -7,13 +7,13 @@ namespace SpaceShooterProject.State
 
     public class QuoteState : StateMachine
     {
-        private QuoteComponent quoteComponent;
+        //private QuoteComponent quoteComponent;
         private UIComponent uiComponent;
         private QuoteCanvas quoteCanvas;
 
         public QuoteState(ComponentContainer componentContainer)
         {
-            quoteComponent = componentContainer.GetComponent("QuoteComponent") as QuoteComponent;
+            //quoteComponent = componentContainer.GetComponent("QuoteComponent") as QuoteComponent;
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
             quoteCanvas = uiComponent.GetCanvas(UIComponent.MenuName.QUOTE) as QuoteCanvas;
         }
