@@ -16,6 +16,8 @@ namespace SpaceShooterProject.State
         private AchievementsState achievementsState;
         private SettingsState settingsState;
         private InventoryState inventoryState;
+        private SelectedCardState selectedCardState;
+        private SelectedSpaceshipState selectedSpaceshipState;
         private CoPilotSelectionState coPilotSelectionState;
         private CreditsState creditsState;
 
@@ -29,6 +31,8 @@ namespace SpaceShooterProject.State
             achievementsState = new AchievementsState(componentContainer);
             settingsState = new SettingsState(componentContainer);
             inventoryState = new InventoryState(componentContainer);
+            selectedCardState = new SelectedCardState(componentContainer);
+            selectedSpaceshipState = new SelectedSpaceshipState(componentContainer);
             coPilotSelectionState = new CoPilotSelectionState(componentContainer);
             creditsState = new CreditsState(componentContainer);
 
@@ -40,6 +44,8 @@ namespace SpaceShooterProject.State
             this.AddSubState(achievementsState);
             this.AddSubState(settingsState);
             this.AddSubState(inventoryState);
+            this.AddSubState(selectedCardState);
+            this.AddSubState(selectedSpaceshipState);
             this.AddSubState(coPilotSelectionState);
             this.AddSubState(creditsState);
 
@@ -94,6 +100,10 @@ namespace SpaceShooterProject.State
         {
             this.AddTransition(mainMenuState, inventoryState, (int)StateTriggers.GO_TO_INVENTORY_REQUEST);
             this.AddTransition(inventoryState, mainMenuState, (int)StateTriggers.GO_TO_MAIN_MENU_REQUEST);
+            this.AddTransition(inventoryState, selectedCardState, (int)StateTriggers.OPEN_CARD);
+            this.AddTransition(selectedCardState, inventoryState, (int)StateTriggers.RETURN_TO_INVENTORY);
+            this.AddTransition(inventoryState, selectedSpaceshipState, (int)StateTriggers.OPEN_SPACESHIP);
+            this.AddTransition(selectedSpaceshipState, inventoryState, (int)StateTriggers.RETURN_TO_INVENTORY);
         }
 
         private void SetupCoPilotTransition()
