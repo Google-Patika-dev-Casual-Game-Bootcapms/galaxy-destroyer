@@ -8,7 +8,7 @@ namespace SpaceShooterProject.Component
     {
         public enum MenuName 
         { 
-            SPLASH, MAIN_MENU, IN_GAME, 
+            SPLASH, MAIN_MENU,QUOTE, IN_GAME, 
             SETTINGS, ACHIEVEMENTS, MARKET, 
             INVENTORY, GARAGE, 
             CO_PILOT, CREDITS 
@@ -18,6 +18,8 @@ namespace SpaceShooterProject.Component
         private BaseCanvas splashCanvas = null;
         [SerializeField]
         private BaseCanvas mainMenuCanvas = null;
+        [SerializeField]
+        private BaseCanvas quoteCanvas = null;        
         [SerializeField]
         private BaseCanvas inGameCanvas = null;
         [SerializeField]
@@ -41,6 +43,7 @@ namespace SpaceShooterProject.Component
         {
             splashCanvas.Initialize(componentContainer);
             mainMenuCanvas.Initialize(componentContainer);
+            quoteCanvas.Initialize(componentContainer);
             inGameCanvas.Initialize(componentContainer);
             settingsCanvas.Initialize(componentContainer);
             achievementsCanvas.Initialize(componentContainer);
@@ -52,6 +55,7 @@ namespace SpaceShooterProject.Component
 
             DeactivateCanvas(splashCanvas);
             DeactivateCanvas(mainMenuCanvas);
+            DeactivateCanvas(quoteCanvas);
             DeactivateCanvas(inGameCanvas);
             DeactivateCanvas(settingsCanvas);
             DeactivateCanvas(achievementsCanvas);
@@ -70,6 +74,8 @@ namespace SpaceShooterProject.Component
                     return splashCanvas;
                 case MenuName.MAIN_MENU:
                     return mainMenuCanvas;
+                case MenuName.QUOTE:
+                    return quoteCanvas;
                 case MenuName.IN_GAME:
                     return inGameCanvas;
                 case MenuName.SETTINGS:
@@ -114,6 +120,9 @@ namespace SpaceShooterProject.Component
                     break;
                 case MenuName.MAIN_MENU:
                     activeCanvas = mainMenuCanvas;
+                    break;
+                case MenuName.QUOTE:
+                    activeCanvas = quoteCanvas;
                     break;
                 case MenuName.IN_GAME:
                     activeCanvas = inGameCanvas;
