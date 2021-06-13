@@ -115,9 +115,9 @@ namespace SpaceShooterProject
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
+            achievementsComponent.Initialize(componentContainer);
             uIComponent.Initialize(componentContainer);
             introComponent.Initialize(componentContainer);
-            achievementsComponent.Initialize(componentContainer);
             audioComponent.Initialize(componentContainer);
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);

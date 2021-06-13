@@ -27,7 +27,7 @@ namespace SpaceShooterProject.Component
          public Sprite SmallIcon { get => smallIcon; }
         public string Descrption { get => description; }
         public int GoalCount { get => goalCount; }
-        public int CurrentCount { get => CurrentCount; }
+        public int CurrentCount { get => currentCount; }
         public int Prize { get => prize; }
         public bool IsAchived { get => isAchived; set => isAchived = value; }
         #endregion

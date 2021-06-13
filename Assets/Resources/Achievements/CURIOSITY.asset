@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 791d4ab3d43516e4ead676263b1af396, type: 3}
-  m_Name: DESTROYER 1
+  m_Name: CURIOSITY
   m_EditorClassIdentifier: 
-  id: 0
-  achievementName: 
-  description: DESTROY MORE ENEMIES
-  icon: {fileID: 21300000, guid: 9e036dbd0998f2f45868a44452532839, type: 3}
-  smallIcon: {fileID: 21300000, guid: cd2d75d6cd0aa534c8a3b35732415a2f, type: 3}
-  goalCount: 200
+  id: 2
+  achievementName: CURIOSITY
+  description: DESTROY ENVIROMENTAL ELEMENTS
+  icon: {fileID: 21300000, guid: 7b7148416f9ae434a8567229a945eb5b, type: 3}
+  smallIcon: {fileID: 21300000, guid: eaac4ec6c10058e4789f266187d5ec6d, type: 3}
+  goalCount: 50000
   currentCount: 0
   prize: 0
   isAchived: 0

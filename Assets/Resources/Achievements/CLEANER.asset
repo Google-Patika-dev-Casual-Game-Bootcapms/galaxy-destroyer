@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 791d4ab3d43516e4ead676263b1af396, type: 3}
-  m_Name: DESTROYER 2
+  m_Name: CLEANER
   m_EditorClassIdentifier: 
   id: 0
-  achievementName: 
-  description: DESTROY MORE ENEMIES
-  icon: {fileID: 21300000, guid: 9e036dbd0998f2f45868a44452532839, type: 3}
+  achievementName: CLEANER
+  description: DESTROY ENEMIES
+  icon: {fileID: 21300000, guid: 03e43f20ee7867f499a32bfad0b941c3, type: 3}
   smallIcon: {fileID: 21300000, guid: cd2d75d6cd0aa534c8a3b35732415a2f, type: 3}
   goalCount: 200
   currentCount: 0
