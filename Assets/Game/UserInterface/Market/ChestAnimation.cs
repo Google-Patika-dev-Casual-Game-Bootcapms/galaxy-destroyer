@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,20 @@ using UnityEngine;
 public class ChestAnimation : MonoBehaviour
 {
     private Animator animator;
-    // Start is called before the first frame update
-    void Start()
+
+    public void Initialize()
     {
         animator = GetComponent<Animator>();
         animator.SetBool("isOpening", false);
+    }
+
+    public void Activate()
+    {
+        gameObject.SetActive(true);
+    }
+
+    internal void Deactivate()
+    {
+        gameObject.SetActive(false);
     }
 }
