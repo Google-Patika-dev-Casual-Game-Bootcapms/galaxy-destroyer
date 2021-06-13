@@ -12,9 +12,11 @@ namespace SpaceShooterProject.State
     {
         private UIComponent uiComponent;
         private MarketCanvas marketCanvas;
+        private MarketComponent marketComponent;
         
         public MarketState(ComponentContainer componentContainer)
         {
+            marketComponent = componentContainer.GetComponent("MarketComponent") as MarketComponent;
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
             marketCanvas = uiComponent.GetCanvas(UIComponent.MenuName.MARKET) as MarketCanvas;
         }
@@ -22,6 +24,7 @@ namespace SpaceShooterProject.State
         protected override void OnEnter()
         {
             uiComponent.EnableCanvas(UIComponent.MenuName.MARKET);
+            marketComponent.OnMarketActivated();
             marketCanvas.OnReturnToMainMenu += OnReturnToMainMenu;
         }
 
@@ -32,6 +35,7 @@ namespace SpaceShooterProject.State
 
         protected override void OnExit()
         {
+            marketComponent.OnMarketDeactivated();
             marketCanvas.OnReturnToMainMenu -= OnReturnToMainMenu;
         }
 
