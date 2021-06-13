@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SpaceShooterProject.Component.CoPilot
 {
-	public class CoPilotComponent :MonoBehaviour, IComponent {
+	public class CoPilotComponent : IComponent {
 		
 		GamePlayComponent gamePlayComponent;
 		GameStatesComponent gameStatesComponent;

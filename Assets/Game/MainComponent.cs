@@ -49,10 +49,6 @@ namespace SpaceShooterProject
         public void Update()
         {
             appState.Update();
-            if (coPilotComponent)
-            {
-                coPilotComponent.CoPilotUpdate();
-            }
         }
 
         private void CreateAccountComponent()
@@ -112,7 +108,7 @@ namespace SpaceShooterProject
         
         private void CreateCoPilotComponent()
         {
-            coPilotComponent = FindObjectOfType<CoPilotComponent>();
+            coPilotComponent = new CoPilotComponent();
             componentContainer.AddComponent("CoPilotComponent",coPilotComponent);
         }
 
