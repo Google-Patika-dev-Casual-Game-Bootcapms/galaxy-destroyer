@@ -7,13 +7,9 @@ namespace SpaceShooterProject.UserInterface
     {
         [SerializeField] private Slider volumeSlider;
 
-        public delegate void SettingsVolumeChangeDelegate(float value);
-
-        public event SettingsVolumeChangeDelegate OnVolumeValueChanged;
-
         protected override void Init()
         {
-            volumeSlider.onValueChanged.AddListener(delegate (float sliderValue) { OnVolumeValueChanged(sliderValue); });
+
         }
 
         public float GetVolume()
