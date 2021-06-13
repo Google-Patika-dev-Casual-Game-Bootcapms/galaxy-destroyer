@@ -4,29 +4,66 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ObjectPoolItem
+public class ObjectPoolItem 
 {
+	[SerializeField]
+	private GameObject _objectToPool;
+	[SerializeField]
+	private int _amountToPool;
+	[SerializeField]
+	private bool _shouldExpand;
 
-	public GameObject objectToPool;
-	public int amountToPool;
-	public bool shouldExpand = true;
-
-	public ObjectPoolItem(GameObject obj, int amt, bool exp = true)
+	public GameObject objectToPool
 	{
-		objectToPool = obj;
-		amountToPool = Mathf.Max(amt,2);
-		shouldExpand = exp;
+		get
+		{
+			return _objectToPool;
+		}
+		set
+		{
+			
+		}
+	}
+	public int amountToPool
+	{
+		get
+		{
+			return _amountToPool;
+		}
+		set
+		{
+			
+		}
+	}
+	public bool shouldExpand
+	{
+		get
+		{
+			return _shouldExpand;
+		}
+		set  
+		{  
+			_shouldExpand = true;  
+		}
+	}
+
+	public ObjectPoolItem(GameObject objectForPool, int amount, bool expand = true)
+	{
+		_objectToPool = objectForPool;
+		_amountToPool = Mathf.Max(amount,2);
+		_shouldExpand = expand;
 	}
 }
 
 public class ObjectPooler : MonoBehaviour
 {
 	public static ObjectPooler SharedInstance;
-	public List<ObjectPoolItem> itemsToPool;
-
-
-	public List<List<GameObject>> pooledObjectsList;
-	public List<GameObject> pooledObjects;
+	[SerializeField]
+	private List<ObjectPoolItem> itemsToPool;
+	[SerializeField]
+	private List<List<GameObject>> pooledObjectsList;
+	[SerializeField]
+	private List<GameObject> pooledObjects;
 	private List<int> positions;
 
 	void Awake()
@@ -80,9 +117,9 @@ public class ObjectPooler : MonoBehaviour
 	}
 
 
-	public int AddObject(GameObject GO, int amt = 3, bool exp = true)
+	public int AddObject(GameObject GO, int amount = 3, bool expand = true)
 	{
-		ObjectPoolItem item = new ObjectPoolItem(GO, amt, exp);
+		ObjectPoolItem item = new ObjectPoolItem(GO, amount, expand);
 		int currLen = itemsToPool.Count;
 		itemsToPool.Add(item);
 		ObjectPoolItemToPooledObject(currLen);

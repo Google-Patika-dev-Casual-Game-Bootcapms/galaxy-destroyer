@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Devkit.Base.Object;
 using System;
+using UnityEditor;
+using UnityEngine.UIElements;
 
 namespace SpaceShooterProject.Component {
     public class Player : MonoBehaviour, IUpdatable, IInitializable, IDestructible
@@ -10,13 +12,14 @@ namespace SpaceShooterProject.Component {
         private InGameInputSystem inputSystemReferance ;
         [SerializeField]
         private ObjectPooler ObjectPooler;
-
         private Transform myTransform;
         private float shipSpeed = 10f;
-
+        private float frameRate = 0;
+        private float fireRate = 20;
+        
         public void Init()
         {
-            InvokeRepeating("Shoot", .33f, .33f);
+            
         }
         public void PreInit()
         {
@@ -25,8 +28,12 @@ namespace SpaceShooterProject.Component {
 
         public void CallUpdate()
         {
-            Shoot();
-           
+            frameRate++;
+            if (frameRate%fireRate==0)
+            {
+                Shoot();
+            }
+            
         }
 
         public void CallFixedUpdate()
@@ -83,12 +90,11 @@ namespace SpaceShooterProject.Component {
         }
         void Shoot()
         {
-            Debug.Log("a");
             GameObject bullet = ObjectPooler.GetPooledObject(0);
             bullet.transform.position = transform.position;
             bullet.SetActive(true);
         }
-
+       
         
     }
 }

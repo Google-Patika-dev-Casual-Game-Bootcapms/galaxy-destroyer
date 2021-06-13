@@ -2,9 +2,10 @@ using System.Collections;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class BulletControl : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 3; 
+    [SerializeField] 
+    private float speed = 3; 
 
     private Transform myTransform;
     private float maxVerticalPosition;
