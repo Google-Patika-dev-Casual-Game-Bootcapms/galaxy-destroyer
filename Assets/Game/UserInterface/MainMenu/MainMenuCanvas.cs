@@ -1,8 +1,14 @@
-namespace SpaceShooterProject.UserInterface 
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace SpaceShooterProject.UserInterface
 {
     public class MainMenuCanvas : BaseCanvas
     {
         public delegate void MenuRequestDelegate();
+
+        public delegate void MenuPlanetSelectionDelegate();
+
         public event MenuRequestDelegate OnInGameMenuRequest;
         public event MenuRequestDelegate OnSettingsMenuRequest;
         public event MenuRequestDelegate OnAchievementsMenuRequest;
@@ -11,23 +17,47 @@ namespace SpaceShooterProject.UserInterface
         public event MenuRequestDelegate OnGarageMenuRequest;
         public event MenuRequestDelegate OnCoPilotMenuRequest;
         public event MenuRequestDelegate OnCreditsMenuRequest;
+        public event MenuPlanetSelectionDelegate OnNextPlanetButtonRequest;
+        public event MenuPlanetSelectionDelegate OnPreviousPlanetButtonRequest;
+
+        [SerializeField] private RectTransform backgroundImage;
+
+        [SerializeField] private PlanetUIController planetUIController;
 
         protected override void Init()
         {
-            
+            backgroundImage.sizeDelta = GetCanvasSize();
+            planetUIController.Init();
         }
 
-        public void RequestInGameMenu() 
+        private Vector2 GetCanvasSize()
         {
-            if (OnInGameMenuRequest != null) 
+            Vector2 screenSize = new Vector2(Screen.width, Screen.height);
+            CanvasScaler canvasScaler = GetComponent<CanvasScaler>();
+            var m_ScreenMatchMode = canvasScaler.screenMatchMode;
+            var m_ReferenceResolution = canvasScaler.referenceResolution;
+            var m_MatchWidthOrHeight = canvasScaler.matchWidthOrHeight;
+
+            float scaleFactor = 0;
+            float logWidth = Mathf.Log(screenSize.x / m_ReferenceResolution.x, 2);
+            float logHeight = Mathf.Log(screenSize.y / m_ReferenceResolution.y, 2);
+            float logWeightedAverage = Mathf.Lerp(logWidth, logHeight, m_MatchWidthOrHeight);
+            scaleFactor = Mathf.Pow(2, logWeightedAverage);
+
+            return new Vector2(screenSize.x / scaleFactor, screenSize.y / scaleFactor);
+        }
+
+        public void RequestInGameMenu()
+        {
+            if (OnInGameMenuRequest != null)
             {
                 OnInGameMenuRequest();
             }
         }
 
-        public void RequestSettingsMenu() 
+        public void RequestSettingsMenu()
         {
-            if (OnSettingsMenuRequest != null) 
+            if (OnSettingsMenuRequest != null)
             {
                 OnSettingsMenuRequest();
             }
@@ -80,7 +110,19 @@ namespace SpaceShooterProject.UserInterface
                 OnCreditsMenuRequest();
             }
         }
+
+        public void OnNextPlanetButtonClick()
+        {
+            if (OnNextPlanetButtonRequest != null)
+                OnNextPlanetButtonRequest();
+        }
+
+        public void OnPreviousPlanetButtonClick()
+        {
+            if (OnPreviousPlanetButtonRequest != null)
+                OnPreviousPlanetButtonRequest();
+        }
+
+        public PlanetUIController PlanetUIController => planetUIController;
     }
 }
-
-

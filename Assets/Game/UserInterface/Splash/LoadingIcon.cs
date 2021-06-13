@@ -19,6 +19,11 @@ namespace SpaceShooterProject.UserInterface
             StopCoroutine(ANIMATION_COROUTINE_NAME);
         }
 
+        public void Init()
+        {
+            
+        }
+
         public void PlayLoadingAnimation() 
         {
             StartCoroutine(ANIMATION_COROUTINE_NAME);

@@ -19,6 +19,11 @@ namespace SpaceShooterProject.UserInterface
             
         }
 
+        public void Init()
+        {
+            
+        }
+
         public void PlayFadeInAnimation(float duration) 
         {
             if (image == null) 
