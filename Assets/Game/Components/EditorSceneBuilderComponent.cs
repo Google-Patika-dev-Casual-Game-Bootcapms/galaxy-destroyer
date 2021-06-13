@@ -24,7 +24,7 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
         myComponent = componentContainer;
     }
 
-    public void SceneBuilder(string levelName)
+    public void BuildScene(string levelName)
     {
         string path = Application.dataPath + "/Resources/" + levelName;
         var data = ReadDataFromText(path);
