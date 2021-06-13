@@ -20,7 +20,6 @@ namespace SpaceShooterProject.Component
         //List the achievements and subscribe them as achievement observer..
         public void LoadAchievementsAndAddToList()
         {
-            Debug.Log("AchievementsLoaded");
             var achievements = Resources.LoadAll<Achievement>(path);
 
             for (int i = 0; i < achievements.Length; i++)
