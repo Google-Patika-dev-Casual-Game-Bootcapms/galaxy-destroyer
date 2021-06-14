@@ -5,26 +5,23 @@ using System.Collections.Generic;
 
 namespace SpaceShooterProject.Component
 {
-    public class AchievementsComponent : IComponent, IObserver<Achievement>
+    public class AchievementsComponent : MonoBehaviour, IComponent, IObserver<Achievement>
     {
-        public ComponentContainer container;
-        string path = "Achievements";//we create a folder in Resources folder called Achievements to keep scriptable objects
-        public List<Achievement> achievementsList = new List<Achievement>();
+        public List<Achievement> achievementsList;
 
         public void Initialize(ComponentContainer componentContainer)
         {
-            container = componentContainer;
             LoadAchievementsAndAddToList();
         }
 
-        //List the achievements and subscribe them as achievement observer..
+        //Subscribe AchievementsComponent as achievement observer..
         public void LoadAchievementsAndAddToList()
         {
-            var achievements = Resources.LoadAll<Achievement>(path);
+            Debug.Log($"<color=black>{achievementsList.Count}</color>");
 
-            for (int i = 0; i < achievements.Length; i++)
+            for (int i = 0; i < achievementsList.Count; i++)
             {
-                achievementsList.Add(achievements[i]);
+                achievementsList[i].Subscribe(this);
             }
         }
 
@@ -42,7 +39,6 @@ namespace SpaceShooterProject.Component
         //to find the achievement..
         private Achievement FindAchievementByName(string name)
         {
-            Debug.Log($"<color=black>{achievementsList.Count}</color>");
             foreach (var a in achievementsList)
             {
                 if (a.Name == name) return a;

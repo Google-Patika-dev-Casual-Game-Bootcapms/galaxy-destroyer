@@ -12,7 +12,7 @@ namespace SpaceShooterProject.Component
         [SerializeField] private string achievementName;
         [SerializeField, TextArea(1, 4)] private string description;
         [SerializeField] private Sprite icon;
-         [SerializeField] private Sprite smallIcon;
+        [SerializeField] private Sprite smallIcon;
         [SerializeField] private int goalCount;
         [SerializeField] private int currentCount;
         [SerializeField] private int prize;
@@ -24,7 +24,7 @@ namespace SpaceShooterProject.Component
         public int Id { get => id; }
         public string Name { get => achievementName; }
         public Sprite Icon { get => icon; }
-         public Sprite SmallIcon { get => smallIcon; }
+        public Sprite SmallIcon { get => smallIcon; }
         public string Descrption { get => description; }
         public int GoalCount { get => goalCount; }
         public int CurrentCount { get => currentCount; }
