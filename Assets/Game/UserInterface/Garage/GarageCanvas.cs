@@ -1,21 +1,18 @@
-using UnityEngine;
-using UnityEngine.UI;
-
 namespace SpaceShooterProject.UserInterface
 {
+    using UnityEngine;
+    using UnityEngine.UI;
+    using SpaceShooterProject.Component;
+    using TMPro;
 
     public class GarageCanvas : BaseCanvas
     {
-        public delegate void RequestUpdateDelegate();
+        public delegate void RequestUpdateDelegate(UpgradablePartType upgradablePartType);
 
-        public event RequestUpdateDelegate OnShieldUpgradeRequest;
-        public event RequestUpdateDelegate OnMegaBombUpgradeRequest;
-        public event RequestUpdateDelegate OnLaserUpgradeRequest;
-        public event RequestUpdateDelegate OnMagnetUpgradeRequest;
-        public event RequestUpdateDelegate OnHealthUpgradeRequest;
-        public event RequestUpdateDelegate OnMissilesUpgradeRequest;
-        public event RequestUpdateDelegate OnWingCannonUpgradeRequest;
-        public event RequestUpdateDelegate OnMainCannonUpgradeRequest;
+        public event RequestUpdateDelegate OnPartUpgradeRequest;
+
+        [SerializeField]
+        private TextMeshProUGUI shieldInfoContainer;
 
         [SerializeField] private RectTransform backgroundImage;
 
@@ -42,69 +39,68 @@ namespace SpaceShooterProject.UserInterface
             backgroundImage.sizeDelta = GetCanvasSize();
             var buttons = GetComponentsInChildren<Button>();
 
-            foreach(Button fakeButton in buttons)
+            foreach (Button fakeButton in buttons)
             {
                 fakeButton.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
             }
         }
 
-        public void OnShieldUpgradeClick()
+        public void OnUpgradeProcessCompleted(UpgradeProcessData upgradeProcessData)
         {
-            if(OnShieldUpgradeRequest != null)
+            switch (upgradeProcessData.ProcessStatus)
             {
-                OnShieldUpgradeRequest();
+                case UpgradeProcessStatus.NOT_ENOUGH_GOLD:
+                    //TODO: handle
+                    break;
+                case UpgradeProcessStatus.MAXIMUM_PART_LEVEL:
+                    //TODO: handle
+                    break;
+                case UpgradeProcessStatus.SUCCESS:
+                    PartUpgraded(upgradeProcessData.PartType, upgradeProcessData.CurrentPartLevel);
+                    break;
+                default:
+                    break;
             }
         }
 
-        public void OnMegaBombUpgradeClick()
+        public void OnPartUpgradeButtonClick(int upgradablePartType)
         {
-            if (OnMegaBombUpgradeRequest != null)
+            if (OnPartUpgradeRequest != null)
             {
-                OnMegaBombUpgradeRequest();
+                OnPartUpgradeRequest((UpgradablePartType)upgradablePartType);
             }
         }
 
-        public void OnLaserUpgradeClick()
+        public void PartUpgraded(UpgradablePartType upgradablePartType, int level) 
         {
-            if (OnLaserUpgradeRequest != null)
+            switch (upgradablePartType)
             {
-                OnLaserUpgradeRequest();
+                case UpgradablePartType.SHIELD:
+                    shieldInfoContainer.text = level.ToString();
+                    break;
+                case UpgradablePartType.LASER:
+                    break;
+                case UpgradablePartType.MEGABOMB:
+                    break;
+                case UpgradablePartType.MAGNET:
+                    break;
+                case UpgradablePartType.HEALTH:
+                    break;
+                case UpgradablePartType.MISSILE:
+                    break;
+                case UpgradablePartType.WING_CANNON:
+                    break;
+                case UpgradablePartType.MAIN_CANNON:
+                    break;
+                default:
+                    break;
             }
         }
-        public void OnMagnetUpgradeClick()
+
+        public void UpdateUI(SpaceShipUpgradeData spaceShipUpgradeData) 
         {
-            if (OnMagnetUpgradeRequest != null)
-            {
-                OnMagnetUpgradeRequest();
-            }
-        }
-        public void OnHealthUpgradeClick()
-        {
-            if (OnHealthUpgradeRequest != null)
-            {
-                OnHealthUpgradeRequest();
-            }
-        }
-        public void OnMissilesUpgradeClick()
-        {
-            if (OnMissilesUpgradeRequest != null)
-            {
-                OnMissilesUpgradeRequest();
-            }
-        }
-        public void OnWingCannonUpgradeClick()
-        {
-            if (OnWingCannonUpgradeRequest != null)
-            {
-                OnWingCannonUpgradeRequest();
-            }
-        }
-        public void OnMainCannonUpgradeClick()
-        {
-            if (OnMainCannonUpgradeRequest != null)
-            {
-                OnMainCannonUpgradeRequest();
-            }
+            //TODO update UI
+            shieldInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.SHIELD].ToString();
         }
 
     }
