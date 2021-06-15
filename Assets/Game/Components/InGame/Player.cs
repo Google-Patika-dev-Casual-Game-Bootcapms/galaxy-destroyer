@@ -71,21 +71,21 @@ namespace SpaceShooterProject.Component
 
         public void InjectInpuSystem(InGameInputSystem inputSystem){
             inputSystemReferance = inputSystem;
-            inputSystemReferance.OnScreenTouch += OnScrenTouch;
+            inputSystemReferance.OnScreenTouch += OnScreenTouch;
             inputSystemReferance.OnScreenTouchEnter += OnTouch;
             inputSystemReferance.OnScreenTouchExit += OnTouchUp;
             
 
         }
 
-        private void OnScrenTouch()
+        private void OnScreenTouch()
         {
             
         }
 
         public void OnDestruct()
         {
-            inputSystemReferance.OnScreenTouch -= OnScrenTouch;
+            inputSystemReferance.OnScreenTouch -= OnScreenTouch;
             inputSystemReferance.OnScreenTouchEnter -= OnTouch;
             inputSystemReferance.OnScreenTouchExit -= OnTouchUp;
         }
@@ -95,7 +95,5 @@ namespace SpaceShooterProject.Component
             bullet.transform.position = transform.position;
             bullet.SetActive(true);
         }
-       
-        
     }
 }
