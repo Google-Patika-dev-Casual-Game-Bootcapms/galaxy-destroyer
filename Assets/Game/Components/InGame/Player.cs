@@ -17,6 +17,11 @@ namespace SpaceShooterProject.Component
         private float shipSpeed = 10f;
         private float frameRate = 0;
         private float fireRate = 20;
+
+        [SerializeField]
+        private Camera _camera;
+
+        private float sceneSpeed = 1f;
         
         public void Init()
         {
@@ -49,8 +54,7 @@ namespace SpaceShooterProject.Component
 
         public void OnTouchUp()
         {
-            
-            
+            SceneMovement();
         }
 
         public void OnTouch()
@@ -64,8 +68,10 @@ namespace SpaceShooterProject.Component
            // var screenLimitY = Screen.height/Screen.currentResolution.height;
            // TODO min max ekran değerleri için fonksiyon yazılacak
            
-            gameObject.transform.position = new Vector2(Mathf.Clamp(gameObject.transform.position.x,-2.5f,2.5f),
-                Mathf.Clamp(gameObject.transform.position.y,-4.5f,4.5f));
+            // gameObject.transform.position = new Vector2(Mathf.Clamp(gameObject.transform.position.x,-2.5f,2.5f),
+            //     Mathf.Clamp(gameObject.transform.position.y,-4.5f,4.5f));
+            sceneSpeed = 3f;
+            SceneMovement();
 
         }
 
@@ -95,5 +101,9 @@ namespace SpaceShooterProject.Component
             bullet.transform.position = transform.position;
             bullet.SetActive(true);
         }
+        private void SceneMovement(){
+            _camera.transform.Translate(Vector3.up*sceneSpeed*Time.deltaTime,Space.World);
+        }
+       
     }
 }
