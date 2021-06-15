@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Devkit.Base.Object;
-using System;
-using UnityEditor;
-using UnityEngine.UIElements;
+namespace SpaceShooterProject.Component 
+{
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using Devkit.Base.Object;
+    using System;
+    using UnityEditor;
+    using UnityEngine.UIElements;
 
-namespace SpaceShooterProject.Component {
     public class Player : MonoBehaviour, IUpdatable, IInitializable, IDestructible
     {
         private InGameInputSystem inputSystemReferance ;

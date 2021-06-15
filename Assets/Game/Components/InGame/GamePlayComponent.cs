@@ -1,13 +1,13 @@
-using Devkit.Base.Component;
-using System.Collections;
-using System.Collections.Generic;
-using Devkit.Base.Object;
-using Devkit.HSM;
-using UnityEngine;
-using System;
-
 namespace SpaceShooterProject.Component 
 {
+    using Devkit.Base.Component;
+    using System.Collections;
+    using System.Collections.Generic;
+    using Devkit.Base.Object;
+    using Devkit.HSM;
+    using UnityEngine;
+    using System;
+
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
         [SerializeField] private Player player;

@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Devkit.Base.Component;
-using Devkit.Base.Object;
-
 namespace SpaceShooterProject.Component
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using Devkit.Base.Component;
+    using Devkit.Base.Object;
+
     public class InGameInputSystem : IUpdatable, IComponent
     {
         public delegate void TouchMessageDelegate();
