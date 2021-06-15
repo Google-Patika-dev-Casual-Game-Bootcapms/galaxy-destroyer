@@ -20,6 +20,8 @@ namespace SpaceShooterProject
         private IntroComponent introComponent;
         private InventoryComponent inventoryComponent;
         private CoPilotComponent coPilotComponent;
+        private UpgradeComponent upgradeComponent;
+        private CurrencyComponent currencyComponent;
         
         private AppState appState;
 
@@ -40,15 +42,22 @@ namespace SpaceShooterProject
             CreateTutorialComponent();
             CreateInventoryComponent();
             CreateCoPilotComponent();
+            CreateUpgradeComponent();
+            CreateCurrencyComponent();
+
             InitializeComponents();
             CreateAppState();
             appState.Enter();
         }
 
-        
         public void Update()
         {
             appState.Update();
+        }
+
+        public void OnDestroy()
+        {
+            accountComponent.OnDestruct();
         }
 
         private void CreateAccountComponent()
@@ -112,6 +121,18 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("CoPilotComponent",coPilotComponent);
         }
 
+        private void CreateUpgradeComponent()
+        {
+            upgradeComponent = new UpgradeComponent();
+            componentContainer.AddComponent("UpgradeComponent", upgradeComponent);
+        }
+
+        private void CreateCurrencyComponent()
+        {
+            currencyComponent = new CurrencyComponent();
+            componentContainer.AddComponent("CurrencyComponent", currencyComponent);
+        }
+
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
@@ -123,7 +144,8 @@ namespace SpaceShooterProject
             gamePlayComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
-            
+            upgradeComponent.Initialize(componentContainer);
+            currencyComponent.Initialize(componentContainer);
         }
 
         private void CreateAppState()
