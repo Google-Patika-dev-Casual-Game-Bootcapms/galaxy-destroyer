@@ -410,12 +410,12 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnMagnetUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1993,12 +1993,12 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnWingCannonUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2680,8 +2680,8 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnShieldUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2815,12 +2815,12 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnMainCannonUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3443,12 +3443,12 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnMegaBombUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4206,12 +4206,12 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnMissilesUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4551,12 +4551,12 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnHealthUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4895,12 +4895,12 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnLaserUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
