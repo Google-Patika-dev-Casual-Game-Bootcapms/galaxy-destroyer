@@ -1616,6 +1616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectPooler: {fileID: 1321162094}
+  _camera: {fileID: 519420031}
 --- !u!212 &505089491
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5187,9 +5188,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToPool:
-  - objectToPool: {fileID: 5233499832866637938, guid: 8e189a9dcf51617419b334092bf8554e, type: 3}
-    amountToPool: 1
-    shouldExpand: 1
+  - _objectToPool: {fileID: 0}
+    _amountToPool: 0
+    _shouldExpand: 0
   pooledObjects: []
 --- !u!4 &1321162095
 Transform:
