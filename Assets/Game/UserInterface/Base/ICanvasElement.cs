@@ -6,6 +6,7 @@ namespace SpaceShooterProject.UserInterface
 {
     public interface ICanvasElement
     {
+        void Init();
         void Activate();
         void Deactivate();
     }

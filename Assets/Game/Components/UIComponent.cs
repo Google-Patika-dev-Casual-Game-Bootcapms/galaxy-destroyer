@@ -10,8 +10,8 @@ namespace SpaceShooterProject.Component
         { 
             SPLASH, MAIN_MENU, IN_GAME, 
             SETTINGS, ACHIEVEMENTS, MARKET, 
-            INVENTORY, GARAGE, 
             CO_PILOT, CREDITS, PROVISION
+            INVENTORY, CARD, SPACESHIP, GARAGE, 
         }
 
         [SerializeField]
@@ -28,6 +28,10 @@ namespace SpaceShooterProject.Component
         private BaseCanvas marketCanvas = null;
         [SerializeField]
         private BaseCanvas inventoryCanvas = null;
+        [SerializeField]
+        private BaseCanvas cardCanvas = null;
+        [SerializeField]
+        private BaseCanvas spaceshipCanvas = null;
         [SerializeField]
         private BaseCanvas garageCanvas = null;
         [SerializeField]
@@ -48,6 +52,8 @@ namespace SpaceShooterProject.Component
             achievementsCanvas.Initialize(componentContainer);
             marketCanvas.Initialize(componentContainer);
             inventoryCanvas.Initialize(componentContainer);
+            cardCanvas.Initialize(componentContainer);
+            spaceshipCanvas.Initialize(componentContainer);
             garageCanvas.Initialize(componentContainer);
             coPilotCanvas.Initialize(componentContainer);
             creditsCanvas.Initialize(componentContainer);
@@ -60,6 +66,8 @@ namespace SpaceShooterProject.Component
             DeactivateCanvas(achievementsCanvas);
             DeactivateCanvas(marketCanvas);
             DeactivateCanvas(inventoryCanvas);
+            DeactivateCanvas(cardCanvas);
+            DeactivateCanvas(spaceshipCanvas);
             DeactivateCanvas(garageCanvas);
             DeactivateCanvas(coPilotCanvas);
             DeactivateCanvas(creditsCanvas);
@@ -84,6 +92,10 @@ namespace SpaceShooterProject.Component
                     return marketCanvas;
                 case MenuName.INVENTORY:
                     return inventoryCanvas;
+                case MenuName.CARD:
+                    return cardCanvas;
+                case MenuName.SPACESHIP:
+                    return spaceshipCanvas;
                 case MenuName.GARAGE:
                     return garageCanvas;
                 case MenuName.CO_PILOT:
@@ -135,6 +147,12 @@ namespace SpaceShooterProject.Component
                     break;
                 case MenuName.INVENTORY:
                     activeCanvas = inventoryCanvas;
+                    break;
+                case MenuName.CARD:
+                    activeCanvas = cardCanvas;
+                    break;
+                case MenuName.SPACESHIP:
+                    activeCanvas = spaceshipCanvas;
                     break;
                 case MenuName.GARAGE:
                     activeCanvas = garageCanvas;

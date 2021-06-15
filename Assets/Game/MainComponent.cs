@@ -1,3 +1,5 @@
+using SpaceShooterProject.Component.CoPilot;
+
 namespace SpaceShooterProject 
 {
     using Devkit.Base.Component;
@@ -17,6 +19,8 @@ namespace SpaceShooterProject
         private TutorialComponent tutorialComponent;
         private IntroComponent introComponent;
         private InventoryComponent inventoryComponent;
+        private CoPilotComponent coPilotComponent;
+        
         private SuperPowerComponent superPowerComponent;
 
 
@@ -38,14 +42,15 @@ namespace SpaceShooterProject
             CreateGamePlayComponent();
             CreateTutorialComponent();
             CreateInventoryComponent();
+            CreateCoPilotComponent();
             CreateSuperPowerComponent();
 
             InitializeComponents();
-
             CreateAppState();
             appState.Enter();
         }
 
+        
         public void Update()
         {
             appState.Update();
@@ -105,6 +110,12 @@ namespace SpaceShooterProject
             inventoryComponent = gameObject.AddComponent<InventoryComponent>();
             componentContainer.AddComponent("InventoryComponent", inventoryComponent);
         }
+        
+        private void CreateCoPilotComponent()
+        {
+            coPilotComponent = new CoPilotComponent();
+            componentContainer.AddComponent("CoPilotComponent",coPilotComponent);
+        }
 
         private void CreateSuperPowerComponent()
         {
@@ -122,6 +133,8 @@ namespace SpaceShooterProject
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
+            coPilotComponent.Initialize(componentContainer);
+            
             superPowerComponent.Initialize(componentContainer);
         }
 
