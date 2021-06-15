@@ -10,7 +10,7 @@ namespace SpaceShooterProject.Component
         { 
             SPLASH, MAIN_MENU, IN_GAME, 
             SETTINGS, ACHIEVEMENTS, MARKET, 
-            CO_PILOT, CREDITS, PROVISION
+            CO_PILOT, CREDITS, PROVISION,
             INVENTORY, CARD, SPACESHIP, GARAGE, 
         }
 
