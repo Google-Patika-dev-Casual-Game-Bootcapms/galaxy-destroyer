@@ -4,6 +4,7 @@ namespace SpaceShooterProject.Component
     using System.Collections.Generic;
     using UnityEngine;
     using Devkit.Base.Component;
+    using System;
 
     public class CurrencyComponent : IComponent
     {
@@ -46,7 +47,12 @@ namespace SpaceShooterProject.Component
                 return isGoldEnough;
             }
 
-            public bool SpendDiamond(int diamondOutcome)
+        public bool IsAffordable(int amount)
+        {
+            return amount <= ownedGold;
+        }
+
+        public bool SpendDiamond(int diamondOutcome)
             {
                 if(ownedDiamond < diamondOutcome)
                 {
