@@ -19,8 +19,9 @@ namespace SpaceShooterProject
         private TutorialComponent tutorialComponent;
         private IntroComponent introComponent;
         private InventoryComponent inventoryComponent;
+        private MarketComponent marketComponent;
         private CoPilotComponent coPilotComponent;
-        
+		
         private AppState appState;
 
         private void Awake()
@@ -39,7 +40,9 @@ namespace SpaceShooterProject
             CreateGamePlayComponent();
             CreateTutorialComponent();
             CreateInventoryComponent();
+            CreateMarketComponent();
             CreateCoPilotComponent();
+			
             InitializeComponents();
             CreateAppState();
             appState.Enter();
@@ -112,6 +115,12 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("CoPilotComponent",coPilotComponent);
         }
 
+        private void CreateMarketComponent()
+        {
+            marketComponent = FindObjectOfType<MarketComponent>();
+            componentContainer.AddComponent("MarketComponent", marketComponent);
+        }
+
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
@@ -122,8 +131,8 @@ namespace SpaceShooterProject
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
+            marketComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
-            
         }
 
         private void CreateAppState()
