@@ -12,6 +12,7 @@ namespace SpaceShooterProject
         private ComponentContainer componentContainer;
         private AccountComponent accountComponent;
         private UIComponent uIComponent;
+        private QuoteComponent quoteComponent;
         private AchievementsComponent achievementsComponent;
         private AudioComponent audioComponent;
         private GamePlayComponent gamePlayComponent;
@@ -32,6 +33,7 @@ namespace SpaceShooterProject
         {
             CreateAccountComponent();
             CreateUIComponent();
+            CreateQuoteComponent();
             CreateIntroComponent();
             CreateAchievementsComponent();
             CreateAudioComponent();
@@ -49,10 +51,10 @@ namespace SpaceShooterProject
         public void Update()
         {
             appState.Update();
-            if (coPilotComponent)
-            {
-                coPilotComponent.CoPilotUpdate();
-            }
+            // if (coPilotComponent)
+            // {
+            //     coPilotComponent.CoPilotUpdate();
+            // }
         }
 
         private void CreateAccountComponent()
@@ -66,6 +68,12 @@ namespace SpaceShooterProject
             uIComponent = FindObjectOfType<UIComponent>();
             //TODO: check is there any ui component object in the scene!!
             componentContainer.AddComponent("UIComponent", uIComponent);
+        }
+
+         private void CreateQuoteComponent()
+        {
+            quoteComponent = FindObjectOfType<QuoteComponent>();
+            componentContainer.AddComponent("QuoteComponent", quoteComponent);
         }
 
         private void CreateIntroComponent()
@@ -119,6 +127,7 @@ namespace SpaceShooterProject
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
+            quoteComponent.Initialize(componentContainer);
             uIComponent.Initialize(componentContainer);
             introComponent.Initialize(componentContainer);
             achievementsComponent.Initialize(componentContainer);
@@ -126,7 +135,7 @@ namespace SpaceShooterProject
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
-            coPilotComponent.Initialize(componentContainer);
+          //  coPilotComponent.Initialize(componentContainer);
             
         }
 
