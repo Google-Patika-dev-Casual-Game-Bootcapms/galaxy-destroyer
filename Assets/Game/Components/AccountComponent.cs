@@ -113,6 +113,8 @@ namespace SpaceShooterProject.Component
             accountData.OwnedDiamond = currencyComponent.GetOwnedDiamond();
             accountData.CopilotSetting = copilotComponent.GetCopilotSetting();
             */
+            accountData.OwnedGold = currencyComponent.GetOwnedGold();
+            
             saveComponent.Save(accountData, accountDataPath);
         }
 
@@ -201,7 +203,7 @@ namespace SpaceShooterProject.Component
             {
                 return;
             }
-
+            
             accountData.SpaceShipUpgradeDatas[accountData.SelectedSpaceShipId].PartLevels[(int)upgradablePartType]++;
        }
 
