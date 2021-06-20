@@ -1,3 +1,5 @@
+using DG.Tweening;
+
 namespace SpaceShooterProject.UserInterface
 {
     using UnityEngine;
@@ -75,6 +77,12 @@ namespace SpaceShooterProject.UserInterface
                 case UpgradeProcessStatus.SUCCESS:
                     PartUpgraded(upgradeProcessData.PartType, upgradeProcessData.CurrentPartLevel);
                     currentCurrencyContainer.text = ownedGold.ToString();
+                    currentCurrencyContainer.rectTransform.DOScale(new Vector3(1.1f,1.1f, 1.1f), .1f).SetEase(Ease.InOutBounce).OnComplete(
+                        () =>
+                        {
+                            currentCurrencyContainer.rectTransform.DOScale(new Vector3(1f, 1f, 1f), .1f)
+                                .SetEase(Ease.InOutBounce);
+                        });
                     break;
                 default:
                     break;
