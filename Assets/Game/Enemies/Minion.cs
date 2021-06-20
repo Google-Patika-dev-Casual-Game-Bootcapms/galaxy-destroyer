@@ -2,10 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minion1 : IMinionController
-{  
-    public string name = "Yol İzleyici";   // Türkçe karakter sıkıntı yaratır mı?
-    private string type = "Flying";
+public abstract class Minion : MonoBehaviour, IMinionController
+{
+
+    [SerializeField] private float speed;
+    [SerializeField] private MovementDirection movementDirection;
+    protected IMovement movement;
+
+    protected abstract void Initialize();
+
+    void Start()
+    {
+        Initialize();
+    }
+
+
+    void Update()
+    {
+        Movement();
+    }
+
+
     public void Attack()
     {
         throw new System.NotImplementedException();
@@ -23,7 +40,7 @@ public class Minion1 : IMinionController
 
     public void Movement()
     {
-        throw new System.NotImplementedException();
+        movement.Move(this);
     }
 
     public void Path()
@@ -38,6 +55,17 @@ public class Minion1 : IMinionController
 
     public string Type()
     {
-        return type;
+        throw new System.NotImplementedException();
+    }
+
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    public MovementDirection GetMovementDirection()
+    {
+        return movementDirection;
     }
 }

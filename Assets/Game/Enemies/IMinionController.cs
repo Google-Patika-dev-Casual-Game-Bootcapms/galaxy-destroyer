@@ -8,4 +8,6 @@ public interface IMinionController : IEnemyController
 
     // TODO: Any minion specific generic function can be added below.
 
+    
+
 }
