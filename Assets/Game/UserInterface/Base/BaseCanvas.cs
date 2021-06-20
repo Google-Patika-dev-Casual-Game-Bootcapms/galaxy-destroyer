@@ -62,7 +62,13 @@ namespace SpaceShooterProject.UserInterface
         }
 
         protected virtual void PreInit() { }
-        protected virtual void Init() { }
+        protected virtual void Init() 
+        {
+            for (int i = 0; i < canvasElements.Length; i++)
+            {
+                canvasElements[i].Init();
+            }
+        }
 
         public void ReturnToMainMenu()
         {

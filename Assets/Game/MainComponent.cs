@@ -20,8 +20,10 @@ namespace SpaceShooterProject
         private TutorialComponent tutorialComponent;
         private IntroComponent introComponent;
         private InventoryComponent inventoryComponent;
+        private MarketComponent marketComponent;
         private CoPilotComponent coPilotComponent;
-        
+        private SuperPowerComponent superPowerComponent;
+
         private AppState appState;
 
         private void Awake()
@@ -41,7 +43,10 @@ namespace SpaceShooterProject
             CreateGamePlayComponent();
             CreateTutorialComponent();
             CreateInventoryComponent();
+            CreateMarketComponent();
             CreateCoPilotComponent();
+            CreateSuperPowerComponent();
+
             InitializeComponents();
             CreateAppState();
             appState.Enter();
@@ -51,10 +56,10 @@ namespace SpaceShooterProject
         public void Update()
         {
             appState.Update();
-            // if (coPilotComponent)
-            // {
-            //     coPilotComponent.CoPilotUpdate();
-            // }
+            if (coPilotComponent)
+            {
+                coPilotComponent.CoPilotUpdate();
+            }
         }
 
         private void CreateAccountComponent()
@@ -120,8 +125,20 @@ namespace SpaceShooterProject
         
         private void CreateCoPilotComponent()
         {
-            coPilotComponent = FindObjectOfType<CoPilotComponent>();
+            coPilotComponent = new CoPilotComponent();
             componentContainer.AddComponent("CoPilotComponent",coPilotComponent);
+        }
+
+        private void CreateSuperPowerComponent()
+        {
+            superPowerComponent = new SuperPowerComponent();
+            componentContainer.AddComponent("SuperPowerComponent", superPowerComponent);
+        }
+
+        private void CreateMarketComponent()
+        {
+            marketComponent = FindObjectOfType<MarketComponent>();
+            componentContainer.AddComponent("MarketComponent", marketComponent);
         }
 
         private void InitializeComponents()
@@ -135,8 +152,11 @@ namespace SpaceShooterProject
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
-          //  coPilotComponent.Initialize(componentContainer);
+            coPilotComponent.Initialize(componentContainer);
             
+            marketComponent.Initialize(componentContainer);
+            coPilotComponent.Initialize(componentContainer);
+            superPowerComponent.Initialize(componentContainer);
         }
 
         private void CreateAppState()
