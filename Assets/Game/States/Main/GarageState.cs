@@ -14,6 +14,7 @@ namespace SpaceShooterProject.State
         private GarageCanvas garageCanvas;
         private UpgradeComponent upgradeComponent;
         private AccountComponent accountComponent;
+        private CurrencyComponent currencyComponent;
 
 
         public GarageState(ComponentContainer componentContainer)
@@ -22,6 +23,7 @@ namespace SpaceShooterProject.State
             garageCanvas = uiComponent.GetCanvas(UIComponent.MenuName.GARAGE) as GarageCanvas;
             upgradeComponent = componentContainer.GetComponent("UpgradeComponent") as UpgradeComponent;
             accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
+            currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
         }
 
         protected override void OnEnter()
@@ -31,7 +33,7 @@ namespace SpaceShooterProject.State
             garageCanvas.OnPartUpgradeRequest += OnPartUpgradeRequest;
             upgradeComponent.OnUpgradeProcessCompleted += OnUpgradeProcessCompleted;
 
-            garageCanvas.UpdateUI(accountComponent.GetCurrentSpaceShipUpgradePartData());
+            garageCanvas.UpdateUI(accountComponent.GetCurrentSpaceShipUpgradePartData(),currencyComponent.GetOwnedGold());
         }
 
         private void OnPartUpgradeRequest(UpgradablePartType upgradablePartType)
@@ -41,7 +43,7 @@ namespace SpaceShooterProject.State
 
         private void OnUpgradeProcessCompleted(UpgradeProcessData upgradeProcessData)
         {
-            garageCanvas.OnUpgradeProcessCompleted(upgradeProcessData);
+            garageCanvas.OnUpgradeProcessCompleted(upgradeProcessData,currencyComponent.GetOwnedGold());
         }
 
         private void OnReturnToMainMenu()
