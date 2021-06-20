@@ -13,6 +13,20 @@ namespace SpaceShooterProject.UserInterface
 
         [SerializeField]
         private TextMeshProUGUI shieldInfoContainer;
+        [SerializeField]
+        private TextMeshProUGUI laserInfoContainer;
+        [SerializeField]
+        private TextMeshProUGUI megabombInfoContainer;
+        [SerializeField]
+        private TextMeshProUGUI magnetInfoContainer;
+        [SerializeField]
+        private TextMeshProUGUI healthInfoContainer;
+        [SerializeField]
+        private TextMeshProUGUI missileInfoContainer;
+        [SerializeField]
+        private TextMeshProUGUI wingCannonInfoContainer;
+        [SerializeField]
+        private TextMeshProUGUI mainCannonInfoContainer;
         
         [SerializeField]
         private TextMeshProUGUI currentCurrencyContainer;
@@ -84,18 +98,25 @@ namespace SpaceShooterProject.UserInterface
                     shieldInfoContainer.text = level.ToString();
                     break;
                 case UpgradablePartType.LASER:
+                    laserInfoContainer.text = level.ToString();
                     break;
                 case UpgradablePartType.MEGABOMB:
+                    megabombInfoContainer.text = level.ToString();
                     break;
                 case UpgradablePartType.MAGNET:
+                    magnetInfoContainer.text = level.ToString();
                     break;
                 case UpgradablePartType.HEALTH:
+                    healthInfoContainer.text = level.ToString();
                     break;
                 case UpgradablePartType.MISSILE:
+                    missileInfoContainer.text = level.ToString();
                     break;
                 case UpgradablePartType.WING_CANNON:
+                    wingCannonInfoContainer.text = level.ToString();
                     break;
                 case UpgradablePartType.MAIN_CANNON:
+                    mainCannonInfoContainer.text = level.ToString();
                     break;
                 default:
                     break;
