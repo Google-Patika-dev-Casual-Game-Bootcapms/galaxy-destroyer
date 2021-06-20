@@ -22,6 +22,12 @@ namespace SpaceShooterProject.State
         {
             uiComponent.EnableCanvas(UIComponent.MenuName.ACHIEVEMENTS);
             achievementsCanvas.OnReturnToMainMenu += OnReturnToMainMenu;
+            achievementsCanvas.AchievementCompleted += AchievementCompleted;
+        }
+
+        private void AchievementCompleted(string name)
+        {
+            achievementsComponent.IsAchievementCompleted(name);
         }
 
         private void OnReturnToMainMenu()

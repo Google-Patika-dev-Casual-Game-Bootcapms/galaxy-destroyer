@@ -4,13 +4,15 @@ namespace SpaceShooterProject.Component
     using UnityEngine;
     using System;
     using System.Collections.Generic;
-    
+
     public class AchievementsComponent : MonoBehaviour, IComponent, IObserver<Achievement>
     {
         public List<Achievement> achievementsList;
+        CurrencyComponent currencyComponent;
 
         public void Initialize(ComponentContainer componentContainer)
         {
+            currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
             LoadAchievementsAndAddToList();
         }
 
@@ -44,6 +46,11 @@ namespace SpaceShooterProject.Component
                 if (a.Name == name) return a;
             }
             return null;
+        }
+
+        public void IsAchievementCompleted(string name)
+        {
+            currencyComponent.EarnDiamond(FindAchievementByName(name).Prize);
         }
 
         public void OnNext(Achievement value)
