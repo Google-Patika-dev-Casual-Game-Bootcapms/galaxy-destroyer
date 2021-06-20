@@ -38,6 +38,11 @@ namespace SpaceShooterProject.Component
             achievement.RaiseCurrentCount();
         }
 
+        public List<Achievement> GetAchievementsData()
+        {
+            return achievementsList;
+        }
+
         //to find the achievement..
         private Achievement FindAchievementByName(string name)
         {
@@ -50,6 +55,11 @@ namespace SpaceShooterProject.Component
 
         public void IsAchievementCompleted(string name)
         {
+            if (currencyComponent == null) 
+            {
+                return;
+            }
+
             currencyComponent.EarnDiamond(FindAchievementByName(name).Prize);
         }
 
