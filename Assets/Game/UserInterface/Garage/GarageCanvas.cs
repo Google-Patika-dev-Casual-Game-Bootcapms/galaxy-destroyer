@@ -13,6 +13,9 @@ namespace SpaceShooterProject.UserInterface
 
         [SerializeField]
         private TextMeshProUGUI shieldInfoContainer;
+        
+        [SerializeField]
+        private TextMeshProUGUI currentCurrencyContainer;
 
         [SerializeField] private RectTransform backgroundImage;
 
@@ -45,7 +48,7 @@ namespace SpaceShooterProject.UserInterface
             }
         }
 
-        public void OnUpgradeProcessCompleted(UpgradeProcessData upgradeProcessData)
+        public void OnUpgradeProcessCompleted(UpgradeProcessData upgradeProcessData, int ownedGold)
         {
             switch (upgradeProcessData.ProcessStatus)
             {
@@ -57,10 +60,12 @@ namespace SpaceShooterProject.UserInterface
                     break;
                 case UpgradeProcessStatus.SUCCESS:
                     PartUpgraded(upgradeProcessData.PartType, upgradeProcessData.CurrentPartLevel);
+                    currentCurrencyContainer.text = ownedGold.ToString();
                     break;
                 default:
                     break;
             }
+            
         }
 
         public void OnPartUpgradeButtonClick(int upgradablePartType)
@@ -95,12 +100,14 @@ namespace SpaceShooterProject.UserInterface
                 default:
                     break;
             }
+
         }
 
-        public void UpdateUI(SpaceShipUpgradeData spaceShipUpgradeData) 
+        public void UpdateUI(SpaceShipUpgradeData spaceShipUpgradeData, int ownedGold) 
         {
             //TODO update UI
             shieldInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.SHIELD].ToString();
+            currentCurrencyContainer.text = ownedGold.ToString();
         }
 
     }
