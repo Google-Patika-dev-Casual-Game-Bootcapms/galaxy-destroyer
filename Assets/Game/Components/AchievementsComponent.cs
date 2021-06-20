@@ -28,9 +28,9 @@ namespace SpaceShooterProject.Component
         }
 
         //we progress the achievenemt count which we find with FindAchievementByName function..
-        public void ProgressAchievementWithName(string name)
+        public void IncreaseAchievement(string name)
         {
-            Achievement achievement = FindAchievementByName(name);
+            Achievement achievement = FindAchievement(name);
 
             if (achievement == null)
                 return;
@@ -44,7 +44,7 @@ namespace SpaceShooterProject.Component
         }
 
         //to find the achievement..
-        private Achievement FindAchievementByName(string name)
+        private Achievement FindAchievement(string name)
         {
             foreach (var a in achievementsList)
             {
@@ -53,14 +53,14 @@ namespace SpaceShooterProject.Component
             return null;
         }
 
-        public void IsAchievementCompleted(string name)
+        public void CompleteAchievement(string name)
         {
             if (currencyComponent == null) 
             {
                 return;
             }
 
-            currencyComponent.EarnDiamond(FindAchievementByName(name).Prize);
+            currencyComponent.EarnGold(FindAchievement(name).Prize);
         }
 
         public void OnNext(Achievement value)

@@ -22,14 +22,11 @@
 
         protected override void Init()
         {
-            //achievementsComponent = componentContainer.GetComponent("AchievementsComponent") as AchievementsComponent;
-            //achievementCardData = achievementsComponent.achievementsList;
         }
 
         public void SetData(List<Achievement> achievements)
         {
             this.achievementCardData = achievements;
-
             UpdateUI();
         }
 

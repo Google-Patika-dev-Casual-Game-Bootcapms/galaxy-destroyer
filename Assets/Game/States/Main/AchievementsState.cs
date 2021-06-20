@@ -29,7 +29,7 @@ namespace SpaceShooterProject.State
 
         private void AchievementCompleted(string name)
         {
-            achievementsComponent.IsAchievementCompleted(name);
+            achievementsComponent.CompleteAchievement(name);
         }
 
         private void OnReturnToMainMenu()
