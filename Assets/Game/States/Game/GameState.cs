@@ -59,7 +59,6 @@ namespace SpaceShooterProject.State
         protected override void OnUpdate()
         {
             Debug.Log("GameState in on ");
-            gamePlayComponent.CallUpdate();
         }
     }
 }
