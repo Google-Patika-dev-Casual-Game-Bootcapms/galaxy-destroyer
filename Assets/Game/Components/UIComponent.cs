@@ -10,8 +10,8 @@ namespace SpaceShooterProject.Component
         { 
             SPLASH, MAIN_MENU, IN_GAME, 
             SETTINGS, ACHIEVEMENTS, MARKET, 
-            INVENTORY, GARAGE, 
-            CO_PILOT, CREDITS 
+            CO_PILOT, CREDITS, PROVISION,
+            INVENTORY, CARD, SPACESHIP, GARAGE, 
         }
 
         [SerializeField]
@@ -29,11 +29,17 @@ namespace SpaceShooterProject.Component
         [SerializeField]
         private BaseCanvas inventoryCanvas = null;
         [SerializeField]
+        private BaseCanvas cardCanvas = null;
+        [SerializeField]
+        private BaseCanvas spaceshipCanvas = null;
+        [SerializeField]
         private BaseCanvas garageCanvas = null;
         [SerializeField]
         private BaseCanvas coPilotCanvas = null;
         [SerializeField]
         private BaseCanvas creditsCanvas = null;
+        [SerializeField]
+        private BaseCanvas provisionCanvas = null;
 
         private BaseCanvas activeCanvas = null;
 
@@ -46,9 +52,12 @@ namespace SpaceShooterProject.Component
             achievementsCanvas.Initialize(componentContainer);
             marketCanvas.Initialize(componentContainer);
             inventoryCanvas.Initialize(componentContainer);
+            cardCanvas.Initialize(componentContainer);
+            spaceshipCanvas.Initialize(componentContainer);
             garageCanvas.Initialize(componentContainer);
             coPilotCanvas.Initialize(componentContainer);
             creditsCanvas.Initialize(componentContainer);
+            provisionCanvas.Initialize(componentContainer);
 
             DeactivateCanvas(splashCanvas);
             DeactivateCanvas(mainMenuCanvas);
@@ -57,9 +66,12 @@ namespace SpaceShooterProject.Component
             DeactivateCanvas(achievementsCanvas);
             DeactivateCanvas(marketCanvas);
             DeactivateCanvas(inventoryCanvas);
+            DeactivateCanvas(cardCanvas);
+            DeactivateCanvas(spaceshipCanvas);
             DeactivateCanvas(garageCanvas);
             DeactivateCanvas(coPilotCanvas);
             DeactivateCanvas(creditsCanvas);
+            DeactivateCanvas(provisionCanvas);
         }
 
         public BaseCanvas GetCanvas(MenuName canvas)
@@ -80,12 +92,18 @@ namespace SpaceShooterProject.Component
                     return marketCanvas;
                 case MenuName.INVENTORY:
                     return inventoryCanvas;
+                case MenuName.CARD:
+                    return cardCanvas;
+                case MenuName.SPACESHIP:
+                    return spaceshipCanvas;
                 case MenuName.GARAGE:
                     return garageCanvas;
                 case MenuName.CO_PILOT:
                     return coPilotCanvas;
                 case MenuName.CREDITS:
                     return creditsCanvas;
+                case MenuName.PROVISION:
+                    return provisionCanvas;
                 default:
                     return null;
             }
@@ -130,6 +148,12 @@ namespace SpaceShooterProject.Component
                 case MenuName.INVENTORY:
                     activeCanvas = inventoryCanvas;
                     break;
+                case MenuName.CARD:
+                    activeCanvas = cardCanvas;
+                    break;
+                case MenuName.SPACESHIP:
+                    activeCanvas = spaceshipCanvas;
+                    break;
                 case MenuName.GARAGE:
                     activeCanvas = garageCanvas;
                     break;
@@ -138,6 +162,9 @@ namespace SpaceShooterProject.Component
                     break;
                 case MenuName.CREDITS:
                     activeCanvas = creditsCanvas;
+                    break;
+                case MenuName.PROVISION:
+                    activeCanvas = provisionCanvas;
                     break;
             }
 

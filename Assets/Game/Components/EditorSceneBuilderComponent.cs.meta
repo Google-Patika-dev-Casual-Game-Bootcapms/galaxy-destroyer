@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c36ac5e12d73d5a4dbeba8bb26fa36a3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - flyEnemyNPCPrefab: {fileID: 4712849431589607401, guid: ffda7ac0fefc61247b2f695512fd8974, type: 3}
+  - stableEnemyNPCPrefab: {fileID: 6716787271328588410, guid: 4c94cc1139e750048b56a0b9d7045ca2, type: 3}
+  - nonFlyEnemyNPCPrefab: {fileID: 2648770031790275854, guid: cc66639dbd030ca419cbb03827a22570, type: 3}
+  - levelEndMonsterPrefab: {fileID: 6292462016101578891, guid: 1a3e953a04c1d764582bb2368e746a56, type: 3}
+  - friendNPCPrefab: {fileID: 8355810826969749024, guid: f710c54b4a81b3c4fb754d699d6d42f4, type: 3}
+  - boxPrefab: {fileID: 5086916109200837534, guid: 84730e19136ee8547a666899951c2ca2, type: 3}
+  - marsPrefab: {fileID: 4521154691132928002, guid: 1b0f8f47ea105d9488c7628784fbaaca, type: 3}
+  - neptunePrefab: {fileID: 7710779024009814703, guid: 7effe629a6b9c984394f71f0399e4d27, type: 3}
+  - uranusPrefab: {fileID: 6529255898297796685, guid: 71b7abf82a170334cbd513cc590c8b3e, type: 3}
+  - saturnPrefab: {fileID: 3691700000279844947, guid: 34f79d4557328544f98c068939a579c5, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

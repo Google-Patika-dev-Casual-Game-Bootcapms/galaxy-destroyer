@@ -11,6 +11,7 @@ namespace SpaceShooterProject.Component
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
         [SerializeField] private Player player;
+        [SerializeField] private GameCamera gameCamera;
         private InGameInputSystem inputSystem;
         private InGameWeaponUpgradeComponent weaponUpgradeComponent;
 
@@ -21,7 +22,7 @@ namespace SpaceShooterProject.Component
 
             InitializeWeaponUpgradeComponent(componentContainer);
 
-            player.InjectInpuSystem(inputSystem);
+            player.InjectInputSystem(inputSystem);
         }
 
         private void InitializeWeaponUpgradeComponent(ComponentContainer componentContainer)
@@ -35,6 +36,7 @@ namespace SpaceShooterProject.Component
             Debug.Log("GamePlayComponent is on");
             inputSystem.CallUpdate();
             player.CallUpdate();
+            gameCamera.CallUpdate();
         }
 
         public void OnEnter()

@@ -2,10 +2,8 @@ namespace SpaceShooterProject.State
 {
     using Devkit.Base.Component;
     using Devkit.HSM;
-    using SpaceShooterProject.Component;
-    using SpaceShooterProject.UserInterface;
-    using System.Collections;
-    using System.Collections.Generic;
+    using Component;
+    using UserInterface;
     using UnityEngine;
 
     public class GameState : StateMachine
