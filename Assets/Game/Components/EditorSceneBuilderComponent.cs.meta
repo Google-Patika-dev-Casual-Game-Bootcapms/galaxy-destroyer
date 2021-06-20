@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: fc4989b4e3b446c4ba4fdb34df360c30
+guid: c36ac5e12d73d5a4dbeba8bb26fa36a3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - m_ViewDataDictionary: {instanceID: 0}
   - flyEnemyNPCPrefab: {fileID: 4712849431589607401, guid: ffda7ac0fefc61247b2f695512fd8974, type: 3}
   - stableEnemyNPCPrefab: {fileID: 6716787271328588410, guid: 4c94cc1139e750048b56a0b9d7045ca2, type: 3}
   - nonFlyEnemyNPCPrefab: {fileID: 2648770031790275854, guid: cc66639dbd030ca419cbb03827a22570, type: 3}

@@ -18,13 +18,14 @@ namespace SpaceShooterProject
         private NotificationComponent notificationComponent;
         private TutorialComponent tutorialComponent;
         private IntroComponent introComponent;
+        private EditorSceneBuilderComponent editorSceneBuilderComponent;
         private InventoryComponent inventoryComponent;
         private MarketComponent marketComponent;
         private CoPilotComponent coPilotComponent;
         private SuperPowerComponent superPowerComponent;
 
         private AppState appState;
-
+      
         private void Awake()
         {
             componentContainer = new ComponentContainer();
@@ -40,6 +41,7 @@ namespace SpaceShooterProject
             CreateNotificationComponent();
             CreateGamePlayComponent();
             CreateTutorialComponent();
+            CreateEditorSceneBuilderComponent();
             CreateInventoryComponent();
             CreateMarketComponent();
             CreateCoPilotComponent();
@@ -104,6 +106,12 @@ namespace SpaceShooterProject
             tutorialComponent = new TutorialComponent();
             componentContainer.AddComponent("TutorialComponent", tutorialComponent);
         }
+        
+        private void CreateEditorSceneBuilderComponent()
+        {
+            editorSceneBuilderComponent = new EditorSceneBuilderComponent();
+            componentContainer.AddComponent("LevelEditorSceneBuilderComponent", editorSceneBuilderComponent);
+        }
 
         private void CreateInventoryComponent()
         {
@@ -138,6 +146,7 @@ namespace SpaceShooterProject
             audioComponent.Initialize(componentContainer);
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
+            editorSceneBuilderComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
             marketComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
