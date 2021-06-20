@@ -136,6 +136,14 @@ namespace SpaceShooterProject.UserInterface
         {
             //TODO update UI
             shieldInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.SHIELD].ToString();
+            laserInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.LASER].ToString();
+            megabombInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MEGABOMB].ToString();
+            magnetInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MAGNET].ToString();
+            healthInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.HEALTH].ToString();
+            missileInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MISSILE].ToString();
+            wingCannonInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.WING_CANNON].ToString();
+            mainCannonInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MAIN_CANNON].ToString();
+            
             currentCurrencyContainer.text = ownedGold.ToString();
         }
 
