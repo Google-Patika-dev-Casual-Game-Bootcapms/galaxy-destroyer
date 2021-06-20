@@ -95,4 +95,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a22a2d300b1c654183bca0afdf11b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectPooler: {fileID: 0}
+  shipSpeed: 100
+  shipSpriteRenderer: {fileID: 2223782389237091494}
