@@ -72,12 +72,12 @@ namespace SpaceShooterProject.Component
         #endregion
     
         #region Getter Methods
-            int GetOwnedGold()
+            public int GetOwnedGold()
             {
                 return ownedGold;
             }
 
-            int GetOwnedDiamond()
+            public int GetOwnedDiamond()
             {
                 return ownedDiamond;
             }
