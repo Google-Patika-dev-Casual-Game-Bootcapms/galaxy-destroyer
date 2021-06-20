@@ -10,31 +10,23 @@ namespace SpaceShooterProject.UserInterface
     public class GarageCanvas : BaseCanvas
     {
         public delegate void RequestUpdateDelegate(UpgradablePartType upgradablePartType);
-
         public event RequestUpdateDelegate OnPartUpgradeRequest;
+      
+        [SerializeField] private GarageUIButtonUpgrader shieldUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader laserUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader megabombUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader magnetUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader healthUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader missileUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader wingCannonUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader mainCannonUpgradeInfo;
 
-        [SerializeField]
-        private TextMeshProUGUI shieldInfoContainer;
-        [SerializeField]
-        private TextMeshProUGUI laserInfoContainer;
-        [SerializeField]
-        private TextMeshProUGUI megabombInfoContainer;
-        [SerializeField]
-        private TextMeshProUGUI magnetInfoContainer;
-        [SerializeField]
-        private TextMeshProUGUI healthInfoContainer;
-        [SerializeField]
-        private TextMeshProUGUI missileInfoContainer;
-        [SerializeField]
-        private TextMeshProUGUI wingCannonInfoContainer;
-        [SerializeField]
-        private TextMeshProUGUI mainCannonInfoContainer;
-        
         [SerializeField]
         private TextMeshProUGUI currentCurrencyContainer;
 
-        [SerializeField] private RectTransform backgroundImage;
-
+        [SerializeField] 
+        private RectTransform backgroundImage;
+       
         private Vector2 GetCanvasSize()
         {
             Vector2 screenSize = new Vector2(Screen.width, Screen.height);
@@ -103,28 +95,28 @@ namespace SpaceShooterProject.UserInterface
             switch (upgradablePartType)
             {
                 case UpgradablePartType.SHIELD:
-                    shieldInfoContainer.text = level.ToString();
+                    shieldUpgradeInfo.UpdateMinorAndMajorLevels(level);
                     break;
                 case UpgradablePartType.LASER:
-                    laserInfoContainer.text = level.ToString();
+                    laserUpgradeInfo.UpdateMinorAndMajorLevels(level);
                     break;
                 case UpgradablePartType.MEGABOMB:
-                    megabombInfoContainer.text = level.ToString();
+                    megabombUpgradeInfo.UpdateMinorAndMajorLevels(level);
                     break;
                 case UpgradablePartType.MAGNET:
-                    magnetInfoContainer.text = level.ToString();
+                    magnetUpgradeInfo.UpdateMinorAndMajorLevels(level);
                     break;
                 case UpgradablePartType.HEALTH:
-                    healthInfoContainer.text = level.ToString();
+                    healthUpgradeInfo.UpdateMinorAndMajorLevels(level);
                     break;
                 case UpgradablePartType.MISSILE:
-                    missileInfoContainer.text = level.ToString();
+                    missileUpgradeInfo.UpdateMinorAndMajorLevels(level);
                     break;
                 case UpgradablePartType.WING_CANNON:
-                    wingCannonInfoContainer.text = level.ToString();
+                    wingCannonUpgradeInfo.UpdateMinorAndMajorLevels(level);
                     break;
                 case UpgradablePartType.MAIN_CANNON:
-                    mainCannonInfoContainer.text = level.ToString();
+                    mainCannonUpgradeInfo.UpdateMinorAndMajorLevels(level);
                     break;
                 default:
                     break;
@@ -135,14 +127,14 @@ namespace SpaceShooterProject.UserInterface
         public void UpdateUI(SpaceShipUpgradeData spaceShipUpgradeData, int ownedGold) 
         {
             //TODO update UI
-            shieldInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.SHIELD].ToString();
-            laserInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.LASER].ToString();
-            megabombInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MEGABOMB].ToString();
-            magnetInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MAGNET].ToString();
-            healthInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.HEALTH].ToString();
-            missileInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MISSILE].ToString();
-            wingCannonInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.WING_CANNON].ToString();
-            mainCannonInfoContainer.text = spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MAIN_CANNON].ToString();
+            shieldUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.SHIELD]);
+            laserUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.LASER]);
+            megabombUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MEGABOMB]);
+            magnetUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MAGNET]);
+            healthUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.HEALTH]);
+            missileUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MISSILE]);
+            wingCannonUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.WING_CANNON]);
+            mainCannonUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MAIN_CANNON]);
             
             currentCurrencyContainer.text = ownedGold.ToString();
         }

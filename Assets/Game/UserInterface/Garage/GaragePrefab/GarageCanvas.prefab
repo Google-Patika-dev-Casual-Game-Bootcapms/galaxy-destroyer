@@ -297,6 +297,7 @@ GameObject:
   - component: {fileID: 145902345518868664}
   - component: {fileID: 145902345518868663}
   - component: {fileID: 145902345518868662}
+  - component: {fileID: 4967872714453258742}
   m_Layer: 5
   m_Name: MagnetUpgradeButton
   m_TagString: Untagged
@@ -420,6 +421,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4967872714453258742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902345518868660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902346613669426}
 --- !u!1 &145902345589462376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,14 +1179,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22261442cb76ffa4db2643fcbdced238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldInfoContainer: {fileID: 145902347513825100}
-  laserInfoContainer: {fileID: 0}
-  megabombInfoContainer: {fileID: 0}
-  magnetInfoContainer: {fileID: 0}
-  healthInfoContainer: {fileID: 0}
-  missileInfoContainer: {fileID: 0}
-  wingCannonInfoContainer: {fileID: 0}
-  mainCannonInfoContainer: {fileID: 0}
+  shieldUpgradeInfo: {fileID: 3041767540020976046}
+  laserUpgradeInfo: {fileID: 4910821019796947569}
+  megabombUpgradeInfo: {fileID: 4306271803907873973}
+  magnetUpgradeInfo: {fileID: 4967872714453258742}
+  healthUpgradeInfo: {fileID: 4858646378323424373}
+  missileUpgradeInfo: {fileID: 4820292098088763284}
+  wingCannonUpgradeInfo: {fileID: 7241783015926426798}
+  mainCannonUpgradeInfo: {fileID: 2756069722564006595}
   currentCurrencyContainer: {fileID: 8268650965197502025}
   backgroundImage: {fileID: 145902346033653474}
 --- !u!1 &145902345878565223
@@ -1414,7 +1428,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 145902347468018596}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.72113, y: 0.2786555}
   m_AnchorMax: {x: 1.2356699, y: 0.7282889}
@@ -1774,7 +1788,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 145902347468018596}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1890,6 +1904,7 @@ GameObject:
   - component: {fileID: 145902346321238040}
   - component: {fileID: 145902346321238039}
   - component: {fileID: 145902346321238041}
+  - component: {fileID: 7241783015926426798}
   m_Layer: 5
   m_Name: WingCannonUpgradeButton
   m_TagString: Untagged
@@ -2013,6 +2028,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7241783015926426798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902346321238037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902347477054311}
 --- !u!1 &145902346416403387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2578,6 +2606,7 @@ GameObject:
   - component: {fileID: 145902346735474573}
   - component: {fileID: 145902346735474572}
   - component: {fileID: 145902346735474571}
+  - component: {fileID: 3041767540020976046}
   m_Layer: 5
   m_Name: ShieldUpgradeButton
   m_TagString: Untagged
@@ -2700,6 +2729,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3041767540020976046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902346735474569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902347513825100}
 --- !u!1 &145902346784542751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2712,6 +2754,7 @@ GameObject:
   - component: {fileID: 145902346784542722}
   - component: {fileID: 145902346784542721}
   - component: {fileID: 145902346784542723}
+  - component: {fileID: 2756069722564006595}
   m_Layer: 5
   m_Name: MainCannonUpgradeButton
   m_TagString: Untagged
@@ -2835,6 +2878,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2756069722564006595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902346784542751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902345896386711}
 --- !u!1 &145902346800833437
 GameObject:
   m_ObjectHideFlags: 0
@@ -3341,6 +3397,7 @@ GameObject:
   - component: {fileID: 145902347057412294}
   - component: {fileID: 145902347057412293}
   - component: {fileID: 145902347057412292}
+  - component: {fileID: 4306271803907873973}
   m_Layer: 5
   m_Name: MegaBombUpgradeButton
   m_TagString: Untagged
@@ -3463,6 +3520,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4306271803907873973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902347057412290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902346680815434}
 --- !u!1 &145902347065013168
 GameObject:
   m_ObjectHideFlags: 0
@@ -4103,6 +4173,7 @@ GameObject:
   - component: {fileID: 145902347468018598}
   - component: {fileID: 145902347468018597}
   - component: {fileID: 145902347468018599}
+  - component: {fileID: 4820292098088763284}
   m_Layer: 5
   m_Name: MissilesUpgradeButton
   m_TagString: Untagged
@@ -4121,8 +4192,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children:
-  - {fileID: 145902346308051555}
   - {fileID: 145902345911765298}
+  - {fileID: 145902346308051555}
   m_Father: {fileID: 145902345866918973}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4226,6 +4297,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4820292098088763284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902347468018595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902346308051556}
 --- !u!1 &145902347477054309
 GameObject:
   m_ObjectHideFlags: 0
@@ -4448,6 +4532,7 @@ GameObject:
   - component: {fileID: 145902347492060946}
   - component: {fileID: 145902347492060945}
   - component: {fileID: 145902347492060947}
+  - component: {fileID: 4858646378323424373}
   m_Layer: 5
   m_Name: HealthUpgradeButton
   m_TagString: Untagged
@@ -4571,6 +4656,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4858646378323424373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902347492060975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902345796684917}
 --- !u!1 &145902347513825098
 GameObject:
   m_ObjectHideFlags: 0
@@ -4793,6 +4891,7 @@ GameObject:
   - component: {fileID: 145902347576343239}
   - component: {fileID: 145902347576343238}
   - component: {fileID: 145902347576343237}
+  - component: {fileID: 4910821019796947569}
   m_Layer: 5
   m_Name: LaserUpgradeButton
   m_TagString: Untagged
@@ -4915,6 +5014,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4910821019796947569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902347576343235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902347065013170}
 --- !u!1 &8349639867543873784
 GameObject:
   m_ObjectHideFlags: 0
