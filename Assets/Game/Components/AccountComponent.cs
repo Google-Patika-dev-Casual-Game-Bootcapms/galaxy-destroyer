@@ -46,7 +46,11 @@ namespace SpaceShooterProject.Component
             //Debug.Log("<color=green>Account Component initialized!</color>");
 
             accountDataFile = "accountData.txt";
+#if UNITY_EDITOR
+            accountDataPath = Application.dataPath + "/" + accountDataFile;
+#else
             accountDataPath = Application.persistentDataPath + "/" + accountDataFile;
+#endif
 
             Debug.Log("<color=red>" + accountDataPath + "</color>");
             
@@ -211,7 +215,7 @@ namespace SpaceShooterProject.Component
             SaveBeforeClosing();
         }
 
-        #endregion
+#endregion
     }
 #region Account Data Struct
     [Serializable]
@@ -242,7 +246,7 @@ namespace SpaceShooterProject.Component
         public int[] PartLevels;
     }
 
-    #endregion
+#endregion
 
 }
 
