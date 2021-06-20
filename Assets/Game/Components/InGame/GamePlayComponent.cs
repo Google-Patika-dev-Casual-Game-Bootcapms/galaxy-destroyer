@@ -1,12 +1,9 @@
-namespace SpaceShooterProject.Component 
+namespace SpaceShooterProject.Component
 {
     using Devkit.Base.Component;
-    using System.Collections;
-    using System.Collections.Generic;
+    using Devkit.Base.Pattern.ObjectPool;
     using Devkit.Base.Object;
-    using Devkit.HSM;
     using UnityEngine;
-    using System;
 
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
@@ -14,6 +11,8 @@ namespace SpaceShooterProject.Component
         [SerializeField] private GameCamera gameCamera;
         private InGameInputSystem inputSystem;
         private InGameWeaponUpgradeComponent weaponUpgradeComponent;
+        private BulletCollector bulletCollector;
+
 
         public void Initialize(ComponentContainer componentContainer)
         {
@@ -23,6 +22,8 @@ namespace SpaceShooterProject.Component
             InitializeWeaponUpgradeComponent(componentContainer);
 
             player.InjectInputSystem(inputSystem);
+            player.Init();
+            bulletCollector = new BulletCollector();
         }
 
         private void InitializeWeaponUpgradeComponent(ComponentContainer componentContainer)
@@ -36,7 +37,12 @@ namespace SpaceShooterProject.Component
             Debug.Log("GamePlayComponent is on");
             inputSystem.CallUpdate();
             player.CallUpdate();
-            gameCamera.CallUpdate();
+        }
+
+        private void LateUpdate()
+        {
+            if (gameCamera.IsAvailable)
+                gameCamera.CallLateUpdate();
         }
 
         public void OnEnter()
@@ -46,8 +52,30 @@ namespace SpaceShooterProject.Component
 
         public void OnExit()
         {
-            
         }
+
+        public Player Player => player;
+
+        public GameCamera GameCamera => gameCamera;
+    }
+
+    public class BulletCollector
+    {
+        private Pool<Bullet> pool;
+        private const string SOURCE_OBJECT_PATH = "Prefabs/BulletForPooling";
+
+        public BulletCollector()
+        {
+            pool = new Pool<Bullet>(SOURCE_OBJECT_PATH);
+            pool.PopulatePool(10);
+        }
+
+        /*private void SubscribeAllBullets()
+        {
+            foreach (var bullet in pool.GetPool.ToArray())
+            {
+                
+            }
+        }*/
     }
 }
-
