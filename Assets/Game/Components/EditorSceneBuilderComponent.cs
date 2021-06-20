@@ -24,9 +24,9 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
         myComponent = componentContainer;
     }
 
-    public void BuildScene(string levelName)
+    public void BuildLevel(int levelNumber)
     {
-        string path = Application.dataPath + "/Resources/" + levelName;
+        string path = Application.dataPath + "/Resources/" + levelNumber.ToString() +".json";
         var data = ReadDataFromText(path);
         var levelData = JsonUtility.FromJson<LevelData>(data);
         LoadScene(levelData);
