@@ -4,9 +4,6 @@ namespace SpaceShooterProject.State
     using Devkit.HSM;
     using SpaceShooterProject.Component;
     using SpaceShooterProject.UserInterface;
-    using System.Collections;
-    using System.Collections.Generic;
-    using UnityEngine;
 
     public class AchievementsState : StateMachine
     {

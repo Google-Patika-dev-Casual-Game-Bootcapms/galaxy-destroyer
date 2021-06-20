@@ -1,10 +1,10 @@
-using Devkit.Base.Component;
-using UnityEngine;
-using System;
-using System.Collections.Generic;
-
 namespace SpaceShooterProject.Component
 {
+    using Devkit.Base.Component;
+    using UnityEngine;
+    using System;
+    using System.Collections.Generic;
+    
     public class AchievementsComponent : MonoBehaviour, IComponent, IObserver<Achievement>
     {
         public List<Achievement> achievementsList;
