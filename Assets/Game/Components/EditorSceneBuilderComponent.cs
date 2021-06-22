@@ -23,33 +23,18 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
     {
         myComponent = componentContainer;
     }
-
-    public void BuildScene(string levelName)
+    
+    public void BuildLevel(int levelNumber)
     {
-        string path = Application.dataPath + "/Resources/" + levelName;
-        var data = ReadDataFromText(path);
-        var levelData = JsonUtility.FromJson<LevelData>(data);
+        var data = Resources.Load(levelNumber.ToString()) as TextAsset;
+        if (data is null)
+        {
+            Debug.LogWarning( "File named "+levelNumber+" not found in Resources File");
+            return;
+        }
+        var levelData = JsonUtility.FromJson<LevelData>(data.text);
         LoadScene(levelData);
     }
-
-    private string ReadDataFromText(string path)
-    {
-        string data = null;
-        try
-        {
-            using FileStream fs = new FileStream(path, FileMode.Open);
-            using (StreamReader reader = new StreamReader(fs))
-            {
-                data = reader.ReadToEnd();
-            }
-        }
-        catch (System.Exception ex)
-        {
-            Debug.Log(ex);
-        }
-        return data;
-    }
-
     private void LoadScene(LevelData levelData)
     {
         ClearScene();
