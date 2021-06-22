@@ -18,13 +18,18 @@ namespace SpaceShooterProject
         private NotificationComponent notificationComponent;
         private TutorialComponent tutorialComponent;
         private IntroComponent introComponent;
+        private EditorSceneBuilderComponent editorSceneBuilderComponent;
         private InventoryComponent inventoryComponent;
+        private MarketComponent marketComponent;
         private CoPilotComponent coPilotComponent;
+        private SuperPowerComponent superPowerComponent;
         private UpgradeComponent upgradeComponent;
         private CurrencyComponent currencyComponent;
         
         private AppState appState;
 
+        private AppState appState;
+      
         private void Awake()
         {
             componentContainer = new ComponentContainer();
@@ -40,8 +45,11 @@ namespace SpaceShooterProject
             CreateNotificationComponent();
             CreateGamePlayComponent();
             CreateTutorialComponent();
+            CreateEditorSceneBuilderComponent();
             CreateInventoryComponent();
+            CreateMarketComponent();
             CreateCoPilotComponent();
+            CreateSuperPowerComponent();
             CreateUpgradeComponent();
             CreateCurrencyComponent();
 
@@ -108,6 +116,12 @@ namespace SpaceShooterProject
             tutorialComponent = new TutorialComponent();
             componentContainer.AddComponent("TutorialComponent", tutorialComponent);
         }
+        
+        private void CreateEditorSceneBuilderComponent()
+        {
+            editorSceneBuilderComponent = new EditorSceneBuilderComponent();
+            componentContainer.AddComponent("LevelEditorSceneBuilderComponent", editorSceneBuilderComponent);
+        }
 
         private void CreateInventoryComponent()
         {
@@ -121,6 +135,16 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("CoPilotComponent",coPilotComponent);
         }
 
+        private void CreateSuperPowerComponent()
+        {
+            superPowerComponent = new SuperPowerComponent();
+            componentContainer.AddComponent("SuperPowerComponent", superPowerComponent);
+        }
+
+        private void CreateMarketComponent()
+        {
+            marketComponent = FindObjectOfType<MarketComponent>();
+            componentContainer.AddComponent("MarketComponent", marketComponent);
         private void CreateUpgradeComponent()
         {
             upgradeComponent = new UpgradeComponent();
@@ -142,8 +166,11 @@ namespace SpaceShooterProject
             audioComponent.Initialize(componentContainer);
             notificationComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
+            editorSceneBuilderComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
+            marketComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
+            superPowerComponent.Initialize(componentContainer);
             upgradeComponent.Initialize(componentContainer);
             currencyComponent.Initialize(componentContainer);
         }
