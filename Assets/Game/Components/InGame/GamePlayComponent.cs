@@ -22,6 +22,7 @@ namespace SpaceShooterProject.Component
             InitializeWeaponUpgradeComponent(componentContainer);
 
             player.InjectInputSystem(inputSystem);
+            player.ComponentContainer = componentContainer ;
             player.Init();
             bulletCollector = new BulletCollector();
         }

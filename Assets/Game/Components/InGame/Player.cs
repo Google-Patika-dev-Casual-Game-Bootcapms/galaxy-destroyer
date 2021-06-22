@@ -1,9 +1,8 @@
-using Devkit.Base.Pattern.ObjectPool;
-
 namespace SpaceShooterProject.Component
 {
     using UnityEngine;
     using Devkit.Base.Object;
+    using Devkit.Base.Component;
 
     public class Player : MonoBehaviour, IUpdatable, IInitializable, IDestructible
     {
@@ -15,6 +14,8 @@ namespace SpaceShooterProject.Component
         private Transform myTransform;
         [SerializeField] private float shipSpeed = 20f;
         [SerializeField] private SpriteRenderer shipSpriteRenderer;
+        private ComponentContainer componentContainer;
+        private CurrencyComponent currencyComponent;
         private float frameRate = 0;
         private float fireRate = 20;
 
@@ -24,7 +25,8 @@ namespace SpaceShooterProject.Component
         public void Init()
         {
             HideShip();
-            gameCamera = Camera.main.GetComponent<GameCamera>() ;
+            gameCamera = Camera.main.GetComponent<GameCamera>();
+            currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
         }
 
         public void PreInit()
@@ -40,11 +42,19 @@ namespace SpaceShooterProject.Component
         {
             shipSpriteRenderer.enabled = false;
         }
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            //TODO: currencyComponent MainComponent'in içinde Initialize edilecek.
+            if (collider.gameObject.CompareTag("Coin"))
+            {
+                currencyComponent.EarnGold(10);
+                Destroy(collider.gameObject);
+            }
 
-
+        }
         public void CallUpdate()
         {
-           transform.Translate(Vector3.up*gameCamera.CameraSpeed*Time.deltaTime,Space.World);
+            transform.Translate(Vector3.up * gameCamera.CameraSpeed * Time.deltaTime, Space.World);
         }
 
         public void CallFixedUpdate()
@@ -54,7 +64,6 @@ namespace SpaceShooterProject.Component
         public void CallLateUpdate()
         {
         }
-
         public void OnTouchUp()
         {
             Time.timeScale = 0.5f;
@@ -80,7 +89,7 @@ namespace SpaceShooterProject.Component
 
             // gameObject.transform.position = new Vector2(Mathf.Clamp(gameObject.transform.position.x,-2.5f,2.5f),
             //     Mathf.Clamp(gameObject.transform.position.y,-4.5f,4.5f));
-            
+
         }
 
         public void InjectInputSystem(InGameInputSystem inputSystem)
@@ -106,5 +115,12 @@ namespace SpaceShooterProject.Component
         {
             bullet.transform.position = transform.position;
         }
+
+        public ComponentContainer ComponentContainer
+        {
+            get => componentContainer;
+            set => componentContainer = value;
+        }
+
     }
 }
