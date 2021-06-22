@@ -12,6 +12,7 @@ namespace SpaceShooterProject
         private ComponentContainer componentContainer;
         private AccountComponent accountComponent;
         private UIComponent uIComponent;
+        private QuoteComponent quoteComponent;
         private AchievementsComponent achievementsComponent;
         private AudioComponent audioComponent;
         private GamePlayComponent gamePlayComponent;
@@ -35,6 +36,7 @@ namespace SpaceShooterProject
         {
             CreateAccountComponent();
             CreateUIComponent();
+            CreateQuoteComponent();
             CreateIntroComponent();
             CreateAchievementsComponent();
             CreateAudioComponent();
@@ -56,6 +58,10 @@ namespace SpaceShooterProject
         public void Update()
         {
             appState.Update();
+            if (coPilotComponent)
+            {
+                coPilotComponent.CoPilotUpdate();
+            }
         }
 
         private void CreateAccountComponent()
@@ -69,6 +75,12 @@ namespace SpaceShooterProject
             uIComponent = FindObjectOfType<UIComponent>();
             //TODO: check is there any ui component object in the scene!!
             componentContainer.AddComponent("UIComponent", uIComponent);
+        }
+
+         private void CreateQuoteComponent()
+        {
+            quoteComponent = FindObjectOfType<QuoteComponent>();
+            componentContainer.AddComponent("QuoteComponent", quoteComponent);
         }
 
         private void CreateIntroComponent()
@@ -140,6 +152,7 @@ namespace SpaceShooterProject
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
+            quoteComponent.Initialize(componentContainer);
             uIComponent.Initialize(componentContainer);
             introComponent.Initialize(componentContainer);
             achievementsComponent.Initialize(componentContainer);
@@ -148,6 +161,8 @@ namespace SpaceShooterProject
             gamePlayComponent.Initialize(componentContainer);
             editorSceneBuilderComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
+            coPilotComponent.Initialize(componentContainer);
+            
             marketComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
             superPowerComponent.Initialize(componentContainer);
