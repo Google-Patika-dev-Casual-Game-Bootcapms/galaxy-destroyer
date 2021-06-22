@@ -19,6 +19,7 @@ namespace SpaceShooterProject.State
         GO_TO_SETTINGS_REQUEST,
         GO_TO_INVENTORY_REQUEST,
         GO_TO_CO_PILOT_REQUEST,
+        GO_TO_QUOTE_REQUEST,
         START_GAME_REQUEST,
         PLAY_GAME_REQUEST,
         PAUSE_GAME_REQUEST,
