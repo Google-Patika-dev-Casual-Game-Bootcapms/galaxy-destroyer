@@ -36,6 +36,7 @@ namespace SpaceShooterProject.Component
         {
             Debug.Log("GamePlayComponent is on");
             inputSystem.CallUpdate();
+            player.CallUpdate();
             player.FrameRate++;
             if (player.FrameRate % player.FireRate == 0)
             {

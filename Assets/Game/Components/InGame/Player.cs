@@ -13,17 +13,18 @@ namespace SpaceShooterProject.Component
         //[SerializeField] private ObjectPooler ObjectPooler;
 
         private Transform myTransform;
-        [SerializeField] private float shipSpeed = 100f;
+        [SerializeField] private float shipSpeed = 20f;
         [SerializeField] private SpriteRenderer shipSpriteRenderer;
         private float frameRate = 0;
         private float fireRate = 20;
 
-        private float sceneSpeed = 1f;
+        private GameCamera gameCamera;
         private bool a = true;
 
         public void Init()
         {
             HideShip();
+            gameCamera = Camera.main.GetComponent<GameCamera>() ;
         }
 
         public void PreInit()
@@ -43,7 +44,7 @@ namespace SpaceShooterProject.Component
 
         public void CallUpdate()
         {
-            transform.Translate();
+           transform.Translate(Vector3.up*gameCamera.CameraSpeed*Time.deltaTime,Space.World);
         }
 
         public void CallFixedUpdate()
@@ -79,7 +80,7 @@ namespace SpaceShooterProject.Component
 
             // gameObject.transform.position = new Vector2(Mathf.Clamp(gameObject.transform.position.x,-2.5f,2.5f),
             //     Mathf.Clamp(gameObject.transform.position.y,-4.5f,4.5f));
-            sceneSpeed = 3f;
+            
         }
 
         public void InjectInputSystem(InGameInputSystem inputSystem)
