@@ -1,10 +1,13 @@
-using Devkit.Base.Component;
-using UnityEngine;
-
 namespace SpaceShooterProject.Component.CoPilot
 {
-    public class CoPilotBase
+    using System.Collections;
+    using Devkit.Base.Component;
+    using UnityEngine;
+
+    public class CoPilotBase : MonoBehaviour, IComponent
     {
+        public GamePlayComponent gamePlayComponent;
+
         //todo CoPilot isimleri değişecek
         public enum CoPilotType
         {
@@ -19,11 +22,16 @@ namespace SpaceShooterProject.Component.CoPilot
         {
             coPilotType = targetType;
         }
-        
+
         public CoPilotType coPilotType;
         public virtual void CoPilotUpdate()
         {
             
+        }
+
+        public void Initialize(ComponentContainer componentContainer)
+        {
+            gamePlayComponent = componentContainer.GetComponent("GamePlayComponent") as GamePlayComponent;
         }
     }
     
@@ -34,12 +42,80 @@ namespace SpaceShooterProject.Component.CoPilot
             
         }
 
+        public IEnumerator Copilot1PowerOn(float timer){
+            
+            yield return new WaitForSeconds(timer);
+            //gamePlayComponent.weaponUpgradeComponent.UpgradeWeaponLevel();
+            Debug.Log("I Am Alive!!");
+        }
+
         public override void CoPilotUpdate()
         {
+            float timer = 5f;
             base.CoPilotUpdate();
             Debug.Log("CO1");
+            //TODO Eğer gemi vurulursa süre sıfırlanacak
+        	StartCoroutine(Copilot1PowerOn(timer));
         }
     }
 
-    
+    public class CoPilot2 : CoPilotBase
+    {
+        public CoPilot2(CoPilotType targetType) : base(targetType)
+        {
+            
+        }
+
+        public override void CoPilotUpdate()
+        {
+            base.CoPilotUpdate();
+            Debug.Log("CO2");
+        	
+        }
+    }
+
+    public class CoPilot3 : CoPilotBase
+    {
+        public CoPilot3(CoPilotType targetType) : base(targetType)
+        {
+            
+        }
+
+        public override void CoPilotUpdate()
+        {
+            base.CoPilotUpdate();
+            Debug.Log("CO3");
+        	
+        }
+    }
+
+    public class CoPilot4 : CoPilotBase
+    {
+        public CoPilot4(CoPilotType targetType) : base(targetType)
+        {
+            
+        }
+
+        public override void CoPilotUpdate()
+        {
+            base.CoPilotUpdate();
+            Debug.Log("CO4");
+        	
+        }
+    }
+
+    public class CoPilot5 : CoPilotBase
+    {
+        public CoPilot5(CoPilotType targetType) : base(targetType)
+        {
+            
+        }
+
+        public override void CoPilotUpdate()
+        {
+            base.CoPilotUpdate();
+            Debug.Log("CO5");
+        	
+        }
+    }
 }
