@@ -19,8 +19,7 @@ namespace SpaceShooterProject.State
         protected override void OnEnter()
         {
             quoteCanvas.OnInGameMenuRequest += OnInGameMenuRequest;
-            uiComponent.EnableCanvas(UIComponent.MenuName.QUOTE);
-            
+            uiComponent.EnableCanvas(UIComponent.MenuName.QUOTE);            
         }
 
         private void OnInGameMenuRequest()
@@ -31,7 +30,6 @@ namespace SpaceShooterProject.State
         protected override void OnExit()
         {
             quoteCanvas.OnInGameMenuRequest -= OnInGameMenuRequest;
-
         }
 
         protected override void OnUpdate()
