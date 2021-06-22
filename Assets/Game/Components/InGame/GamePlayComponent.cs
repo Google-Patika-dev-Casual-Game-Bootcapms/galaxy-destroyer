@@ -36,7 +36,11 @@ namespace SpaceShooterProject.Component
         {
             Debug.Log("GamePlayComponent is on");
             inputSystem.CallUpdate();
-            player.CallUpdate();
+            player.FrameRate++;
+            if (player.FrameRate % player.FireRate == 0)
+            {
+                player.Shoot(bulletCollector.GetBullet());
+            }
         }
 
         private void LateUpdate()
@@ -67,7 +71,21 @@ namespace SpaceShooterProject.Component
         public BulletCollector()
         {
             pool = new Pool<Bullet>(SOURCE_OBJECT_PATH);
-            pool.PopulatePool(10);
+            pool.PopulatePool(20);
+            foreach (var bullet in pool.GetPool)
+            {
+                bullet.OnBulletOutOfScreen += OnBulletOutOfScreen;
+            }
+        }
+
+        private void OnBulletOutOfScreen(Bullet bullet)
+        {
+            pool.AddObjectToPool(bullet);
+        }
+
+        public Bullet GetBullet()
+        {
+            return pool.GetObjectFromPool();
         }
 
         /*private void SubscribeAllBullets()

@@ -11,7 +11,7 @@ namespace SpaceShooterProject.Component
 
 
         //[SerializeField] private ObjectPooler ObjectPooler;
-        
+
         private Transform myTransform;
         [SerializeField] private float shipSpeed = 100f;
         [SerializeField] private SpriteRenderer shipSpriteRenderer;
@@ -23,7 +23,6 @@ namespace SpaceShooterProject.Component
 
         public void Init()
         {
-
             HideShip();
         }
 
@@ -35,19 +34,16 @@ namespace SpaceShooterProject.Component
         {
             shipSpriteRenderer.enabled = true;
         }
+
         public void HideShip()
         {
             shipSpriteRenderer.enabled = false;
         }
-        
+
 
         public void CallUpdate()
         {
-            frameRate++;
-            if (frameRate % fireRate == 0)
-            {
-                Shoot();
-            }
+            transform.Translate();
         }
 
         public void CallFixedUpdate()
@@ -62,6 +58,14 @@ namespace SpaceShooterProject.Component
         {
             Time.timeScale = 0.5f;
         }
+
+        public float FrameRate
+        {
+            get => frameRate;
+            set => frameRate = value;
+        }
+
+        public float FireRate => fireRate;
 
         public void OnTouch()
         {
@@ -97,10 +101,9 @@ namespace SpaceShooterProject.Component
             inputSystemReferance.OnScreenTouchExit -= OnTouchUp;
         }
 
-        void Shoot()
+        public void Shoot(Bullet bullet)
         {
-            /*var bullet = pool.GetObjectFromPool();
-            bullet.transform.position = transform.position;*/
+            bullet.transform.position = transform.position;
         }
     }
 }

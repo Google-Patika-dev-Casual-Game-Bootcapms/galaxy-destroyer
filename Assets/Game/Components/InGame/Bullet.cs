@@ -4,63 +4,37 @@ using System.Security.Cryptography;
 using Devkit.Base.Object;
 using Devkit.Base.Pattern.ObjectPool;
 using DG.Tweening;
+using SpaceShooterProject.Component;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Bullet : MonoBehaviour, IPoolable, IUpdatable
+public class Bullet : MonoBehaviour, IPoolable
 {
-    [SerializeField] private float speed = 3;
+    [SerializeField] private float speed = 3f;
     [SerializeField] private RectTransform _transform;
 
-    public delegate void BulletDelegate();
+    public delegate void BulletTriggerDelegate();
 
-    public BulletDelegate OnHitEnemy;
+    public delegate void BulletPoolDelegate(Bullet bullet);
 
-    private float maxVerticalPosition;
-    private Vector2 endPosition;
-    float elapsedTime = 0;
-    Vector2 startingPos;
-    private Tween moveTween;
+    public BulletTriggerDelegate OnHitEnemy;
+    public BulletPoolDelegate OnBulletOutOfScreen;
 
+    private GameCamera gameCamera;
 
-    private void OnEnable()
+    private void Update()
     {
-        startingPos = _transform.position;
-        maxVerticalPosition = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, 1)).y;
-        endPosition = new Vector2(startingPos.x, maxVerticalPosition + 1);
-
-        //StartCoroutine(Move(speed));
-        moveTween = _transform.DOMoveY(endPosition.y, 2f)
-            .OnComplete(() =>
-            {
-                
-            });
+        _transform.Translate(Vector3.up * (speed + gameCamera.CameraSpeed) * Time.deltaTime,
+            Space.World);
+        if (_transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(Random.value, 1)).y)
+            OnBulletOutOfScreen(this);
     }
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            moveTween.Kill();
             OnHitEnemy();
-        }
-    }
-
-    private void OnDisable()
-    {
-        moveTween.Kill();
-    }
-
-    private void FixedUpdate()
-    {
-    }
-
-    IEnumerator Move(float duration)
-    {
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.unscaledDeltaTime;
-            yield return null;
         }
     }
 
@@ -76,10 +50,6 @@ public class Bullet : MonoBehaviour, IPoolable, IUpdatable
 
     public void Initialize()
     {
-    }
-
-    public void CallUpdate()
-    {
-        transform.position = Vector3.Lerp(startingPos, endPosition, speed * Time.deltaTime);
+        gameCamera = Camera.main.GetComponent<GameCamera>();
     }
 }

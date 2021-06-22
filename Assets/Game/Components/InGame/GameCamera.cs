@@ -21,5 +21,9 @@ namespace SpaceShooterProject.Component
             get => isAvailable;
             set => isAvailable = value;
         }
+
+        public float CameraSpeed => cameraSpeed;
+
+        public Camera MainCamera => mainCamera;
     }
 }
