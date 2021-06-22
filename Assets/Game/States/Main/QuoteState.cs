@@ -35,9 +35,7 @@ namespace SpaceShooterProject.State
         }
 
         protected override void OnUpdate()
-        {
-            
-        }
+        { }
     }
 }
 
