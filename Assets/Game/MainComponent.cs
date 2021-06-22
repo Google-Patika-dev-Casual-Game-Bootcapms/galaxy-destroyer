@@ -58,7 +58,7 @@ namespace SpaceShooterProject
         public void Update()
         {
             appState.Update();
-            if (coPilotComponent)
+            if (coPilotComponent != null)
             {
                 coPilotComponent.CoPilotUpdate();
             }
