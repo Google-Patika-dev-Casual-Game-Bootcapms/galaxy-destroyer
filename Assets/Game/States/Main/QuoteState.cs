@@ -31,6 +31,12 @@ namespace SpaceShooterProject.State
         protected override void OnExit()
         {
             quoteCanvas.OnInGameMenuRequest -= OnInGameMenuRequest;
+
+        }
+
+        protected override void OnUpdate()
+        {
+            
         }
     }
 }
