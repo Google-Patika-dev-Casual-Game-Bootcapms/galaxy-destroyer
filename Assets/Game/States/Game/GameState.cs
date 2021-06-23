@@ -17,12 +17,16 @@ namespace SpaceShooterProject.State
 
         private UIComponent uiComponent;
         private ProvisionCanvas provisionCanvas;
+        private InGameCanvas inGameCanvas;
+        private GamePlayComponent gamePlayComponent;
 
         public GameState(ComponentContainer componentContainer)
         {
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
+            inGameCanvas = uiComponent.GetCanvas(UIComponent.MenuName.IN_GAME) as InGameCanvas; 
             provisionCanvas = uiComponent.GetCanvas(UIComponent.MenuName.PROVISION) as ProvisionCanvas; 
-
+             gamePlayComponent=componentContainer.GetComponent("GamePlayComponent") as GamePlayComponent;
+             
             prepareGameState = new PrepareGameState(componentContainer);
             inGameState = new InGameState(componentContainer);
             pauseGameState = new PauseGameState(componentContainer);
@@ -32,7 +36,6 @@ namespace SpaceShooterProject.State
             AddSubState(inGameState);
             AddSubState(pauseGameState);
             AddSubState(endGameState);
-
             
             AddTransition(prepareGameState, inGameState, (int)StateTriggers.PLAY_GAME_REQUEST);
             AddTransition(inGameState, pauseGameState, (int)StateTriggers.PAUSE_GAME_REQUEST);
@@ -60,7 +63,8 @@ namespace SpaceShooterProject.State
 
         protected override void OnUpdate()
         {
-            
+            Debug.Log("GameState in on ");
+            gamePlayComponent.CallUpdate();
         }
     }
 }
