@@ -1,4 +1,4 @@
-namespace SpaceShooterProject.State 
+﻿namespace SpaceShooterProject.State 
 {
     using Devkit.Base.Component;
     using Devkit.HSM;
@@ -20,6 +20,8 @@ namespace SpaceShooterProject.State
         {
             uiComponent.EnableCanvas(UIComponent.MenuName.INVENTORY);
             inventoryCanvas.OnReturnToMainMenu += OnReturnToMainMenu;
+            inventoryCanvas.OnCardShowRequest += OnCardShowRequest;
+            inventoryCanvas.OnSpaceshipShowRequest += OnSpaceshipShowRequest;
         }
 
         private void OnReturnToMainMenu()
@@ -27,8 +29,20 @@ namespace SpaceShooterProject.State
             SendTrigger((int)StateTriggers.GO_TO_MAIN_MENU_REQUEST);
         }
 
+        private void OnCardShowRequest()
+        {
+            SendTrigger((int)StateTriggers.OPEN_CARD);
+        }
+
+        private void OnSpaceshipShowRequest()
+        {
+            SendTrigger((int)StateTriggers.OPEN_SPACESHIP);
+        }
+
         protected override void OnExit()
         {
+            inventoryCanvas.OnCardShowRequest -= OnCardShowRequest;
+            inventoryCanvas.OnSpaceshipShowRequest -= OnSpaceshipShowRequest;
             inventoryCanvas.OnReturnToMainMenu -= OnReturnToMainMenu;
         }
 

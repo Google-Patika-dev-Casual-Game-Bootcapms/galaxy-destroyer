@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace SpaceShooterProject.Component 
 {
     using System;
@@ -107,8 +109,23 @@ namespace SpaceShooterProject.Component
             return accountData.MaxScore;
         }
 
-        public int[] GetOwnedSpaceShips(){
+        public List<int> GetOwnedSpaceShips(){
             return accountData.OwnedSpaceShips;
+        }
+
+        public List<int> OwnedTemporalCards()
+        {
+            return accountData.OwnedTemporalCards;
+        }
+
+        public List<int> OwnedPermanentCards()
+        {
+            return accountData.OwnedPermanentCards;
+        }
+
+        public int[] CollectedSpaceShipParts()
+        {
+            return accountData.CollectedSpaceShipParts;
         }
 
         public UpgradeData[] GetSpaceShipUpgradeDatas(){
@@ -153,7 +170,10 @@ namespace SpaceShooterProject.Component
         public int[] CompletedAchievements;//   Achievement Component
         public int LastReachedLevel;//  Gameplay Component
         public int MaxScore;//  Gameplay Component
-        public int[] OwnedSpaceShips;// Inventory Component
+        public List<int> OwnedSpaceShips;// Inventory Component
+        public List<int> OwnedTemporalCards;
+        public List<int> OwnedPermanentCards;
+        public int[] CollectedSpaceShipParts;
         public UpgradeData[] SpaceShipUpgradeDatas;// Inventory Component
         public int[] OwnedCards;// Inventory Component
         public int[] OwnedPowerUps;// Inventory Component

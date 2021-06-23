@@ -9,38 +9,48 @@ namespace SpaceShooterProject.State
     public class MainState : StateMachine
     {
         private MainMenuState mainMenuState;
+        private QuoteState quoteState;
         private MarketState marketState;
         private SpaceShipUpgradeState spaceShipUpgradeState;
         private GarageState spaceShipSelectionState;
         private AchievementsState achievementsState;
         private SettingsState settingsState;
         private InventoryState inventoryState;
+        private SelectedCardState selectedCardState;
+        private SelectedSpaceshipState selectedSpaceshipState;
         private CoPilotSelectionState coPilotSelectionState;
         private CreditsState creditsState;
 
         public MainState(ComponentContainer componentContainer)
         {
             mainMenuState = new MainMenuState(componentContainer);
+            quoteState = new QuoteState(componentContainer);
             marketState = new MarketState(componentContainer);
             spaceShipSelectionState = new GarageState(componentContainer);
             spaceShipUpgradeState = new SpaceShipUpgradeState(componentContainer);
             achievementsState = new AchievementsState(componentContainer);
             settingsState = new SettingsState(componentContainer);
             inventoryState = new InventoryState(componentContainer);
+            selectedCardState = new SelectedCardState(componentContainer);
+            selectedSpaceshipState = new SelectedSpaceshipState(componentContainer);
             coPilotSelectionState = new CoPilotSelectionState(componentContainer);
             creditsState = new CreditsState(componentContainer);
 
-            this.AddSubState(mainMenuState);
+            this.AddSubState(mainMenuState);            
+            this.AddSubState(quoteState);
             this.AddSubState(marketState);
             this.AddSubState(spaceShipSelectionState);
             this.AddSubState(spaceShipUpgradeState);
             this.AddSubState(achievementsState);
             this.AddSubState(settingsState);
             this.AddSubState(inventoryState);
+            this.AddSubState(selectedCardState);
+            this.AddSubState(selectedSpaceshipState);
             this.AddSubState(coPilotSelectionState);
             this.AddSubState(creditsState);
 
             SetupMarketTransitions();
+            SetupQuoteTransitions();
             SetupAchievementsTransitions();
             SetupSpaceShipSelectionTransitions();
             SetupSpaceShipUpgradeTransition();
@@ -54,6 +64,11 @@ namespace SpaceShooterProject.State
         {
             this.AddTransition(mainMenuState, marketState, (int)StateTriggers.GO_TO_MARKET_REQUEST);
             this.AddTransition(marketState, mainMenuState, (int)StateTriggers.GO_TO_MAIN_MENU_REQUEST);
+        }
+
+        private void SetupQuoteTransitions()
+        {
+            this.AddTransition(mainMenuState, quoteState, (int)StateTriggers.GO_TO_QUOTE_REQUEST);
         }
 
         private void SetupAchievementsTransitions()
@@ -84,6 +99,10 @@ namespace SpaceShooterProject.State
         {
             this.AddTransition(mainMenuState, inventoryState, (int)StateTriggers.GO_TO_INVENTORY_REQUEST);
             this.AddTransition(inventoryState, mainMenuState, (int)StateTriggers.GO_TO_MAIN_MENU_REQUEST);
+            this.AddTransition(inventoryState, selectedCardState, (int)StateTriggers.OPEN_CARD);
+            this.AddTransition(selectedCardState, inventoryState, (int)StateTriggers.RETURN_TO_INVENTORY);
+            this.AddTransition(inventoryState, selectedSpaceshipState, (int)StateTriggers.OPEN_SPACESHIP);
+            this.AddTransition(selectedSpaceshipState, inventoryState, (int)StateTriggers.RETURN_TO_INVENTORY);
         }
 
         private void SetupCoPilotTransition()

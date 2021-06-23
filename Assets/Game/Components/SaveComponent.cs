@@ -21,8 +21,10 @@ namespace SpaceShooterProject.Component
 
             }
 
-        AssetDatabase.Refresh();
-            
+#if UNITY_EDITOR
+            AssetDatabase.Refresh();
+#endif
+
         }
 
         
