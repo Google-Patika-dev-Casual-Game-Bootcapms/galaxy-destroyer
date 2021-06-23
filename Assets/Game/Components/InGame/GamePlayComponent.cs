@@ -10,7 +10,10 @@ namespace SpaceShooterProject.Component
 
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
-        [SerializeField] private Player player;
+        [SerializeField] 
+        private Player player;
+        [SerializeField]
+        private GameObject playerPrefab;
         private InGameInputSystem inputSystem;
         private InGameWeaponUpgradeComponent weaponUpgradeComponent;
 
@@ -21,7 +24,18 @@ namespace SpaceShooterProject.Component
 
             InitializeWeaponUpgradeComponent(componentContainer);
 
+            if (player == null) 
+            {
+                //TODO create player from prefab!!!
+                CreatePlayer();
+            }
+
             player.InjectInpuSystem(inputSystem);
+        }
+
+        private void CreatePlayer()
+        {
+            player = Instantiate(playerPrefab).GetComponent<Player>();
         }
 
         private void InitializeWeaponUpgradeComponent(ComponentContainer componentContainer)
