@@ -26,10 +26,23 @@ namespace SpaceShooterProject.UserInterface
         }
         protected override void Init()
         {
+            if (backgroundImage == null) 
+            {
+                Debug.LogError("Background image in Market Canvas is null!!!");
+                return;
+            }
+
             backgroundImage.sizeDelta = GetCanvasSize();
         }
 
-        public void IsBackgroundActive(bool isActive){
+        public void IsBackgroundActive(bool isActive)
+        {
+            if (backgroundImage == null)
+            {
+                Debug.LogError("Background image in Market Canvas is null!!!");
+                return;
+            }
+
             backgroundImage.gameObject.SetActive(isActive);
         }
 

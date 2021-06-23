@@ -24,9 +24,10 @@ namespace SpaceShooterProject
         private MarketComponent marketComponent;
         private CoPilotComponent coPilotComponent;
         private SuperPowerComponent superPowerComponent;
-
+        private InGameInputSystem inputSystem;
+        
         private AppState appState;
-      
+        
         private void Awake()
         {
             componentContainer = new ComponentContainer();
@@ -45,11 +46,12 @@ namespace SpaceShooterProject
             CreateTutorialComponent();
             CreateEditorSceneBuilderComponent();
             CreateInventoryComponent();
+            CreateInputSystem();
             CreateMarketComponent();
             CreateCoPilotComponent();
             CreateSuperPowerComponent();
-
             InitializeComponents();
+            
             CreateAppState();
             appState.Enter();
         }
@@ -64,6 +66,10 @@ namespace SpaceShooterProject
             }
         }
 
+        private void CreateInputSystem(){
+            inputSystem = new InGameInputSystem();
+            componentContainer.AddComponent("InGameInputSystem",inputSystem);
+        }
         private void CreateAccountComponent()
         {
             accountComponent = new AccountComponent();
@@ -161,8 +167,7 @@ namespace SpaceShooterProject
             gamePlayComponent.Initialize(componentContainer);
             editorSceneBuilderComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
-            coPilotComponent.Initialize(componentContainer);
-            
+            inputSystem.Initialize(componentContainer);
             marketComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
             superPowerComponent.Initialize(componentContainer);
