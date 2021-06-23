@@ -1,24 +1,32 @@
-using UnityEngine;
-using UnityEngine.UI;
+using DG.Tweening;
 
 namespace SpaceShooterProject.UserInterface
 {
+    using UnityEngine;
+    using UnityEngine.UI;
+    using SpaceShooterProject.Component;
+    using TMPro;
 
     public class GarageCanvas : BaseCanvas
     {
-        public delegate void RequestUpdateDelegate();
+        public delegate void RequestUpdateDelegate(UpgradablePartType upgradablePartType);
+        public event RequestUpdateDelegate OnPartUpgradeRequest;
+      
+        [SerializeField] private GarageUIButtonUpgrader shieldUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader laserUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader megabombUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader magnetUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader healthUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader missileUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader wingCannonUpgradeInfo;
+        [SerializeField] private GarageUIButtonUpgrader mainCannonUpgradeInfo;
 
-        public event RequestUpdateDelegate OnShieldUpgradeRequest;
-        public event RequestUpdateDelegate OnMegaBombUpgradeRequest;
-        public event RequestUpdateDelegate OnLaserUpgradeRequest;
-        public event RequestUpdateDelegate OnMagnetUpgradeRequest;
-        public event RequestUpdateDelegate OnHealthUpgradeRequest;
-        public event RequestUpdateDelegate OnMissilesUpgradeRequest;
-        public event RequestUpdateDelegate OnWingCannonUpgradeRequest;
-        public event RequestUpdateDelegate OnMainCannonUpgradeRequest;
+        [SerializeField]
+        private TextMeshProUGUI currentCurrencyContainer;
 
-        [SerializeField] private RectTransform backgroundImage;
-
+        [SerializeField] 
+        private RectTransform backgroundImage;
+       
         private Vector2 GetCanvasSize()
         {
             Vector2 screenSize = new Vector2(Screen.width, Screen.height);
@@ -42,69 +50,93 @@ namespace SpaceShooterProject.UserInterface
             backgroundImage.sizeDelta = GetCanvasSize();
             var buttons = GetComponentsInChildren<Button>();
 
-            foreach(Button fakeButton in buttons)
+            foreach (Button fakeButton in buttons)
             {
                 fakeButton.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
             }
         }
 
-        public void OnShieldUpgradeClick()
+        public void OnUpgradeProcessCompleted(UpgradeProcessData upgradeProcessData, int ownedGold)
         {
-            if(OnShieldUpgradeRequest != null)
+            switch (upgradeProcessData.ProcessStatus)
             {
-                OnShieldUpgradeRequest();
+                case UpgradeProcessStatus.NOT_ENOUGH_GOLD:
+                    //TODO: handle
+                    break;
+                case UpgradeProcessStatus.MAXIMUM_PART_LEVEL:
+                    //TODO: handle
+                    break;
+                case UpgradeProcessStatus.SUCCESS:
+                    PartUpgraded(upgradeProcessData.PartType, upgradeProcessData.CurrentPartLevel);
+                    currentCurrencyContainer.text = ownedGold.ToString();
+                    currentCurrencyContainer.rectTransform.DOScale(new Vector3(1.1f,1.1f, 1.1f), .1f).SetEase(Ease.InOutBounce).OnComplete(
+                        () =>
+                        {
+                            currentCurrencyContainer.rectTransform.DOScale(new Vector3(1f, 1f, 1f), .1f)
+                                .SetEase(Ease.InOutBounce);
+                        });
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+
+        public void OnPartUpgradeButtonClick(int upgradablePartType)
+        {
+            if (OnPartUpgradeRequest != null)
+            {
+                OnPartUpgradeRequest((UpgradablePartType)upgradablePartType);
             }
         }
 
-        public void OnMegaBombUpgradeClick()
+        public void PartUpgraded(UpgradablePartType upgradablePartType, int level) 
         {
-            if (OnMegaBombUpgradeRequest != null)
+            switch (upgradablePartType)
             {
-                OnMegaBombUpgradeRequest();
+                case UpgradablePartType.SHIELD:
+                    shieldUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    break;
+                case UpgradablePartType.LASER:
+                    laserUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    break;
+                case UpgradablePartType.MEGABOMB:
+                    megabombUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    break;
+                case UpgradablePartType.MAGNET:
+                    magnetUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    break;
+                case UpgradablePartType.HEALTH:
+                    healthUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    break;
+                case UpgradablePartType.MISSILE:
+                    missileUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    break;
+                case UpgradablePartType.WING_CANNON:
+                    wingCannonUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    break;
+                case UpgradablePartType.MAIN_CANNON:
+                    mainCannonUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    break;
+                default:
+                    break;
             }
+
         }
 
-        public void OnLaserUpgradeClick()
+        public void UpdateUI(SpaceShipUpgradeData spaceShipUpgradeData, int ownedGold) 
         {
-            if (OnLaserUpgradeRequest != null)
-            {
-                OnLaserUpgradeRequest();
-            }
-        }
-        public void OnMagnetUpgradeClick()
-        {
-            if (OnMagnetUpgradeRequest != null)
-            {
-                OnMagnetUpgradeRequest();
-            }
-        }
-        public void OnHealthUpgradeClick()
-        {
-            if (OnHealthUpgradeRequest != null)
-            {
-                OnHealthUpgradeRequest();
-            }
-        }
-        public void OnMissilesUpgradeClick()
-        {
-            if (OnMissilesUpgradeRequest != null)
-            {
-                OnMissilesUpgradeRequest();
-            }
-        }
-        public void OnWingCannonUpgradeClick()
-        {
-            if (OnWingCannonUpgradeRequest != null)
-            {
-                OnWingCannonUpgradeRequest();
-            }
-        }
-        public void OnMainCannonUpgradeClick()
-        {
-            if (OnMainCannonUpgradeRequest != null)
-            {
-                OnMainCannonUpgradeRequest();
-            }
+            //TODO update UI
+            shieldUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.SHIELD]);
+            laserUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.LASER]);
+            megabombUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MEGABOMB]);
+            magnetUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MAGNET]);
+            healthUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.HEALTH]);
+            missileUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MISSILE]);
+            wingCannonUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.WING_CANNON]);
+            mainCannonUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MAIN_CANNON]);
+            
+            currentCurrencyContainer.text = ownedGold.ToString();
         }
 
     }

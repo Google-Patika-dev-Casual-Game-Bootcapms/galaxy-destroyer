@@ -24,8 +24,10 @@ namespace SpaceShooterProject
         private MarketComponent marketComponent;
         private CoPilotComponent coPilotComponent;
         private SuperPowerComponent superPowerComponent;
+        private UpgradeComponent upgradeComponent;
+        private CurrencyComponent currencyComponent;
         private InGameInputSystem inputSystem;
-        
+
         private AppState appState;
         
         private void Awake()
@@ -50,13 +52,14 @@ namespace SpaceShooterProject
             CreateMarketComponent();
             CreateCoPilotComponent();
             CreateSuperPowerComponent();
+            CreateUpgradeComponent();
+            CreateCurrencyComponent();
             InitializeComponents();
             
             CreateAppState();
             appState.Enter();
         }
 
-        
         public void Update()
         {
             appState.Update();
@@ -66,10 +69,16 @@ namespace SpaceShooterProject
             }
         }
 
+        public void OnDestroy()
+        {
+            accountComponent.OnDestruct();
+        }
+        
         private void CreateInputSystem(){
             inputSystem = new InGameInputSystem();
             componentContainer.AddComponent("InGameInputSystem",inputSystem);
         }
+        
         private void CreateAccountComponent()
         {
             accountComponent = new AccountComponent();
@@ -154,6 +163,18 @@ namespace SpaceShooterProject
             marketComponent = FindObjectOfType<MarketComponent>();
             componentContainer.AddComponent("MarketComponent", marketComponent);
         }
+        
+        private void CreateUpgradeComponent()
+        {
+            upgradeComponent = new UpgradeComponent();
+            componentContainer.AddComponent("UpgradeComponent", upgradeComponent);
+        }
+
+        private void CreateCurrencyComponent()
+        {
+            currencyComponent = new CurrencyComponent();
+            componentContainer.AddComponent("CurrencyComponent", currencyComponent);
+        }
 
         private void InitializeComponents()
         {
@@ -170,7 +191,11 @@ namespace SpaceShooterProject
             inputSystem.Initialize(componentContainer);
             marketComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
+            coPilotComponent.Initialize(componentContainer);
             superPowerComponent.Initialize(componentContainer);
+            superPowerComponent.Initialize(componentContainer);
+            upgradeComponent.Initialize(componentContainer);
+            currencyComponent.Initialize(componentContainer);
         }
 
         private void CreateAppState()
