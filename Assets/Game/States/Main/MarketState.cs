@@ -4,6 +4,7 @@ namespace SpaceShooterProject.State
     using Devkit.HSM;
     using SpaceShooterProject.Component;
     using SpaceShooterProject.UserInterface;
+    using SpaceShooterProject.UserInterface.Market;
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
@@ -26,6 +27,7 @@ namespace SpaceShooterProject.State
             uiComponent.EnableCanvas(UIComponent.MenuName.MARKET);
             marketComponent.OnMarketActivated();
             marketCanvas.OnReturnToMainMenu += OnReturnToMainMenu;
+            marketCanvas.IsBackgroundActive(true);
         }
 
         private void OnReturnToMainMenu()
@@ -37,11 +39,22 @@ namespace SpaceShooterProject.State
         {
             marketComponent.OnMarketDeactivated();
             marketCanvas.OnReturnToMainMenu -= OnReturnToMainMenu;
+            marketCanvas.IsBackgroundActive(false);
         }
 
         protected override void OnUpdate()
         {
-            
+            if(Input.GetMouseButtonUp(0)){
+                var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+                    RaycastHit hit;
+                        if( Physics.Raycast(ray.origin, ray.direction, out hit)){
+                            var chest = hit.collider.GetComponent<ChestAnimation>();
+                                if(chest){
+                                    chest.OpenChest();
+                                } 
+                        }
+            }
+           
         }
     }
 }
