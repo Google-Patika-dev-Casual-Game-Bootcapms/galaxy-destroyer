@@ -62,6 +62,11 @@ namespace SpaceShooterProject
             appState.Update();
         }
 
+        public void OnDestroy()
+        {
+            accountComponent.OnDestruct();
+        }
+
         private void CreateAccountComponent()
         {
             accountComponent = new AccountComponent();
