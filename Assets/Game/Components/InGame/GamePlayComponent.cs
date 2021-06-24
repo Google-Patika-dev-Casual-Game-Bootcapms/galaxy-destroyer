@@ -4,6 +4,8 @@ namespace SpaceShooterProject.Component
     using Devkit.Base.Pattern.ObjectPool;
     using Devkit.Base.Object;
     using UnityEngine;
+    using System.Collections.Generic;
+    using System;
 
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
@@ -65,7 +67,12 @@ namespace SpaceShooterProject.Component
         public GameCamera GameCamera => gameCamera;
     }
 
-    public class BulletCollector
+    public interface IBulletCollector 
+    {
+        void AddBulletToPool(Bullet bullet);
+    }
+
+    public class BulletCollector : IBulletCollector
     {
         private Pool<Bullet> pool;
         private const string SOURCE_OBJECT_PATH = "Prefabs/BulletForPooling";
@@ -74,20 +81,19 @@ namespace SpaceShooterProject.Component
         {
             pool = new Pool<Bullet>(SOURCE_OBJECT_PATH);
             pool.PopulatePool(20);
-            foreach (var bullet in pool.GetPool)
-            {
-                bullet.OnBulletOutOfScreen += OnBulletOutOfScreen;
-            }
-        }
-
-        private void OnBulletOutOfScreen(Bullet bullet)
-        {
-            pool.AddObjectToPool(bullet);
         }
 
         public Bullet GetBullet()
         {
-            return pool.GetObjectFromPool();
+            var bullet = pool.GetObjectFromPool();
+            bullet.InjectBulletCollector(this);
+
+            return bullet;
+        }
+
+        public void AddBulletToPool(Bullet bullet)
+        {
+            pool.AddObjectToPool(bullet);
         }
 
         /*private void SubscribeAllBullets()
