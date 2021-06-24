@@ -50,7 +50,7 @@
                 return;
             }
 
-            if (!currencyComponent.IsAffordable(CalculatePartUpgradePrice(upgradablePartType))) 
+            if (!currencyComponent.IsGoldAffordable(CalculatePartUpgradePrice(upgradablePartType))) 
             {
                 if (OnUpgradeProcessCompleted != null)
                 {
