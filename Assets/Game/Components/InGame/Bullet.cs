@@ -20,14 +20,28 @@ public class Bullet : MonoBehaviour, IPoolable
     public BulletTriggerDelegate OnHitEnemy;
     public BulletPoolDelegate OnBulletOutOfScreen;
 
+    private IBulletCollector bulletCollectorReference;
     private GameCamera gameCamera;
 
     private void Update()
     {
         _transform.Translate(Vector3.up * (speed + gameCamera.CameraSpeed) * Time.deltaTime,
             Space.World);
-        if (_transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(Random.value, 1)).y)
-            OnBulletOutOfScreen(this);
+        if (_transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(Random.value, 1)).y) 
+        {
+            bulletCollectorReference.AddBulletToPool(this);
+        }
+           
+    }
+
+    public void InjectBulletCollector(IBulletCollector bulletCollector) 
+    {
+        if (bulletCollectorReference != null) 
+        {
+            return;
+        }
+
+        bulletCollectorReference = bulletCollector;
     }
 
     private void OnTriggerEnter(Collider collision)
