@@ -25,6 +25,7 @@ namespace SpaceShooterProject
         private CoPilotComponent coPilotComponent;
         private SuperPowerComponent superPowerComponent;
         private InGameInputSystem inGameInputSystem;
+        private CurrencyComponent currencyComponent;
 
         private AppState appState;
 
@@ -41,11 +42,12 @@ namespace SpaceShooterProject
             CreateAchievementsComponent();
             CreateAudioComponent();
             CreateNotificationComponent();
+            CreateCurrencyComponent();
             CreateGamePlayComponent();
             CreateTutorialComponent();
             CreateEditorSceneBuilderComponent();
             CreateInventoryComponent();
-            //CreateMarketComponent();
+            CreateMarketComponent();
             CreateCoPilotComponent();
             CreateSuperPowerComponent();
             CreateInGameInputSystem();
@@ -54,7 +56,6 @@ namespace SpaceShooterProject
             CreateAppState();
             appState.Enter();
         }
-
 
         public void Update()
         {
@@ -96,6 +97,12 @@ namespace SpaceShooterProject
         {
             notificationComponent = new NotificationComponent();
             componentContainer.AddComponent("NotificationComponent", notificationComponent);
+        }
+
+        private void CreateCurrencyComponent()
+        {
+            currencyComponent = new CurrencyComponent();
+            componentContainer.AddComponent("CurrencyComponent", currencyComponent);
         }
 
         private void CreateGamePlayComponent()
@@ -154,10 +161,11 @@ namespace SpaceShooterProject
             achievementsComponent.Initialize(componentContainer);
             audioComponent.Initialize(componentContainer);
             notificationComponent.Initialize(componentContainer);
+            currencyComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
             editorSceneBuilderComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
-            //marketComponent.Initialize(componentContainer);
+            marketComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
             superPowerComponent.Initialize(componentContainer);
             inGameInputSystem.Initialize(componentContainer);
