@@ -11,6 +11,6 @@ public class PathFinderMinion : Minion
 
     protected override void Initialize()
     {
-        movement = new Y_AxisMovement();
+        movement = new StraightMovement();
     }
 }

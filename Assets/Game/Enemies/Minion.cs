@@ -6,7 +6,7 @@ public abstract class Minion : MonoBehaviour, IMinionController
 {
 
     [SerializeField] private float speed;
-    [SerializeField] private MovementDirection movementDirection;
+    [SerializeField] private float angle;
     protected IMovement movement;
 
     protected abstract void Initialize();
@@ -64,8 +64,9 @@ public abstract class Minion : MonoBehaviour, IMinionController
         return speed;
     }
 
-    public MovementDirection GetMovementDirection()
+    public float GetAngle()
     {
-        return movementDirection;
+        return angle;
     }
+
 }
