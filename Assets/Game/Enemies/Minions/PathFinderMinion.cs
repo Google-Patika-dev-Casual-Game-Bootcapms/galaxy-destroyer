@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class PathFinderMinion : Minion
 {
-    
-    //[SerializeField] public RectTransform minionImage = null;
-    
-    private string type = "Flying";
+    [SerializeField]
+    private float pathLength;
 
     protected override void Initialize()
     {
-        movement = new StraightMovement();
+        movement = new StraightDownMovement();
+    }
+
+    public float GetPathLength()
+    {
+        return pathLength;
     }
 }

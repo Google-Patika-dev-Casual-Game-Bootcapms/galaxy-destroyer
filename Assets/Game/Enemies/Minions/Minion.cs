@@ -4,9 +4,8 @@ using UnityEngine;
 
 public abstract class Minion : MonoBehaviour, IMinionController
 {
-
+    [SerializeField] private Route[] routes;
     [SerializeField] private float speed;
-    [SerializeField] private float angle;
     protected IMovement movement;
 
     protected abstract void Initialize();
@@ -14,6 +13,7 @@ public abstract class Minion : MonoBehaviour, IMinionController
     void Start()
     {
         Initialize();
+        movement.Initialize(this);
     }
 
 
@@ -64,9 +64,29 @@ public abstract class Minion : MonoBehaviour, IMinionController
         return speed;
     }
 
-    public float GetAngle()
+    public Route[] GetRoutes()
     {
-        return angle;
+        return routes;
+    }
+
+    public Route GetRoute(int index)
+    {
+        return routes[index];
+    }
+
+    public void SetPosition(Vector2 newPosition)
+    {
+        this.transform.position = newPosition;
+    }
+
+    public Vector2 GetPosition()
+    {
+        return this.transform.position;
+    }
+
+    public void AddRoute(Route newRoute)
+    {
+        routes[routes.Length] = newRoute;
     }
 
 }
