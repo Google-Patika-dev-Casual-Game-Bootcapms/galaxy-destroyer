@@ -297,6 +297,7 @@ GameObject:
   - component: {fileID: 145902345518868664}
   - component: {fileID: 145902345518868663}
   - component: {fileID: 145902345518868662}
+  - component: {fileID: 4967872714453258742}
   m_Layer: 5
   m_Name: MagnetUpgradeButton
   m_TagString: Untagged
@@ -318,7 +319,7 @@ RectTransform:
   - {fileID: 145902346613669425}
   - {fileID: 145902346884101466}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.73120373, y: 0.5896875}
   m_AnchorMax: {x: 0.84751856, y: 0.66439587}
@@ -410,16 +411,29 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnMagnetUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4967872714453258742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902345518868660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902346613669426}
 --- !u!1 &145902345589462376
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +464,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6440741, y: 0.20525022}
   m_AnchorMax: {x: 0.7535185, y: 0.2259375}
@@ -929,10 +943,10 @@ RectTransform:
   m_Father: {fileID: 145902347492060944}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000027743254, y: -0.0000009536743}
+  m_SizeDelta: {x: 50, y: 59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &145902345796684918
 CanvasRenderer:
@@ -962,7 +976,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -971,8 +985,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -989,10 +1003,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1064,6 +1078,7 @@ RectTransform:
   m_Children:
   - {fileID: 145902346033653474}
   - {fileID: 145902345648278962}
+  - {fileID: 8962254197960627498}
   - {fileID: 145902347310080510}
   - {fileID: 145902347570980054}
   - {fileID: 145902346644295532}
@@ -1098,7 +1113,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145902345866918969}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1164,6 +1179,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22261442cb76ffa4db2643fcbdced238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldUpgradeInfo: {fileID: 3041767540020976046}
+  laserUpgradeInfo: {fileID: 4910821019796947569}
+  megabombUpgradeInfo: {fileID: 4306271803907873973}
+  magnetUpgradeInfo: {fileID: 4967872714453258742}
+  healthUpgradeInfo: {fileID: 4858646378323424373}
+  missileUpgradeInfo: {fileID: 4820292098088763284}
+  wingCannonUpgradeInfo: {fileID: 7241783015926426798}
+  mainCannonUpgradeInfo: {fileID: 2756069722564006595}
+  currentCurrencyContainer: {fileID: 8268650965197502025}
   backgroundImage: {fileID: 145902346033653474}
 --- !u!1 &145902345878565223
 GameObject:
@@ -1272,10 +1296,10 @@ RectTransform:
   m_Father: {fileID: 145902346784542720}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000027743254, y: 0.0000009536743}
+  m_SizeDelta: {x: 50, y: 59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &145902345896386712
 CanvasRenderer:
@@ -1305,7 +1329,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1314,8 +1338,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1332,10 +1356,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1404,7 +1428,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 145902347468018596}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.72113, y: 0.2786555}
   m_AnchorMax: {x: 1.2356699, y: 0.7282889}
@@ -1480,7 +1504,7 @@ RectTransform:
   m_Children:
   - {fileID: 145902345493062170}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.43488702, y: 0.33593747}
   m_AnchorMax: {x: 0.51011294, y: 0.5841082}
@@ -1630,7 +1654,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5258004, y: 0.07009977}
   m_AnchorMax: {x: 0.6190144, y: 0.088337734}
@@ -1764,12 +1788,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 145902347468018596}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000027743254, y: -0.0000009536743}
+  m_SizeDelta: {x: 50, y: 59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &145902346308051557
 CanvasRenderer:
@@ -1799,7 +1823,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1808,8 +1832,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1826,10 +1850,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1880,6 +1904,7 @@ GameObject:
   - component: {fileID: 145902346321238040}
   - component: {fileID: 145902346321238039}
   - component: {fileID: 145902346321238041}
+  - component: {fileID: 7241783015926426798}
   m_Layer: 5
   m_Name: WingCannonUpgradeButton
   m_TagString: Untagged
@@ -1901,7 +1926,7 @@ RectTransform:
   - {fileID: 145902347477054310}
   - {fileID: 145902345878565224}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7986111, y: 0.7796875}
   m_AnchorMax: {x: 0.9143519, y: 0.8546875}
@@ -1993,16 +2018,29 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnWingCannonUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7241783015926426798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902346321238037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902347477054311}
 --- !u!1 &145902346416403387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,7 +2205,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: -0.054236576, y: 0.91005427}
   m_AnchorMax: {x: 0.668681, y: 1.0870291}
@@ -2244,10 +2282,10 @@ RectTransform:
   m_Father: {fileID: 145902345518868661}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 2.0861626e-10, y: 0}
-  m_AnchorMax: {x: 1, y: 0.99983335}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000027743254, y: 0.0000009536743}
+  m_SizeDelta: {x: 50, y: 59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &145902346613669427
 CanvasRenderer:
@@ -2277,7 +2315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2286,8 +2324,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2304,10 +2342,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2377,7 +2415,7 @@ RectTransform:
   m_Children:
   - {fileID: 145902347363706040}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.08248986, y: 0.4836545}
   m_AnchorMax: {x: 0.14565831, y: 0.5919705}
@@ -2454,9 +2492,9 @@ RectTransform:
   m_Father: {fileID: 145902347057412291}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.1756461, y: 0.32826546}
+  m_AnchorMax: {x: 0.57316166, y: 0.73854095}
+  m_AnchoredPosition: {x: 5, y: -3}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &145902346680815435
@@ -2487,7 +2525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2496,8 +2534,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2514,10 +2552,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 58.1
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2568,6 +2606,7 @@ GameObject:
   - component: {fileID: 145902346735474573}
   - component: {fileID: 145902346735474572}
   - component: {fileID: 145902346735474571}
+  - component: {fileID: 3041767540020976046}
   m_Layer: 5
   m_Name: ShieldUpgradeButton
   m_TagString: Untagged
@@ -2588,7 +2627,7 @@ RectTransform:
   m_Children:
   - {fileID: 145902347513825099}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7618519, y: 0.17035419}
   m_AnchorMax: {x: 0.8975926, y: 0.24987501}
@@ -2680,8 +2719,8 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnShieldUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2690,6 +2729,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3041767540020976046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902346735474569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902347513825100}
 --- !u!1 &145902346784542751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2702,6 +2754,7 @@ GameObject:
   - component: {fileID: 145902346784542722}
   - component: {fileID: 145902346784542721}
   - component: {fileID: 145902346784542723}
+  - component: {fileID: 2756069722564006595}
   m_Layer: 5
   m_Name: MainCannonUpgradeButton
   m_TagString: Untagged
@@ -2723,7 +2776,7 @@ RectTransform:
   - {fileID: 145902345896386710}
   - {fileID: 145902347383193526}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7298148, y: 0.8435417}
   m_AnchorMax: {x: 0.8455556, y: 0.91854167}
@@ -2815,16 +2868,29 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnMainCannonUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2756069722564006595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902346784542751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902345896386711}
 --- !u!1 &145902346800833437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,7 +3055,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.49767587, y: 0.13805404}
   m_AnchorMax: {x: 0.68658334, y: 0.15850846}
@@ -3123,7 +3189,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.72962964, y: 0.3181082}
   m_AnchorMax: {x: 1.0466981, y: 0.5491835}
@@ -3274,7 +3340,7 @@ RectTransform:
   m_Children:
   - {fileID: 145902345488152633}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25225744, y: 0.63136023}
   m_AnchorMax: {x: 0.7774611, y: 0.67593145}
@@ -3331,6 +3397,7 @@ GameObject:
   - component: {fileID: 145902347057412294}
   - component: {fileID: 145902347057412293}
   - component: {fileID: 145902347057412292}
+  - component: {fileID: 4306271803907873973}
   m_Layer: 5
   m_Name: MegaBombUpgradeButton
   m_TagString: Untagged
@@ -3351,7 +3418,7 @@ RectTransform:
   m_Children:
   - {fileID: 145902346680815433}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.69555557, y: 0.102920964}
   m_AnchorMax: {x: 0.8364445, y: 0.18535417}
@@ -3443,16 +3510,29 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnMegaBombUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4306271803907873973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902347057412290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902346680815434}
 --- !u!1 &145902347065013168
 GameObject:
   m_ObjectHideFlags: 0
@@ -3485,9 +3565,9 @@ RectTransform:
   m_Father: {fileID: 145902347576343236}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.1756461, y: 0.32826546}
+  m_AnchorMax: {x: 0.57316166, y: 0.73854095}
+  m_AnchoredPosition: {x: 5, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &145902347065013171
@@ -3518,7 +3598,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3527,8 +3607,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3545,10 +3625,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -3617,7 +3697,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: -0.41796806, y: 0.18166453}
   m_AnchorMax: {x: 0.6216718, y: 0.8339605}
@@ -4093,6 +4173,7 @@ GameObject:
   - component: {fileID: 145902347468018598}
   - component: {fileID: 145902347468018597}
   - component: {fileID: 145902347468018599}
+  - component: {fileID: 4820292098088763284}
   m_Layer: 5
   m_Name: MissilesUpgradeButton
   m_TagString: Untagged
@@ -4111,10 +4192,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children:
-  - {fileID: 145902346308051555}
   - {fileID: 145902345911765298}
+  - {fileID: 145902346308051555}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.72907406, y: 0.7167708}
   m_AnchorMax: {x: 0.84481484, y: 0.7917708}
@@ -4206,16 +4287,29 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnMissilesUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4820292098088763284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902347468018595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902346308051556}
 --- !u!1 &145902347477054309
 GameObject:
   m_ObjectHideFlags: 0
@@ -4248,10 +4342,10 @@ RectTransform:
   m_Father: {fileID: 145902346321238038}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000027743254, y: -0.0000009536743}
+  m_SizeDelta: {x: 50, y: 59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &145902347477054312
 CanvasRenderer:
@@ -4281,7 +4375,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4290,8 +4384,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4308,10 +4402,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -4381,7 +4475,7 @@ RectTransform:
   m_Children:
   - {fileID: 145902347418835833}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.26539445, y: 0.761666}
   m_AnchorMax: {x: 0.77736336, y: 0.80614644}
@@ -4438,6 +4532,7 @@ GameObject:
   - component: {fileID: 145902347492060946}
   - component: {fileID: 145902347492060945}
   - component: {fileID: 145902347492060947}
+  - component: {fileID: 4858646378323424373}
   m_Layer: 5
   m_Name: HealthUpgradeButton
   m_TagString: Untagged
@@ -4459,7 +4554,7 @@ RectTransform:
   - {fileID: 145902345796684916}
   - {fileID: 145902345517907124}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7996296, y: 0.6528646}
   m_AnchorMax: {x: 0.9153704, y: 0.72786456}
@@ -4551,16 +4646,29 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnHealthUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4858646378323424373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902347492060975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902345796684917}
 --- !u!1 &145902347513825098
 GameObject:
   m_ObjectHideFlags: 0
@@ -4593,9 +4701,9 @@ RectTransform:
   m_Father: {fileID: 145902346735474570}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.1756461, y: 0.32826546}
+  m_AnchorMax: {x: 0.57316166, y: 0.73854095}
+  m_AnchoredPosition: {x: 7, y: -3}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &145902347513825101
@@ -4626,7 +4734,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4635,8 +4743,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4653,10 +4761,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 56.05
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -4726,7 +4834,7 @@ RectTransform:
   m_Children:
   - {fileID: 145902345756653840}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.059854012, y: 0.38186625}
   m_AnchorMax: {x: 0.16422006, y: 0.45750657}
@@ -4783,6 +4891,7 @@ GameObject:
   - component: {fileID: 145902347576343239}
   - component: {fileID: 145902347576343238}
   - component: {fileID: 145902347576343237}
+  - component: {fileID: 4910821019796947569}
   m_Layer: 5
   m_Name: LaserUpgradeButton
   m_TagString: Untagged
@@ -4803,7 +4912,7 @@ RectTransform:
   m_Children:
   - {fileID: 145902347065013169}
   m_Father: {fileID: 145902345866918973}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6292593, y: 0.040308222}
   m_AnchorMax: {x: 0.76944447, y: 0.12339584}
@@ -4895,13 +5004,160 @@ MonoBehaviour:
       - m_Target: {fileID: 145902345866918974}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
           Assembly-CSharp
-        m_MethodName: OnLaserUpgradeClick
-        m_Mode: 1
+        m_MethodName: OnPartUpgradeButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4910821019796947569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145902347576343235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  majorLevelText: {fileID: 145902347065013170}
+--- !u!1 &8349639867543873784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8962254197960627498}
+  - component: {fileID: 894160469098182888}
+  - component: {fileID: 8268650965197502025}
+  m_Layer: 5
+  m_Name: CurrentCurrencyText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8962254197960627498
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349639867543873784}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_Children: []
+  m_Father: {fileID: 145902345866918973}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.1756461, y: 0.32826546}
+  m_AnchorMax: {x: 0.57316166, y: 0.73854095}
+  m_AnchoredPosition: {x: -299, y: 825}
+  m_SizeDelta: {x: -371.04105, y: -725.0882}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &894160469098182888
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349639867543873784}
+  m_CullTransparentMesh: 1
+--- !u!114 &8268650965197502025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349639867543873784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 0
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 72
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: -21.02195}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}

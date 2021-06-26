@@ -1,13 +1,16 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SpaceShooterProject.Component 
 {
     using System;
     using System.IO;
     using Devkit.Base.Component;
+    using Devkit.Base.Object;
     using UnityEngine;
-    public class AccountComponent : IComponent
+
+    public class AccountComponent : IComponent, IDestructible
     {
+        private const int MAX_PART_UPGRADE_LEVEL = 10;
 
         #region Variables        
         private AccountData accountData;
@@ -24,6 +27,7 @@ namespace SpaceShooterProject.Component
 
         private string accountDataPath;
         private string accountDataFile;
+
         private LoadComponent loadComponent;
         private SaveComponent saveComponent;
 
@@ -42,7 +46,13 @@ namespace SpaceShooterProject.Component
             //Debug.Log("<color=green>Account Component initialized!</color>");
 
             accountDataFile = "accountData.txt";
+#if UNITY_EDITOR
+            accountDataPath = Application.dataPath + "/" + accountDataFile;
+#else
             accountDataPath = Application.persistentDataPath + "/" + accountDataFile;
+#endif
+
+            Debug.Log("<color=red>" + accountDataPath + "</color>");
             
             loadComponent = new LoadComponent();
             saveComponent = new SaveComponent();
@@ -60,13 +70,31 @@ namespace SpaceShooterProject.Component
         }
 
         private void InitializeForFirstTime(){
-            //Debug.Log("Entered first initialization");
-            accountData.Name = "Name"; // TODO: Ask for name to the user
-            accountData.PlayerLevel = 1;
+
+            accountData = new AccountData
+            {
+                Name = "Name", // TODO: Ask for name to the user
+                PlayerLevel = 1,
+                OwnedGold = 1000
+            };
+
+            InitializeSpaceShipUpgradeData();
             
             // TODO: Assign default values for other components in the future
             
             saveComponent.Save(accountData, accountDataPath);
+        }
+
+        private void InitializeSpaceShipUpgradeData()
+        {
+            const int maxSpaceShipCount = 5;
+
+            accountData.SpaceShipUpgradeDatas = new SpaceShipUpgradeData[maxSpaceShipCount];
+
+            for (int i = 0; i < accountData.SpaceShipUpgradeDatas.Length; i++)
+            {
+                accountData.SpaceShipUpgradeDatas[i].PartLevels = new int[(int)UpgradablePartType.COUNT];
+            }
         }
 
         public void SaveBeforeClosing(){
@@ -85,6 +113,8 @@ namespace SpaceShooterProject.Component
             accountData.OwnedDiamond = currencyComponent.GetOwnedDiamond();
             accountData.CopilotSetting = copilotComponent.GetCopilotSetting();
             */
+            accountData.OwnedGold = currencyComponent.GetOwnedGold();
+            
             saveComponent.Save(accountData, accountDataPath);
         }
 
@@ -128,8 +158,13 @@ namespace SpaceShooterProject.Component
             return accountData.CollectedSpaceShipParts;
         }
 
-        public UpgradeData[] GetSpaceShipUpgradeDatas(){
+        public SpaceShipUpgradeData[] GetSpaceShipUpgradeDatas(){
             return accountData.SpaceShipUpgradeDatas;
+        }
+
+        public  SpaceShipUpgradeData GetCurrentSpaceShipUpgradePartData() 
+        {
+            return accountData.SpaceShipUpgradeDatas[accountData.SelectedSpaceShipId];
         }
 
         public int[] GetOwnedCards(){
@@ -138,10 +173,6 @@ namespace SpaceShooterProject.Component
 
         public int[] GetOwnedPowerUps(){
             return accountData.OwnedPowerUps;
-        }
-
-        public UpgradeData GetLastSelectedSpaceShip(){
-            return accountData.LastSelectedSpaceShip;
         }
 
         public int GetAudioLevel() {
@@ -159,6 +190,33 @@ namespace SpaceShooterProject.Component
         public int[] GetCopilotSetting(){
             return accountData.CopilotSetting;
         }
+
+        public bool IsPartUpgradable(UpgradablePartType upgradablePartType)
+        {
+            return accountData.SpaceShipUpgradeDatas[accountData.SelectedSpaceShipId].
+                PartLevels[(int)upgradablePartType] < MAX_PART_UPGRADE_LEVEL;
+        }
+
+        public void UpgradePart(UpgradablePartType upgradablePartType) 
+        {
+            if (!IsPartUpgradable(upgradablePartType)) 
+            {
+                return;
+            }
+            
+            accountData.SpaceShipUpgradeDatas[accountData.SelectedSpaceShipId].PartLevels[(int)upgradablePartType]++;
+       }
+
+        public int GetPartLevel(UpgradablePartType upgradablePartType)
+        {
+            return accountData.SpaceShipUpgradeDatas[accountData.SelectedSpaceShipId].PartLevels[(int)upgradablePartType];
+        }
+
+        public void OnDestruct()
+        {
+            SaveBeforeClosing();
+        }
+
 #endregion
     }
 #region Account Data Struct
@@ -167,6 +225,7 @@ namespace SpaceShooterProject.Component
     {
         public string Name;
         public int PlayerLevel;
+        public int SelectedSpaceShipId;
         public int[] CompletedAchievements;//   Achievement Component
         public int LastReachedLevel;//  Gameplay Component
         public int MaxScore;//  Gameplay Component
@@ -174,10 +233,9 @@ namespace SpaceShooterProject.Component
         public List<int> OwnedTemporalCards;
         public List<int> OwnedPermanentCards;
         public int[] CollectedSpaceShipParts;
-        public UpgradeData[] SpaceShipUpgradeDatas;// Inventory Component
+        public SpaceShipUpgradeData[] SpaceShipUpgradeDatas;
         public int[] OwnedCards;// Inventory Component
         public int[] OwnedPowerUps;// Inventory Component
-        public UpgradeData LastSelectedSpaceShip;// Inventory Component
         public int AudioLevel;// Audio Component
         public int OwnedGold;// Currency Component
         public int OwnedDiamond;// Currency Component
@@ -185,14 +243,13 @@ namespace SpaceShooterProject.Component
     }
 
     [Serializable]
-    public struct UpgradeData 
+    public struct SpaceShipUpgradeData
     {
-        public int SpaceShipId;
-        public int SpaceShipPart;
-        public int PartLevel;
+        public int[] PartLevels;
     }
+
 #endregion
- 
+
 }
 
 

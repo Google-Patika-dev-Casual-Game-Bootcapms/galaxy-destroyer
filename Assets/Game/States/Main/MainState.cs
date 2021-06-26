@@ -9,6 +9,7 @@ namespace SpaceShooterProject.State
     public class MainState : StateMachine
     {
         private MainMenuState mainMenuState;
+        private QuoteState quoteState;
         private MarketState marketState;
         private SpaceShipUpgradeState spaceShipUpgradeState;
         private GarageState spaceShipSelectionState;
@@ -23,6 +24,7 @@ namespace SpaceShooterProject.State
         public MainState(ComponentContainer componentContainer)
         {
             mainMenuState = new MainMenuState(componentContainer);
+            quoteState = new QuoteState(componentContainer);
             marketState = new MarketState(componentContainer);
             spaceShipSelectionState = new GarageState(componentContainer);
             spaceShipUpgradeState = new SpaceShipUpgradeState(componentContainer);
@@ -34,7 +36,8 @@ namespace SpaceShooterProject.State
             coPilotSelectionState = new CoPilotSelectionState(componentContainer);
             creditsState = new CreditsState(componentContainer);
 
-            this.AddSubState(mainMenuState);
+            this.AddSubState(mainMenuState);            
+            this.AddSubState(quoteState);
             this.AddSubState(marketState);
             this.AddSubState(spaceShipSelectionState);
             this.AddSubState(spaceShipUpgradeState);
@@ -47,6 +50,7 @@ namespace SpaceShooterProject.State
             this.AddSubState(creditsState);
 
             SetupMarketTransitions();
+            SetupQuoteTransitions();
             SetupAchievementsTransitions();
             SetupSpaceShipSelectionTransitions();
             SetupSpaceShipUpgradeTransition();
@@ -60,6 +64,11 @@ namespace SpaceShooterProject.State
         {
             this.AddTransition(mainMenuState, marketState, (int)StateTriggers.GO_TO_MARKET_REQUEST);
             this.AddTransition(marketState, mainMenuState, (int)StateTriggers.GO_TO_MAIN_MENU_REQUEST);
+        }
+
+        private void SetupQuoteTransitions()
+        {
+            this.AddTransition(mainMenuState, quoteState, (int)StateTriggers.GO_TO_QUOTE_REQUEST);
         }
 
         private void SetupAchievementsTransitions()
