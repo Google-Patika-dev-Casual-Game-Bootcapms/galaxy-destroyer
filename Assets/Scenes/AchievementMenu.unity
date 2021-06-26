@@ -3741,6 +3741,10 @@ PrefabInstance:
       value: AchievementsCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 5113340188539075857, guid: 332510602f2a8c84fbf2e463e06bd595, type: 3}
+      propertyPath: count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113340188539075857, guid: 332510602f2a8c84fbf2e463e06bd595, type: 3}
       propertyPath: achievementCard
       value: 
       objectReference: {fileID: 2135305604198531095, guid: 51aa084d33d2725498a77c7feafbbf25, type: 3}

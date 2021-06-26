@@ -19,5 +19,5 @@ MonoBehaviour:
   smallIcon: {fileID: 21300000, guid: eaac4ec6c10058e4789f266187d5ec6d, type: 3}
   goalCount: 50000
   currentCount: 0
-  prize: 0
+  prize: 100
   isAchived: 0
