@@ -93,7 +93,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5233499832866637938, guid: 8e189a9dcf51617419b334092bf8554e, type: 3}
       propertyPath: m_Name
-      value: Bullet
+      value: FriendlyBulletForPooling
+      objectReference: {fileID: 0}
+    - target: {fileID: 5233499832866637938, guid: 8e189a9dcf51617419b334092bf8554e, type: 3}
+      propertyPath: m_TagString
+      value: FriendlyBullet
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e189a9dcf51617419b334092bf8554e, type: 3}
