@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "398959591038",
+    "project_id": "galaxy-destroyer-c556e",
+    "storage_bucket": "galaxy-destroyer-c556e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398959591038:android:84885d151029a4a6fe222f",
+        "android_client_info": {
+          "package_name": "com.Kodluyoruz.GalaxyDestroyer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398959591038-njlnt9nlp3a9ergcdke155uvaumdk7ov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtHjw2lBxfjz9FPeeHHAfVewsZpJL-cwE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398959591038-njlnt9nlp3a9ergcdke155uvaumdk7ov.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

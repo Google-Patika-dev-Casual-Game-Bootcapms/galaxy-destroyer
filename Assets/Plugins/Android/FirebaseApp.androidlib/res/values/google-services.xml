@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="gcm_defaultSenderId" translatable="false">398959591038</string>
+  <string name="google_storage_bucket" translatable="false">galaxy-destroyer-c556e.appspot.com</string>
+  <string name="project_id" translatable="false">galaxy-destroyer-c556e</string>
+  <string name="google_api_key" translatable="false">AIzaSyCtHjw2lBxfjz9FPeeHHAfVewsZpJL-cwE</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCtHjw2lBxfjz9FPeeHHAfVewsZpJL-cwE</string>
+  <string name="google_app_id" translatable="false">1:398959591038:android:84885d151029a4a6fe222f</string>
+  <string name="default_web_client_id" translatable="false">398959591038-njlnt9nlp3a9ergcdke155uvaumdk7ov.apps.googleusercontent.com</string>
+</resources>
