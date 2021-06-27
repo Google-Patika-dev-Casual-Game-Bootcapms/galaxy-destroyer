@@ -11,6 +11,7 @@ namespace SpaceShooterProject.Component
 
         //[SerializeField] private ObjectPooler ObjectPooler;
         [SerializeField] private float shipSpeed = 20f;
+        [SerializeField] private int HP = 100;
         [SerializeField] private SpriteRenderer shipSpriteRenderer;
         private ComponentContainer componentContainer;
         private CurrencyComponent currencyComponent;
@@ -18,6 +19,7 @@ namespace SpaceShooterProject.Component
         public float fireNextSpawn = 2.0f;
 
         private GameCamera gameCamera;
+        private Vector2 screenBounds;
 
         public void Init()
         {
@@ -39,28 +41,27 @@ namespace SpaceShooterProject.Component
         {
             shipSpriteRenderer.enabled = false;
         }
+
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            //TODO: currencyComponent MainComponent'in içinde Initialize edilecek.
             if (collider.gameObject.CompareTag("Coin"))
             {
                 currencyComponent.EarnGold(10);
                 Destroy(collider.gameObject);
             }
 
+            if (collider.gameObject.CompareTag("EnemyBullet"))
+            {
+                var bullet = collider.gameObject.GetComponent<Bullet>();
+                HP -= bullet.GetDamage();
+            }
         }
+
         public void CallUpdate()
         {
             transform.Translate(Vector3.up * gameCamera.CameraSpeed * Time.deltaTime, Space.World);
         }
 
-        public void CallFixedUpdate()
-        {
-        }
-
-        public void CallLateUpdate()
-        {
-        }
         public void OnTouchUp()
         {
             Time.timeScale = 0.5f;
@@ -72,13 +73,7 @@ namespace SpaceShooterProject.Component
             var screenPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             gameObject.transform.position = Vector2.Lerp(transform.position, screenPos, shipSpeed * Time.deltaTime);
 
-            // var screenLimitX = Screen.width/Screen.currentResolution.width;
-            // var screenLimitY = Screen.height/Screen.currentResolution.height;
             // TODO min max ekran değerleri için fonksiyon yazılacak
-
-            // gameObject.transform.position = new Vector2(Mathf.Clamp(gameObject.transform.position.x,-2.5f,2.5f),
-            //     Mathf.Clamp(gameObject.transform.position.y,-4.5f,4.5f));
-
         }
 
         public void InjectInputSystem(InGameInputSystem inputSystem)
@@ -102,7 +97,6 @@ namespace SpaceShooterProject.Component
 
         public void Shoot(BulletCollector bulletCollector)
         {
-
             if (Time.time > fireNextSpawn)
             {
                 Bullet bullet = bulletCollector.GetBullet();
@@ -116,6 +110,5 @@ namespace SpaceShooterProject.Component
             get => componentContainer;
             set => componentContainer = value;
         }
-
     }
 }
