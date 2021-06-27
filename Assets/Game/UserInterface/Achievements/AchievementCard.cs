@@ -5,9 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using SpaceShooterProject.Component;
+using System;
 
 public class AchievementCard : MonoBehaviour, IInitializable
 {
+    public delegate void AchievementCardClickDelegate(int id);
+    public event AchievementCardClickDelegate OnAchievementButtonClick;
+
     [SerializeField] private Image icon;
     [SerializeField] public TMP_Text header;
     [SerializeField] private TMP_Text description;
@@ -36,5 +40,19 @@ public class AchievementCard : MonoBehaviour, IInitializable
         currentCount.text = data.CurrentCount.ToString();
         goalCount.text = data.GoalCount.ToString();
         smallIcon.sprite = data.SmallIcon;
+    }
+
+    public void OnClick() 
+    {
+        if (OnAchievementButtonClick != null) 
+        {
+            OnAchievementButtonClick(GetInstanceID());
+        }
+    }
+
+
+    public Button GetButton()
+    {
+        return collectButton;
     }
 }
