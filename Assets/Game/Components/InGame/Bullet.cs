@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour, IPoolable
            
     }
 
-    public void InjectBulletCollector(IBulletCollector bulletCollector) 
+    public void InjectBulletCollector(BulletCollector bulletCollector) 
     {
         if (bulletCollectorReference != null) 
         {

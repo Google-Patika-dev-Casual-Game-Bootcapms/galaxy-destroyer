@@ -20,7 +20,6 @@ namespace SpaceShooterProject.Component
         private float fireRate = 20;
 
         private GameCamera gameCamera;
-        private bool a = true;
 
         public void Init()
         {

@@ -14,6 +14,7 @@ namespace SpaceShooterProject.Component
         private InGameInputSystem inputSystem;
         private InGameWeaponUpgradeComponent weaponUpgradeComponent;
         private BulletCollector bulletCollector;
+        private EnemyFactory enemyFactory;
 
 
         public void Initialize(ComponentContainer componentContainer)
@@ -27,6 +28,9 @@ namespace SpaceShooterProject.Component
             player.ComponentContainer = componentContainer ;
             player.Init();
             bulletCollector = new BulletCollector();
+
+            enemyFactory = new EnemyFactory();
+            enemyFactory.Init();
         }
 
         private void InitializeWeaponUpgradeComponent(ComponentContainer componentContainer)
@@ -44,6 +48,12 @@ namespace SpaceShooterProject.Component
             if (player.FrameRate % player.FireRate == 0)
             {
                 player.Shoot(bulletCollector.GetBullet());
+            }
+
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                
+                enemyFactory.ProduceEnemy(EnemyType.RoadTracker);
             }
         }
 
