@@ -7,149 +7,112 @@ namespace SpaceShooterProject.Component
 
     public class SuperPowerComponent : IComponent
     {
-        public enum SuperPowerType { Laser, Shield, MegaBomb };
-
+        public delegate void SuperPowerProcessDelegate(SuperPowerPurchaseProcessData superPowerProcessData);
+        public event SuperPowerProcessDelegate OnSuperPowerProcessCompleted;
+        
         private AccountComponent accountComponent;
-
-        private SuperPowerData laser;
-        private SuperPowerData shield;
-        private SuperPowerData megaBomb;
-        #region Test
-        /*
-                public void Start()
-                {
-                    megaBomb.type = SuperPowerType.MegaBomb;
-                    megaBomb.level = 0;
-                    megaBomb.maxLevel = 10;
-
-                    megaBomb.upgradePriceArray = new List<int>();
-                    laser.upgradePriceArray = new List<int>();
-                    shield.upgradePriceArray = new List<int>();
-
-                    for (int i = 0; i < megaBomb.maxLevel; i++)
-                    {
-                        megaBomb.upgradePriceArray.Add(i * 2);
-                    }
-
-                    shield.type = SuperPowerType.Shield;
-                    shield.level = 0;
-                    shield.maxLevel = 10;
-                    for (int i = 0; i < shield.maxLevel; i++)
-                    {
-                        shield.upgradePriceArray.Add(i * 5);
-                    }
-
-                    laser.type = SuperPowerType.Laser;
-                    laser.level = 0;
-                    laser.maxLevel = 10;
-                    for (int i = 0; i < laser.maxLevel; i++)
-                    {
-                        laser.upgradePriceArray.Add(i * 5);
-
-                    }
-
-
-                }
-                public void Update()
-                {
-                    if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        UpgradeSuperPower(SuperPowerType.Laser);
-                        GetUpgradePrice(SuperPowerType.Laser);
-                        UpgradeSuperPower(SuperPowerType.MegaBomb);
-                        GetUpgradePrice(SuperPowerType.MegaBomb);
-                        UpgradeSuperPower(SuperPowerType.Shield);
-                        GetUpgradePrice(SuperPowerType.Shield);
-                    }
-                }
-                */
-        #endregion
-
+        private CurrencyComponent currencyComponent;
+        
+        //public const int MAX_SUPER_POWER_ITEM_COUNT = 4;
+        private int[] superPowerPriceWeights;
+        
+        private SuperPowerData superPowerData;
+        
         public void Initialize(ComponentContainer componentContainer)
         {
             Debug.Log("<color=green>Super Power Component initialized!</color>");
             accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
-
-            // Following methos can be added to Account compenent
-            /*
-            public SuperPowerData[] GetSuperPowerDatas(){
-            return accountData.SuperPowerDatas;
-          }
-          */
-
-            // TODO: Initializate super power components
-            // SuperPowerData[] superPowerDatas = accountComponent.GetSuperPowerDatas();
-            // laser = superPowerDatas[0];
-            // shield = superPowerDatas[1];
-            // megaBomb = superPowerDatas[2];
-
+            currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
+            InitializeSuperPowerPriceWeights();
         }
-
-        public void UpgradeSuperPower(SuperPowerType type)
+        
+        public void PurchaseSuperPower(SuperPowerType superPowerType) 
         {
-            switch (type)
+            if (!accountComponent.IsSuperPowerPurchaseable(superPowerType)) 
             {
-                case SuperPowerType.Laser:
-                    laser.Upgrade();
-                    break;
-                case SuperPowerType.Shield:
-                    shield.Upgrade();
-                    break;
-                case SuperPowerType.MegaBomb:
-                    megaBomb.Upgrade();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        public void GetUpgradePrice(SuperPowerType type)
-        {
-            switch (type)
-            {
-                case SuperPowerType.Laser:
-                    laser.GetUpgradePrice();
-
-                    break;
-                case SuperPowerType.Shield:
-                    shield.GetUpgradePrice();
-                    break;
-                case SuperPowerType.MegaBomb:
-                    megaBomb.GetUpgradePrice();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        [Serializable]
-        public struct SuperPowerData
-        {
-            public SuperPowerType type { get; set; }
-            public int maxLevel { get; set; }
-            public int level { get; set; }
-            public List<int> upgradePriceArray;
-
-            public void Upgrade()
-            {
-                if (maxLevel > level)
+                if (OnSuperPowerProcessCompleted != null) 
                 {
-                    level++;
-                    //Debug.Log(type + " Level = " + level);
-                }
-                else
-                {
-                    //Debug.Log(type + ": At the last level you can no longer raise");
+                    SuperPowerPurchaseProcessData superPowerPurchaseProcessData = new SuperPowerPurchaseProcessData
+                    {
+                        ProcessStatus = SuperPowerProcessStatus.MAXIMUM_SUPER_POWER_ITEM_COUNT
+                    };
+                    OnSuperPowerProcessCompleted(superPowerPurchaseProcessData);
                 }
 
+                return;
             }
 
-            public int GetUpgradePrice()
+            if (!currencyComponent.IsGoldAffordable(CalculateSuperPowerPrice(superPowerType))) 
             {
-                //Debug.Log(upgradePriceArray[level] + " " + type + "  Price");
-                return upgradePriceArray[level];
+                if (OnSuperPowerProcessCompleted != null)
+                {
+                    SuperPowerPurchaseProcessData superPowerPurchaseProcessData = new SuperPowerPurchaseProcessData
+                    {
+                        ProcessStatus = SuperPowerProcessStatus.NOT_ENOUGH_GOLD
+                    };
+                    OnSuperPowerProcessCompleted(superPowerPurchaseProcessData);
+                }
 
+                return;
             }
+
+            accountComponent.PurchaseSuperPowerItem(superPowerType);
+            currencyComponent.SpendGold(CalculateSuperPowerPrice(superPowerType));
+
+            if (OnSuperPowerProcessCompleted != null)
+            {
+                SuperPowerPurchaseProcessData superPowerPurchaseProcessData = new SuperPowerPurchaseProcessData
+                {
+                    ProcessStatus = SuperPowerProcessStatus.SUCCESS,
+                    SuperPowerType = superPowerType,
+                    CurrentSuperPowerItemCount = accountComponent.GetSuperPowerItemCount(superPowerType)
+                };
+
+                OnSuperPowerProcessCompleted(superPowerPurchaseProcessData);
+            }
+        } 
+        
+        public int CalculateSuperPowerPrice(SuperPowerType superPowerType) 
+        {
+            return superPowerPriceWeights[(int)superPowerType] * accountComponent.GetSuperPowerItemCount(superPowerType);
         }
+
+        private void InitializeSuperPowerPriceWeights()
+        {
+            superPowerPriceWeights = new int[]
+            { 
+                1, 2, 3
+            };
+        }
+    }
+    
+    [Serializable]
+    public struct SuperPowerData
+    {
+        public int[] SuperPowerItemCounts;
+        public int MaxItemCount;
+    }
+    
+    public struct SuperPowerPurchaseProcessData
+    {
+        public SuperPowerProcessStatus ProcessStatus;
+        public SuperPowerType SuperPowerType;
+        public int CurrentSuperPowerItemCount;
+    }
+    
+    public enum SuperPowerType 
+    {
+        LASER,
+        SHIELD,
+        MEGABOMB,
+        COUNT
+    }
+    
+    public enum SuperPowerProcessStatus 
+    {
+        NONE,
+        NOT_ENOUGH_GOLD,
+        MAXIMUM_SUPER_POWER_ITEM_COUNT,
+        SUCCESS
     }
 }
