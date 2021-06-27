@@ -7,7 +7,7 @@ public class StraightDownMovement : PathMovement
 
     public override void Initialize(Minion minion)
     {
-        PathFinderMinion pathFinderMinion = minion as PathFinderMinion;
+        RoadTracker pathFinderMinion = minion as RoadTracker;
 
         currentRouteIndex = 0;
         tParam = 0f;

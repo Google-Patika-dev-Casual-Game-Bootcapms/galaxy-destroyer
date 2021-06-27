@@ -28,7 +28,7 @@ namespace SpaceShooterProject.AI.State
 
         protected override void OnUpdate()
         {
-            
+
         }
     }
 

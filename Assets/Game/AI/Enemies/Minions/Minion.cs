@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Minion : MonoBehaviour, IMinionController
+public abstract class Minion : MonoBehaviour
 {
     [SerializeField] private Route[] routes;
     [SerializeField] private float speed;
+
+    [SerializeField]
+    Sprite minionSprite;
+
     protected IMovement movement;
 
     protected abstract void Initialize();
@@ -16,48 +20,15 @@ public abstract class Minion : MonoBehaviour, IMinionController
         movement.Initialize(this);
     }
 
-
     void Update()
     {
         Movement();
-    }
-
-
-    public void Attack()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Death()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Follow()
-    {
-        throw new System.NotImplementedException();
     }
 
     public void Movement()
     {
         movement.Move(this);
     }
-
-    public void Path()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Phase()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public string Type()
-    {
-        throw new System.NotImplementedException();
-    }
-
 
     public float GetSpeed()
     {

@@ -9,11 +9,12 @@ namespace SpaceShooterProject.AI.State
     {
         private AttackState attackState;
         private PatrolState patrolState;
+        private IHelicopter helicopter;
 
         public ActionState(IHelicopter helicopter, HelicopterEventContainer helicopterEventContainer) 
         {
-            attackState = new AttackState(helicopter);
-            patrolState = new PatrolState(helicopter);
+            attackState = new AttackState(helicopter, helicopterEventContainer);
+            patrolState = new PatrolState(helicopter, helicopterEventContainer);
 
             AddSubState(patrolState);
             AddSubState(attackState);
@@ -34,7 +35,10 @@ namespace SpaceShooterProject.AI.State
 
         protected override void OnUpdate()
         {
-           
+            if (helicopter.IsDeath())
+            {
+                SendTrigger((int)HelicopterState.DEATH_STATE);
+            }
         }
     }
 }

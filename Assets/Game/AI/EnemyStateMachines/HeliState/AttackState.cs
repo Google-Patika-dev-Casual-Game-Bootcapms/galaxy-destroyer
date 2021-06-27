@@ -8,20 +8,22 @@ namespace SpaceShooterProject.AI.State
     public class AttackState : StateMachine
     {
         private IHelicopter helicopter;
+        private HelicopterEventContainer helicopterEventContainer;
 
-        public AttackState(IHelicopter helicopter)
+        public AttackState(IHelicopter helicopter, HelicopterEventContainer helicopterEventContainer)
         {
             this.helicopter = helicopter;
+            this.helicopterEventContainer = helicopterEventContainer;
         }
 
         protected override void OnEnter()
         {
-            
+            helicopterEventContainer.TriggerEnterTheAttackState();
         }
 
         protected override void OnExit()
         {
-            
+            helicopterEventContainer.TriggerExitFromAttackState();
         }
 
         protected override void OnUpdate()
