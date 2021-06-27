@@ -4,6 +4,7 @@ namespace SpaceShooterProject.State
     using Devkit.HSM;
     using SpaceShooterProject.Component;
     using SpaceShooterProject.UserInterface;
+    using UnityEngine;
 
     public class AchievementsState : StateMachine
     {
@@ -22,7 +23,7 @@ namespace SpaceShooterProject.State
         {
             uiComponent.EnableCanvas(UIComponent.MenuName.ACHIEVEMENTS);
             achievementsCanvas.OnReturnToMainMenu += OnReturnToMainMenu;
-            achievementsCanvas.AchievementCompleted += AchievementCompleted;
+            achievementsCanvas.AchievementCompletedEvent += AchievementCompleted;
 
             achievementsCanvas.SetData(achievementsComponent.GetAchievementsData());
         }
@@ -40,6 +41,7 @@ namespace SpaceShooterProject.State
         protected override void OnExit()
         {
             achievementsCanvas.OnReturnToMainMenu -= OnReturnToMainMenu;
+            achievementsCanvas.AchievementCompletedEvent -= AchievementCompleted;
         }
 
         protected override void OnUpdate()

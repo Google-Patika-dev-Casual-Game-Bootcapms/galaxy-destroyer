@@ -13,10 +13,10 @@
         private AchievementsComponent achievementsComponent;
         [HideInInspector] public List<Achievement> achievementCardData;
 
-        public int count=0;
+        public int count = 0;
 
         public delegate void AchievementListener(string name);
-        public event AchievementListener AchievementCompleted;
+        public event AchievementListener AchievementCompletedEvent;
 
         protected override void Init()
         {
@@ -44,8 +44,22 @@
 
         public void AchievementButton(Button button)
         {
-            if (AchievementCompleted != null)
+            Debug.Log(AchievementCompletedEvent);
+            if (AchievementCompletedEvent != null)
             {
+                var card = button.transform.parent.GetComponent<AchievementCard>();
+
+                int currentCount;
+                int goalCount;
+
+                int.TryParse(card.currentCount.text, out currentCount);
+                int.TryParse(card.goalCount.text, out goalCount);
+
+                if (currentCount == goalCount)
+                {
+                    Debug.Log("yesssss");
+                    AchievementCompletedEvent(card.header.text);
+                }
             }
         }
     }

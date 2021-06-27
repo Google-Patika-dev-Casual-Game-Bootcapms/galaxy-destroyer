@@ -9,11 +9,12 @@ using SpaceShooterProject.Component;
 public class AchievementCard : MonoBehaviour, IInitializable
 {
     [SerializeField] private Image icon;
-    [SerializeField] private TMP_Text header;
+    [SerializeField] public TMP_Text header;
     [SerializeField] private TMP_Text description;
-    [SerializeField] private TMP_Text currentCount;
-    [SerializeField] private TMP_Text goalCount;
+    [SerializeField] public TMP_Text currentCount;
+    [SerializeField] public TMP_Text goalCount;
     [SerializeField] private Image smallIcon;
+    [SerializeField] public Button collectButton;
 
     private Achievement data = null;
 

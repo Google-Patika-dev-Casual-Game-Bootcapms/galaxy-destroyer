@@ -10,45 +10,45 @@ namespace SpaceShooterProject.Component
 
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
-        [SerializeField] 
+        /*[SerializeField] 
         private Player player;
         [SerializeField]
         private GameObject playerPrefab;
         private InGameInputSystem inputSystem;
-        private InGameWeaponUpgradeComponent weaponUpgradeComponent;
+        private InGameWeaponUpgradeComponent weaponUpgradeComponent;*/
 
         public void Initialize(ComponentContainer componentContainer)
         {
             Debug.Log("<color=green>GamePlayComponent initialized!</color>");
-            inputSystem = componentContainer.GetComponent("InGameInputSystem") as InGameInputSystem;
+            //inputSystem = componentContainer.GetComponent("InGameInputSystem") as InGameInputSystem;
 
             InitializeWeaponUpgradeComponent(componentContainer);
 
-            if (player == null) 
+            /*if (player == null) 
             {
                 //TODO create player from prefab!!!
                 CreatePlayer();
-            }
+            }*/
 
-            player.InjectInpuSystem(inputSystem);
+            //player.InjectInpuSystem(inputSystem);
         }
 
         private void CreatePlayer()
         {
-            player = Instantiate(playerPrefab).GetComponent<Player>();
+            //player = Instantiate(playerPrefab).GetComponent<Player>();
         }
 
         private void InitializeWeaponUpgradeComponent(ComponentContainer componentContainer)
         {
-            weaponUpgradeComponent = new InGameWeaponUpgradeComponent();
-            weaponUpgradeComponent.Initialize(componentContainer);
+            //weaponUpgradeComponent = new InGameWeaponUpgradeComponent();
+            //weaponUpgradeComponent.Initialize(componentContainer);
         }
 
         public void CallUpdate()
         {
             Debug.Log("GamePlayComponent is on");
-            inputSystem.CallUpdate();
-            player.CallUpdate();
+            //inputSystem.CallUpdate();
+            //player.CallUpdate();
         }
 
         public void OnEnter()
