@@ -954,14 +954,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5113340188539075857, guid: 332510602f2a8c84fbf2e463e06bd595, type: 3}
-        m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.AchievementsCanvas,
-          Assembly-CSharp
-        m_MethodName: AchievementButton
-        m_Mode: 2
+      - m_Target: {fileID: 2934113903829052533}
+        m_TargetAssemblyTypeName: AchievementCard, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 5532913053786952452}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
