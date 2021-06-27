@@ -4348,6 +4348,10 @@ PrefabInstance:
       propertyPath: achievementCard
       value: 
       objectReference: {fileID: 3245321846737125281, guid: 51aa084d33d2725498a77c7feafbbf25, type: 3}
+    - target: {fileID: 5113340188539075857, guid: 332510602f2a8c84fbf2e463e06bd595, type: 3}
+      propertyPath: achievementCardPrefab
+      value: 
+      objectReference: {fileID: 3245321846737125281, guid: 51aa084d33d2725498a77c7feafbbf25, type: 3}
     - target: {fileID: 5113340188539075861, guid: 332510602f2a8c84fbf2e463e06bd595, type: 3}
       propertyPath: m_Pivot.x
       value: 0
