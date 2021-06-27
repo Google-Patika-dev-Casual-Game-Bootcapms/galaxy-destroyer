@@ -9,7 +9,7 @@
     {
         void Patrol();
         void Attack();
-        void GetHit();
+        void GetHit(int damage);
         void Death();
         void OutOfScreen();
     }
