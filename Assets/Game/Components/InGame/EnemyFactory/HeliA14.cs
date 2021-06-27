@@ -7,27 +7,22 @@
     {
         public override void Attack()
         {
-            throw new System.NotImplementedException();
         }
 
         public override void Death()
         {
-            throw new System.NotImplementedException();
         }
 
-        public override void GetHit()
+        public override void GetHit(int damage)
         {
-            throw new System.NotImplementedException();
         }
 
         public override void OutOfScreen()
         {
-            throw new System.NotImplementedException();
         }
 
         public override void Patrol()
         {
-            throw new System.NotImplementedException();
         }
     }
 }
