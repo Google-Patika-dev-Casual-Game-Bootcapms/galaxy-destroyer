@@ -20,7 +20,13 @@ namespace SpaceShooterProject.UserInterface
 
         protected override void Init()
         {
+            if (appLogo == null) 
+            {
+                Debug.LogError("App logo reference is null!!!");
+            }
 
+            appLogo.Init();
+            appLogo.SetScreenSize(GetCanvasSize());
         }
 
         public void PlayIntroAnimation()
