@@ -21,7 +21,28 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject neptunePrefab;
     [SerializeField] private GameObject uranusPrefab;
     [SerializeField] private GameObject saturnPrefab;   
-
+    
+     
+    [SerializeField] private GameObject metalCheastBlue;
+    [SerializeField] private GameObject metalCheastRed;
+    [SerializeField] private GameObject metalCheastGrey;
+    [SerializeField] private GameObject metalCheastYellow;
+    [SerializeField] private GameObject metalStand;
+    [SerializeField] private GameObject metalIskele;
+    [SerializeField] private GameObject kazan;
+    [SerializeField] private GameObject dagLow;
+    [SerializeField] private GameObject nukeDoor;
+    [SerializeField] private GameObject tower; 
+    [SerializeField] private GameObject propPipes;
+    [SerializeField] private GameObject rock1;
+    [SerializeField] private GameObject rock2;
+    [SerializeField] private GameObject vinc;
+    [SerializeField] private GameObject metalTower;
+    [SerializeField] private GameObject metalBridge2;
+    [SerializeField] private GameObject armBattery;
+    [SerializeField] private GameObject EnergyBumb;
+    [SerializeField] private GameObject mountain002;
+    [SerializeField] private GameObject varil;
     [MenuItem("Tools/LevelEditor")]
     private static void Init()
     {
@@ -164,7 +185,7 @@ public class EditorComponent : EditorWindow
         GameObject shape;
         switch (type)
         {
-            case EGameObjectType.flyEnemyNPC:
+           case EGameObjectType.flyEnemyNPC:
                 shape = Instantiate(flyEnemyNPCPrefab) as GameObject;
                 break;
             case EGameObjectType.stableEnemyNPC:
@@ -191,8 +212,68 @@ public class EditorComponent : EditorWindow
             case EGameObjectType.uranus:
                 shape = Instantiate(uranusPrefab) as GameObject;
                 break;
-            default:
+            case EGameObjectType.saturn:
                 shape = Instantiate(saturnPrefab) as GameObject;
+                break;
+            case EGameObjectType.metalCheastBlue:
+                shape = Instantiate(metalCheastBlue) as GameObject;
+                break;
+            case EGameObjectType.metalCheastRed:
+                shape = Instantiate(metalCheastRed) as GameObject;
+                break;
+            case EGameObjectType.metalCheastGrey:
+                shape = Instantiate(metalCheastGrey) as GameObject;
+                break;
+            case EGameObjectType.metalCheastYellow:
+                shape = Instantiate(metalCheastYellow) as GameObject;
+                break;
+            case EGameObjectType.metalStand:
+                shape = Instantiate(metalStand) as GameObject;
+                break;
+            case EGameObjectType.metalIskele:
+                shape = Instantiate(metalIskele) as GameObject;
+                break;
+            case EGameObjectType.kazan:
+                shape = Instantiate(kazan) as GameObject;
+                break;
+            case EGameObjectType.dagLow:
+                shape = Instantiate(dagLow) as GameObject;
+                break;
+            case EGameObjectType.nukeDoor:
+                shape = Instantiate(nukeDoor) as GameObject;
+                break;
+            case EGameObjectType.tower:
+                shape = Instantiate(tower) as GameObject;
+                break;
+            case EGameObjectType.propPipes:
+                shape = Instantiate(propPipes) as GameObject;
+                break;
+            case EGameObjectType.rock1:
+                shape = Instantiate(rock1) as GameObject;
+                break;
+            case EGameObjectType.rock2:
+                shape = Instantiate(rock2) as GameObject;
+                break;
+            case EGameObjectType.metalTower:
+                shape = Instantiate(metalTower) as GameObject;
+                break;
+            case EGameObjectType.metalBridge2:
+                shape = Instantiate(metalBridge2) as GameObject;
+                break;
+            case EGameObjectType.armBattery:
+                shape = Instantiate(armBattery) as GameObject;
+                break;
+            case EGameObjectType.EnergyBumb:
+                shape = Instantiate(EnergyBumb) as GameObject;
+                break;
+           case EGameObjectType.mountain002:
+               shape = Instantiate(mountain002) as GameObject;
+               break;
+           case EGameObjectType.varil:
+               shape = Instantiate(varil) as GameObject;
+               break;
+            default:
+                shape = Instantiate(vinc) as GameObject;
                 break;
         }
         return shape;
