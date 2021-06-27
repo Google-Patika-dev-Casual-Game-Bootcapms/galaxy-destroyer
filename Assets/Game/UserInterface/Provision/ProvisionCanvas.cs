@@ -18,7 +18,7 @@ namespace SpaceShooterProject.UserInterface
         
 
         public delegate void ProvisionDelegate();
-        public delegate void ProvisionSuperPowerDelegate(SuperPowerComponent.SuperPowerType type);
+        public delegate void ProvisionSuperPowerDelegate(SuperPowerType type);
         public event ProvisionDelegate OnNextShipSelectionRequest;
         public event ProvisionDelegate OnPreviousShipSelectionRequest;
         public event ProvisionSuperPowerDelegate OnSuperPowerLaserRequest;
@@ -66,7 +66,7 @@ namespace SpaceShooterProject.UserInterface
             if (OnSuperPowerLaserRequest != null)
             {
                 Debug.Log("On Super Power Laser Request Send...");
-                OnSuperPowerLaserRequest(SuperPowerComponent.SuperPowerType.Laser);
+                OnSuperPowerLaserRequest(SuperPowerType.LASER);
             }
         }
 
@@ -75,7 +75,7 @@ namespace SpaceShooterProject.UserInterface
             if (OnSuperPowerShieldRequest != null)
             {
                 Debug.Log("On Super Power Shield Request Send...");
-                OnSuperPowerShieldRequest(SuperPowerComponent.SuperPowerType.Shield);
+                OnSuperPowerShieldRequest(SuperPowerType.SHIELD);
             }
         }
 
@@ -84,7 +84,7 @@ namespace SpaceShooterProject.UserInterface
             if (OnSuperPowerMegaBombRequest != null)
             {
                 Debug.Log("On Super Power Mega Bomb Request Send...");
-                OnSuperPowerMegaBombRequest(SuperPowerComponent.SuperPowerType.MegaBomb);
+                OnSuperPowerMegaBombRequest(SuperPowerType.MEGABOMB);
             }
         }
 
