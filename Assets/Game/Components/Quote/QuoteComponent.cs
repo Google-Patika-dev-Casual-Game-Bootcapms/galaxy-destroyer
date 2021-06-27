@@ -11,12 +11,22 @@ namespace SpaceShooterProject.Component
 
         public void Initialize(ComponentContainer componentContainer)
         {
-            quotesInJson = JsonUtility.FromJson<Quotes>(quotesFile.text);
+            InitializeQuoteJson();
             GetRandomQuote();           
+        }
+
+        private void InitializeQuoteJson()
+        {
+            quotesInJson = JsonUtility.FromJson<Quotes>(quotesFile.text);
         }
 
         public QuoteData GetRandomQuote()
         {
+            if (quotesInJson == null) 
+            {
+                InitializeQuoteJson();
+            }
+
             int quoteIndex = Mathf.FloorToInt(Random.Range(0, quotesInJson.quotes.Length));
             return quotesInJson.quotes[quoteIndex];
         }
