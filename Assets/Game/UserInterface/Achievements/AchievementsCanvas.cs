@@ -9,22 +9,31 @@
     public class AchievementsCanvas : BaseCanvas
     {
         [SerializeField] public RectTransform achievementsContentPanel; //This panel stands for parent of AchievementCards.
-        [SerializeField] private GameObject achievementCard;
+        [SerializeField] private GameObject achievementCardPrefab;
         private AchievementsComponent achievementsComponent;
         [HideInInspector] public List<Achievement> achievementCardData;
-
-        public int count = 0;
 
         public delegate void AchievementListener(string name);
         public event AchievementListener AchievementCompletedEvent;
 
+        private Dictionary<int, AchievementCard> achievementCardById;
+
+        private const int achievementCount = 5;
+
         protected override void Init()
         {
-            for (int i = 0; i < count; i++)
+            achievementCardById = new Dictionary<int, AchievementCard>();
+
+            for (int i = 0; i < achievementCount; i++)
             {
-                GameObject newCardUIObject = Instantiate(achievementCard);
-                newCardUIObject.transform.SetParent(achievementsContentPanel.transform);
+                var achievementCard = Instantiate(achievementCardPrefab).GetComponent<AchievementCard>();
+                achievementCard.transform.SetParent(achievementsContentPanel.transform);
+                achievementCardById.Add(achievementCard.GetInstanceID(), achievementCard);
+
+                achievementCard.OnAchievementButtonClick += CollectAchievement;
             }
+
+            
         }
 
         public void SetData(List<Achievement> achievements)
@@ -42,12 +51,18 @@
             }
         }
 
-        public void AchievementButton(Button button)
+        public void CollectAchievement(int id)
         {
             Debug.Log(AchievementCompletedEvent);
             if (AchievementCompletedEvent != null)
             {
-                var card = button.transform.parent.GetComponent<AchievementCard>();
+                var card = achievementCardById[id];
+
+                if (card == null) 
+                {
+                    Debug.LogError("Card is null!!!");
+                    return;
+                }
 
                 int currentCount;
                 int goalCount;
