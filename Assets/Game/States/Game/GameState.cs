@@ -2,10 +2,8 @@ namespace SpaceShooterProject.State
 {
     using Devkit.Base.Component;
     using Devkit.HSM;
-    using SpaceShooterProject.Component;
-    using SpaceShooterProject.UserInterface;
-    using System.Collections;
-    using System.Collections.Generic;
+    using Component;
+    using UserInterface;
     using UnityEngine;
 
     public class GameState : StateMachine
@@ -17,12 +15,13 @@ namespace SpaceShooterProject.State
 
         private UIComponent uiComponent;
         private InGameCanvas inGameCanvas;
-
+        private GamePlayComponent gamePlayComponent;
         public GameState(ComponentContainer componentContainer)
         {
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
             inGameCanvas = uiComponent.GetCanvas(UIComponent.MenuName.IN_GAME) as InGameCanvas; 
-
+            gamePlayComponent=componentContainer.GetComponent("GamePlayComponent") as GamePlayComponent;
+            
             prepareGameState = new PrepareGameState(componentContainer);
             inGameState = new InGameState(componentContainer);
             pauseGameState = new PauseGameState(componentContainer);
@@ -59,7 +58,7 @@ namespace SpaceShooterProject.State
 
         protected override void OnUpdate()
         {
-            
+            Debug.Log("GameState in on ");
         }
     }
 }

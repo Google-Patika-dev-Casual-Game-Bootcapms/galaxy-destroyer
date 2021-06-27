@@ -8,16 +8,18 @@ namespace SpaceShooterProject.Component
     {
         public enum MenuName 
         { 
-            SPLASH, MAIN_MENU, IN_GAME, 
+            SPLASH, MAIN_MENU,QUOTE, IN_GAME, 
             SETTINGS, ACHIEVEMENTS, MARKET, 
+            CO_PILOT, CREDITS, PROVISION,
             INVENTORY, CARD, SPACESHIP, GARAGE, 
-            CO_PILOT, CREDITS 
         }
 
         [SerializeField]
         private BaseCanvas splashCanvas = null;
         [SerializeField]
         private BaseCanvas mainMenuCanvas = null;
+        [SerializeField]
+        private BaseCanvas quoteCanvas = null;        
         [SerializeField]
         private BaseCanvas inGameCanvas = null;
         [SerializeField]
@@ -38,6 +40,8 @@ namespace SpaceShooterProject.Component
         private BaseCanvas coPilotCanvas = null;
         [SerializeField]
         private BaseCanvas creditsCanvas = null;
+        [SerializeField]
+        private BaseCanvas provisionCanvas = null;
 
         private BaseCanvas activeCanvas = null;
 
@@ -45,6 +49,7 @@ namespace SpaceShooterProject.Component
         {
             splashCanvas.Initialize(componentContainer);
             mainMenuCanvas.Initialize(componentContainer);
+            quoteCanvas.Initialize(componentContainer);
             inGameCanvas.Initialize(componentContainer);
             settingsCanvas.Initialize(componentContainer);
             achievementsCanvas.Initialize(componentContainer);
@@ -55,9 +60,11 @@ namespace SpaceShooterProject.Component
             garageCanvas.Initialize(componentContainer);
             coPilotCanvas.Initialize(componentContainer);
             creditsCanvas.Initialize(componentContainer);
+            provisionCanvas.Initialize(componentContainer);
 
             DeactivateCanvas(splashCanvas);
             DeactivateCanvas(mainMenuCanvas);
+            DeactivateCanvas(quoteCanvas);
             DeactivateCanvas(inGameCanvas);
             DeactivateCanvas(settingsCanvas);
             DeactivateCanvas(achievementsCanvas);
@@ -68,6 +75,7 @@ namespace SpaceShooterProject.Component
             DeactivateCanvas(garageCanvas);
             DeactivateCanvas(coPilotCanvas);
             DeactivateCanvas(creditsCanvas);
+            DeactivateCanvas(provisionCanvas);
         }
 
         public BaseCanvas GetCanvas(MenuName canvas)
@@ -78,6 +86,8 @@ namespace SpaceShooterProject.Component
                     return splashCanvas;
                 case MenuName.MAIN_MENU:
                     return mainMenuCanvas;
+                case MenuName.QUOTE:
+                    return quoteCanvas;
                 case MenuName.IN_GAME:
                     return inGameCanvas;
                 case MenuName.SETTINGS:
@@ -98,6 +108,8 @@ namespace SpaceShooterProject.Component
                     return coPilotCanvas;
                 case MenuName.CREDITS:
                     return creditsCanvas;
+                case MenuName.PROVISION:
+                    return provisionCanvas;
                 default:
                     return null;
             }
@@ -126,6 +138,9 @@ namespace SpaceShooterProject.Component
                     break;
                 case MenuName.MAIN_MENU:
                     activeCanvas = mainMenuCanvas;
+                    break;
+                case MenuName.QUOTE:
+                    activeCanvas = quoteCanvas;
                     break;
                 case MenuName.IN_GAME:
                     activeCanvas = inGameCanvas;
@@ -156,6 +171,9 @@ namespace SpaceShooterProject.Component
                     break;
                 case MenuName.CREDITS:
                     activeCanvas = creditsCanvas;
+                    break;
+                case MenuName.PROVISION:
+                    activeCanvas = provisionCanvas;
                     break;
             }
 
