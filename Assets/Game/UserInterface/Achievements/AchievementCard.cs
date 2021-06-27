@@ -49,10 +49,4 @@ public class AchievementCard : MonoBehaviour, IInitializable
             OnAchievementButtonClick(GetInstanceID());
         }
     }
-
-
-    public Button GetButton()
-    {
-        return collectButton;
-    }
 }
