@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SpaceShooterProject.Component
 {
     [CreateAssetMenu(menuName = "Achievement")]
-    public class Achievement : ScriptableObject, IObservable<Achievement>
+    public class Achievement : ScriptableObject, IDataObservable<Achievement>
     {
         [SerializeField] private int id;
         [SerializeField] private string achievementName;
@@ -16,7 +16,7 @@ namespace SpaceShooterProject.Component
         [SerializeField] private int currentCount;
         [SerializeField] private int prize;
         [SerializeField] private bool isAchived;
-        private List<IObserver<Achievement>> observers = new List<IObserver<Achievement>>();
+        private List<IDataObserver<Achievement>> observers = new List<IDataObserver<Achievement>>();
 
         public int Id { get => id; }
         public string Name { get => achievementName; }
@@ -38,16 +38,22 @@ namespace SpaceShooterProject.Component
             if (currentCount >= goalCount) Notify();
         }
 
-        //notify observers..
-        private void Notify()
+         public void Attach(IDataObserver<Achievement> observer)
         {
-            foreach (var o in observers)
-                o.OnNext(this);
+            observers.Add(observer);
         }
 
-        public IDisposable Subscribe(IObserver<Achievement> observer)
+        public void Detach(IDataObserver<Achievement> observer)
         {
-            return null;
+            observers.Remove(observer);
+        }
+
+        public void Notify()
+        {
+            for (int i = 0; i < observers.Count; i++)
+            {
+                observers[i].OnNotify();
+            }
         }
     }
 }

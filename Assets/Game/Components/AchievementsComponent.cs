@@ -5,7 +5,7 @@ namespace SpaceShooterProject.Component
     using System;
     using System.Collections.Generic;
 
-    public class AchievementsComponent : MonoBehaviour, IComponent, IObserver<Achievement>
+    public class AchievementsComponent : MonoBehaviour, IComponent, IDataObserver<Achievement>
     {
         public List<Achievement> achievementsList;
         CurrencyComponent currencyComponent;
@@ -23,7 +23,7 @@ namespace SpaceShooterProject.Component
 
             for (int i = 0; i < achievementsList.Count; i++)
             {
-                achievementsList[i].Subscribe(this);
+                Subscribe(achievementsList[i]);
             }
         }
 
@@ -63,19 +63,14 @@ namespace SpaceShooterProject.Component
             currencyComponent.EarnGold(FindAchievement(name).Prize);
         }
 
-        public void OnNext(Achievement value)
+        public void Subscribe(IDataObservable<Achievement> observable)
         {
-            value.IsAchived = true;
+            observable.Attach(this);
         }
 
-        public void OnCompleted()
+        public void OnNotify()
         {
-            throw new NotImplementedException();
-        }
-
-        public void OnError(Exception error)
-        {
-            throw new NotImplementedException();
+           
         }
     }
 }

@@ -32,8 +32,6 @@
 
                 achievementCard.OnAchievementButtonClick += CollectAchievement;
             }
-
-            
         }
 
         public void SetData(List<Achievement> achievements)
@@ -53,10 +51,11 @@
 
         public void CollectAchievement(int id)
         {
-            Debug.Log(AchievementCompletedEvent);
             if (AchievementCompletedEvent != null)
             {
                 var card = achievementCardById[id];
+                int currentCount;
+                int goalCount;
 
                 if (card == null) 
                 {
@@ -64,16 +63,13 @@
                     return;
                 }
 
-                int currentCount;
-                int goalCount;
-
                 int.TryParse(card.currentCount.text, out currentCount);
                 int.TryParse(card.goalCount.text, out goalCount);
 
                 if (currentCount == goalCount)
                 {
-                    Debug.Log("yesssss");
                     AchievementCompletedEvent(card.header.text);
+                    card.collectButton.interactable = false;
                 }
             }
         }
