@@ -32,7 +32,7 @@ MonoImporter:
   - metalTower: {fileID: 519160246634948689, guid: 343eeecd60a4d1e48827e4dbd2e65dac, type: 3}
   - metalBridge2: {fileID: 7265006223602713346, guid: d20fd9803b42fe34ead21046a754cb67, type: 3}
   - armBattery: {fileID: 9145826332615723066, guid: 0248198fc6ff04c4eac780fd31c684cd, type: 3}
-  - EnergyBumb: {fileID: 2202198649654455987, guid: 6ac0dd06ed459d044ad660a8eff0c83c, type: 3}
+  - energyBumb: {fileID: 2202198649654455987, guid: 6ac0dd06ed459d044ad660a8eff0c83c, type: 3}
   - mountain002: {fileID: 2196365343300228249, guid: b8efc866001a1e14db93f01e4684a408, type: 3}
   - varil: {fileID: 5849865719211180823, guid: bbe459e23b265c24d8910fcd93832b5d, type: 3}
   executionOrder: 0

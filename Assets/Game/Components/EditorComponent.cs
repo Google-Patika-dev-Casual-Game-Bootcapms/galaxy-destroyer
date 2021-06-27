@@ -2,15 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Linq;
 using UnityEditor;
-
 
 #if UNITY_EDITOR
 public class EditorComponent : EditorWindow
 {
     private List<string> _savedLevelNames = new List<string>();
     private string NewLevelName = String.Empty;
-
+    
+    #region Variables
     [SerializeField] private GameObject flyEnemyNPCPrefab;
     [SerializeField] private GameObject stableEnemyNPCPrefab;
     [SerializeField] private GameObject nonFlyEnemyNPCPrefab;
@@ -20,9 +21,7 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject marsPrefab;
     [SerializeField] private GameObject neptunePrefab;
     [SerializeField] private GameObject uranusPrefab;
-    [SerializeField] private GameObject saturnPrefab;   
-    
-     
+    [SerializeField] private GameObject saturnPrefab;
     [SerializeField] private GameObject metalCheastBlue;
     [SerializeField] private GameObject metalCheastRed;
     [SerializeField] private GameObject metalCheastGrey;
@@ -40,9 +39,11 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject metalTower;
     [SerializeField] private GameObject metalBridge2;
     [SerializeField] private GameObject armBattery;
-    [SerializeField] private GameObject EnergyBumb;
+    [SerializeField] private GameObject energyBumb;
     [SerializeField] private GameObject mountain002;
     [SerializeField] private GameObject varil;
+    #endregion
+    
     [MenuItem("Tools/LevelEditor")]
     private static void Init()
     {
@@ -66,17 +67,18 @@ public class EditorComponent : EditorWindow
 
         GUILayout.BeginArea(new Rect(10, 150, position.width, position.height));
            
-        for (int i = 0; i < _savedLevelNames.Count; i++)
+        foreach (var t in _savedLevelNames)
         {
-            if (GUILayout.Button(_savedLevelNames[i]))
+            if (GUILayout.Button(t))
             {
-                LoadLevelDataFromJson(_savedLevelNames[i]);
+                LoadLevelDataFromJson(t);
             }
         }
 
         GUILayout.EndArea();
     }
-    public void SaveLevelDataAsJson(string levelName)
+
+    private void SaveLevelDataAsJson(string levelName)
     {
         var itemsToSave = FindObjectsOfType<GameObjectType>();
         string path = Application.dataPath + "/Resources/" + levelName + ".json";
@@ -114,7 +116,7 @@ public class EditorComponent : EditorWindow
         return data;
     }
 
-    public void LoadLevelDataFromJson(string fileName)
+    private void LoadLevelDataFromJson(string fileName)
     {
         string path = Application.dataPath + "/Resources/" + fileName;
         var data = ReadDataFromText(path);
@@ -149,134 +151,128 @@ public class EditorComponent : EditorWindow
         foreach (var levelItem in levelData.LevelCharacters)
         {
             var levelItemObject = InstantiateLevelCharacter(levelItem.Type);
-            var levelItemObjectData = levelItemObject.GetComponent<GameObjectType>();
-            levelItemObjectData.transform.localScale = levelItem.Scale;
-            levelItemObjectData.transform.position = levelItem.Position;
-            levelItemObjectData.transform.eulerAngles = levelItem.Rotation;
+            levelItemObject.transform.localScale = levelItem.Scale;
+            levelItemObject.transform.position = levelItem.Position;
+            levelItemObject.transform.eulerAngles = levelItem.Rotation;
         }
     }
 
     private void ClearScene()
     {
-        var levelItems = GameObject.FindObjectsOfType<GameObjectType>();
+        var levelItems = FindObjectsOfType<GameObjectType>();
         foreach (var rect in levelItems)
             DestroyImmediate(rect.gameObject);
     }
 
-    public List<string> GetLevelNames()
+    private List<string> GetLevelNames()
     {
-        List<string> levelNames = new List<string>();
-
         string partialName = string.Empty;
 
         DirectoryInfo hdDirectoryInWhichToSearch = new DirectoryInfo(Application.dataPath + "/Resources");
         FileSystemInfo[] filesAndDirs = hdDirectoryInWhichToSearch.GetFileSystemInfos("*" + partialName + "*.json");
 
-        foreach (FileSystemInfo foundFile in filesAndDirs)
-        {
-            string fullName = foundFile.Name;
-            levelNames.Add(fullName);
-        }
-        return levelNames;
+        return filesAndDirs.Select(foundFile => foundFile.Name).ToList();
     }
-       
+
+    #region ObjectGenerator
     private GameObject InstantiateLevelCharacter(EGameObjectType type)
     {
         GameObject shape;
         switch (type)
         {
            case EGameObjectType.flyEnemyNPC:
-                shape = Instantiate(flyEnemyNPCPrefab) as GameObject;
+                shape = Instantiate(flyEnemyNPCPrefab);
                 break;
             case EGameObjectType.stableEnemyNPC:
-                shape = Instantiate(stableEnemyNPCPrefab) as GameObject;
+                shape = Instantiate(stableEnemyNPCPrefab);
                 break;
             case EGameObjectType.nonFlyEnemyNPC:
-                shape = Instantiate(nonFlyEnemyNPCPrefab) as GameObject;
+                shape = Instantiate(nonFlyEnemyNPCPrefab);
                 break;
             case EGameObjectType.levelEndMonster:
-                shape = Instantiate(levelEndMonsterPrefab) as GameObject;
+                shape = Instantiate(levelEndMonsterPrefab);
                 break;
             case EGameObjectType.friendNPC:
-                shape = Instantiate(friendNPCPrefab) as GameObject;
+                shape = Instantiate(friendNPCPrefab);
                 break;
             case EGameObjectType.box:
-                shape = Instantiate(boxPrefab) as GameObject;
+                shape = Instantiate(boxPrefab);
                 break;
             case EGameObjectType.mars:
-                shape = Instantiate(marsPrefab) as GameObject;
+                shape = Instantiate(marsPrefab);
                 break;
             case EGameObjectType.neptune:
-                shape = Instantiate(neptunePrefab) as GameObject;
+                shape = Instantiate(neptunePrefab);
                 break;
             case EGameObjectType.uranus:
-                shape = Instantiate(uranusPrefab) as GameObject;
+                shape = Instantiate(uranusPrefab);
                 break;
             case EGameObjectType.saturn:
-                shape = Instantiate(saturnPrefab) as GameObject;
+                shape = Instantiate(saturnPrefab);
                 break;
             case EGameObjectType.metalCheastBlue:
-                shape = Instantiate(metalCheastBlue) as GameObject;
+                shape = Instantiate(metalCheastBlue);
                 break;
             case EGameObjectType.metalCheastRed:
-                shape = Instantiate(metalCheastRed) as GameObject;
+                shape = Instantiate(metalCheastRed);
                 break;
             case EGameObjectType.metalCheastGrey:
-                shape = Instantiate(metalCheastGrey) as GameObject;
+                shape = Instantiate(metalCheastGrey);
                 break;
             case EGameObjectType.metalCheastYellow:
-                shape = Instantiate(metalCheastYellow) as GameObject;
+                shape = Instantiate(metalCheastYellow);
                 break;
             case EGameObjectType.metalStand:
-                shape = Instantiate(metalStand) as GameObject;
+                shape = Instantiate(metalStand);
                 break;
             case EGameObjectType.metalIskele:
-                shape = Instantiate(metalIskele) as GameObject;
+                shape = Instantiate(metalIskele);
                 break;
             case EGameObjectType.kazan:
-                shape = Instantiate(kazan) as GameObject;
+                shape = Instantiate(kazan);
                 break;
             case EGameObjectType.dagLow:
-                shape = Instantiate(dagLow) as GameObject;
+                shape = Instantiate(dagLow);
                 break;
             case EGameObjectType.nukeDoor:
-                shape = Instantiate(nukeDoor) as GameObject;
+                shape = Instantiate(nukeDoor);
                 break;
             case EGameObjectType.tower:
-                shape = Instantiate(tower) as GameObject;
+                shape = Instantiate(tower);
                 break;
             case EGameObjectType.propPipes:
-                shape = Instantiate(propPipes) as GameObject;
+                shape = Instantiate(propPipes);
                 break;
             case EGameObjectType.rock1:
-                shape = Instantiate(rock1) as GameObject;
+                shape = Instantiate(rock1);
                 break;
             case EGameObjectType.rock2:
-                shape = Instantiate(rock2) as GameObject;
+                shape = Instantiate(rock2);
                 break;
             case EGameObjectType.metalTower:
-                shape = Instantiate(metalTower) as GameObject;
+                shape = Instantiate(metalTower);
                 break;
             case EGameObjectType.metalBridge2:
-                shape = Instantiate(metalBridge2) as GameObject;
+                shape = Instantiate(metalBridge2);
                 break;
             case EGameObjectType.armBattery:
-                shape = Instantiate(armBattery) as GameObject;
+                shape = Instantiate(armBattery);
                 break;
-            case EGameObjectType.EnergyBumb:
-                shape = Instantiate(EnergyBumb) as GameObject;
+            case EGameObjectType.energyBumb:
+                shape = Instantiate(energyBumb);
                 break;
            case EGameObjectType.mountain002:
-               shape = Instantiate(mountain002) as GameObject;
+               shape = Instantiate(mountain002);
                break;
            case EGameObjectType.varil:
-               shape = Instantiate(varil) as GameObject;
+               shape = Instantiate(varil);
                break;
             default:
-                shape = Instantiate(vinc) as GameObject;
+                shape = Instantiate(vinc);
                 break;
         }
         return shape;
     }
+    #endregion
 }
 #endif
