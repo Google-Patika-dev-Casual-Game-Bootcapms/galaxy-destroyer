@@ -118,7 +118,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 493a2b5b26749084c915120206dec7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coPilotAvatar: {fileID: 2188625290810179119}
+  coPilotAvatarList:
+  - {fileID: 6913766055639378272}
+  - {fileID: 7563580593084931476}
+  - {fileID: 1903079213081698482}
+  - {fileID: 5399749273697048238}
+  - {fileID: 2637643373724258621}
 --- !u!1 &433141982056690677
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +255,7 @@ GameObject:
   - component: {fileID: 5478712782180365352}
   - component: {fileID: 3834178481202424049}
   - component: {fileID: 2874317230546329962}
+  - component: {fileID: 7563580593084931476}
   m_Layer: 5
   m_Name: CoPilotAvatar2
   m_TagString: Untagged
@@ -314,6 +320,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7563580593084931476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831149552791236266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f84d3fc6010f0e4480357241b09a49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coPilotAvatarImage: {fileID: 2874317230546329962}
 --- !u!1 &1272285243175275592
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,7 +899,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.35
+  m_fontSize: 53.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -933,6 +952,7 @@ GameObject:
   - component: {fileID: 167838384563227667}
   - component: {fileID: 1094064585749559867}
   - component: {fileID: 1322730945857007365}
+  - component: {fileID: 2637643373724258621}
   m_Layer: 5
   m_Name: CoPilotAvatar5
   m_TagString: Untagged
@@ -997,6 +1017,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2637643373724258621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4244020126794254925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f84d3fc6010f0e4480357241b09a49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coPilotAvatarImage: {fileID: 1322730945857007365}
 --- !u!1 &4588346656147091295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,6 +1041,7 @@ GameObject:
   - component: {fileID: 2574606722704492850}
   - component: {fileID: 3530703304982419428}
   - component: {fileID: 8732729161588559658}
+  - component: {fileID: 6913766055639378272}
   m_Layer: 5
   m_Name: CoPilotAvatar1
   m_TagString: Untagged
@@ -1072,6 +1106,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6913766055639378272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4588346656147091295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f84d3fc6010f0e4480357241b09a49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coPilotAvatarImage: {fileID: 8732729161588559658}
 --- !u!1 &4612307620425180100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,6 +1357,7 @@ GameObject:
   - component: {fileID: 4329789879906512552}
   - component: {fileID: 6183244352658149177}
   - component: {fileID: 8590670273416486072}
+  - component: {fileID: 1903079213081698482}
   m_Layer: 5
   m_Name: CoPilotAvatar3
   m_TagString: Untagged
@@ -1374,6 +1422,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1903079213081698482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5706267112165050992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f84d3fc6010f0e4480357241b09a49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coPilotAvatarImage: {fileID: 8590670273416486072}
 --- !u!1 &6052423343560656350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,7 +1727,6 @@ GameObject:
   - component: {fileID: 959371476930403073}
   - component: {fileID: 8411619259559281564}
   - component: {fileID: 5798469519964805203}
-  - component: {fileID: 2188625290810179119}
   m_Layer: 5
   m_Name: CoPilotAvatarBg
   m_TagString: Untagged
@@ -1736,19 +1796,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2188625290810179119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7938721638536252521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f84d3fc6010f0e4480357241b09a49a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coPilotAvatarImage: {fileID: 8732729161588559658}
 --- !u!1 &8912718336753588302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,6 +1807,7 @@ GameObject:
   - component: {fileID: 9214226559467288085}
   - component: {fileID: 7241202301229781833}
   - component: {fileID: 2073745891257025973}
+  - component: {fileID: 5399749273697048238}
   m_Layer: 5
   m_Name: CoPilotAvatar4
   m_TagString: Untagged
@@ -1824,3 +1872,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5399749273697048238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8912718336753588302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f84d3fc6010f0e4480357241b09a49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coPilotAvatarImage: {fileID: 2073745891257025973}
