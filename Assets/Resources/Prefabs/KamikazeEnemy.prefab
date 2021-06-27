@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4590104564111892373}
   - component: {fileID: 4590104564111892370}
-  - component: {fileID: 2884920257951159184}
+  - component: {fileID: 2764387538232958715}
   m_Layer: 0
-  m_Name: RoadTrackerEnemy
+  m_Name: KamikazeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2884920257951159184
+--- !u!114 &2764387538232958715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,10 +92,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4590104564111892368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07a4fe4441a5847158cb54c4b8bdc781, type: 3}
+  m_Script: {fileID: 11500000, guid: a0c5528dee04341b38065989ad609659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shipSpeed: 20
   shipSpriteRender: {fileID: 4590104564111892370}
-  frameRate: 0
-  fireRate: 20
