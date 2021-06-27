@@ -44,17 +44,8 @@ namespace SpaceShooterProject.Component
             Debug.Log("GamePlayComponent is on");
             inputSystem.CallUpdate();
             player.CallUpdate();
-            player.FrameRate++;
-            if (player.FrameRate % player.FireRate == 0)
-            {
-                player.Shoot(bulletCollector.GetBullet());
-            }
-
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                
-                enemyFactory.ProduceEnemy(EnemyType.RoadTracker);
-            }
+            player.Shoot(bulletCollector);
+            
         }
 
         private void LateUpdate()
