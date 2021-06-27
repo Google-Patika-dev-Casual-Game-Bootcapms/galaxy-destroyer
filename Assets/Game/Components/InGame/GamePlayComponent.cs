@@ -10,6 +10,7 @@ namespace SpaceShooterProject.Component
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
         [SerializeField] private Player player;
+        [SerializeField] private Enemy enemy;
         [SerializeField] private GameCamera gameCamera;
         private InGameInputSystem inputSystem;
         private InGameWeaponUpgradeComponent weaponUpgradeComponent;
@@ -25,7 +26,7 @@ namespace SpaceShooterProject.Component
             InitializeWeaponUpgradeComponent(componentContainer);
 
             player.InjectInputSystem(inputSystem);
-            player.ComponentContainer = componentContainer ;
+            player.ComponentContainer = componentContainer;
             player.Init();
             bulletCollector = new BulletCollector();
 
@@ -45,7 +46,8 @@ namespace SpaceShooterProject.Component
             inputSystem.CallUpdate();
             player.CallUpdate();
             player.Shoot(bulletCollector);
-            
+            bulletCollector.UpdateBullets();
+            enemy.CallUpdate();
         }
 
         private void LateUpdate()
@@ -68,41 +70,8 @@ namespace SpaceShooterProject.Component
         public GameCamera GameCamera => gameCamera;
     }
 
-    public interface IBulletCollector 
+    public interface IBulletCollector
     {
         void AddBulletToPool(Bullet bullet);
-    }
-
-    public class BulletCollector : IBulletCollector
-    {
-        private Pool<Bullet> pool;
-        private const string SOURCE_OBJECT_PATH = "Prefabs/BulletForPooling";
-
-        public BulletCollector()
-        {
-            pool = new Pool<Bullet>(SOURCE_OBJECT_PATH);
-            pool.PopulatePool(20);
-        }
-
-        public Bullet GetBullet()
-        {
-            var bullet = pool.GetObjectFromPool();
-            bullet.InjectBulletCollector(this);
-
-            return bullet;
-        }
-
-        public void AddBulletToPool(Bullet bullet)
-        {
-            pool.AddObjectToPool(bullet);
-        }
-
-        /*private void SubscribeAllBullets()
-        {
-            foreach (var bullet in pool.GetPool.ToArray())
-            {
-                
-            }
-        }*/
     }
 }
