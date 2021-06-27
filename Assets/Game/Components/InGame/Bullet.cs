@@ -1,45 +1,69 @@
+using System;
 using System.Collections;
 using System.Security.Cryptography;
+using Devkit.Base.Object;
+using Devkit.Base.Pattern.ObjectPool;
+using DG.Tweening;
+using SpaceShooterProject.Component;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPoolable
 {
-    [SerializeField] 
-    private float speed = 3; 
+    [SerializeField] private float speed = 3f;
+    [SerializeField] private RectTransform _transform;
 
-    private Transform myTransform;
-    private float maxVerticalPosition;
-    private Vector2 endPosition;
+    public delegate void BulletTriggerDelegate();
 
- 
-    private void OnEnable()
-    {
-        myTransform = transform;
+    public delegate void BulletPoolDelegate(Bullet bullet);
 
-        maxVerticalPosition = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, 1)).y;
-        endPosition = new Vector2(myTransform.position.x, maxVerticalPosition + 1);
+    public BulletTriggerDelegate OnHitEnemy;
+    public BulletPoolDelegate OnBulletOutOfScreen;
 
-        StartCoroutine(Move(speed));
-    }
+    private IBulletCollector bulletCollectorReference;
+    private GameCamera gameCamera;
 
     private void Update()
     {
-        if (myTransform.position.y > maxVerticalPosition)
+        _transform.Translate(Vector3.up * (speed + gameCamera.CameraSpeed) * Time.deltaTime,
+            Space.World);
+        if (_transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(Random.value, 1)).y) 
         {
-            gameObject.SetActive(false);
+            bulletCollectorReference.AddBulletToPool(this);
+        }
+           
+    }
+
+    public void InjectBulletCollector(BulletCollector bulletCollector) 
+    {
+        if (bulletCollectorReference != null) 
+        {
+            return;
+        }
+
+        bulletCollectorReference = bulletCollector;
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            OnHitEnemy();
         }
     }
- 
-    IEnumerator Move(float duration)
-    {
-        float elapsedTime = 0;
-        Vector2 startingPos = myTransform.position;
 
-        while (elapsedTime < duration)
-        {
-            myTransform.position = Vector3.Lerp(startingPos, endPosition, (elapsedTime / duration));
-            elapsedTime += Time.unscaledDeltaTime;
-            yield return null;
-        }
-    }     
+    public void Activate()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Deactivate()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Initialize()
+    {
+        gameCamera = Camera.main.GetComponent<GameCamera>();
+    }
 }

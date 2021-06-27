@@ -48,6 +48,23 @@ namespace SpaceShooterProject.Component
                 }
             }
         }
+
+        public void AudioControl(float audioVolume)
+        {
+            for(int i=0 ; i<sounds.Length ; i++)
+            {
+               if(audioVolume == 0f)
+               {
+                  sounds[i].Stop();
+               }
+
+               else
+               {
+                   sounds[i].source.volume = audioVolume ;
+               }
+               
+            }
+        }
   
     }
     
@@ -56,21 +73,23 @@ namespace SpaceShooterProject.Component
     {
         public string name;
         public AudioClip clip;
-
-        [Range(0f , 1f)]
-        public float volume = 0.7f;
-
         public AudioSource source;
 
         public void SetSource(AudioSource audioSource)
         {
             source = audioSource;
             source.clip = clip;
+            source.volume = 0.7f;
         }
 
         public void Play()
         {
             source.Play();
+        }
+
+        public void Stop()
+        {
+            source.Stop();
         }
 
 

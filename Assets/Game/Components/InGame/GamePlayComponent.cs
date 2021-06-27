@@ -1,21 +1,21 @@
-namespace SpaceShooterProject.Component 
+namespace SpaceShooterProject.Component
 {
     using Devkit.Base.Component;
-    using System.Collections;
-    using System.Collections.Generic;
+    using Devkit.Base.Pattern.ObjectPool;
     using Devkit.Base.Object;
-    using Devkit.HSM;
     using UnityEngine;
+    using System.Collections.Generic;
     using System;
 
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
-        [SerializeField] 
-        private Player player;
-        [SerializeField]
-        private GameObject playerPrefab;
+        [SerializeField] private Player player;
+        [SerializeField] private GameCamera gameCamera;
         private InGameInputSystem inputSystem;
         private InGameWeaponUpgradeComponent weaponUpgradeComponent;
+        private BulletCollector bulletCollector;
+        private EnemyFactory enemyFactory;
+
 
         public void Initialize(ComponentContainer componentContainer)
         {
@@ -24,18 +24,13 @@ namespace SpaceShooterProject.Component
 
             InitializeWeaponUpgradeComponent(componentContainer);
 
-            if (player == null) 
-            {
-                //TODO create player from prefab!!!
-                CreatePlayer();
-            }
+            player.InjectInputSystem(inputSystem);
+            player.ComponentContainer = componentContainer ;
+            player.Init();
+            bulletCollector = new BulletCollector();
 
-            player.InjectInpuSystem(inputSystem);
-        }
-
-        private void CreatePlayer()
-        {
-            player = Instantiate(playerPrefab).GetComponent<Player>();
+            enemyFactory = new EnemyFactory();
+            enemyFactory.Init();
         }
 
         private void InitializeWeaponUpgradeComponent(ComponentContainer componentContainer)
@@ -49,6 +44,23 @@ namespace SpaceShooterProject.Component
             Debug.Log("GamePlayComponent is on");
             inputSystem.CallUpdate();
             player.CallUpdate();
+            player.FrameRate++;
+            if (player.FrameRate % player.FireRate == 0)
+            {
+                player.Shoot(bulletCollector.GetBullet());
+            }
+
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                
+                enemyFactory.ProduceEnemy(EnemyType.RoadTracker);
+            }
+        }
+
+        private void LateUpdate()
+        {
+            if (gameCamera.IsAvailable)
+                gameCamera.CallLateUpdate();
         }
 
         public void OnEnter()
@@ -58,8 +70,48 @@ namespace SpaceShooterProject.Component
 
         public void OnExit()
         {
-            
         }
+
+        public Player Player => player;
+
+        public GameCamera GameCamera => gameCamera;
+    }
+
+    public interface IBulletCollector 
+    {
+        void AddBulletToPool(Bullet bullet);
+    }
+
+    public class BulletCollector : IBulletCollector
+    {
+        private Pool<Bullet> pool;
+        private const string SOURCE_OBJECT_PATH = "Prefabs/BulletForPooling";
+
+        public BulletCollector()
+        {
+            pool = new Pool<Bullet>(SOURCE_OBJECT_PATH);
+            pool.PopulatePool(20);
+        }
+
+        public Bullet GetBullet()
+        {
+            var bullet = pool.GetObjectFromPool();
+            bullet.InjectBulletCollector(this);
+
+            return bullet;
+        }
+
+        public void AddBulletToPool(Bullet bullet)
+        {
+            pool.AddObjectToPool(bullet);
+        }
+
+        /*private void SubscribeAllBullets()
+        {
+            foreach (var bullet in pool.GetPool.ToArray())
+            {
+                
+            }
+        }*/
     }
 }
-
