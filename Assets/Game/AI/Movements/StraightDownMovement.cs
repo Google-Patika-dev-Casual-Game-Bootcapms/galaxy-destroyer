@@ -1,33 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class StraightDownMovement : PathMovement
+namespace SpaceShooterProject.AI.Movements
 {
 
-    public override void Initialize(Minion minion)
+    using SpaceShooterProject.AI.Enemies;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+
+    public class StraightDownMovement : PathMovement
     {
-        RoadTracker pathFinderMinion = minion as RoadTracker;
 
-        currentRouteIndex = 0;
-        tParam = 0f;
-        couroutineAllowed = true;
+        //public override void Initialize(Enemy minion)
+        //{
+        //    RoadTracker pathFinderMinion = minion as RoadTracker;
 
-        Route linearRoute = new GameObject().AddComponent<LinearRoute>() as LinearRoute;
+        //    currentRouteIndex = 0;
+        //    tParam = 0f;
+        //    couroutineAllowed = true;
 
-        Transform controlPoint1 = new GameObject().transform;
-        controlPoint1.position = pathFinderMinion.transform.position;
+        //    Route linearRoute = new GameObject().AddComponent<LinearRoute>() as LinearRoute;
 
-        Transform controlPoint2 = new GameObject().transform;
-        controlPoint2.position = pathFinderMinion.transform.position;
-        controlPoint2.Translate(0, pathFinderMinion.GetPathLength(), 0);
+        //    Transform controlPoint1 = new GameObject().transform;
+        //    controlPoint1.position = pathFinderMinion.transform.position;
 
-        linearRoute.AddControlPoint(controlPoint1);
-        linearRoute.AddControlPoint(controlPoint2);
+        //    Transform controlPoint2 = new GameObject().transform;
+        //    controlPoint2.position = pathFinderMinion.transform.position;
+        //    controlPoint2.Translate(0, pathFinderMinion.GetPathLength(), 0);
 
-        pathFinderMinion.AddRoute(linearRoute);
+        //    linearRoute.AddControlPoint(controlPoint1);
+        //    linearRoute.AddControlPoint(controlPoint2);
 
+        //    pathFinderMinion.AddRoute(linearRoute);
+
+        //}
+        public override void Initialize(Enemy minion)
+        {
+            throw new System.NotImplementedException();
+        }
     }
-
-    
 }

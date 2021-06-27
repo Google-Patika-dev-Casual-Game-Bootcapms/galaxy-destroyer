@@ -1,22 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class LinearRoute : Route
+namespace SpaceShooterProject.AI.Movements
 {
-    public override Vector2 CalculateBezierCurve(float t)
-    {
-        Vector2 position = (1 - t) * controlPoints[0].position + t * controlPoints[1].position;
-        return position;
-    }
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
 
-    protected override void DrawGizmosLine()
+    public class LinearRoute : Route
     {
-        DrawLinearGizmosLine();
-    }
+        public override Vector2 CalculateBezierCurve(float t)
+        {
+            Vector2 position = (1 - t) * controlPoints[0].position + t * controlPoints[1].position;
+            return position;
+        }
 
-    protected override bool IsPointsSet()
-    {
-        return controlPoints.Length == 2;
+        protected override void DrawGizmosLine()
+        {
+            DrawLinearGizmosLine();
+        }
+
+        protected override bool IsPointsSet()
+        {
+            return controlPoints.Length == 2;
+        }
     }
 }
+

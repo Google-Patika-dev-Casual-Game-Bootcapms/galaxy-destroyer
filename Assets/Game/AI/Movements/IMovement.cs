@@ -1,7 +1,11 @@
-﻿using System;
-using UnityEngine;
-public interface IMovement
+﻿namespace SpaceShooterProject.AI.Movements
 {
-    public void Initialize(Minion minion);
-    public void Move(Minion minion);
+    using SpaceShooterProject.AI.Enemies;
+    using System;
+    using UnityEngine;
+    public interface IMovement
+    {
+        public void Initialize(Enemy minion);
+        public void Move(Enemy minion);
+    }
 }

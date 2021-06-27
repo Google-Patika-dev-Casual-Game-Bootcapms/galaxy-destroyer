@@ -1,4 +1,4 @@
-namespace SpaceShooterProject.AI 
+namespace SpaceShooterProject.AI.Enemies
 {
     public interface IHelicopter 
     {

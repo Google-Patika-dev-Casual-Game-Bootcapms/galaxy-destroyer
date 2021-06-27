@@ -1,21 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class FollowTargetMovement : IMovement
+namespace SpaceShooterProject.AI.Movements
 {
+    using SpaceShooterProject.AI.Enemies;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
 
-    [SerializeField] Transform targetObject;
-
-    public void Initialize(Minion minion)
+    public class FollowTargetMovement : IMovement
     {
-        throw new System.NotImplementedException();
-    }
 
-    public void Move(Minion minion)
-    {
-        throw new System.NotImplementedException();
-    }
+        [SerializeField] Transform targetObject;
 
+        public void Initialize(Enemy minion)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Move(Enemy minion)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+    }
 
 }

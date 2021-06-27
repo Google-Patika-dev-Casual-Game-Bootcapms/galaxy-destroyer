@@ -123,36 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &41181180
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 41181181}
-  m_Layer: 0
-  m_Name: Helicopter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &41181181
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 41181180}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &42789819
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +286,7 @@ MonoBehaviour:
   - {fileID: 1430919931}
   showLines: 0
   showPath: 1
+  gizmosPosition: {x: 0, y: 0}
 --- !u!1 &547777795
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +398,7 @@ MonoBehaviour:
   - {fileID: 784934301}
   showLines: 0
   showPath: 1
+  gizmosPosition: {x: 0, y: 0}
 --- !u!4 &572464771
 Transform:
   m_ObjectHideFlags: 0
@@ -726,6 +698,7 @@ MonoBehaviour:
   - {fileID: 1170849721}
   showLines: 0
   showPath: 1
+  gizmosPosition: {x: 475.71262, y: 1779.1775}
 --- !u!4 &1518462876
 Transform:
   m_ObjectHideFlags: 0
@@ -872,6 +845,52 @@ Transform:
   m_Father: {fileID: 572464771}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2128027848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2128027850}
+  - component: {fileID: 2128027849}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2128027849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128027848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4c860c2d6928d40b90c85797c4f976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  routes: []
+  speed: 0
+  minionSprite: {fileID: 0}
+--- !u!4 &2128027850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128027848}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1910.2281, y: -253.39761, z: -1197.0634}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5194574756454738881
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,8 +921,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a22a2d300b1c654183bca0afdf11b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectPooler: {fileID: 547777796}
-  _camera: {fileID: 42789821}
+  shipSpeed: 10
+  shipSpriteRenderer: {fileID: 0}
 --- !u!212 &5194574756454738883
 SpriteRenderer:
   m_ObjectHideFlags: 0

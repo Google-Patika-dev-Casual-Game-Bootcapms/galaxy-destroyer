@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class TestMinion : Minion
+namespace SpaceShooterProject.AI.Enemies
 {
-    protected override void Initialize()
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+
+    public class TestMinion : Minion
     {
-        movement = new IndependentMovement();
     }
 }
+

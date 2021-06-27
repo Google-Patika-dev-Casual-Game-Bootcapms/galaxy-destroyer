@@ -1,19 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class RoadTracker : Minion
+namespace SpaceShooterProject.AI.Enemies
 {
-    [SerializeField]
-    private float pathLength;
+    using SpaceShooterProject.AI.Movements;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
 
-    protected override void Initialize()
+    public class RoadTracker : Minion
     {
-        movement = new StraightDownMovement();
+        [SerializeField]
+        private float pathLength;
+
+        public float GetPathLength()
+        {
+            return pathLength;
+        }
     }
 
-    public float GetPathLength()
-    {
-        return pathLength;
-    }
 }

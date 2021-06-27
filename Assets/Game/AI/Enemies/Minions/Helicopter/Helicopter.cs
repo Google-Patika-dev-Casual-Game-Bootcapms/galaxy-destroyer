@@ -9,40 +9,25 @@ namespace SpaceShooterProject.AI.Enemies
 
         public bool IsDeath()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
 
         public bool IsEnterTheSceneAnimationFinish()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
 
         public bool IsPatrolTimeFinished()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
 
         public bool IsShootingSessionEnd()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
 
-        protected override void Initialize()
-        {
 
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 
 }
