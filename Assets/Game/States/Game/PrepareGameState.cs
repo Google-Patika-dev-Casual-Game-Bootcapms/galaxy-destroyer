@@ -26,9 +26,9 @@ namespace SpaceShooterProject.State
         {
             Debug.Log("PREPARE ON ENTER");
             uiComponent.EnableCanvas(UIComponent.MenuName.PROVISION);
-            provisionCanvas.OnSuperPowerLaserRequest += superPowerComponent.UpgradeSuperPower;
-            provisionCanvas.OnSuperPowerShieldRequest += superPowerComponent.UpgradeSuperPower;
-            provisionCanvas.OnSuperPowerMegaBombRequest += superPowerComponent.UpgradeSuperPower;
+            provisionCanvas.OnSuperPowerLaserRequest += superPowerComponent.PurchaseSuperPower;
+            provisionCanvas.OnSuperPowerShieldRequest += superPowerComponent.PurchaseSuperPower;
+            provisionCanvas.OnSuperPowerMegaBombRequest += superPowerComponent.PurchaseSuperPower;
             provisionCanvas.OnNextShipSelectionRequest += RequestNextShip;
             provisionCanvas.OnPreviousShipSelectionRequest += RequestPreviousShip;
             provisionCanvas.OnPauseRequest += RequestPause;
@@ -39,9 +39,9 @@ namespace SpaceShooterProject.State
         {
             Debug.Log("PREPARE ON EXIT");
 
-            provisionCanvas.OnSuperPowerLaserRequest -= superPowerComponent.UpgradeSuperPower;
-            provisionCanvas.OnSuperPowerShieldRequest -= superPowerComponent.UpgradeSuperPower;
-            provisionCanvas.OnSuperPowerMegaBombRequest -= superPowerComponent.UpgradeSuperPower;
+            provisionCanvas.OnSuperPowerLaserRequest -= superPowerComponent.PurchaseSuperPower;
+            provisionCanvas.OnSuperPowerShieldRequest -= superPowerComponent.PurchaseSuperPower;
+            provisionCanvas.OnSuperPowerMegaBombRequest -= superPowerComponent.PurchaseSuperPower;
             provisionCanvas.OnNextShipSelectionRequest -= RequestNextShip;
             provisionCanvas.OnPreviousShipSelectionRequest -= RequestPreviousShip;
             provisionCanvas.OnPauseRequest -= RequestPause;
