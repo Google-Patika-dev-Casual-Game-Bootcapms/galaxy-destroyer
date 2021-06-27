@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathFinderMinion : Minion
+public class RoadTracker : Minion
 {
     [SerializeField]
     private float pathLength;
