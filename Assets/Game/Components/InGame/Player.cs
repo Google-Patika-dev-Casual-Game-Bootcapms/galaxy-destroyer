@@ -10,14 +10,12 @@ namespace SpaceShooterProject.Component
 
 
         //[SerializeField] private ObjectPooler ObjectPooler;
-
-        private Transform myTransform;
         [SerializeField] private float shipSpeed = 20f;
         [SerializeField] private SpriteRenderer shipSpriteRenderer;
         private ComponentContainer componentContainer;
         private CurrencyComponent currencyComponent;
-        private float frameRate = 0;
-        private float fireRate = 20;
+        public float fireRate = 1.0f;
+        public float fireNextSpawn = 2.0f;
 
         private GameCamera gameCamera;
 
@@ -68,14 +66,6 @@ namespace SpaceShooterProject.Component
             Time.timeScale = 0.5f;
         }
 
-        public float FrameRate
-        {
-            get => frameRate;
-            set => frameRate = value;
-        }
-
-        public float FireRate => fireRate;
-
         public void OnTouch()
         {
             Time.timeScale = 1f;
@@ -110,9 +100,15 @@ namespace SpaceShooterProject.Component
             inputSystemReferance.OnScreenTouchExit -= OnTouchUp;
         }
 
-        public void Shoot(Bullet bullet)
+        public void Shoot(BulletCollector bulletCollector)
         {
-            bullet.transform.position = transform.position;
+
+            if (Time.time > fireNextSpawn)
+            {
+                Bullet bullet = bulletCollector.GetBullet();
+                bullet.transform.position = transform.position;
+                fireNextSpawn += fireRate;
+            }
         }
 
         public ComponentContainer ComponentContainer

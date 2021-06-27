@@ -9,6 +9,9 @@
     {
         void Patrol();
         void Attack();
+        void GetHit();
+        void Death();
+        void OutOfScreen();
     }
 
 

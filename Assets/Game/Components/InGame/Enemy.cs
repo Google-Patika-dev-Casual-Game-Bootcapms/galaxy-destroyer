@@ -8,17 +8,23 @@
     {
         [SerializeField] private float shipSpeed = 20f;
         [SerializeField] private SpriteRenderer shipSpriteRender;
-        private float frameRate = 0;
-        private float fireRate = 20;
+        [SerializeField] private float frameRate = 0;
+        [SerializeField] private float fireRate = 20;
 
         public void Activate()
         {
-            
+            gameObject.SetActive(true);
         }
 
         public abstract void Attack();
 
         public abstract void Patrol();
+
+        public abstract void GetHit();
+
+        public abstract void Death();
+
+        public abstract void OutOfScreen();
 
         public void CallUpdate()
         {
@@ -27,7 +33,7 @@
 
         public void Deactivate()
         {
-            
+            gameObject.SetActive(false);
         }
 
         public void Init()
@@ -54,6 +60,7 @@
         {
             
         }
+
     }
 
 
