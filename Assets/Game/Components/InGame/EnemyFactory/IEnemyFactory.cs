@@ -2,16 +2,17 @@
 {
     public enum EnemyType
     {
-        RoadTracker = 1,
-        Kamikaze = 2,
-        FlameThrower = 3,
-        HeliA14 = 4,
-        HeliA17 = 5
+        RoadTracker = 0,
+        Kamikaze = 1,
+        FlameThrower = 2,
+        HeliA14 = 3,
+        HeliA17 = 4,
+        COUNT 
     }
 
     public interface IEnemyFactory
     {
-        IEnemy ProduceEnemy(EnemyType type);
+        Enemy ProduceEnemy(EnemyType type);
     }
 
 }

@@ -10,7 +10,6 @@ namespace SpaceShooterProject.Component
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
         [SerializeField] private Player player;
-        [SerializeField] private Enemy enemy;
         [SerializeField] private GameCamera gameCamera;
         private InGameInputSystem inputSystem;
         private InGameWeaponUpgradeComponent weaponUpgradeComponent;
@@ -47,7 +46,10 @@ namespace SpaceShooterProject.Component
             player.CallUpdate();
             player.Shoot(bulletCollector);
             bulletCollector.UpdateBullets();
-            enemy.CallUpdate();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                enemyFactory.SpawnEnemies();
+            }
         }
 
         private void LateUpdate()
