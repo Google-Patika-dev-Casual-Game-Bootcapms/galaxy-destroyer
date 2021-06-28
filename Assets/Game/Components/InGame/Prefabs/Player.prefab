@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipSpeed: 20
-  HP: 100
+  HP: 10
   shipSpriteRenderer: {fileID: 5194574757657190685}
-  fireRate: 0.01
+  fireRate: 2
   fireNextSpawn: 1
 --- !u!50 &1462914815
 Rigidbody2D:
@@ -121,7 +121,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &4169505332591933695
 BoxCollider2D:
