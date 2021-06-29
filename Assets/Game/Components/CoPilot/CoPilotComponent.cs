@@ -16,7 +16,10 @@ namespace SpaceShooterProject.Component.CoPilot
 			new Dictionary<CoPilotBase.CoPilotType, CoPilotBase>();
 		
 		private CoPilotBase activeCoPilot;
-		
+
+		public delegate void CurrentCoPilotSelectedDelegate(CoPilotBase coPilotBase);
+		public event CurrentCoPilotSelectedDelegate OnCurrentCoPilotSelectedEvent;
+
 		public void Initialize(ComponentContainer componentContainer)
 		{
 			gamePlayComponent = componentContainer.GetComponent("GamePlayComponent") as GamePlayComponent;
@@ -32,6 +35,11 @@ namespace SpaceShooterProject.Component.CoPilot
 		public void SelectCoPilot(CoPilotBase.CoPilotType targetCoPilotType)
 		{
 			activeCoPilot = coPilotDict[targetCoPilotType];
+
+			if(OnCurrentCoPilotSelectedEvent != null)
+			{
+				OnCurrentCoPilotSelectedEvent(activeCoPilot);
+			}
 			
 		}
 
