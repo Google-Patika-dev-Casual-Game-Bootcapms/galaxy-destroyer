@@ -11,11 +11,11 @@ namespace SpaceShooterProject.Component.CoPilot
         //todo CoPilot isimleri değişecek
         public enum CoPilotType
         {
-            CoPilot1,
-            CoPilot2,
-            CoPilot3,
-            CoPilot4,
-            CoPilot5
+            CoPilot1, //waitfo rit
+            CoPilot2, //nowyo udont
+            CoPilot3, //fireth rower
+            CoPilot4, //gotyo urback
+            CoPilot5 //shoc kwave
         }
 
         public CoPilotBase(CoPilotType targetType)
