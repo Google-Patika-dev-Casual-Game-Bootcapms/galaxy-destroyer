@@ -36,6 +36,7 @@ namespace SpaceShooterProject.AI.State
                 SendTrigger((int)HelicopterState.ACTION_STATE);
             }
         }
+
     }
 }
 

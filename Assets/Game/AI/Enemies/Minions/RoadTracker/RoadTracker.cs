@@ -14,6 +14,11 @@ namespace SpaceShooterProject.AI.Enemies
         {
             return pathLength;
         }
+
+        public override void RouteFinished()
+        {
+            
+        }
     }
 
 }

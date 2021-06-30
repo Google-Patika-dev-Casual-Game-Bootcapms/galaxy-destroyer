@@ -14,6 +14,8 @@ namespace SpaceShooterProject.AI.State
 
         public ActionState(IHelicopter helicopter, HelicopterEventContainer helicopterEventContainer) 
         {
+            this.helicopter = helicopter;
+
             attackState = new AttackState(helicopter, helicopterEventContainer);
             patrolState = new PatrolState(helicopter, helicopterEventContainer);
 

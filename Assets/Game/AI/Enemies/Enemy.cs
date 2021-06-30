@@ -15,22 +15,17 @@ namespace SpaceShooterProject.AI.Enemies
 
         protected IMovement movement;
 
+        public abstract void RouteFinished();
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
 
         public void Movement()
         {
             movement.Move(this);
+        }
+
+        public void Patrol()
+        {
+            movement.Patrol(this);
         }
 
         public float GetSpeed()
@@ -62,6 +57,8 @@ namespace SpaceShooterProject.AI.Enemies
         {
             routes.Add(newRoute);
         }
+
+        
 
     }
 }

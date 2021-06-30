@@ -7,5 +7,6 @@
     {
         //public void Initialize(Enemy minion);
         public void Move(Enemy minion);
+        public void Patrol(Enemy enemy);
     }
 }

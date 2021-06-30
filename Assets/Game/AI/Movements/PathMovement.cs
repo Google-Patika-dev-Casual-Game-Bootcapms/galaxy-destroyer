@@ -14,30 +14,57 @@ namespace SpaceShooterProject.AI.Movements
         //public abstract void Initialize(Enemy minion);
 
 
-        public void Move(Enemy minion)
+        public void Move(Enemy enemy)
         {
-            if (couroutineAllowed && minion.GetRoutes().Count != 0)
+            if (couroutineAllowed && enemy.GetRoutes().Count != 0)
             {
-                minion.StartCoroutine(FollowRoute(minion, currentRouteIndex));
+                enemy.StartCoroutine(FollowRoute(enemy, currentRouteIndex));
             }
         }
 
-        public IEnumerator FollowRoute(Enemy minion, int routeIndex)
+        public void Patrol(Enemy enemy)
         {
-            couroutineAllowed = false;
-
-            while (tParam < 1)
+            if (couroutineAllowed && enemy.GetRoutes().Count != 0)
             {
-                tParam += Time.deltaTime * minion.GetSpeed();
+                enemy.StartCoroutine(PatrolRoute(enemy, currentRouteIndex));
+            }
+        }
 
-                Vector2 newPosition = minion.GetRoute(routeIndex).CalculateBezierCurve(tParam);
+        public IEnumerator PatrolRoute(Enemy minion, int routeIndex)
+        {
+            int counter = 10;
+            couroutineAllowed = false;
+            tParam = 0f;
+            bool isReverse = false;
+            while (counter > 0)
+            {
+                if (tParam >= 1) tParam = Mathf.Floor(tParam);
+                if (tParam <= 0) tParam = Mathf.Ceil(tParam);
+                Debug.Log(isReverse);
+                Debug.Log(tParam);
+                while (tParam <= 1 && tParam >= 0)
+                {
+                    if (isReverse)
+                    {
+                        tParam -= Time.deltaTime * minion.GetSpeed();
+                    }
+                    else
+                    {
+                        tParam += Time.deltaTime * minion.GetSpeed();
+                    }
+                    
 
-                minion.SetPosition(newPosition);
+                    Vector2 newPosition = minion.GetRoute(routeIndex).CalculateBezierCurve(tParam);
 
-                yield return new WaitForEndOfFrame();
+                    minion.SetPosition(newPosition);
+
+                    yield return new WaitForEndOfFrame();
+                }
+                isReverse = !isReverse;
+                counter--;
+                
             }
 
-            tParam = 0f;
 
             if (currentRouteIndex < minion.GetRoutes().Count - 1)
             {
@@ -49,7 +76,49 @@ namespace SpaceShooterProject.AI.Movements
             }
 
             couroutineAllowed = true;
+
         }
+
+        public IEnumerator FollowRoute(Enemy minion, int routeIndex)
+        {
+            couroutineAllowed = false;
+            tParam = 0f;
+            
+            
+                while (tParam < 1)
+                {
+                    
+                    tParam += Time.deltaTime * minion.GetSpeed();
+                    
+
+
+                    Vector2 newPosition = minion.GetRoute(routeIndex).CalculateBezierCurve(tParam);
+
+                    minion.SetPosition(newPosition);
+
+                    yield return new WaitForEndOfFrame();
+                }
+
+            tParam = 0f;
+
+            if (currentRouteIndex < minion.GetRoutes().Count - 1)
+            {
+                currentRouteIndex++;
+            }
+            else
+            {
+                currentRouteIndex = 0; // When all routes are finished starts again from beginning
+            }
+            
+            couroutineAllowed = true;
+
+
+            minion.RouteFinished();
+        }
+
+
+
+
 
 
     }

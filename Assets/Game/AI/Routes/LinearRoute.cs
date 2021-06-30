@@ -8,9 +8,8 @@ namespace SpaceShooterProject.AI.Movements
     {
         public override Vector2 CalculateBezierCurve(float t)
         {
-            Debug.Log("Calculation");
+            
             Vector2 position = (1 - t) * controlPoints[0] + t * controlPoints[1];
-            Debug.Log(position);
             return position;
         }
 

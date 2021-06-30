@@ -18,17 +18,13 @@ namespace SpaceShooterProject.AI
         void Start()
         {
             Debug.Log("Merhaba");
-            helicopterEventContainer = new HelicopterEventContainer();
-            helicopter.InitializeContainer(helicopterEventContainer);
-            helicopter.InitializeContainerMethods();
-            helicopterMainState = new HelicopterMainState(helicopter, helicopterEventContainer);
-            helicopterMainState.Enter();
+            helicopter.Initialize();
         }
 
         // Update is called once per frame
         void Update()
         {
-            helicopterMainState.Update();
+            helicopter.helicopterMainState.Update();
         }
     }
 }

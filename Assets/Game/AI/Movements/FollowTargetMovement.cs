@@ -20,7 +20,10 @@ namespace SpaceShooterProject.AI.Movements
             throw new System.NotImplementedException();
         }
 
-
+        public void Patrol(Enemy enemy)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
 }
