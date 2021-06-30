@@ -13,12 +13,14 @@ namespace SpaceShooterProject.AI.State
 
         public EnterTheSceneState(IHelicopter helicopter, HelicopterEventContainer helicopterEventContainer) 
         {
+
             this.helicopter = helicopter;
             this.helicopterEventContainer = helicopterEventContainer;
         }
 
         protected override void OnEnter()
         {
+            Debug.Log("Enter The Scene on enter");
             helicopterEventContainer.TriggerEnterTheScene();
         }
 

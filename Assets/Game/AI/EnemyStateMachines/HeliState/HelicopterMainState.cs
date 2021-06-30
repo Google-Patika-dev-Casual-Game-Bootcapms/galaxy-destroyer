@@ -14,6 +14,7 @@ namespace SpaceShooterProject.AI.State
 
         public HelicopterMainState(IHelicopter helicopter, HelicopterEventContainer helicopterEventContainer) 
         {
+            Debug.Log("Main state");
             enterTheSceneState = new EnterTheSceneState(helicopter, helicopterEventContainer);
             actionState = new ActionState(helicopter, helicopterEventContainer);
             deathState = new DeathState(helicopter, helicopterEventContainer);
@@ -28,7 +29,7 @@ namespace SpaceShooterProject.AI.State
 
         protected override void OnEnter()
         {
-            
+            Debug.Log("main state on enter");
         }
 
         protected override void OnExit()

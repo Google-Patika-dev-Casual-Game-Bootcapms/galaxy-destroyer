@@ -7,14 +7,14 @@ namespace SpaceShooterProject.AI.Movements
 
     public class IndependentMovement : PathMovement
     {
-        public override void Initialize(Enemy minion)
-        {
-            currentRouteIndex = 0;
-            tParam = 0f;
-            couroutineAllowed = true;
+        //public override void Initialize(Enemy minion)
+        //{
+        //    currentRouteIndex = 0;
+        //    tParam = 0f;
+        //    couroutineAllowed = true;
 
 
-        }
+        //}
 
     }
 }

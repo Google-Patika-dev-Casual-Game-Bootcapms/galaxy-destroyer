@@ -7,7 +7,7 @@ namespace SpaceShooterProject.AI.Enemies
 
     public abstract class Enemy : MonoBehaviour, IEnemy
     {
-        [SerializeField] private Route[] routes;
+        private List<Route> routes = new List<Route>();
         [SerializeField] private float speed;
 
         [SerializeField]
@@ -28,12 +28,17 @@ namespace SpaceShooterProject.AI.Enemies
             
         }
 
+        public void Movement()
+        {
+            movement.Move(this);
+        }
+
         public float GetSpeed()
         {
             return speed;
         }
 
-        public Route[] GetRoutes()
+        public List<Route> GetRoutes()
         {
             return routes;
         }
@@ -55,7 +60,7 @@ namespace SpaceShooterProject.AI.Enemies
 
         public void AddRoute(Route newRoute)
         {
-            routes[routes.Length] = newRoute;
+            routes.Add(newRoute);
         }
 
     }

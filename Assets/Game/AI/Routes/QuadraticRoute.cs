@@ -8,20 +8,20 @@ namespace SpaceShooterProject.AI.Movements
     {
         public override Vector2 CalculateBezierCurve(float t)
         {
-            Vector2 position = Mathf.Pow((1 - t), 2) * controlPoints[0].position +
-                2 * (1 - t) * t * controlPoints[1].position + Mathf.Pow(t, 2) * controlPoints[2].position;
+            Vector2 position = Mathf.Pow((1 - t), 2) * controlPoints[0] +
+                2 * (1 - t) * t * controlPoints[1] + Mathf.Pow(t, 2) * controlPoints[2];
 
             return position;
         }
 
-        protected override void DrawGizmosLine()
-        {
-            DrawQuadraticGizmosLine();
-        }
+        //protected override void DrawGizmosLine()
+        //{
+        //    DrawQuadraticGizmosLine();
+        //}
 
         protected override bool IsPointsSet()
         {
-            return controlPoints.Length == 3;
+            return controlPoints.Count == 3;
         }
     }
 

@@ -5,18 +5,18 @@ namespace SpaceShooterProject.AI.Movements
     using System.Collections.Generic;
     using UnityEngine;
 
-    public abstract class PathMovement : IMovement
+    public class PathMovement : IMovement
     {
         protected int currentRouteIndex;
         protected float tParam;
-        protected bool couroutineAllowed;
+        protected bool couroutineAllowed = true;
 
-        public abstract void Initialize(Enemy minion);
+        //public abstract void Initialize(Enemy minion);
 
 
         public void Move(Enemy minion)
         {
-            if (couroutineAllowed && minion.GetRoutes().Length != 0)
+            if (couroutineAllowed && minion.GetRoutes().Count != 0)
             {
                 minion.StartCoroutine(FollowRoute(minion, currentRouteIndex));
             }
@@ -39,7 +39,7 @@ namespace SpaceShooterProject.AI.Movements
 
             tParam = 0f;
 
-            if (currentRouteIndex < minion.GetRoutes().Length - 1)
+            if (currentRouteIndex < minion.GetRoutes().Count - 1)
             {
                 currentRouteIndex++;
             }

@@ -6,7 +6,7 @@ namespace SpaceShooterProject.AI.Enemies
 
     public abstract class Minion : Enemy, IEnemy
     {
-
+        
 
     }
 }

@@ -32,9 +32,9 @@ namespace SpaceShooterProject.AI.Movements
         //    pathFinderMinion.AddRoute(linearRoute);
 
         //}
-        public override void Initialize(Enemy minion)
-        {
-            throw new System.NotImplementedException();
-        }
+        //public override void Initialize(Enemy minion)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
     }
 }

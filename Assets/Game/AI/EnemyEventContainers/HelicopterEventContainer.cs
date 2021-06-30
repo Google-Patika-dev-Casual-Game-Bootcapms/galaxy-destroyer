@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace SpaceShooterProject.AI 
 {
@@ -33,6 +34,8 @@ namespace SpaceShooterProject.AI
 
         public void TriggerEnterTheScene() 
         {
+
+            Debug.Log("trigger enter the scene");
             if (OnEnterTheSceneStateEnter != null) 
             {
                 OnEnterTheSceneStateEnter();
