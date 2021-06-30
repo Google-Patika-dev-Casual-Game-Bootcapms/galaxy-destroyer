@@ -65,6 +65,8 @@ namespace Devkit.Base.Pattern.ObjectPool
 
             pool.Enqueue(poolableObject);
         }
+
+        public Queue<ObjectType> GetPool => pool;
     }
 }
 
