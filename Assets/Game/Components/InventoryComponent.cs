@@ -28,15 +28,14 @@
             // permanentCardCount = Cards.GetPermanentCardCount(); ?
 
             accountDataFile = "accountData.txt";
-            accountDataPath = Application.persistentDataPath + "/" + accountDataFile;
+            accountDataPath = Application.dataPath + "/" + accountDataFile;
 
             if (File.Exists(accountDataPath))
             {
-                //todo Account Component'e aşağıdaki metodlar yazılınca yorumdan çıkarılacak
-                // inventoryData.OwnedPermanentCards = accountComponent.GetOwnedPermanentCards();
-                // inventoryData.OwnedTemporalCards = accountComponent.GetOwnedTemporalCards();
-                // inventoryData.OwnedSpaceShips = accountComponent.GetOwnedSpaceShips();
-                // inventoryData.CollectedSpaceShipParts = accountComponent.GetCollectedSpaceShipParts();
+                inventoryData.OwnedPermanentCards = accountComponent.OwnedPermanentCards();
+                inventoryData.OwnedTemporalCards = accountComponent.OwnedTemporalCards();
+                inventoryData.OwnedSpaceShips = accountComponent.GetOwnedSpaceShips();
+                inventoryData.CollectedSpaceShipParts = accountComponent.CollectedSpaceShipParts();
             }
             else
             {
@@ -78,6 +77,8 @@
             }
         }
 
+        #region Getter Methods
+
         public List<int> GetOwnedPermanentCards()
         {
             return inventoryData.OwnedPermanentCards;
@@ -97,6 +98,8 @@
         {
             return inventoryData.CollectedSpaceShipParts;
         }
+
+        #endregion
     }
 
     [Serializable]
