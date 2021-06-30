@@ -17,6 +17,7 @@ namespace SpaceShooterProject.UserInterface
         public event MenuRequestDelegate OnGarageMenuRequest;
         public event MenuRequestDelegate OnCoPilotMenuRequest;
         public event MenuRequestDelegate OnCreditsMenuRequest;
+        public event MenuRequestDelegate OnQuoteMenuRequest;
         public event MenuPlanetSelectionDelegate OnNextPlanetButtonRequest;
         public event MenuPlanetSelectionDelegate OnPreviousPlanetButtonRequest;
 
@@ -47,11 +48,11 @@ namespace SpaceShooterProject.UserInterface
             return new Vector2(screenSize.x / scaleFactor, screenSize.y / scaleFactor);
         }
 
-        public void RequestInGameMenu()
+        public void RequestQuoteMenu() 
         {
-            if (OnInGameMenuRequest != null)
+            if (OnQuoteMenuRequest != null) 
             {
-                OnInGameMenuRequest();
+                OnQuoteMenuRequest();
             }
         }
 

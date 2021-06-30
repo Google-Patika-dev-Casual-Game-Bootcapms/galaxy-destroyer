@@ -35,7 +35,11 @@ public class PlanetUIController : MonoBehaviour, IInitializable
 
     public void UnSubscribeAllPlanetAnimationCompletionEvents()
     {
-        planets.ForEach(planet => { planet.OnAnimationsCompleted -= OnPlanetAnimationComplete; });
+        planets.ForEach(planet =>
+        {
+            planet.KillTweens();
+            planet.OnAnimationsCompleted -= OnPlanetAnimationComplete;
+        });
     }
 
     private void SetPlanetNeighbors(List<PlanetUI> planets)
