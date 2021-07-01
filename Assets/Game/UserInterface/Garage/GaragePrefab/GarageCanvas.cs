@@ -12,14 +12,17 @@ namespace SpaceShooterProject.UserInterface
         public delegate void RequestUpdateDelegate(UpgradablePartType upgradablePartType);
         public event RequestUpdateDelegate OnPartUpgradeRequest;
       
-        [SerializeField] private GarageUIButtonUpgrader shieldUpgradeInfo;
-        [SerializeField] private GarageUIButtonUpgrader laserUpgradeInfo;
-        [SerializeField] private GarageUIButtonUpgrader megabombUpgradeInfo;
-        [SerializeField] private GarageUIButtonUpgrader magnetUpgradeInfo;
-        [SerializeField] private GarageUIButtonUpgrader healthUpgradeInfo;
-        [SerializeField] private GarageUIButtonUpgrader missileUpgradeInfo;
-        [SerializeField] private GarageUIButtonUpgrader wingCannonUpgradeInfo;
-        [SerializeField] private GarageUIButtonUpgrader mainCannonUpgradeInfo;
+        [SerializeField] private GarageUIHexagonUpgrader shieldUpgradeInfo;
+        [SerializeField] private GarageUIHexagonUpgrader laserUpgradeInfo;
+        [SerializeField] private GarageUIHexagonUpgrader megabombUpgradeInfo;
+        [SerializeField] private GarageUIHexagonUpgrader magnetUpgradeInfo;
+        [SerializeField] private GarageUIHexagonUpgrader healthUpgradeInfo;
+        [SerializeField] private GarageUIHexagonUpgrader missileUpgradeInfo;
+        [SerializeField] private GarageUIHexagonUpgrader wingCannonUpgradeInfo;
+        [SerializeField] private GarageUIHexagonUpgrader mainCannonUpgradeInfo;
+        [SerializeField] private GarageUIHexagonUpgrader fireRateUpgradeInfo;
+        [SerializeField] private GarageUIHexagonUpgrader speedUpgradeInfo;
+
 
         [SerializeField]
         private TextMeshProUGUI currentCurrencyContainer;
@@ -46,14 +49,7 @@ namespace SpaceShooterProject.UserInterface
 
         protected override void Init()
         {
-
             backgroundImage.sizeDelta = GetCanvasSize();
-            var buttons = GetComponentsInChildren<Button>();
-
-            foreach (Button fakeButton in buttons)
-            {
-                fakeButton.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
-            }
         }
 
         public void OnUpgradeProcessCompleted(UpgradeProcessData upgradeProcessData, int ownedGold)
@@ -118,6 +114,12 @@ namespace SpaceShooterProject.UserInterface
                 case UpgradablePartType.MAIN_CANNON:
                     mainCannonUpgradeInfo.UpdateMinorAndMajorLevels(level);
                     break;
+                case UpgradablePartType.FIRE_RATE:
+                    fireRateUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    break;
+                case UpgradablePartType.SPEED:
+                    speedUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    break;
                 default:
                     break;
             }
@@ -135,7 +137,8 @@ namespace SpaceShooterProject.UserInterface
             missileUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MISSILE]);
             wingCannonUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.WING_CANNON]);
             mainCannonUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MAIN_CANNON]);
-            
+            fireRateUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.FIRE_RATE]);
+            speedUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.SPEED]);
             currentCurrencyContainer.text = ownedGold.ToString();
         }
 
