@@ -26,6 +26,7 @@ namespace SpaceShooterProject
         private SuperPowerComponent superPowerComponent;
         private InGameInputSystem inGameInputSystem;
         private CurrencyComponent currencyComponent;
+        private UpgradeComponent upgradeComponent;
 
         private AppState appState;
 
@@ -51,6 +52,7 @@ namespace SpaceShooterProject
             CreateCoPilotComponent();
             CreateSuperPowerComponent();
             CreateInGameInputSystem();
+            CreateUpgradeComponent();
 
             InitializeComponents();
             CreateAppState();
@@ -158,6 +160,12 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("InGameInputSystem", inGameInputSystem);
         }
 
+        private void CreateUpgradeComponent()
+        {
+            upgradeComponent = new UpgradeComponent();
+            componentContainer.AddComponent("UpgradeComponent", upgradeComponent);
+        }
+
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
@@ -174,6 +182,7 @@ namespace SpaceShooterProject
             coPilotComponent.Initialize(componentContainer);
             superPowerComponent.Initialize(componentContainer);
             inGameInputSystem.Initialize(componentContainer);
+            upgradeComponent.Initialize(componentContainer);
         }
 
         private void CreateAppState()
