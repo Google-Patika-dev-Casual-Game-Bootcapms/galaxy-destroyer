@@ -90,7 +90,7 @@
         {
             partPriceWeights = new int[]
             { 
-                1, 3, 4, 1, 2, 2, 4, 6
+                1, 3, 4, 1, 2, 2, 4, 6, 7, 3
             };
 
         }
@@ -106,6 +106,8 @@
         MISSILE,
         WING_CANNON,
         MAIN_CANNON,
+        FIRE_RATE,
+        SPEED,
         COUNT
     }
 
