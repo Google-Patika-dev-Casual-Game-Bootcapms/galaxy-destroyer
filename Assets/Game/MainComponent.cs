@@ -138,7 +138,7 @@ namespace SpaceShooterProject
 
         private void CreateCardComponent()
         {
-            cardComponent = gameObject.AddComponent<CardComponent>();
+            cardComponent = FindObjectOfType<CardComponent>();
             componentContainer.AddComponent("CardComponent", cardComponent);
         }
 
