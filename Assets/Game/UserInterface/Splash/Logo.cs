@@ -9,9 +9,6 @@ namespace SpaceShooterProject.UserInterface
     {
         [SerializeField]
         private Image image;
-        [SerializeField]
-        private Sprite[] sourceSprites;
-        private RectTransform imageRectTransform;
 
         public void Activate()
         {
@@ -25,48 +22,12 @@ namespace SpaceShooterProject.UserInterface
 
         public void Init()
         {
-            ChooseRandomLogo();
-            image.SetNativeSize();
             var imageRect = image.GetComponent<RectTransform>();
-        }
-
-        private void ChooseRandomLogo()
-        {
-            if (sourceSprites.Length == 0) 
-            {
-                return;
-            }
-
-            if (sourceSprites.Length == 1) 
-            {
-                image.sprite = sourceSprites[0];
-                return;
-            }
-
-            image.sprite = sourceSprites[UnityEngine.Random.Range(0, sourceSprites.Length)];
         }
 
         public void SetScreenSize(Vector2 vector2)
         {
             image.GetComponent<RectTransform>().sizeDelta = new Vector2();
-        }
-
-        public void SetWidth(float width, bool preserveAspect)
-        {
-            if (preserveAspect)
-            {
-                var currentHeight = imageRectTransform.sizeDelta.y;
-                var currentWidth = imageRectTransform.sizeDelta.x;
-                var futureWidth = width;
-                var futureHeight = (currentHeight * futureWidth) / currentWidth;
-
-                imageRectTransform.sizeDelta = new Vector2(futureWidth, futureHeight);
-            }
-            else
-            {
-                imageRectTransform.sizeDelta = new Vector2(width, imageRectTransform.sizeDelta.y);
-            }
-
         }
 
         public void PlayFadeInAnimation(float duration) 
