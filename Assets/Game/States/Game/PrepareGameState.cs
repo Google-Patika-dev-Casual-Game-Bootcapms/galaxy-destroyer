@@ -24,6 +24,8 @@ namespace SpaceShooterProject.State
 
         protected override void OnEnter()
         {
+            Debug.Log("PREPARE ON ENTER");
+            uiComponent.EnableCanvas(UIComponent.MenuName.PROVISION);
             provisionCanvas.OnSuperPowerLaserRequest += superPowerComponent.UpgradeSuperPower;
             provisionCanvas.OnSuperPowerShieldRequest += superPowerComponent.UpgradeSuperPower;
             provisionCanvas.OnSuperPowerMegaBombRequest += superPowerComponent.UpgradeSuperPower;
@@ -35,6 +37,8 @@ namespace SpaceShooterProject.State
 
         protected override void OnExit()
         {
+            Debug.Log("PREPARE ON EXIT");
+
             provisionCanvas.OnSuperPowerLaserRequest -= superPowerComponent.UpgradeSuperPower;
             provisionCanvas.OnSuperPowerShieldRequest -= superPowerComponent.UpgradeSuperPower;
             provisionCanvas.OnSuperPowerMegaBombRequest -= superPowerComponent.UpgradeSuperPower;

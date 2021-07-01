@@ -1,4 +1,4 @@
-namespace SpaceShooterProject.Component 
+namespace SpaceShooterProject.Component
 {
     using System.Collections;
     using System.Collections.Generic;
@@ -8,9 +8,13 @@ namespace SpaceShooterProject.Component
 
     public class CurrencyComponent : IComponent
     {
-            private AccountComponent accountComponent;
-            private int ownedGold,ownedDiamond;
-            private bool isGoldEnough,isDiamondEnough;
+        public delegate void CurrencyChangeDelegate(int currencyCount);
+        public event CurrencyChangeDelegate OnGoldChanged;
+        public event CurrencyChangeDelegate OnDiamondChanged;
+
+        private AccountComponent accountComponent;
+        private int ownedGold;
+        private int ownedDiamond;
 
         public void Initialize(ComponentContainer componentContainer)
         {
@@ -20,67 +24,74 @@ namespace SpaceShooterProject.Component
             ownedGold = accountComponent.GetOwnedGold();
         }
 
-        #region Currency Methods
-            public void EarnGold(int goldIncome)
-            {
-                ownedGold += goldIncome;
-            }
-
-            public void EarnDiamond(int diamondIncome)
-            {
-                ownedDiamond += diamondIncome;
-            }
-
-            public bool SpendGold(int goldOutcome)
-            {
-                if(ownedGold < goldOutcome)
-                {
-                    //TODO give an error
-                    isGoldEnough = false;
-                }
-                else
-                {
-                    ownedGold -= goldOutcome;
-                    isGoldEnough=true;
-                }
-                
-                return isGoldEnough;
-            }
-
-        public bool IsAffordable(int amount)
+        public void EarnGold(int goldIncome)
         {
-            return amount <= ownedGold;
+            ownedGold += goldIncome;
+            TriggerGoldCountChange();
         }
 
-        public bool SpendDiamond(int diamondOutcome)
+        private void TriggerGoldCountChange()
+        {
+            if (OnGoldChanged != null)
             {
-                if(ownedDiamond < diamondOutcome)
-                {
-                    //TODO give an error
-                    isDiamondEnough=false;
-                }
-                else
-                {
-                    ownedDiamond -= diamondOutcome;
-                    isDiamondEnough = true;
-                }
+                OnGoldChanged(ownedGold);
+            }
+        }
 
-                return isDiamondEnough;
+        public void EarnDiamond(int diamondIncome)
+        {
+            ownedDiamond += diamondIncome;
+            TriggerDiamondCountChange();
+        }
+
+        private void TriggerDiamondCountChange()
+        {
+            if (OnDiamondChanged != null)
+            {
+                OnDiamondChanged(ownedDiamond);
+            }
+        }
+
+        public void SpendGold(int goldOutcome)
+        {
+            if (!IsGoldAffordable(goldOutcome)) 
+            {
+                return;
             }
 
+            ownedGold -= goldOutcome;
+            TriggerGoldCountChange();
+        }
 
-        #endregion
-    
-        #region Getter Methods
-            public int GetOwnedGold()
+        public bool IsGoldAffordable(int goldAmount)
+        {
+            return goldAmount <= ownedGold;
+        }
+
+        public bool IsDiamondAffordable(int diamondAmount)
+        {
+            return diamondAmount <= ownedDiamond;
+        }
+
+        public void SpendDiamond(int diamondOutcome)
+        {
+            if (!IsDiamondAffordable(diamondOutcome)) 
             {
-                return ownedGold;
+                return;
             }
 
-            public int GetOwnedDiamond()
-            {
-                return ownedDiamond;
-            }
-        #endregion
+            ownedDiamond -= diamondOutcome;
+            TriggerDiamondCountChange();
+        }
+
+        public int GetOwnedGold()
+        {
+            return ownedGold;
+        }
+
+        public int GetOwnedDiamond()
+        {
+            return ownedDiamond;
+        }
     }
 }
