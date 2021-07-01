@@ -174,105 +174,42 @@ public class EditorComponent : EditorWindow
         return filesAndDirs.Select(foundFile => foundFile.Name).ToList();
     }
 
-    #region ObjectGenerator
     private GameObject InstantiateLevelCharacter(EGameObjectType type)
     {
-        GameObject shape;
-        switch (type)
+        var shape = type switch
         {
-           case EGameObjectType.flyEnemyNPC:
-                shape = Instantiate(flyEnemyNPCPrefab);
-                break;
-            case EGameObjectType.stableEnemyNPC:
-                shape = Instantiate(stableEnemyNPCPrefab);
-                break;
-            case EGameObjectType.nonFlyEnemyNPC:
-                shape = Instantiate(nonFlyEnemyNPCPrefab);
-                break;
-            case EGameObjectType.levelEndMonster:
-                shape = Instantiate(levelEndMonsterPrefab);
-                break;
-            case EGameObjectType.friendNPC:
-                shape = Instantiate(friendNPCPrefab);
-                break;
-            case EGameObjectType.box:
-                shape = Instantiate(boxPrefab);
-                break;
-            case EGameObjectType.mars:
-                shape = Instantiate(marsPrefab);
-                break;
-            case EGameObjectType.neptune:
-                shape = Instantiate(neptunePrefab);
-                break;
-            case EGameObjectType.uranus:
-                shape = Instantiate(uranusPrefab);
-                break;
-            case EGameObjectType.saturn:
-                shape = Instantiate(saturnPrefab);
-                break;
-            case EGameObjectType.metalCheastBlue:
-                shape = Instantiate(metalCheastBlue);
-                break;
-            case EGameObjectType.metalCheastRed:
-                shape = Instantiate(metalCheastRed);
-                break;
-            case EGameObjectType.metalCheastGrey:
-                shape = Instantiate(metalCheastGrey);
-                break;
-            case EGameObjectType.metalCheastYellow:
-                shape = Instantiate(metalCheastYellow);
-                break;
-            case EGameObjectType.metalStand:
-                shape = Instantiate(metalStand);
-                break;
-            case EGameObjectType.metalIskele:
-                shape = Instantiate(metalIskele);
-                break;
-            case EGameObjectType.kazan:
-                shape = Instantiate(kazan);
-                break;
-            case EGameObjectType.dagLow:
-                shape = Instantiate(dagLow);
-                break;
-            case EGameObjectType.nukeDoor:
-                shape = Instantiate(nukeDoor);
-                break;
-            case EGameObjectType.tower:
-                shape = Instantiate(tower);
-                break;
-            case EGameObjectType.propPipes:
-                shape = Instantiate(propPipes);
-                break;
-            case EGameObjectType.rock1:
-                shape = Instantiate(rock1);
-                break;
-            case EGameObjectType.rock2:
-                shape = Instantiate(rock2);
-                break;
-            case EGameObjectType.metalTower:
-                shape = Instantiate(metalTower);
-                break;
-            case EGameObjectType.metalBridge2:
-                shape = Instantiate(metalBridge2);
-                break;
-            case EGameObjectType.armBattery:
-                shape = Instantiate(armBattery);
-                break;
-            case EGameObjectType.energyBumb:
-                shape = Instantiate(energyBumb);
-                break;
-           case EGameObjectType.mountain002:
-               shape = Instantiate(mountain002);
-               break;
-           case EGameObjectType.varil:
-               shape = Instantiate(varil);
-               break;
-            default:
-                shape = Instantiate(vinc);
-                break;
-        }
+            EGameObjectType.flyEnemyNPC => Instantiate(flyEnemyNPCPrefab),
+            EGameObjectType.stableEnemyNPC => Instantiate(stableEnemyNPCPrefab),
+            EGameObjectType.nonFlyEnemyNPC => Instantiate(nonFlyEnemyNPCPrefab),
+            EGameObjectType.levelEndMonster => Instantiate(levelEndMonsterPrefab),
+            EGameObjectType.friendNPC => Instantiate(friendNPCPrefab),
+            EGameObjectType.box => Instantiate(boxPrefab),
+            EGameObjectType.mars => Instantiate(marsPrefab),
+            EGameObjectType.neptune => Instantiate(neptunePrefab),
+            EGameObjectType.uranus => Instantiate(uranusPrefab),
+            EGameObjectType.saturn => Instantiate(saturnPrefab),
+            EGameObjectType.metalCheastBlue => Instantiate(metalCheastBlue),
+            EGameObjectType.metalCheastRed => Instantiate(metalCheastRed),
+            EGameObjectType.metalCheastGrey => Instantiate(metalCheastGrey),
+            EGameObjectType.metalCheastYellow => Instantiate(metalCheastYellow),
+            EGameObjectType.metalStand => Instantiate(metalStand),
+            EGameObjectType.metalIskele => Instantiate(metalIskele),
+            EGameObjectType.kazan => Instantiate(kazan),
+            EGameObjectType.dagLow => Instantiate(dagLow),
+            EGameObjectType.nukeDoor => Instantiate(nukeDoor),
+            EGameObjectType.tower => Instantiate(tower),
+            EGameObjectType.propPipes => Instantiate(propPipes),
+            EGameObjectType.rock1 => Instantiate(rock1),
+            EGameObjectType.rock2 => Instantiate(rock2),
+            EGameObjectType.metalTower => Instantiate(metalTower),
+            EGameObjectType.metalBridge2 => Instantiate(metalBridge2),
+            EGameObjectType.armBattery => Instantiate(armBattery),
+            EGameObjectType.energyBumb => Instantiate(energyBumb),
+            EGameObjectType.mountain002 => Instantiate(mountain002),
+            EGameObjectType.varil => Instantiate(varil),
+            _ => Instantiate(vinc)
+        };
         return shape;
     }
-    #endregion
 }
 #endif
