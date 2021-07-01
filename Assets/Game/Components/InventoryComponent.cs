@@ -11,8 +11,6 @@
         private InventoryData inventoryData;
 
         private AccountComponent accountComponent;
-        private string accountDataPath;
-        private string accountDataFile;
 
         private int spaceShipCount;
         private int temporalCardCount;
@@ -24,13 +22,10 @@
 
             // To-Do: Assign values when necessary components are created!
             // spaceShipCount = SpaceShips.GetSpaceShipCount(); ?
-            // temporalCardCount = Cards.GetTemporalCardCount(); ?
-            // permanentCardCount = Cards.GetPermanentCardCount(); ?
+            // temporalCardCount = CardComponent.GetTemporalCardCount();
+            // permanentCardCount = CardComponent.GetPermanentCardCount();
 
-            accountDataFile = "accountData.txt";
-            accountDataPath = Application.dataPath + "/" + accountDataFile;
-
-            if (File.Exists(accountDataPath))
+            if (accountComponent.IsFileExist())
             {
                 inventoryData.OwnedPermanentCards = accountComponent.OwnedPermanentCards();
                 inventoryData.OwnedTemporalCards = accountComponent.OwnedTemporalCards();
