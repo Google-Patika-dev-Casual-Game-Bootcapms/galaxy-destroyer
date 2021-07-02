@@ -403,6 +403,9 @@ MonoBehaviour:
   initialDistance: 300
   patrolRouteWidth: 300
   patrolRouteHeight: 500
+  patrolTimeUntilAttack: 3
+  fireRate: 4
+  bulletPerAttack: 4
 --- !u!224 &1012095165
 RectTransform:
   m_ObjectHideFlags: 0
@@ -420,7 +423,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 574, y: 2232}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 3, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1341405216
 GameObject:

@@ -15,6 +15,16 @@ namespace SpaceShooterProject.AI.Enemies
             return pathLength;
         }
 
+        public override bool IsMovementContinue()
+        {
+            return false;
+        }
+
+        public override bool IsMovementInterrupted()
+        {
+            return false;
+        }
+
         public override void RouteFinished()
         {
             

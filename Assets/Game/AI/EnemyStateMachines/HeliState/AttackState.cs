@@ -19,6 +19,7 @@ namespace SpaceShooterProject.AI.State
 
         protected override void OnEnter()
         {
+            Debug.Log("In Attack State");
             helicopterEventContainer.TriggerEnterTheAttackState();
         }
 

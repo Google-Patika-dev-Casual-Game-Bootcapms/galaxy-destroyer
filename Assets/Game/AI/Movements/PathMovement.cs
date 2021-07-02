@@ -40,10 +40,14 @@ namespace SpaceShooterProject.AI.Movements
             {
                 if (tParam >= 1) tParam = Mathf.Floor(tParam);
                 if (tParam <= 0) tParam = Mathf.Ceil(tParam);
-                Debug.Log(isReverse);
-                Debug.Log(tParam);
                 while (tParam <= 1 && tParam >= 0)
                 {
+                    if (minion.IsMovementInterrupted())
+                    {
+                        yield return new WaitUntil(() => minion.IsMovementContinue());
+                    }
+                    
+
                     if (isReverse)
                     {
                         tParam -= Time.deltaTime * minion.GetSpeed();
@@ -52,13 +56,15 @@ namespace SpaceShooterProject.AI.Movements
                     {
                         tParam += Time.deltaTime * minion.GetSpeed();
                     }
-                    
+
 
                     Vector2 newPosition = minion.GetRoute(routeIndex).CalculateBezierCurve(tParam);
 
                     minion.SetPosition(newPosition);
 
                     yield return new WaitForEndOfFrame();
+                    
+                    
                 }
                 isReverse = !isReverse;
                 counter--;
