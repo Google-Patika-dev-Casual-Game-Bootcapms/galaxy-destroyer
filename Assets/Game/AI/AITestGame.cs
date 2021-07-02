@@ -14,17 +14,27 @@ namespace SpaceShooterProject.AI
 
         [SerializeField]
         Helicopter helicopter;
+
+        [SerializeField]
+        StraightRoadTracker straightDummy;
+
+        [SerializeField]
+        WaveRoadTracker waveDummy;
         // Start is called before the first frame update
         void Start()
         {
             Debug.Log("Merhaba");
             helicopter.Initialize();
+            straightDummy.Initialize();
+            waveDummy.Initialize();
         }
 
         // Update is called once per frame
         void Update()
         {
             helicopter.helicopterMainState.Update();
+            straightDummy.roadTrackerMainState.Update();
+            waveDummy.roadTrackerMainState.Update();
         }
     }
 }

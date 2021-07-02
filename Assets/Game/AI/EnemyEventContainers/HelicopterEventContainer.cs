@@ -1,8 +1,9 @@
-using System;
-using UnityEngine;
 
 namespace SpaceShooterProject.AI 
 {
+    using System;
+    using UnityEngine;
+
     public class HelicopterEventContainer
     {
         public delegate void MessageDelegate();

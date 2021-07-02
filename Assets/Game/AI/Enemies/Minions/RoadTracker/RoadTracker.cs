@@ -1,18 +1,72 @@
 namespace SpaceShooterProject.AI.Enemies
 {
     using SpaceShooterProject.AI.Movements;
+    using SpaceShooterProject.AI.State;
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class RoadTracker : Minion
+    public abstract class RoadTracker : Minion, IRoadTracker
     {
-        [SerializeField]
-        private float pathLength;
+        private RoadTrackerEventContainer roadTrackerEventContainer;
+        public RoadTrackerMainState roadTrackerMainState;
 
-        public float GetPathLength()
+        private bool isDeath = false;
+
+        public abstract void OnInitialize();
+
+        public void Initialize()
         {
-            return pathLength;
+            mainCamera = Camera.main;
+            roadTrackerEventContainer = new RoadTrackerEventContainer();
+            roadTrackerMainState = new RoadTrackerMainState(this, roadTrackerEventContainer);
+            InitializeEvents();
+
+            OnInitialize();
+            roadTrackerMainState.Enter();
+        }
+
+        private void InitializeEvents()
+        {
+            roadTrackerEventContainer.OnActionStateEnter += OnActionStateEnter;
+            roadTrackerEventContainer.OnActionStateExit += OnActionStateExit;
+            roadTrackerEventContainer.OnDeathStateEnter += OnDeathStateEnter;
+            roadTrackerEventContainer.OnDeathStateExit += OnDeathStateExit;
+        }
+
+        private void DestroyEvents()
+        {
+            roadTrackerEventContainer.OnActionStateEnter -= OnActionStateEnter;
+            roadTrackerEventContainer.OnActionStateExit -= OnActionStateExit;
+            roadTrackerEventContainer.OnDeathStateEnter -= OnDeathStateEnter;
+            roadTrackerEventContainer.OnDeathStateExit -= OnDeathStateExit;
+        }
+
+        public void OnActionStateEnter()
+        {
+            Movement();
+        }
+
+        public void OnActionStateExit()
+        {
+
+        }
+
+        public void OnDeathStateEnter()
+        {
+            Debug.Log("I am dead");
+            Destroy(gameObject);
+        }
+
+        public void OnDeathStateExit()
+        {
+
+        }
+
+
+        public bool IsDeath()
+        {
+            return isDeath;
         }
 
         public override bool IsMovementContinue()
@@ -25,10 +79,17 @@ namespace SpaceShooterProject.AI.Enemies
             return false;
         }
 
+        public override void OnOutOfScreen()
+        {
+            Debug.Log("Is death true");
+            isDeath = true;
+        }
+
         public override void RouteFinished()
         {
             
         }
     }
+
 
 }

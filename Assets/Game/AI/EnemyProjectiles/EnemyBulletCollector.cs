@@ -4,11 +4,16 @@
     using Devkit.Base.Pattern.ObjectPool;
     using System.Collections;
 
+    //public delegate void EnemyBulletTrigger();
+
     public class EnemyBulletCollector : IEnemyBulletCollector
     {
         private const int INITIAL_BULLET_IN_POOL = 10;
         private Pool<EnemyBullet> pool;
         private const string SOURCE_OBJECT_PATH = "Prefabs/EnemyBullet";
+
+        
+        //private event EnemyBulletTrigger playerHitFunction;
 
         public EnemyBulletCollector()
         {

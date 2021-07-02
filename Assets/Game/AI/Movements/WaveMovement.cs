@@ -4,7 +4,7 @@
     using System.Collections;
     using System;
     using UnityEngine;
-    public class StraightDownMovement : IMovement
+    public class WaveMovement : IMovement
     {
         protected bool couroutineAllowed = true;
 
@@ -12,7 +12,7 @@
         {
             if (couroutineAllowed)
             {
-                enemy.StartCoroutine(MoveDown(enemy));
+                enemy.StartCoroutine(MoveWaveDown(enemy));
             }
         }
         public void Patrol(Enemy enemy)
@@ -20,14 +20,28 @@
 
         }
 
-        public IEnumerator MoveDown(Enemy enemy)
+        public IEnumerator MoveWaveDown(Enemy enemy)
         {
             couroutineAllowed = false;
+            bool isIncreasing = true;
+            float angle = 1;
             do
             {
+                if(angle == 180 || angle == 0)
+                {
+                    isIncreasing = !isIncreasing;
+                }
+                if (isIncreasing)
+                {
+                    angle += 1;
+                }
+                else
+                {
+                    angle -= 1;
+                }
                 Vector2 translationVector;
-                translationVector.y = -1 * enemy.GetSpeed();
-                translationVector.x = 0;
+                translationVector.y = -1 * Mathf.Sin(Mathf.Deg2Rad * angle) * enemy.GetSpeed();
+                translationVector.x = Mathf.Cos(Mathf.Deg2Rad * angle) * enemy.GetSpeed();
                 enemy.SetPosition(enemy.GetPosition() + translationVector);
                 yield return new WaitForEndOfFrame();
 
@@ -36,8 +50,9 @@
             couroutineAllowed = true;
             enemy.OnOutOfScreen();
 
-            
+
         }
     }
-
 }
+
+

@@ -1,4 +1,4 @@
-namespace SpaceShooterProject.AI.State 
+namespace SpaceShooterProject.AI.State
 {
     using Devkit.HSM;
     using SpaceShooterProject.AI.Enemies;

@@ -9,9 +9,13 @@ namespace SpaceShooterProject.AI.Enemies
     {
         private List<Route> routes = new List<Route>();
         [SerializeField] private float speed;
+        [SerializeField] private int health;
 
         [SerializeField]
         Sprite enemySprite;
+
+        [SerializeField]
+        protected Camera mainCamera;
 
         protected IMovement movement;
 
@@ -20,6 +24,17 @@ namespace SpaceShooterProject.AI.Enemies
         public abstract bool IsMovementInterrupted();
 
         public abstract bool IsMovementContinue();
+
+        public abstract void OnOutOfScreen();
+
+        public virtual bool IsOutOfScreen()
+        {
+            Vector2 normalizedPosition = mainCamera.WorldToViewportPoint(transform.position);
+            return (normalizedPosition.x < 0 || normalizedPosition.x > 1) ||
+                (normalizedPosition.y < 0 || normalizedPosition.y > 1);
+        }
+
+
 
 
         public void Movement()

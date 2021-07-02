@@ -11,6 +11,9 @@
         [SerializeField] private float directionAngle = 270f; //Angle is in anticlockwise so 270 is down
         [SerializeField] private RectTransform _transform;
 
+        //public delegate void EnemyBulletTrigger();
+
+        //public event EnemyBulletTrigger OnHitPlayer;
 
         private IEnemyBulletCollector enemyBulletCollector;
         private Camera mainCamera;

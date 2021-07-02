@@ -34,9 +34,11 @@ namespace SpaceShooterProject.AI.Enemies
         private bool isEnterTheSceneMovementFinish = false;
         private bool isPatrolTimeFinished = false;
         private bool isShootingSessionEnd = false;
+        private bool isDeath = false;
 
         public void Initialize()
         {
+            mainCamera = Camera.main;
             movement = new PathMovement();
             enemyBulletCollector = new EnemyBulletCollector();
             helicopterEventContainer = new HelicopterEventContainer();
@@ -54,6 +56,8 @@ namespace SpaceShooterProject.AI.Enemies
             helicopterEventContainer.OnPatrolStateExit += OnPatrolStateExit;
             helicopterEventContainer.OnAttackStateEnter += OnAttackStateEnter;
             helicopterEventContainer.OnAttackStateExit += OnAttackStateExit;
+            helicopterEventContainer.OnDeathStateEnter += OnDeathStateEnter;
+            helicopterEventContainer.OnDeathStateExit += OnDeathStateExit;
 
         }
 
@@ -66,6 +70,13 @@ namespace SpaceShooterProject.AI.Enemies
             helicopterEventContainer.OnPatrolStateExit -= OnPatrolStateExit;
             helicopterEventContainer.OnAttackStateEnter -= OnAttackStateEnter;
             helicopterEventContainer.OnAttackStateExit -= OnAttackStateExit;
+            helicopterEventContainer.OnDeathStateEnter -= OnDeathStateEnter;
+            helicopterEventContainer.OnDeathStateExit -= OnDeathStateExit;
+        }
+
+        public override bool IsOutOfScreen()
+        {
+            return false;
         }
 
         public void FireBullet()
@@ -149,6 +160,16 @@ namespace SpaceShooterProject.AI.Enemies
             StopCoroutine(Attack());
         }
 
+        public void OnDeathStateEnter()
+        {
+
+        }
+
+        public void OnDeathStateExit()
+        {
+
+        }
+
         private IEnumerator PatrolTimer()
         {
             float time = patrolTimeUntilAttack;
@@ -180,7 +201,7 @@ namespace SpaceShooterProject.AI.Enemies
                     currentTime += Time.deltaTime;
                     yield return new WaitForEndOfFrame();
                 }
-                Debug.Log(Time.deltaTime);
+                
                 FireBullet();
                 currentBulletCount += 1;
             }
@@ -213,10 +234,15 @@ namespace SpaceShooterProject.AI.Enemies
             isShootingSessionEnd = true;
         }
 
+        public void OnDeath()
+        {
+            isDeath = true;
+        }
+
 
         public bool IsDeath()
         {
-            return false;
+            return isDeath;
         }
 
         public bool IsEnterTheSceneAnimationFinish()
@@ -242,6 +268,11 @@ namespace SpaceShooterProject.AI.Enemies
         public override bool IsMovementContinue()
         {
             return IsShootingSessionEnd();
+        }
+
+        public override void OnOutOfScreen()
+        {
+            throw new System.NotImplementedException();
         }
     }
 

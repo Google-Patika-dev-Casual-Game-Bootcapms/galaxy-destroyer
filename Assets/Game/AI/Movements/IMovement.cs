@@ -6,7 +6,7 @@
     public interface IMovement
     {
         //public void Initialize(Enemy minion);
-        public void Move(Enemy minion);
+        public void Move(Enemy enemy);
         public void Patrol(Enemy enemy);
     }
 }
