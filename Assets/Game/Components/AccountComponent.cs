@@ -127,6 +127,7 @@ namespace SpaceShooterProject.Component
             accountData.OwnedDiamond = currencyComponent.GetOwnedDiamond();
             accountData.CopilotSetting = copilotComponent.GetCopilotSetting();
             */
+            
             accountData.OwnedGold = currencyComponent.GetOwnedGold();
             
             saveComponent.Save(accountData, accountDataPath);
@@ -242,6 +243,11 @@ namespace SpaceShooterProject.Component
         
         public int GetSuperPowerItemCount(SuperPowerType superPowerType){
             return accountData.SpaceShipSuperPowerDatas[accountData.SelectedSpaceShipId].SuperPowerItemCounts[(int)superPowerType];
+        }
+        
+        public  SpaceShipSuperPowerData GetCurrentSpaceShipSuperPowerData() 
+        {
+            return accountData.SpaceShipSuperPowerDatas[accountData.SelectedSpaceShipId];
         }
 
         public void OnDestruct()
