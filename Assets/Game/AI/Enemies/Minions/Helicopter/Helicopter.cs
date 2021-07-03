@@ -36,6 +36,11 @@ namespace SpaceShooterProject.AI.Enemies
         private bool isShootingSessionEnd = false;
         private bool isDeath = false;
 
+        public override void OnUpdate()
+        {
+            helicopterMainState.Update();
+        }
+
         public void Initialize()
         {
             mainCamera = Camera.main;
@@ -72,11 +77,6 @@ namespace SpaceShooterProject.AI.Enemies
             helicopterEventContainer.OnAttackStateExit -= OnAttackStateExit;
             helicopterEventContainer.OnDeathStateEnter -= OnDeathStateEnter;
             helicopterEventContainer.OnDeathStateExit -= OnDeathStateExit;
-        }
-
-        public override bool IsOutOfScreen()
-        {
-            return false;
         }
 
         public void FireBullet()
@@ -162,7 +162,8 @@ namespace SpaceShooterProject.AI.Enemies
 
         public void OnDeathStateEnter()
         {
-
+            //TODO: Destory or put into pool
+            Debug.Log("Heli dead");
         }
 
         public void OnDeathStateExit()
@@ -272,8 +273,10 @@ namespace SpaceShooterProject.AI.Enemies
 
         public override void OnOutOfScreen()
         {
-            throw new System.NotImplementedException();
+            OnDeath();
         }
+
+        
     }
 
 }

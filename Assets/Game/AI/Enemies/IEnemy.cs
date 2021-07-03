@@ -6,7 +6,7 @@ namespace SpaceShooterProject.AI.Enemies
 
     public interface IEnemy 
     {
-
+        public void OnUpdate();
     }
 }
 

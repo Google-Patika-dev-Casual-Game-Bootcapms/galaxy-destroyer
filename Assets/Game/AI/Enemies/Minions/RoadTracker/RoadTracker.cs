@@ -26,6 +26,11 @@ namespace SpaceShooterProject.AI.Enemies
             roadTrackerMainState.Enter();
         }
 
+        public override void OnUpdate()
+        {
+            roadTrackerMainState.Update();
+        }
+
         private void InitializeEvents()
         {
             roadTrackerEventContainer.OnActionStateEnter += OnActionStateEnter;
@@ -55,7 +60,7 @@ namespace SpaceShooterProject.AI.Enemies
         public void OnDeathStateEnter()
         {
             Debug.Log("I am dead");
-            Destroy(gameObject);
+            Destroy(gameObject); //Change
         }
 
         public void OnDeathStateExit()

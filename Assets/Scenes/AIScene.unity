@@ -340,8 +340,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 451d31dfca922084692202f23a7976fa, type: 3}
-  m_Color: {r: 0.8679245, g: 0.38892844, b: 0.6640745, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 77aa112bcb7f245a7a44b7e516a8fbf4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -367,8 +367,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 574, y: 2239}
-  m_SizeDelta: {x: 3, y: 3}
+  m_AnchoredPosition: {x: 539, y: 1870}
+  m_SizeDelta: {x: 1.9192, y: 1.9519}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &728603166
 GameObject:
@@ -444,8 +444,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 451d31dfca922084692202f23a7976fa, type: 3}
-  m_Color: {r: 0.8679245, g: 0.38892844, b: 0.6640745, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 77aa112bcb7f245a7a44b7e516a8fbf4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -471,8 +471,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 190, y: 2253}
-  m_SizeDelta: {x: 3, y: 3}
+  m_AnchoredPosition: {x: 227, y: 2352}
+  m_SizeDelta: {x: 1.9393, y: 1.9522}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &773574215
 GameObject:
@@ -598,8 +598,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 451d31dfca922084692202f23a7976fa, type: 3}
-  m_Color: {r: 0.8679245, g: 0.38892844, b: 0.6640745, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4f783d74dba9044fea81a68b68f91e2e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -626,10 +626,10 @@ MonoBehaviour:
   enemySprite: {fileID: 21300000, guid: 451d31dfca922084692202f23a7976fa, type: 3}
   mainCamera: {fileID: 0}
   initialDistance: 300
-  patrolRouteWidth: 300
+  patrolRouteWidth: 400
   patrolRouteHeight: 500
   patrolTimeUntilAttack: 3
-  fireRate: 4
+  fireRate: 6
   bulletPerAttack: 4
 --- !u!224 &1012095165
 RectTransform:
@@ -647,8 +647,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 951, y: 2232}
-  m_SizeDelta: {x: 3, y: 3}
+  m_AnchoredPosition: {x: 919, y: 2226}
+  m_SizeDelta: {x: 2.607, y: 2.6397}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1341405216
 GameObject:

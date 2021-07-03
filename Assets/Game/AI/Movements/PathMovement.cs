@@ -30,49 +30,52 @@ namespace SpaceShooterProject.AI.Movements
             }
         }
 
-        public IEnumerator PatrolRoute(Enemy minion, int routeIndex)
-        {
-            int counter = 10;
+        public IEnumerator PatrolRoute(Enemy enemy, int routeIndex)
+        { 
             couroutineAllowed = false;
             tParam = 0f;
             bool isReverse = false;
-            while (counter > 0)
+            while (!enemy.IsOutOfScreen())
             {
                 if (tParam >= 1) tParam = Mathf.Floor(tParam);
                 if (tParam <= 0) tParam = Mathf.Ceil(tParam);
                 while (tParam <= 1 && tParam >= 0)
                 {
-                    if (minion.IsMovementInterrupted())
+                    if (enemy.IsOutOfScreen())
                     {
-                        yield return new WaitUntil(() => minion.IsMovementContinue());
+                        Debug.Log("Out of screen");
+                    }
+                    if (enemy.IsMovementInterrupted())
+                    {
+                        yield return new WaitUntil(() => enemy.IsMovementContinue());
                     }
                     
 
                     if (isReverse)
                     {
-                        tParam -= Time.deltaTime * minion.GetSpeed();
+                        tParam -= Time.deltaTime * enemy.GetSpeed();
                     }
                     else
                     {
-                        tParam += Time.deltaTime * minion.GetSpeed();
+                        tParam += Time.deltaTime * enemy.GetSpeed();
                     }
 
 
-                    Vector2 newPosition = minion.GetRoute(routeIndex).CalculateBezierCurve(tParam);
+                    Vector2 newPosition = enemy.GetRoute(routeIndex).CalculateBezierCurve(tParam);
 
-                    minion.SetPosition(newPosition);
+                    enemy.SetPosition(newPosition);
 
                     yield return new WaitForEndOfFrame();
                     
                     
                 }
                 isReverse = !isReverse;
-                counter--;
+                
                 
             }
 
 
-            if (currentRouteIndex < minion.GetRoutes().Count - 1)
+            if (currentRouteIndex < enemy.GetRoutes().Count - 1)
             {
                 currentRouteIndex++;
             }
@@ -81,33 +84,42 @@ namespace SpaceShooterProject.AI.Movements
                 currentRouteIndex = 0; // When all routes are finished starts again from beginning
             }
 
+
             couroutineAllowed = true;
+            Debug.Log("Before on out of screen.");
+            enemy.OnOutOfScreen();
 
         }
 
-        public IEnumerator FollowRoute(Enemy minion, int routeIndex)
+        public IEnumerator FollowRoute(Enemy enemy, int routeIndex)
         {
             couroutineAllowed = false;
             tParam = 0f;
             
             
-                while (tParam < 1)
+            while (tParam < 1)
+            {
+                    
+                tParam += Time.deltaTime * enemy.GetSpeed();
+                    
+
+
+                Vector2 newPosition = enemy.GetRoute(routeIndex).CalculateBezierCurve(tParam);
+
+                enemy.SetPosition(newPosition);
+
+                if (enemy.IsOutOfScreen())
                 {
-                    
-                    tParam += Time.deltaTime * minion.GetSpeed();
-                    
-
-
-                    Vector2 newPosition = minion.GetRoute(routeIndex).CalculateBezierCurve(tParam);
-
-                    minion.SetPosition(newPosition);
-
-                    yield return new WaitForEndOfFrame();
+                    enemy.OnOutOfScreen();
+                    break;
                 }
+
+                yield return new WaitForEndOfFrame();
+            }
 
             tParam = 0f;
 
-            if (currentRouteIndex < minion.GetRoutes().Count - 1)
+            if (currentRouteIndex < enemy.GetRoutes().Count - 1)
             {
                 currentRouteIndex++;
             }
@@ -115,11 +127,10 @@ namespace SpaceShooterProject.AI.Movements
             {
                 currentRouteIndex = 0; // When all routes are finished starts again from beginning
             }
-            
+
             couroutineAllowed = true;
 
-
-            minion.RouteFinished();
+            enemy.RouteFinished();
         }
 
 

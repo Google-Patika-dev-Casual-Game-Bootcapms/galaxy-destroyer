@@ -27,11 +27,13 @@ namespace SpaceShooterProject.AI.Enemies
 
         public abstract void OnOutOfScreen();
 
+        public abstract void OnUpdate();
+
         public virtual bool IsOutOfScreen()
         {
             Vector2 normalizedPosition = mainCamera.WorldToViewportPoint(transform.position);
             return (normalizedPosition.x < 0 || normalizedPosition.x > 1) ||
-                (normalizedPosition.y < 0 || normalizedPosition.y > 1);
+                (normalizedPosition.y < 0 );
         }
 
 
@@ -76,8 +78,6 @@ namespace SpaceShooterProject.AI.Enemies
         {
             routes.Add(newRoute);
         }
-
-        
 
     }
 }

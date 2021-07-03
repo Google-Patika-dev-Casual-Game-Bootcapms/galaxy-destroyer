@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7e247c9a45044d09debf0773a2d0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 40
+  bulletSpeed: 15
   directionAngle: 270
   _transform: {fileID: 4580439961202227502}
 --- !u!212 &8458537721815395253

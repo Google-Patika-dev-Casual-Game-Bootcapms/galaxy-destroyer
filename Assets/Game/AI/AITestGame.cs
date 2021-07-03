@@ -24,6 +24,7 @@ namespace SpaceShooterProject.AI
         void Start()
         {
             Debug.Log("Merhaba");
+
             helicopter.Initialize();
             straightDummy.Initialize();
             waveDummy.Initialize();
@@ -32,9 +33,9 @@ namespace SpaceShooterProject.AI
         // Update is called once per frame
         void Update()
         {
-            helicopter.helicopterMainState.Update();
-            straightDummy.roadTrackerMainState.Update();
-            waveDummy.roadTrackerMainState.Update();
+            helicopter.OnUpdate();
+            straightDummy.OnUpdate();
+            waveDummy.OnUpdate();
         }
     }
 }
