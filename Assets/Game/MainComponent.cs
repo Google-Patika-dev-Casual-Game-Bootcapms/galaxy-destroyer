@@ -21,6 +21,7 @@ namespace SpaceShooterProject
         private IntroComponent introComponent;
         private EditorSceneBuilderComponent editorSceneBuilderComponent;
         private InventoryComponent inventoryComponent;
+        private CardComponent cardComponent;
         private MarketComponent marketComponent;
         private CoPilotComponent coPilotComponent;
         private SuperPowerComponent superPowerComponent;
@@ -47,6 +48,7 @@ namespace SpaceShooterProject
             CreateTutorialComponent();
             CreateEditorSceneBuilderComponent();
             CreateInventoryComponent();
+            CreateCardComponent();
             CreateMarketComponent();
             CreateCoPilotComponent();
             CreateSuperPowerComponent();
@@ -134,6 +136,12 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("InventoryComponent", inventoryComponent);
         }
 
+        private void CreateCardComponent()
+        {
+            cardComponent = FindObjectOfType<CardComponent>();
+            componentContainer.AddComponent("CardComponent", cardComponent);
+        }
+
         private void CreateCoPilotComponent()
         {
             coPilotComponent = new CoPilotComponent();
@@ -171,6 +179,7 @@ namespace SpaceShooterProject
             gamePlayComponent.Initialize(componentContainer);
             editorSceneBuilderComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
+            cardComponent.Initialize(componentContainer);
             marketComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
             superPowerComponent.Initialize(componentContainer);
