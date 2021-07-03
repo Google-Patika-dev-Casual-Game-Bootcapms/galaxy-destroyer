@@ -15,7 +15,7 @@ namespace SpaceShooterProject.State
         private CurrencyComponent currencyComponent;
         private UIComponent uiComponent;
         private ProvisionCanvas provisionCanvas;
-        
+        private AccountComponent accountComponent;
 
         public PrepareGameState(ComponentContainer componentContainer)
         {
@@ -34,7 +34,7 @@ namespace SpaceShooterProject.State
             provisionCanvas.OnPauseRequest += RequestPause;
             provisionCanvas.OnStartRequest += RequestInGame;
             superPowerComponent.OnSuperPowerProcessCompleted += OnSuperPowerProcessCompleted;
-            provisionCanvas.UpdateUI(currencyComponent.GetOwnedGold());
+            //provisionCanvas.UpdateUI(accountComponent.GetCurrentSpaceShipSuperPowerData(),currencyComponent.GetOwnedGold());
         }
 
         protected override void OnExit()
