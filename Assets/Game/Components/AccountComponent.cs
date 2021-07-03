@@ -118,6 +118,12 @@ namespace SpaceShooterProject.Component
             saveComponent.Save(accountData, accountDataPath);
         }
 
+        // Created by Inventory Component to check if JSON file exists in the given directory
+        public bool IsFileExist()
+        {
+            return File.Exists(accountDataPath);
+        }
+
 #region Getter Methods for Account Data
         public string GetPlayerName() {
             return accountData.Name;

@@ -3,6 +3,7 @@ namespace SpaceShooterProject.UserInterface
     using UnityEngine;
     using UnityEngine.UI;
     using DG.Tweening;
+    using System;
 
     public class Logo : MonoBehaviour, ICanvasElement
     {
@@ -21,7 +22,12 @@ namespace SpaceShooterProject.UserInterface
 
         public void Init()
         {
-            
+            var imageRect = image.GetComponent<RectTransform>();
+        }
+
+        public void SetScreenSize(Vector2 vector2)
+        {
+            image.GetComponent<RectTransform>().sizeDelta = new Vector2();
         }
 
         public void PlayFadeInAnimation(float duration) 
