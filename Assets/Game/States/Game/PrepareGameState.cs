@@ -12,40 +12,39 @@ namespace SpaceShooterProject.State
     public class PrepareGameState : StateMachine
     {
         private SuperPowerComponent superPowerComponent;
+        private CurrencyComponent currencyComponent;
         private UIComponent uiComponent;
         private ProvisionCanvas provisionCanvas;
+        
 
         public PrepareGameState(ComponentContainer componentContainer)
         {
             superPowerComponent = componentContainer.GetComponent("SuperPowerComponent") as SuperPowerComponent;
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
             provisionCanvas = uiComponent.GetCanvas(UIComponent.MenuName.PROVISION) as ProvisionCanvas;
+            currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
         }
 
         protected override void OnEnter()
         {
-            Debug.Log("PREPARE ON ENTER");
             uiComponent.EnableCanvas(UIComponent.MenuName.PROVISION);
-            provisionCanvas.OnSuperPowerLaserRequest += superPowerComponent.PurchaseSuperPower;
-            provisionCanvas.OnSuperPowerShieldRequest += superPowerComponent.PurchaseSuperPower;
-            provisionCanvas.OnSuperPowerMegaBombRequest += superPowerComponent.PurchaseSuperPower;
+            provisionCanvas.OnSuperPowerPurchaseRequest += OnSuperPowerPurchaseRequest;
             provisionCanvas.OnNextShipSelectionRequest += RequestNextShip;
             provisionCanvas.OnPreviousShipSelectionRequest += RequestPreviousShip;
             provisionCanvas.OnPauseRequest += RequestPause;
             provisionCanvas.OnStartRequest += RequestInGame;
+            superPowerComponent.OnSuperPowerProcessCompleted += OnSuperPowerProcessCompleted;
+            provisionCanvas.UpdateUI(currencyComponent.GetOwnedGold());
         }
 
         protected override void OnExit()
         {
-            Debug.Log("PREPARE ON EXIT");
-
-            provisionCanvas.OnSuperPowerLaserRequest -= superPowerComponent.PurchaseSuperPower;
-            provisionCanvas.OnSuperPowerShieldRequest -= superPowerComponent.PurchaseSuperPower;
-            provisionCanvas.OnSuperPowerMegaBombRequest -= superPowerComponent.PurchaseSuperPower;
+            provisionCanvas.OnSuperPowerPurchaseRequest -= OnSuperPowerPurchaseRequest;
             provisionCanvas.OnNextShipSelectionRequest -= RequestNextShip;
             provisionCanvas.OnPreviousShipSelectionRequest -= RequestPreviousShip;
             provisionCanvas.OnPauseRequest -= RequestPause;
             provisionCanvas.OnStartRequest -= RequestInGame;
+            superPowerComponent.OnSuperPowerProcessCompleted -= OnSuperPowerProcessCompleted;
         }
 
         protected override void OnUpdate()
@@ -71,6 +70,17 @@ namespace SpaceShooterProject.State
         private void RequestPreviousShip()
         {
 
+        }
+
+        private void OnSuperPowerPurchaseRequest(SuperPowerType superPowerType)
+        {
+            superPowerComponent.PurchaseSuperPower(superPowerType);
+        }
+        
+
+        private void OnSuperPowerProcessCompleted(SuperPowerPurchaseProcessData superPowerPurchaseProcessData)
+        {
+            provisionCanvas.OnSuperPowerPurchaseCompleted(superPowerPurchaseProcessData,currencyComponent.GetOwnedGold());
         }
     }
 }
