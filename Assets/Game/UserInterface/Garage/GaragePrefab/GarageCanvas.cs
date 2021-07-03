@@ -6,6 +6,7 @@ namespace SpaceShooterProject.UserInterface
     using UnityEngine.UI;
     using SpaceShooterProject.Component;
     using TMPro;
+    using Devkit.Base.Component;
 
     public class GarageCanvas : BaseCanvas
     {
@@ -29,7 +30,9 @@ namespace SpaceShooterProject.UserInterface
 
         [SerializeField] 
         private RectTransform backgroundImage;
-       
+
+        private UpgradeComponent upgradeComponent;
+        
         private Vector2 GetCanvasSize()
         {
             Vector2 screenSize = new Vector2(Screen.width, Screen.height);
@@ -50,7 +53,9 @@ namespace SpaceShooterProject.UserInterface
         protected override void Init()
         {
             backgroundImage.sizeDelta = GetCanvasSize();
+            upgradeComponent = componentContainer.GetComponent("UpgradeComponent") as UpgradeComponent;
         }
+
 
         public void OnUpgradeProcessCompleted(UpgradeProcessData upgradeProcessData, int ownedGold)
         {
@@ -92,33 +97,43 @@ namespace SpaceShooterProject.UserInterface
             {
                 case UpgradablePartType.SHIELD:
                     shieldUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    shieldUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.SHIELD));
                     break;
                 case UpgradablePartType.LASER:
                     laserUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    laserUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.LASER));
                     break;
                 case UpgradablePartType.MEGABOMB:
                     megabombUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    megabombUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.MEGABOMB));
                     break;
                 case UpgradablePartType.MAGNET:
                     magnetUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    magnetUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.MAGNET));
                     break;
                 case UpgradablePartType.HEALTH:
                     healthUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    healthUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.HEALTH));
                     break;
                 case UpgradablePartType.MISSILE:
                     missileUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    missileUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.MISSILE));
                     break;
                 case UpgradablePartType.WING_CANNON:
                     wingCannonUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    wingCannonUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.WING_CANNON));
                     break;
                 case UpgradablePartType.MAIN_CANNON:
                     mainCannonUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    mainCannonUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.MAIN_CANNON));
                     break;
                 case UpgradablePartType.FIRE_RATE:
                     fireRateUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    fireRateUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.FIRE_RATE));
                     break;
                 case UpgradablePartType.SPEED:
                     speedUpgradeInfo.UpdateMinorAndMajorLevels(level);
+                    speedUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.SPEED));
                     break;
                 default:
                     break;
@@ -130,16 +145,37 @@ namespace SpaceShooterProject.UserInterface
         {
             //TODO update UI
             shieldUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.SHIELD]);
+            shieldUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.SHIELD));
+
             laserUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.LASER]);
+            laserUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.LASER));
+
             megabombUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MEGABOMB]);
+            megabombUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.MEGABOMB));
+
             magnetUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MAGNET]);
+            magnetUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.MAGNET));
+
             healthUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.HEALTH]);
+            healthUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.HEALTH));
+
             missileUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MISSILE]);
+            missileUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.MISSILE));
+
             wingCannonUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.WING_CANNON]);
+            wingCannonUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.WING_CANNON));
+
             mainCannonUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.MAIN_CANNON]);
+            mainCannonUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.MAIN_CANNON));
+
             fireRateUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.FIRE_RATE]);
+            fireRateUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.FIRE_RATE));
+
             speedUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.SPEED]);
+            speedUpgradeInfo.updateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.SPEED));
+
             currentCurrencyContainer.text = ownedGold.ToString();
+
         }
 
     }

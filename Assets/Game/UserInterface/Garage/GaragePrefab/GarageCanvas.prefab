@@ -2429,6 +2429,7 @@ MonoBehaviour:
   - {fileID: 6985304548987042473}
   - {fileID: 3441324013529383432}
   - {fileID: 415577905705555596}
+  upgradeCost: {fileID: 8841893360330669983}
 --- !u!1 &1163545453608868189
 GameObject:
   m_ObjectHideFlags: 0
@@ -3384,6 +3385,7 @@ MonoBehaviour:
   - {fileID: 1639983916455354197}
   - {fileID: 5511003520941609144}
   - {fileID: 1001192616031755799}
+  upgradeCost: {fileID: 4805801732747005400}
 --- !u!1 &1681877098373144867
 GameObject:
   m_ObjectHideFlags: 0
@@ -3996,6 +3998,7 @@ MonoBehaviour:
   - {fileID: 8114974043296722282}
   - {fileID: 6789586291145725947}
   - {fileID: 6867144607890798380}
+  upgradeCost: {fileID: 5417583875878492579}
 --- !u!1 &1944075697712821288
 GameObject:
   m_ObjectHideFlags: 0
@@ -4758,6 +4761,7 @@ MonoBehaviour:
   - {fileID: 4115333749968484611}
   - {fileID: 6378473067759221959}
   - {fileID: 7516899159683875978}
+  upgradeCost: {fileID: 100666740534861988}
 --- !u!1 &2507166974805917762
 GameObject:
   m_ObjectHideFlags: 0
@@ -5295,6 +5299,7 @@ MonoBehaviour:
   - {fileID: 397245586436178062}
   - {fileID: 1847298116524731019}
   - {fileID: 8249857308118082065}
+  upgradeCost: {fileID: 5965578551411579058}
 --- !u!1 &2846000620804329036
 GameObject:
   m_ObjectHideFlags: 0
@@ -5398,6 +5403,7 @@ MonoBehaviour:
   - {fileID: 7646049514683409560}
   - {fileID: 310856190221251681}
   - {fileID: 1560858760944151184}
+  upgradeCost: {fileID: 417563886111636707}
 --- !u!1 &2847844281717352484
 GameObject:
   m_ObjectHideFlags: 0
@@ -8710,6 +8716,7 @@ MonoBehaviour:
   - {fileID: 7390480003490300872}
   - {fileID: 7333854647665622823}
   - {fileID: 4555654804618316040}
+  upgradeCost: {fileID: 7116895484593784070}
 --- !u!1 &4295161327730301490
 GameObject:
   m_ObjectHideFlags: 0
@@ -12784,6 +12791,7 @@ MonoBehaviour:
   - {fileID: 4701381751088553131}
   - {fileID: 8399247458957826273}
   - {fileID: 3035890238186731726}
+  upgradeCost: {fileID: 6733638814786730028}
 --- !u!1 &7030041271833317968
 GameObject:
   m_ObjectHideFlags: 0
@@ -13246,6 +13254,7 @@ MonoBehaviour:
   - {fileID: 5574336381506374480}
   - {fileID: 7042105488868160097}
   - {fileID: 8376638359705725879}
+  upgradeCost: {fileID: 2277446958281212392}
 --- !u!1 &7241555892525279084
 GameObject:
   m_ObjectHideFlags: 0
@@ -13466,6 +13475,7 @@ MonoBehaviour:
   - {fileID: 4437147009130453104}
   - {fileID: 8617419150469749544}
   - {fileID: 2927026297199257398}
+  upgradeCost: {fileID: 7704935773750930839}
 --- !u!1 &7481732953088685226
 GameObject:
   m_ObjectHideFlags: 0
