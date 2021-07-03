@@ -11,10 +11,7 @@
 
         public override void Death()
         {
-        }
-
-        public override void GetHit(int damage)
-        {
+            inGameMessageBroadcaster.TriggerEnemyDeath(this);
         }
 
         public override void OutOfScreen()
