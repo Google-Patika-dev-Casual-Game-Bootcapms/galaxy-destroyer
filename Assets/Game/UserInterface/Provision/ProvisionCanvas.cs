@@ -1,3 +1,5 @@
+using DG.Tweening;
+
 namespace SpaceShooterProject.UserInterface
 {
     using System.Collections.Generic;
@@ -16,21 +18,21 @@ namespace SpaceShooterProject.UserInterface
         private InventoryComponent inventoryComponent;
         private AccountComponent accountComponent;
         
+        public delegate void RequestPurchaseDelegate(SuperPowerType superPowerType);
+        public event RequestPurchaseDelegate OnSuperPowerPurchaseRequest;
+        
 
         public delegate void ProvisionDelegate();
-        public delegate void ProvisionSuperPowerDelegate(SuperPowerType type);
+        
         public event ProvisionDelegate OnNextShipSelectionRequest;
         public event ProvisionDelegate OnPreviousShipSelectionRequest;
-        public event ProvisionSuperPowerDelegate OnSuperPowerLaserRequest;
-        public event ProvisionSuperPowerDelegate OnSuperPowerShieldRequest;
-        public event ProvisionSuperPowerDelegate OnSuperPowerMegaBombRequest;
         public event ProvisionDelegate OnPauseRequest;
         public event ProvisionDelegate OnStartRequest;
 
 
 
         [SerializeField] private RectTransform backgroundImage;
-        [SerializeField] private TMP_Text ownedGold, health, power;
+        [SerializeField] private TMP_Text ownedGoldText, health, power;
         
 
         protected override void Init()
@@ -40,7 +42,7 @@ namespace SpaceShooterProject.UserInterface
             accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
             
             backgroundImage.sizeDelta = GetCanvasSize();
-            ownedGold.text = accountComponent.GetOwnedGold().ToString();
+            ownedGoldText.text = accountComponent.GetOwnedGold().ToString();
         }
 
         public void RequestNextShip()
@@ -61,30 +63,11 @@ namespace SpaceShooterProject.UserInterface
             }
         }
 
-        public void RequestSuperPowerLaser()
+        public void OnSuperPowerPurchaseButtonClick(int superPowerPartType)
         {
-            if (OnSuperPowerLaserRequest != null)
+            if (OnSuperPowerPurchaseRequest != null)
             {
-                Debug.Log("On Super Power Laser Request Send...");
-                OnSuperPowerLaserRequest(SuperPowerType.LASER);
-            }
-        }
-
-        public void RequestSuperPowerShield()
-        {
-            if (OnSuperPowerShieldRequest != null)
-            {
-                Debug.Log("On Super Power Shield Request Send...");
-                OnSuperPowerShieldRequest(SuperPowerType.SHIELD);
-            }
-        }
-
-        public void RequestSuperPowerMegaBomb()
-        {
-            if (OnSuperPowerMegaBombRequest != null)
-            {
-                Debug.Log("On Super Power Mega Bomb Request Send...");
-                OnSuperPowerMegaBombRequest(SuperPowerType.MEGABOMB);
+                OnSuperPowerPurchaseRequest((SuperPowerType)superPowerPartType);
             }
         }
 
@@ -123,6 +106,52 @@ namespace SpaceShooterProject.UserInterface
 
             return new Vector2(screenSize.x / scaleFactor, screenSize.y / scaleFactor);
         }
+
+        public void UpdateUI(int ownedGold)
+        {
+            ownedGoldText.text = ownedGold.ToString();
+        }
+
+        public void OnSuperPowerPurchaseCompleted(SuperPowerPurchaseProcessData superPowerPurchaseProcessData, int ownedGold)
+        {
+            switch (superPowerPurchaseProcessData.ProcessStatus)
+            {
+                case SuperPowerProcessStatus.NOT_ENOUGH_GOLD:
+                    //TODO: handle
+                    break;
+                case SuperPowerProcessStatus.MAXIMUM_SUPER_POWER_ITEM_COUNT:
+                    //TODO: 
+                    break;
+                case SuperPowerProcessStatus.SUCCESS:
+                    SuperPowerPurchased(superPowerPurchaseProcessData.SuperPowerType, superPowerPurchaseProcessData.CurrentSuperPowerItemCount);
+                    ownedGoldText.text = ownedGold.ToString();
+                    ownedGoldText.rectTransform.DOScale(new Vector3(1.1f,1.1f, 1.1f), .1f).SetEase(Ease.InOutBounce).OnComplete(
+                        () =>
+                        {
+                            ownedGoldText.rectTransform.DOScale(new Vector3(1f, 1f, 1f), .1f)
+                                .SetEase(Ease.InOutBounce);
+                        });
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void SuperPowerPurchased(SuperPowerType superPowerType, int itemCount)
+        {
+            switch (superPowerType)
+            {
+                case SuperPowerType.LASER:
+                    break;
+                case SuperPowerType.SHIELD:
+                    break;
+                case SuperPowerType.MEGABOMB:
+                    break;
+                default:
+                    break;
+            }
+        }
+        
     }
 
 
