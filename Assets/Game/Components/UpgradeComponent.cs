@@ -33,11 +33,11 @@
             InitializePartPriceWeights();
         }
 
-        public void UpgradePart(UpgradablePartType upgradablePartType) 
+        public void UpgradePart(UpgradablePartType upgradablePartType)
         {
-            if (!accountComponent.IsPartUpgradable(upgradablePartType)) 
+            if (!accountComponent.IsPartUpgradable(upgradablePartType))
             {
-                if (OnUpgradeProcessCompleted != null) 
+                if (OnUpgradeProcessCompleted != null)
                 {
                     UpgradeProcessData upgradeProcessData = new UpgradeProcessData
                     {
@@ -50,7 +50,7 @@
                 return;
             }
 
-            if (!currencyComponent.IsGoldAffordable(CalculatePartUpgradePrice(upgradablePartType))) 
+            if (!currencyComponent.IsGoldAffordable(CalculatePartUpgradePrice(upgradablePartType)))
             {
                 if (OnUpgradeProcessCompleted != null)
                 {
@@ -65,8 +65,9 @@
                 return;
             }
 
-            accountComponent.UpgradePart(upgradablePartType);
             currencyComponent.SpendGold(CalculatePartUpgradePrice(upgradablePartType));
+            accountComponent.UpgradePart(upgradablePartType);
+            
 
             if (OnUpgradeProcessCompleted != null)
             {
@@ -79,11 +80,14 @@
 
                 OnUpgradeProcessCompleted(upgradeProcessData);
             }
+            
+
         }
+            
 
         public int CalculatePartUpgradePrice(UpgradablePartType upgradablePartType) 
         {
-            return partPriceWeights[(int)upgradablePartType] * accountComponent.GetPartLevel(upgradablePartType);
+            return partPriceWeights[(int)upgradablePartType] * (accountComponent.GetPartLevel(upgradablePartType)+1);
         }
 
         private void InitializePartPriceWeights()
