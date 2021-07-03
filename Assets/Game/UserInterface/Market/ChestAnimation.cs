@@ -15,7 +15,7 @@ namespace SpaceShooterProject.UserInterface.Market{
             animator.SetBool("isOpening", false);
         }
 
-        public void OpenChest(){
+        public void OpenChestAnimation(){
             animator.SetBool("isOpening",true);
         }
         public void Activate()

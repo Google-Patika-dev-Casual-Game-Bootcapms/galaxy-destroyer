@@ -2,10 +2,17 @@ namespace SpaceShooterProject.UserInterface
 {
     using UnityEngine;
     using UnityEngine.UI;
+    using TMPro;
 
     public class MarketCanvas : BaseCanvas
     {
         [SerializeField] private RectTransform backgroundImage;
+        [SerializeField] private GameObject coinEarnScene;
+
+
+        public int earnedCoin;
+
+        
 
 
         private Vector2 GetCanvasSize()
@@ -27,11 +34,27 @@ namespace SpaceShooterProject.UserInterface
         protected override void Init()
         {
             backgroundImage.sizeDelta = GetCanvasSize();
+            coinEarnScene.transform.GetChild(4).transform.gameObject.GetComponent<TextMeshProUGUI>().SetText(earnedCoin.ToString());
+
         }
 
         public void IsBackgroundActive(bool isActive){
             backgroundImage.gameObject.SetActive(isActive);
         }
+
+        public void IsCoinSceneActive(bool isActive){
+            coinEarnScene.SetActive(isActive);
+        }
+        
+        public void IsMarketSceneActive(bool isActive){
+            Debug.Log(isActive);
+            for( int i=0; i<gameObject.transform.childCount; i++){
+                Debug.Log("buna da girdi!");
+                transform.GetChild(i).gameObject.SetActive(isActive);
+            }
+            
+        }
+
 
     }
 }

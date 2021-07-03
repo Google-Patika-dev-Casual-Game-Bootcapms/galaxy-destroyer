@@ -14,12 +14,16 @@ namespace SpaceShooterProject.State
         private UIComponent uiComponent;
         private MarketCanvas marketCanvas;
         private MarketComponent marketComponent;
+        private GachaComponent gachaComponent;
+
+        private bool isChestOpened;
         
         public MarketState(ComponentContainer componentContainer)
         {
             marketComponent = componentContainer.GetComponent("MarketComponent") as MarketComponent;
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
             marketCanvas = uiComponent.GetCanvas(UIComponent.MenuName.MARKET) as MarketCanvas;
+            gachaComponent = componentContainer.GetComponent("GachaComponent") as GachaComponent;
         }
 
         protected override void OnEnter()
@@ -40,21 +44,48 @@ namespace SpaceShooterProject.State
             marketComponent.OnMarketDeactivated();
             marketCanvas.OnReturnToMainMenu -= OnReturnToMainMenu;
             marketCanvas.IsBackgroundActive(false);
+            isChestOpened = false;
         }
 
         protected override void OnUpdate()
+        
         {
-            if(Input.GetMouseButtonUp(0)){
+            if ( !isChestOpened ){
+                if(Input.GetMouseButtonUp(0)){
                 var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
                     RaycastHit hit;
                         if( Physics.Raycast(ray.origin, ray.direction, out hit)){
                             var chest = hit.collider.GetComponent<ChestAnimation>();
                                 if(chest){
-                                    chest.OpenChest();
-                                } 
+                                    chest.OpenChestAnimation();
+                                    isChestOpened = true;
+                                    
+                                }
+                                InSceneChange();
+
                         }
-            }
+                }
+            } 
+            
            
+        }
+        float UserTimer;
+        private void InSceneChange(){
+            Debug.Log("fonksiyona girdi!");
+            
+            marketCanvas.IsMarketSceneActive(false);
+           while(UserTimer < 10.0f){
+                Debug.Log(UserTimer);
+                UserTimer +=  Time.deltaTime;
+            } 
+            marketCanvas.IsCoinSceneActive(true);    
+            /* marketCanvas.IsCoinSceneActive(false);
+            marketCanvas.IsMarketSceneActive(true);  */
+            
+            //marketCanvas.earnedCoin = gachaComponent.OpenChest();
+            
+            
+            
         }
     }
 }
