@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipSpeed: 20
-  hp: 100
+  hp: 10
   shipSpriteRender: {fileID: 0}
   frameRate: 0
   fireRate: 20
@@ -43,6 +43,14 @@ PrefabInstance:
     - target: {fileID: 4590104564111892373, guid: b15998efc79bb4d8bad67bfc0b3b05ec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554684046822560356, guid: b15998efc79bb4d8bad67bfc0b3b05ec, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7824479985616716172, guid: b15998efc79bb4d8bad67bfc0b3b05ec, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b15998efc79bb4d8bad67bfc0b3b05ec, type: 3}
