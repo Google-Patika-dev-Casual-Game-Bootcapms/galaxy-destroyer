@@ -15,10 +15,14 @@ namespace SpaceShooterProject.Component
         private InGameWeaponUpgradeComponent weaponUpgradeComponent;
         private BulletCollector bulletCollector;
         private EnemyFactory enemyFactory;
+        private InGameMessageBroadcaster inGameMessageBroadcaster;
 
 
         public void Initialize(ComponentContainer componentContainer)
         {
+            inGameMessageBroadcaster = new InGameMessageBroadcaster();
+            inGameMessageBroadcaster.Initialize(componentContainer);
+
             Debug.Log("<color=green>GamePlayComponent initialized!</color>");
             inputSystem = componentContainer.GetComponent("InGameInputSystem") as InGameInputSystem;
 
@@ -29,7 +33,7 @@ namespace SpaceShooterProject.Component
             player.Init();
             bulletCollector = new BulletCollector();
 
-            enemyFactory = new EnemyFactory();
+            enemyFactory = new EnemyFactory(inGameMessageBroadcaster);
             enemyFactory.Init();
         }
 
@@ -46,6 +50,8 @@ namespace SpaceShooterProject.Component
             player.CallUpdate();
             player.Shoot(bulletCollector);
             bulletCollector.UpdateBullets();
+            enemyFactory.CallUpdate();
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 enemyFactory.SpawnEnemies();

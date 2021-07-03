@@ -4,8 +4,9 @@
     using System.Collections;
     using Devkit.Base.Pattern.ObjectPool;
     using Devkit.Base.Object;
+    using System.Collections.Generic;
 
-    public class EnemyFactory : IEnemyFactory, IInitializable
+    public class EnemyFactory : IEnemyFactory, IInitializable, IUpdatable
     {
 
         private Pool<RoadTracker> roadTrackerPool;
@@ -14,13 +15,13 @@
         private Pool<Kamikaze> kamikazePool;
         private const string KAMIKAZE_OBJECT_PATH = "Prefabs/Kamikaze";
 
-        private Pool<FlameThrower> FlameThrowerPool;
+        private Pool<FlameThrower> flameThrowerPool;
         private const string FLAMETHROWER_OBJECT_PATH = "Prefabs/FlameThrower";
 
-        private Pool<HeliA14> HeliA14Pool;
+        private Pool<HeliA14> heliA14Pool;
         private const string HELIA14_OBJECT_PATH = "Prefabs/HeliA14";
 
-        private Pool<HeliA17> HeliA17Pool;
+        private Pool<HeliA17> heliA17Pool;
         private const string HELIA17_OBJECT_PATH = "Prefabs/HeliA17";
 
         private WaveData waveData1;
@@ -28,15 +29,27 @@
         private WaveData[] waveData;
 
         private LevelWaveData levelWaveData;
-
+        
         private Camera gameCamera = null;
 
         private Player player;// TODO refactor!!!
+        private InGameMessageBroadcaster inGameMessageBroadcaster;
+
+        private List<IUpdatable> liveEnemies;
+
+        public EnemyFactory(InGameMessageBroadcaster inGameMessageBroadcaster)
+        {
+            this.inGameMessageBroadcaster = inGameMessageBroadcaster;
+        }
+
+        private EnemyFactory() { }
 
         public void Init()
         {
+            liveEnemies = new List<IUpdatable>();
             gameCamera = Camera.main;
             player = GameObject.FindObjectOfType<Player>();
+            inGameMessageBroadcaster.OnEnemyDestroyed += OnEnemyDestroyed;
 
             waveData1 = new WaveData();
 
@@ -60,16 +73,49 @@
             kamikazePool = new Pool<Kamikaze>(KAMIKAZE_OBJECT_PATH);
             kamikazePool.PopulatePool(5);
 
-            FlameThrowerPool = new Pool<FlameThrower>(FLAMETHROWER_OBJECT_PATH);
-            FlameThrowerPool.PopulatePool(5);
+            flameThrowerPool = new Pool<FlameThrower>(FLAMETHROWER_OBJECT_PATH);
+            flameThrowerPool.PopulatePool(5);
 
-            HeliA14Pool = new Pool<HeliA14>(HELIA14_OBJECT_PATH);
-            HeliA14Pool.PopulatePool(5);
+            heliA14Pool = new Pool<HeliA14>(HELIA14_OBJECT_PATH);
+            heliA14Pool.PopulatePool(5);
 
-            HeliA17Pool = new Pool<HeliA17>(HELIA17_OBJECT_PATH);
-            HeliA17Pool.PopulatePool(5);
+            heliA17Pool = new Pool<HeliA17>(HELIA17_OBJECT_PATH);
+            heliA17Pool.PopulatePool(5);
 
         }
+
+        //TODO solve cyclomatic complexity and casting issues!!! // TODO: refactor
+        private void OnEnemyDestroyed(Enemy enemy)
+        {
+            switch (enemy.GetEnemyType())
+            {
+                case EnemyType.RoadTracker:
+                    roadTrackerPool.AddObjectToPool((RoadTracker)enemy);
+                    break;
+                case EnemyType.Kamikaze:
+                    kamikazePool.AddObjectToPool((Kamikaze)enemy);
+                    break;
+                case EnemyType.FlameThrower:
+                    flameThrowerPool.AddObjectToPool((FlameThrower)enemy);
+                    break;
+                case EnemyType.HeliA14:
+                    heliA14Pool.AddObjectToPool((HeliA14)enemy);
+                    break;
+                case EnemyType.HeliA17:
+                    heliA17Pool.AddObjectToPool((HeliA17)enemy);
+                    break;
+                default:
+                    break;
+            }
+
+            if (liveEnemies.Contains(enemy)) 
+            {
+                enemy.gameObject.SetActive(false);
+                liveEnemies.Remove(enemy);
+            }
+
+        }
+
         public void PreInit()
         {
             // TODO: Refactor
@@ -87,15 +133,21 @@
                     enemy = kamikazePool.GetObjectFromPool();
                     break;
                 case EnemyType.FlameThrower:
-                    enemy = FlameThrowerPool.GetObjectFromPool();
+                    enemy = flameThrowerPool.GetObjectFromPool();
                     break;
                 case EnemyType.HeliA14:
-                    enemy = HeliA14Pool.GetObjectFromPool();
+                    enemy = heliA14Pool.GetObjectFromPool();
                     break;
                 case EnemyType.HeliA17:
-                    enemy = HeliA17Pool.GetObjectFromPool();
+                    enemy = heliA17Pool.GetObjectFromPool();
                     break;
             }
+
+            enemy.ResetHealth();
+            enemy.SetType(type);//TODO call when the object is initialized!!!
+            enemy.InjectMessageBroadcaster(inGameMessageBroadcaster);
+            enemy.gameObject.SetActive(true);
+            liveEnemies.Add(enemy);
             return enemy;
         }
 
@@ -123,6 +175,14 @@
         public void SpawnEnemies()
         {
             SpawnWaveEnemies(levelWaveData,0);
+        }
+
+        public void CallUpdate()
+        {
+            for (int i = 0; i < liveEnemies.Count; i++)
+            {
+                liveEnemies[i].CallUpdate();
+            }
         }
     }
 

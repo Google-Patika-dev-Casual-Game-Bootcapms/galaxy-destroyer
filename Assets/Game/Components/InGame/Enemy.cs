@@ -4,8 +4,9 @@ namespace SpaceShooterProject.Component
 {
     using UnityEngine;
     using System.Collections;
+    using Devkit.Base.Object;
 
-    public abstract class Enemy : MonoBehaviour, IEnemy
+    public abstract class Enemy : MonoBehaviour, IEnemy, IUpdatable
     {
         [SerializeField] private float shipSpeed = 20f;
         [SerializeField] private int hp = 100;
@@ -13,16 +14,29 @@ namespace SpaceShooterProject.Component
         [SerializeField] private float frameRate = 0;
         [SerializeField] private float fireRate = 20;
 
+        const int defaultHP = 10;
+
+        protected InGameMessageBroadcaster inGameMessageBroadcaster;
+        protected EnemyType enemyType;
+
         public void Activate()
         {
             gameObject.SetActive(true);
+        }
+
+        public void SetType(EnemyType enemyType)
+        {
+            this.enemyType = enemyType;
         }
 
         public abstract void Attack();
 
         public abstract void Patrol();
 
-        public abstract void GetHit(int damage);
+        public void GetHit(int damage) 
+        {
+            HP -= damage;
+        }
 
         public abstract void Death();
 
@@ -47,7 +61,7 @@ namespace SpaceShooterProject.Component
         {
             if (HP<=0)
             {
-                Destroy(gameObject);
+                Death();
             }
         }
 
@@ -74,6 +88,21 @@ namespace SpaceShooterProject.Component
 
         public void PreInit()
         {
+        }
+
+        public void InjectMessageBroadcaster(InGameMessageBroadcaster inGameMessageBroadcaster)
+        {
+            this.inGameMessageBroadcaster = inGameMessageBroadcaster;
+        }
+
+        public EnemyType GetEnemyType() 
+        {
+            return enemyType;
+        }
+
+        public void ResetHealth() 
+        {
+            HP = defaultHP;
         }
     }
 }
