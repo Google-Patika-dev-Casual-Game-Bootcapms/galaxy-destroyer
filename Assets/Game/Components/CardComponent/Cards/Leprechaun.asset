@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a7302af19c8664d89ff8df2a0c2515, type: 3}
+  m_Name: Leprechaun
+  m_EditorClassIdentifier: 
+  cardName: Leprechaun
+  cardDescription: Well, look at this. Apparently, you can find %15 more gold.
+  cardArtwork: {fileID: 21300000, guid: acc52c3ecec1c1b4abc01de23eb2388d, type: 3}
