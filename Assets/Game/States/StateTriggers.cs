@@ -27,7 +27,6 @@ namespace SpaceShooterProject.State
         GAME_OVER,
         REPLAY_GAME_REQUEST,
         GO_TO_CREDITS,
-        GO_TO_QUOTE_REQUEST
     }
 }
 
