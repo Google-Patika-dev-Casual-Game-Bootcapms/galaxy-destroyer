@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using Devkit.Base.Component;
+using SpaceShooterProject.Component;
 
 public class GarageUIHexagonUpgrader : MonoBehaviour
 {
@@ -11,10 +13,13 @@ public class GarageUIHexagonUpgrader : MonoBehaviour
     private TextMeshProUGUI majorLevelText;
     [SerializeField]
     private List<Image> minorLevelList;
+    [SerializeField]
+    private TextMeshProUGUI upgradeCost;
+
 
     private int minorLevel;
     private int majorLevel;
-
+ 
     public void UpdateMinorAndMajorLevels(int level)
     {
         UpdateMajorLevels(level);
@@ -38,5 +43,10 @@ public class GarageUIHexagonUpgrader : MonoBehaviour
     {
         majorLevel = level / 7;
         majorLevelText.text = majorLevel.ToString();
+    }
+
+    public void updateCost(int cost)
+    {
+        upgradeCost.text = cost.ToString();
     }
 }
