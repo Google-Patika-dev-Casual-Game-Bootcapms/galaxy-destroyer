@@ -29,10 +29,15 @@
 
         private LevelWaveData levelWaveData;
 
+        private Camera gameCamera = null;
 
+        private Player player;// TODO refactor!!!
 
         public void Init()
         {
+            gameCamera = Camera.main;
+            player = GameObject.FindObjectOfType<Player>();
+
             waveData1 = new WaveData();
 
             waveData1.waveInfo[0] = 3;
@@ -96,7 +101,10 @@
 
         public void SpawnWaveEnemies(LevelWaveData levelWaveData, int levelIndex)
         {
-            var spawnEnemyPosition = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, 1));
+            float height = 2f * gameCamera.orthographicSize;
+            float width = height * gameCamera.aspect;
+
+            var spawnEnemyPosition = new Vector2(0, player.transform.position.y + height * .7f);
 
             var currentWaveData = levelWaveData.waveDatas[levelIndex];
 
@@ -105,8 +113,7 @@
                 for (int j = 0; j < currentWaveData.waveInfo[i]; j++)
                 {
                     var enemy = ProduceEnemy((EnemyType)i);
-                    var enemyWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(spawnEnemyPosition.x, spawnEnemyPosition.y,Camera.main.nearClipPlane));
-                    enemy.transform.position = enemyWorldPosition;
+                    enemy.transform.position = spawnEnemyPosition;
                 }
             }
         }
