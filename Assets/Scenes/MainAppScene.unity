@@ -491,6 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 916960160}
+  playerPrefab: {fileID: 0}
   gameCamera: {fileID: 519420030}
 --- !u!1 &441251706
 GameObject:
@@ -901,7 +902,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   publisherLogo: {fileID: 1438647852}
-  appLogo: {fileID: 1610276542}
+  patikaLogo: {fileID: 0}
+  appLogo:
+  - {fileID: 0}
   loadingIcon: {fileID: 1346137379}
 --- !u!1 &684140041
 GameObject:
@@ -3756,6 +3759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d03a84866f3c745b48e3f0f9247e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinContainer: {fileID: 0}
 --- !u!1001 &1918620407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4051,6 +4055,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78667420a51e54f91f5389873ae188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  achievementsContentPanel: {fileID: 0}
+  achievementCardPrefab: {fileID: 0}
+  achievementCardData: []
 --- !u!1 &2141362031
 GameObject:
   m_ObjectHideFlags: 0
