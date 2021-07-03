@@ -33,7 +33,9 @@ namespace SpaceShooterProject.UserInterface
 
         [SerializeField] private RectTransform backgroundImage;
         [SerializeField] private TMP_Text ownedGoldText, health, power;
-        
+
+        [SerializeField]
+        private GameObject[] progressBarArray;
 
         protected override void Init()
         {
@@ -107,8 +109,15 @@ namespace SpaceShooterProject.UserInterface
             return new Vector2(screenSize.x / scaleFactor, screenSize.y / scaleFactor);
         }
 
-        public void UpdateUI(int ownedGold)
+        // TODO RE-UPDATE UI WHENEVER USER CHANGES CURRENT SELECTED SHIP
+        public void UpdateUI(SpaceShipSuperPowerData spaceShipSuperPowerData, int ownedGold)
         {
+            /* for (var i = 0; i < (int)SuperPowerType.COUNT; i++)
+            {
+                progressBarArray[i].transform
+                    .DOScaleY(spaceShipSuperPowerData.SuperPowerItemCounts[i] * 0.25f, .1f);
+            } */
+            
             ownedGoldText.text = ownedGold.ToString();
         }
 
@@ -123,7 +132,7 @@ namespace SpaceShooterProject.UserInterface
                     //TODO: 
                     break;
                 case SuperPowerProcessStatus.SUCCESS:
-                    SuperPowerPurchased(superPowerPurchaseProcessData.SuperPowerType, superPowerPurchaseProcessData.CurrentSuperPowerItemCount);
+                    SuperPowerPurchased(superPowerPurchaseProcessData.SuperPowerType);
                     ownedGoldText.text = ownedGold.ToString();
                     ownedGoldText.rectTransform.DOScale(new Vector3(1.1f,1.1f, 1.1f), .1f).SetEase(Ease.InOutBounce).OnComplete(
                         () =>
@@ -137,22 +146,11 @@ namespace SpaceShooterProject.UserInterface
             }
         }
 
-        public void SuperPowerPurchased(SuperPowerType superPowerType, int itemCount)
+        public void SuperPowerPurchased(SuperPowerType superPowerType)
         {
-            switch (superPowerType)
-            {
-                case SuperPowerType.LASER:
-                    break;
-                case SuperPowerType.SHIELD:
-                    break;
-                case SuperPowerType.MEGABOMB:
-                    break;
-                default:
-                    break;
-            }
+            progressBarArray[(int) superPowerType].transform
+                .DOScaleY(progressBarArray[(int) superPowerType].transform.localScale.y + 0.25f, .1f);
         }
-        
     }
-
 
 }
