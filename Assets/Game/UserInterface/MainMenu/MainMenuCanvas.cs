@@ -25,15 +25,20 @@ namespace SpaceShooterProject.UserInterface
 
         [SerializeField] private PlanetUIController planetUIController;
 
+        // Created for Adjusting Inventory Canvas before entering the canvas
+        private InventoryCanvas inventoryCanvas;
+
         protected override void Init()
         {
+            inventoryCanvas = FindObjectOfType<InventoryCanvas>();
+
             backgroundImage.sizeDelta = GetCanvasSize();
             planetUIController.Init();
         }
 
-        public void RequestQuoteMenu() 
+        public void RequestQuoteMenu()
         {
-            if (OnQuoteMenuRequest != null) 
+            if (OnQuoteMenuRequest != null)
             {
                 OnQuoteMenuRequest();
             }
@@ -67,6 +72,7 @@ namespace SpaceShooterProject.UserInterface
         {
             if (OnInventoryMenuRequest != null)
             {
+                inventoryCanvas.AdjustTheInventoryCanvas();
                 OnInventoryMenuRequest();
             }
         }

@@ -9,7 +9,6 @@ namespace SpaceShooterProject.UserInterface
     using Devkit.Base.Component;
     using SpaceShooterProject.Component;
     using UnityEngine.EventSystems;
-    using static SpaceShooterProject.UserInterface.InventoryCanvas;
 
     public class CardCanvas : BaseCanvas, IComponent
     {
@@ -19,11 +18,17 @@ namespace SpaceShooterProject.UserInterface
 
         //Fields
         [SerializeField] private RectTransform backgroundImage;
+        [SerializeField] private RectTransform cardSprite;
+        [SerializeField] private TMP_Text header;
+        [SerializeField] private TMP_Text description;
+
+        private CardComponent cardComponent;
 
 
         protected override void Init()
         {
-            var inventory = componentContainer.GetComponent("InventoryComponent") as InventoryComponent;
+            cardComponent = componentContainer.GetComponent("CardComponent") as CardComponent;
+
             backgroundImage.sizeDelta = GetCanvasSize();
         }
 
@@ -32,6 +37,28 @@ namespace SpaceShooterProject.UserInterface
             if (OnReturnToInventory != null)
             {
                 OnReturnToInventory();
+            }
+        }
+
+        public void AdjustTheCanvas(int index)
+        {
+            int permanentCardCount = cardComponent.GetPermanentCardCount();
+
+            if (index < permanentCardCount)
+            {
+                header.text = cardComponent.GetPermanentCardName(index);
+                description.text = cardComponent.GetPermanentCardDescription(index);
+
+                cardSprite.GetComponent<Image>().sprite = cardComponent.GetPermanentCardSprite(index);
+            }
+            else
+            {
+                index -= permanentCardCount;
+
+                header.text = cardComponent.GetTemporalCardName(index);
+                description.text = cardComponent.GetTemporalCardDescription(index);
+
+                cardSprite.GetComponent<Image>().sprite = cardComponent.GetTemporalCardSprite(index);
             }
         }
     }

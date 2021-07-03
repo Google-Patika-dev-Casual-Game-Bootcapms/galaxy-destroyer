@@ -542,10 +542,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61da66bebc6fd95419ba0ffb5025f017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeCardIndex: 0
-  activeSpaceshipIndex: 0
-  backgroundImage: {fileID: 2266398198945136134}
-  ownedCardSprite: {fileID: 21300000, guid: 451d31dfca922084692202f23a7976fa, type: 3}
   buttons:
   - {fileID: 219103231729357651}
   - {fileID: 2266398198902914972}
@@ -553,6 +549,7 @@ MonoBehaviour:
   - {fileID: 2266398198003898756}
   - {fileID: 2266398198260541898}
   - {fileID: 2266398198460538216}
+  backgroundImage: {fileID: 2266398198945136134}
 --- !u!1 &2266398198879797571
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,6 +871,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 0854811dbdd293641879bbd58fc3233f, type: 3}
     - target: {fileID: 909453878308442247, guid: 60cb800d1e494014cbd06945367ac523, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 909453878308442247, guid: 60cb800d1e494014cbd06945367ac523, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2266398198231985056}
@@ -885,7 +886,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1122924910309753812}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1017,6 +1018,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2266398198231985057}
     m_Modifications:
     - target: {fileID: 341477626368596120, guid: 108e1d14f0b7c194cae549c734385a20, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 341477626368596120, guid: 108e1d14f0b7c194cae549c734385a20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2266398198231985056}
@@ -1132,7 +1137,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2003804075803283151}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1352,6 +1357,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 73049785937481, guid: 9a5ddcf7cf6802e49be6b218abb1483d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 73049785937481, guid: 9a5ddcf7cf6802e49be6b218abb1483d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2266398198231985056}
@@ -1371,7 +1380,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2266330235595982723}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1489,6 +1498,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2695370254280437101, guid: f5d641786f902bc4bb6026f9a9612627, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695370254280437101, guid: f5d641786f902bc4bb6026f9a9612627, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2266398198231985056}
@@ -1504,7 +1517,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 4185037917415126249}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1623,6 +1636,10 @@ PrefabInstance:
       value: Card1
       objectReference: {fileID: 0}
     - target: {fileID: 8070104473207587080, guid: 083523ffb7f80cf44b54ccfe1e529118, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070104473207587080, guid: 083523ffb7f80cf44b54ccfe1e529118, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2266398198231985056}
@@ -1734,7 +1751,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 8110165329069817492}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1754,6 +1771,10 @@ PrefabInstance:
     - target: {fileID: 7448733087366696042, guid: dc02f11328fa23f489cb790770e8c39b, type: 3}
       propertyPath: m_Name
       value: Card5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448733087366696044, guid: dc02f11328fa23f489cb790770e8c39b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7448733087366696044, guid: dc02f11328fa23f489cb790770e8c39b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1867,7 +1888,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 8659553883475120388}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
