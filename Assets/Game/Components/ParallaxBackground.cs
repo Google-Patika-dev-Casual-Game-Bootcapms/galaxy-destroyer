@@ -1,15 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ParallaxBackground : MonoBehaviour
 {
     private float startPosition, length, temp, dist;
-    public GameObject myCamera;
+    private GameObject myCamera;
     public float parallaxSpeed;
+    
 
     private void Start()
     {
+        myCamera = Camera.main.gameObject;
         GetBackgroundValues();
     }
 

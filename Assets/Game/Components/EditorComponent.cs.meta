@@ -5,6 +5,10 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - m_ViewDataDictionary: {instanceID: 0}
+  - marsParallax: {fileID: 3354098345336167004, guid: a872b9281c425594e91e9d277eb310cf, type: 3}
+  - neptuneParallax: {instanceID: 0}
+  - uranusParallax: {instanceID: 0}
+  - saturnParallax: {instanceID: 0}
   - flyEnemyNPCPrefab: {instanceID: 0}
   - stableEnemyNPCPrefab: {instanceID: 0}
   - nonFlyEnemyNPCPrefab: {instanceID: 0}
