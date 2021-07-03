@@ -102,7 +102,7 @@
         public void SpawnWaveEnemies(LevelWaveData levelWaveData, int levelIndex)
         {
             float height = 2f * gameCamera.orthographicSize;
-            float width = height * gameCamera.aspect;
+            float width = height * gameCamera.aspect;            
 
             var spawnEnemyPosition = new Vector2(0, player.transform.position.y + height * .7f);
 
@@ -110,10 +110,13 @@
 
             for (int i = 0; i < (int)EnemyType.COUNT; i++)
             {
+                spawnEnemyPosition = new Vector2(-width * 0.17f, player.transform.position.y + height * .7f + i * height * 0.1f);
+                var spawnHeight = spawnEnemyPosition.y;
                 for (int j = 0; j < currentWaveData.waveInfo[i]; j++)
                 {
                     var enemy = ProduceEnemy((EnemyType)i);
                     enemy.transform.position = spawnEnemyPosition;
+                    spawnEnemyPosition = new Vector2(enemy.transform.position.x + width * 0.1f, spawnHeight);
                 }
             }
         }
