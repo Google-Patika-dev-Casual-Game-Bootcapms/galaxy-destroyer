@@ -27,5 +27,22 @@ namespace SpaceShooterProject.UserInterface.Market{
         {
             gameObject.SetActive(false);
         }
+
+        public float GetAnimationPlayTime() 
+        {
+            if (animator == null) 
+            {
+                return 0;
+            }
+
+            var animationClips = animator.runtimeAnimatorController.animationClips;
+
+            if (animationClips.Length == 0) 
+            {
+                return 0;
+            }
+
+            return animationClips[0].length;
+        }
     }
 }

@@ -55,13 +55,12 @@ namespace SpaceShooterProject.State
                 var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
                     RaycastHit hit;
                         if( Physics.Raycast(ray.origin, ray.direction, out hit)){
+
                             var chest = hit.collider.GetComponent<ChestAnimation>();
-                                if(chest){
-                                    chest.OpenChestAnimation();
-                                    isChestOpened = true;
-                                    
-                                }
-                                InSceneChange();
+
+                            marketCanvas.OnChestOpenAnimationComplete += OnChestOpenAnimationComplete;
+                            marketCanvas.SetGainedCoinAmount(gachaComponent.OpenChest());
+                            marketCanvas.PlayChestOpenAnimation(chest);
 
                         }
                 }
@@ -69,23 +68,20 @@ namespace SpaceShooterProject.State
             
            
         }
+
+        private void OnChestOpenAnimationComplete()
+        {
+            //TODO open reward gain scene!!!
+            InSceneChange();
+            marketCanvas.OnChestOpenAnimationComplete -= OnChestOpenAnimationComplete;
+        }
+
         float UserTimer;
         private void InSceneChange(){
             Debug.Log("fonksiyona girdi!");
-            
+            //TODO refactor!!!
             marketCanvas.IsMarketSceneActive(false);
-           while(UserTimer < 10.0f){
-                Debug.Log(UserTimer);
-                UserTimer +=  Time.deltaTime;
-            } 
-            marketCanvas.IsCoinSceneActive(true);    
-            /* marketCanvas.IsCoinSceneActive(false);
-            marketCanvas.IsMarketSceneActive(true);  */
-            
-            //marketCanvas.earnedCoin = gachaComponent.OpenChest();
-            
-            
-            
+            marketCanvas.IsCoinSceneActive(true); 
         }
     }
 }

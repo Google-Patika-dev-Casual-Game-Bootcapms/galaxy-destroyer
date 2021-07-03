@@ -3,16 +3,21 @@ namespace SpaceShooterProject.UserInterface
     using UnityEngine;
     using UnityEngine.UI;
     using TMPro;
+    using SpaceShooterProject.UserInterface.Market;
+    using System.Collections;
 
     public class MarketCanvas : BaseCanvas
     {
-        [SerializeField] private RectTransform backgroundImage;
-        [SerializeField] private GameObject coinEarnScene;
+        public delegate void ChestOpenAnimationDelegate();
+        public event ChestOpenAnimationDelegate OnChestOpenAnimationComplete;
 
+        [SerializeField] private RectTransform backgroundImage;
+        [SerializeField] private Canvas earnRewardCanvas;
+        [SerializeField] private TextMeshProUGUI gainedGoldAmountContainer;
 
         public int earnedCoin;
 
-        
+        private bool isChestOpened = false;
 
 
         private Vector2 GetCanvasSize()
@@ -34,7 +39,6 @@ namespace SpaceShooterProject.UserInterface
         protected override void Init()
         {
             backgroundImage.sizeDelta = GetCanvasSize();
-            coinEarnScene.transform.GetChild(4).transform.gameObject.GetComponent<TextMeshProUGUI>().SetText(earnedCoin.ToString());
 
         }
 
@@ -42,19 +46,54 @@ namespace SpaceShooterProject.UserInterface
             backgroundImage.gameObject.SetActive(isActive);
         }
 
-        public void IsCoinSceneActive(bool isActive){
-            coinEarnScene.SetActive(isActive);
+        public void IsCoinSceneActive(bool isActive)
+        {
+            earnRewardCanvas.enabled = isActive;
         }
         
         public void IsMarketSceneActive(bool isActive){
-            Debug.Log(isActive);
-            for( int i=0; i<gameObject.transform.childCount; i++){
-                Debug.Log("buna da girdi!");
-                transform.GetChild(i).gameObject.SetActive(isActive);
-            }
             
+            if (isActive)
+            {
+                Activate();
+            }
+            else
+            {
+                Deactivate();
+            }
+
         }
 
+        public void PlayChestOpenAnimation(ChestAnimation chest)
+        {
+            StartCoroutine("PlayChestAnimation", chest);
+        }
 
+        private IEnumerator PlayChestAnimation(ChestAnimation chest) 
+        {
+            if(chest)
+            {
+                chest.OpenChestAnimation();
+                isChestOpened = true;
+            }
+
+            const float animationDelay = 1.0f;
+
+            gainedGoldAmountContainer.text = earnedCoin.ToString();
+
+            yield return new WaitForSeconds(chest.GetAnimationPlayTime() + animationDelay);
+
+            if (OnChestOpenAnimationComplete != null) 
+            {
+                OnChestOpenAnimationComplete();
+            }
+
+            isChestOpened = false;
+        }
+
+        public void SetGainedCoinAmount(int gainedGold)
+        {
+            earnedCoin = gainedGold;
+        }
     }
 }

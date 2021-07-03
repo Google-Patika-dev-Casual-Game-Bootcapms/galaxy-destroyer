@@ -22,6 +22,8 @@ namespace SpaceShooterProject
         private MarketComponent marketComponent;
         private CoPilotComponent coPilotComponent;
         private SuperPowerComponent superPowerComponent;
+        private GachaComponent gachaComponent;
+        private CurrencyComponent currencyComponent;
 
         private AppState appState;
 
@@ -33,6 +35,7 @@ namespace SpaceShooterProject
         private void Start()
         {
             CreateAccountComponent();
+            CreateGachaComponent();
             CreateUIComponent();
             CreateIntroComponent();
             CreateAchievementsComponent();
@@ -44,13 +47,13 @@ namespace SpaceShooterProject
             CreateMarketComponent();
             CreateCoPilotComponent();
             CreateSuperPowerComponent();
+            CreateCurrencyComponent();
 
             InitializeComponents();
             CreateAppState();
             appState.Enter();
         }
 
-        
         public void Update()
         {
             appState.Update();
@@ -60,6 +63,12 @@ namespace SpaceShooterProject
         {
             accountComponent = new AccountComponent();
             componentContainer.AddComponent("AccountComponent", accountComponent);
+        }
+
+        private void CreateGachaComponent()
+        {
+            gachaComponent = new GachaComponent();
+            componentContainer.AddComponent("GachaComponent", gachaComponent);
         }
 
         private void CreateUIComponent()
@@ -129,9 +138,17 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("MarketComponent", marketComponent);
         }
 
+        private void CreateCurrencyComponent()
+        {
+            currencyComponent = new CurrencyComponent();
+            componentContainer.AddComponent("CurrencyComponent", currencyComponent);
+        }
+
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
+            currencyComponent.Initialize(componentContainer);
+            gachaComponent.Initialize(componentContainer);
             uIComponent.Initialize(componentContainer);
             introComponent.Initialize(componentContainer);
             achievementsComponent.Initialize(componentContainer);
