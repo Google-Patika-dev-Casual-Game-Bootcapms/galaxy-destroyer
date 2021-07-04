@@ -26,6 +26,7 @@ namespace SpaceShooterProject
         private SuperPowerComponent superPowerComponent;
         private InGameInputSystem inGameInputSystem;
         private CurrencyComponent currencyComponent;
+        private QuoteComponent quoteComponent;
         private UpgradeComponent upgradeComponent;
 
         private AppState appState;
@@ -52,6 +53,7 @@ namespace SpaceShooterProject
             CreateCoPilotComponent();
             CreateSuperPowerComponent();
             CreateInGameInputSystem();
+            CreateQuoteComponent();
             CreateUpgradeComponent();
 
             InitializeComponents();
@@ -90,7 +92,7 @@ namespace SpaceShooterProject
 
         private void CreateAchievementsComponent()
         {
-            achievementsComponent = new AchievementsComponent();
+            achievementsComponent = FindObjectOfType<AchievementsComponent>();
             componentContainer.AddComponent("AchievementsComponent", achievementsComponent);
         }
 
@@ -160,6 +162,12 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("InGameInputSystem", inGameInputSystem);
         }
 
+        private void CreateQuoteComponent() 
+        {
+            quoteComponent = FindObjectOfType<QuoteComponent>();
+            componentContainer.AddComponent("QuoteComponent", quoteComponent);
+        }
+
         private void CreateUpgradeComponent()
         {
             upgradeComponent = new UpgradeComponent();
@@ -169,9 +177,10 @@ namespace SpaceShooterProject
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
+            quoteComponent.Initialize(componentContainer);
+            achievementsComponent.Initialize(componentContainer);
             uIComponent.Initialize(componentContainer);
             introComponent.Initialize(componentContainer);
-            achievementsComponent.Initialize(componentContainer);
             audioComponent.Initialize(componentContainer);
             notificationComponent.Initialize(componentContainer);
             currencyComponent.Initialize(componentContainer);
@@ -181,6 +190,8 @@ namespace SpaceShooterProject
             marketComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
             superPowerComponent.Initialize(componentContainer);
+            upgradeComponent.Initialize(componentContainer);
+            currencyComponent.Initialize(componentContainer);
             inGameInputSystem.Initialize(componentContainer);
             upgradeComponent.Initialize(componentContainer);
         }
