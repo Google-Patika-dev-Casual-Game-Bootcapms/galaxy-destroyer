@@ -19,6 +19,7 @@ namespace SpaceShooterProject.State
 
         public PrepareGameState(ComponentContainer componentContainer)
         {
+            accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
             superPowerComponent = componentContainer.GetComponent("SuperPowerComponent") as SuperPowerComponent;
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
             provisionCanvas = uiComponent.GetCanvas(UIComponent.MenuName.PROVISION) as ProvisionCanvas;
