@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2566591413621707906, guid: 8e189a9dcf51617419b334092bf8554e, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4836244488045419909, guid: 8e189a9dcf51617419b334092bf8554e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

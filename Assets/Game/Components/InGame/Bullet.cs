@@ -11,11 +11,9 @@ namespace SpaceShooterProject.Component
         [SerializeField] private int damage = 10;
         [SerializeField] private RectTransform _transform;
 
-        public delegate void BulletTriggerDelegate();
 
         public delegate void BulletPoolDelegate(Bullet bullet);
 
-        public BulletTriggerDelegate OnHitEnemy;
         public BulletPoolDelegate OnBulletOutOfScreen;
 
         private IBulletCollector bulletCollectorReference;
@@ -46,14 +44,6 @@ namespace SpaceShooterProject.Component
             bulletCollectorReference = bulletCollector;
         }
 
-        /*private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.gameObject.CompareTag("Enemy"))
-            {
-                OnHitEnemy();
-            }
-        }*/
-
         public void Activate()
         {
             gameObject.SetActive(true);
@@ -67,6 +57,10 @@ namespace SpaceShooterProject.Component
         public int GetDamage()
         {
             return damage;
+        }
+        public void OnHitEnemy()
+        {
+            bulletCollectorReference.AddBulletToPool(this);
         }
     }
 }

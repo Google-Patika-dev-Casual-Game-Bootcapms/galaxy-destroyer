@@ -48,6 +48,7 @@ namespace SpaceShooterProject.Component
             {
                 var bullet = collider.gameObject.GetComponent<Bullet>();
                 GetHit(bullet.GetDamage());
+                bullet.OnHitEnemy();
             }
         }
 
