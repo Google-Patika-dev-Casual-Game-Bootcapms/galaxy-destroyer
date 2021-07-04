@@ -9,7 +9,8 @@ public class ParallaxBackground : MonoBehaviour
 
     private void Start()
     {
-        myCamera = Camera.main.gameObject;
+        SetCamera();
+        SetBackgroundPosition();
         GetBackgroundValues();
     }
 
@@ -24,12 +25,25 @@ public class ParallaxBackground : MonoBehaviour
         length = GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
+    private void SetCamera()
+    {
+        myCamera = Camera.main.gameObject;
+    }
+
+    private void SetBackgroundPosition()
+    {
+        transform.position = new Vector3(0, myCamera.transform.position.y, transform.position.z);
+    }
+
     private void TriggerParallaxEffect()
     {
-        temp = myCamera.transform.position.y * (1 - parallaxSpeed);
-        dist = myCamera.transform.position.y * parallaxSpeed;
+        var cameraPos = myCamera.transform.position;
+        temp = cameraPos.y * (1 - parallaxSpeed);
+        dist = cameraPos.y * parallaxSpeed;
 
-        transform.position = new Vector3(transform.position.x, startPosition + dist, transform.position.z);
+        var position = transform.position;
+        position = new Vector3(position.x, startPosition + dist, position.z);
+        transform.position = position;
 
         if (temp > startPosition + length)
             startPosition += length;
