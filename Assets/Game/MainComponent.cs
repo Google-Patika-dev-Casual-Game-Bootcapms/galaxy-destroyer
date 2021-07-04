@@ -126,7 +126,8 @@ namespace SpaceShooterProject
 
         private void CreateEditorSceneBuilderComponent()
         {
-            editorSceneBuilderComponent = new EditorSceneBuilderComponent();
+            //TODO: Make prefab!!!
+            editorSceneBuilderComponent = new GameObject().AddComponent<EditorSceneBuilderComponent>();
             componentContainer.AddComponent("LevelEditorSceneBuilderComponent", editorSceneBuilderComponent);
         }
 
