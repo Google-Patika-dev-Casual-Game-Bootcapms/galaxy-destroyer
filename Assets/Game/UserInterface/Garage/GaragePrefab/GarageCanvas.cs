@@ -1,7 +1,6 @@
-using DG.Tweening;
-
 namespace SpaceShooterProject.UserInterface
 {
+    using DG.Tweening;
     using UnityEngine;
     using UnityEngine.UI;
     using SpaceShooterProject.Component;
