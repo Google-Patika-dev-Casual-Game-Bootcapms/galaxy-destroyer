@@ -4,16 +4,53 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - flyEnemyNPCPrefab: {fileID: 5620894995419471603, guid: b7c73a3dab711024aa8ae383ba02fbd4, type: 3}
-  - stableEnemyNPCPrefab: {fileID: 4770979504919989894, guid: 388fbcf2b03aecc40a3ea50f24eacb81, type: 3}
-  - nonFlyEnemyNPCPrefab: {fileID: 4435014209581199470, guid: 6896fbdebe1e2aa47ab54b5df2323ce4, type: 3}
-  - levelEndMonsterPrefab: {fileID: 2583502212868500330, guid: 584da666a08a0be4bb5979802526c754, type: 3}
-  - friendNPCPrefab: {fileID: 8626984923395441030, guid: 5d3b4967cf3efec4ab6a1cd6b098cd15, type: 3}
-  - boxPrefab: {fileID: 550079570724768722, guid: e96d0e3531205f8409d2c6f6d796e0ad, type: 3}
-  - marsPrefab: {fileID: 1727077192055307083, guid: 6391b6134a9364541841dddcbffce37b, type: 3}
-  - neptunePrefab: {fileID: 4232126191246814628, guid: 3d4ed1343a410b34e83b7cecd9a3ae82, type: 3}
-  - uranusPrefab: {fileID: 7005936528083616808, guid: 3d9b802dd687cd8468694ec7ec2ccb0e, type: 3}
-  - saturnPrefab: {fileID: 2730197298005352790, guid: ab0087639e5edb342b597ec95b0204b5, type: 3}
+  - flyEnemyNPC: {instanceID: 0}
+  - stableEnemyNPC: {instanceID: 0}
+  - nonFlyEnemyNPC: {instanceID: 0}
+  - levelEndMonster: {instanceID: 0}
+  - friendNPC: {instanceID: 0}
+  - boxPrefab: {instanceID: 0}
+  - marsTerrain: {fileID: 6713248665539118835, guid: d285983420d874048bb39fd6a3f29cce, type: 3}
+  - neptuneTerrain: {fileID: 6071123657650262227, guid: 071c82226589aa14bb1012b3a153e9fd, type: 3}
+  - uranusTerrain: {fileID: 3064993165806385121, guid: deb03bc8e8f935a4d8ff893457206343, type: 3}
+  - saturnTerrain: {instanceID: 0}
+  - metalCheastBlue: {fileID: 3655766288646705791, guid: 18ec43b949c1fec4bafd354491c59513, type: 3}
+  - metalCheastRed: {fileID: 6984468549481886176, guid: 8059185965d8a134ab322175420bc28f, type: 3}
+  - metalCheastGrey: {fileID: 5003570908875595176, guid: 274a0d15a64368e4da63780fb106d67e, type: 3}
+  - metalCheastYellow: {fileID: 4741927279232944612, guid: 29a1a4a4b2656284597ecb4a3c9db255, type: 3}
+  - metalStand: {fileID: 5121796703463368200, guid: f8eb5b7130226bc4ca3cbedf4a6ed3c2, type: 3}
+  - metalIskele: {fileID: 3588694756975420904, guid: e923f129d3b4fca4ea0abee5193431bc, type: 3}
+  - kazan: {fileID: 8936422460899995568, guid: dc0849618bb13744fae87216288a8eb1, type: 3}
+  - marsMountain002: {fileID: 6739317301039296849, guid: ed7a000d804d88c4aa9b4a75df7faf79, type: 3}
+  - nukeDoor: {fileID: 2368259993911840261, guid: bcde0a5c84755ca4e9c260a2ba5302bf, type: 3}
+  - tower: {fileID: 2304568174163251962, guid: 3e28bb1da77c28a40be3284144d8f1de, type: 3}
+  - propPipes: {fileID: 4513935782882622008, guid: 8f68a608f6c6c3a4a9fa776bd2dda310, type: 3}
+  - marsRock002: {fileID: 7826702940141577054, guid: 74fe211e6d50b3942a64bbd95d246a92, type: 3}
+  - standartRock01: {fileID: 314766146213845124, guid: ea296fe6af3b8e347bdc56305e2857a2, type: 3}
+  - vinc: {fileID: 6893020573984322789, guid: f024211348ddb8a46b9246d1110ed6bb, type: 3}
+  - metalTower: {fileID: 519160246634948689, guid: 343eeecd60a4d1e48827e4dbd2e65dac, type: 3}
+  - metalBridge2: {fileID: 7265006223602713346, guid: d20fd9803b42fe34ead21046a754cb67, type: 3}
+  - armBattery: {fileID: 9145826332615723066, guid: 0248198fc6ff04c4eac780fd31c684cd, type: 3}
+  - energyBumb: {fileID: 2202198649654455987, guid: 6ac0dd06ed459d044ad660a8eff0c83c, type: 3}
+  - marsMountain001: {fileID: 2196365343300228249, guid: b8efc866001a1e14db93f01e4684a408, type: 3}
+  - barrelRev: {fileID: 5849865719211180823, guid: bbe459e23b265c24d8910fcd93832b5d, type: 3}
+  - brokePlane: {fileID: 6567029014773967692, guid: 71cfc396772770a4a90b3ea3424bfea5, type: 3}
+  - dangerWall: {fileID: 4524103468065843401, guid: 3cc087421bf823a458228a56b7f5167b, type: 3}
+  - fanApplied: {fileID: 7423956753139223004, guid: f9e89138aa5e49b4e87856c14253fd29, type: 3}
+  - metalCenter: {fileID: 3857442076549719368, guid: 2b59b1c3df3cf6a4e9eb6845a8dc96e1, type: 3}
+  - metalDirect: {fileID: 4193277101283384296, guid: 4e530cdfc694871449cc90f7790b4635, type: 3}
+  - metalIskele2: {fileID: 1896352685830597612, guid: 737780069c420104083e0b83efdcb918, type: 3}
+  - neptuneIceBridge: {fileID: 3356245742186952853, guid: d75ecc80028a01c43a1de7d562f3aa71, type: 3}
+  - neptuneIceCrystal: {fileID: 3209984105878579142, guid: 7bc62ce39967038478dcd9988c7be879, type: 3}
+  - powerCenter: {fileID: 5396912057060713974, guid: 25c494b6dbe518241824a1ad93843169, type: 3}
+  - saturnRock1: {fileID: 1564833670620029844, guid: 2fd17ed9d8b34b74faae270e1947549b, type: 3}
+  - saturnRock2: {fileID: 558796004682497157, guid: 661fb5e8a4feda7448483c6b1a6e2b1d, type: 3}
+  - saturnMountain1: {fileID: 3520765716766351927, guid: 65f86bd6c25b0b44fbab25be4c9e7d7a, type: 3}
+  - saturnMountain2: {fileID: 7510292920169132840, guid: 86ff87d778483d74aaa9e05967380a1f, type: 3}
+  - standartRock02: {fileID: 7826702940141577054, guid: 48f228b1d3b46e747abcef6022dfb9eb, type: 3}
+  - standartMountain01: {fileID: 2196365343300228249, guid: 3797af2a3503e4e419bda109e39fac15, type: 3}
+  - standartMountain02: {fileID: 6739317301039296849, guid: 9c19f5a5da68db64fbf269a5d8b4073b, type: 3}
+  - marsRock01: {fileID: 1564833670620029844, guid: 1e4c5e1c8f88dfb409670e5e3066c5b2, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

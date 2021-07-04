@@ -12,16 +12,16 @@ public class EditorComponent : EditorWindow
     private string NewLevelName = String.Empty;
     
     #region Variables
-    [SerializeField] private GameObject flyEnemyNPCPrefab;
-    [SerializeField] private GameObject stableEnemyNPCPrefab;
-    [SerializeField] private GameObject nonFlyEnemyNPCPrefab;
-    [SerializeField] private GameObject levelEndMonsterPrefab;
-    [SerializeField] private GameObject friendNPCPrefab;
+    [SerializeField] private GameObject flyEnemyNPC;
+    [SerializeField] private GameObject stableEnemyNPC;
+    [SerializeField] private GameObject nonFlyEnemyNPC;
+    [SerializeField] private GameObject levelEndMonster;
+    [SerializeField] private GameObject friendNPC;
     [SerializeField] private GameObject boxPrefab;
-    [SerializeField] private GameObject marsPrefab;
-    [SerializeField] private GameObject neptunePrefab;
-    [SerializeField] private GameObject uranusPrefab;
-    [SerializeField] private GameObject saturnPrefab;
+    [SerializeField] private GameObject marsTerrain;
+    [SerializeField] private GameObject neptuneTerrain;
+    [SerializeField] private GameObject uranusTerrain;
+    [SerializeField] private GameObject saturnTerrain;
     [SerializeField] private GameObject metalCheastBlue;
     [SerializeField] private GameObject metalCheastRed;
     [SerializeField] private GameObject metalCheastGrey;
@@ -29,19 +29,36 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject metalStand;
     [SerializeField] private GameObject metalIskele;
     [SerializeField] private GameObject kazan;
-    [SerializeField] private GameObject dagLow;
+    [SerializeField] private GameObject marsMountain002;
     [SerializeField] private GameObject nukeDoor;
     [SerializeField] private GameObject tower; 
     [SerializeField] private GameObject propPipes;
-    [SerializeField] private GameObject rock1;
-    [SerializeField] private GameObject rock2;
+    [SerializeField] private GameObject marsRock002;
+    [SerializeField] private GameObject standartRock01;
     [SerializeField] private GameObject vinc;
     [SerializeField] private GameObject metalTower;
     [SerializeField] private GameObject metalBridge2;
     [SerializeField] private GameObject armBattery;
     [SerializeField] private GameObject energyBumb;
-    [SerializeField] private GameObject mountain002;
-    [SerializeField] private GameObject varil;
+    [SerializeField] private GameObject marsMountain001;
+    [SerializeField] private GameObject barrelRev;
+    [SerializeField] private GameObject brokePlane;
+    [SerializeField] private GameObject dangerWall;
+    [SerializeField] private GameObject fanApplied;
+    [SerializeField] private GameObject metalCenter;
+    [SerializeField] private GameObject metalDirect;
+    [SerializeField] private GameObject metalIskele2;
+    [SerializeField] private GameObject neptuneIceBridge;
+    [SerializeField] private GameObject neptuneIceCrystal;
+    [SerializeField] private GameObject powerCenter;
+    [SerializeField] private GameObject saturnRock1;
+    [SerializeField] private GameObject saturnRock2;
+    [SerializeField] private GameObject saturnMountain1;
+    [SerializeField] private GameObject saturnMountain2;
+    [SerializeField] private GameObject standartRock02;
+    [SerializeField] private GameObject standartMountain01;
+    [SerializeField] private GameObject standartMountain02;
+    [SerializeField] private GameObject marsRock01;
     #endregion
     
     [MenuItem("Tools/LevelEditor")]
@@ -178,16 +195,16 @@ public class EditorComponent : EditorWindow
     {
         var shape = type switch
         {
-            EGameObjectType.flyEnemyNPC => Instantiate(flyEnemyNPCPrefab),
-            EGameObjectType.stableEnemyNPC => Instantiate(stableEnemyNPCPrefab),
-            EGameObjectType.nonFlyEnemyNPC => Instantiate(nonFlyEnemyNPCPrefab),
-            EGameObjectType.levelEndMonster => Instantiate(levelEndMonsterPrefab),
-            EGameObjectType.friendNPC => Instantiate(friendNPCPrefab),
+            EGameObjectType.flyEnemyNPC => Instantiate(flyEnemyNPC),
+            EGameObjectType.stableEnemyNPC => Instantiate(stableEnemyNPC),
+            EGameObjectType.nonFlyEnemyNPC => Instantiate(nonFlyEnemyNPC),
+            EGameObjectType.levelEndMonster => Instantiate(levelEndMonster),
+            EGameObjectType.friendNPC => Instantiate(friendNPC),
             EGameObjectType.box => Instantiate(boxPrefab),
-            EGameObjectType.mars => Instantiate(marsPrefab),
-            EGameObjectType.neptune => Instantiate(neptunePrefab),
-            EGameObjectType.uranus => Instantiate(uranusPrefab),
-            EGameObjectType.saturn => Instantiate(saturnPrefab),
+            EGameObjectType.marsTerrain => Instantiate(marsTerrain),
+            EGameObjectType.neptuneTerrain => Instantiate(neptuneTerrain),
+            EGameObjectType.uranusTerrain => Instantiate(uranusTerrain),
+            EGameObjectType.saturnTerrain => Instantiate(saturnTerrain),
             EGameObjectType.metalCheastBlue => Instantiate(metalCheastBlue),
             EGameObjectType.metalCheastRed => Instantiate(metalCheastRed),
             EGameObjectType.metalCheastGrey => Instantiate(metalCheastGrey),
@@ -195,18 +212,35 @@ public class EditorComponent : EditorWindow
             EGameObjectType.metalStand => Instantiate(metalStand),
             EGameObjectType.metalIskele => Instantiate(metalIskele),
             EGameObjectType.kazan => Instantiate(kazan),
-            EGameObjectType.dagLow => Instantiate(dagLow),
+            EGameObjectType.marsMountain002 => Instantiate(marsMountain002),
             EGameObjectType.nukeDoor => Instantiate(nukeDoor),
             EGameObjectType.tower => Instantiate(tower),
             EGameObjectType.propPipes => Instantiate(propPipes),
-            EGameObjectType.rock1 => Instantiate(rock1),
-            EGameObjectType.rock2 => Instantiate(rock2),
+            EGameObjectType.marsRock002 => Instantiate(marsRock002),
+            EGameObjectType.standartRock01 => Instantiate(standartRock01),
             EGameObjectType.metalTower => Instantiate(metalTower),
-            EGameObjectType.metalBridge2 => Instantiate(metalBridge2),
+            EGameObjectType.metalBridge => Instantiate(metalBridge2),
             EGameObjectType.armBattery => Instantiate(armBattery),
             EGameObjectType.energyBumb => Instantiate(energyBumb),
-            EGameObjectType.mountain002 => Instantiate(mountain002),
-            EGameObjectType.varil => Instantiate(varil),
+            EGameObjectType.marsMountain001 => Instantiate(marsMountain001),
+            EGameObjectType.barrelRev => Instantiate(barrelRev),
+            EGameObjectType.brokePlane => Instantiate(brokePlane),
+            EGameObjectType.dangerWall => Instantiate(dangerWall),
+            EGameObjectType.fanApplied => Instantiate(fanApplied),
+            EGameObjectType.metalCenter => Instantiate(metalCenter),
+            EGameObjectType.metalDirect => Instantiate(metalDirect),
+            EGameObjectType.metalIskele2 => Instantiate(metalIskele2),
+            EGameObjectType.neptuneIceBridge => Instantiate(neptuneIceBridge),
+            EGameObjectType.neptuneIceCrystal => Instantiate(neptuneIceCrystal),
+            EGameObjectType.powerCenter => Instantiate(powerCenter),
+            EGameObjectType.saturnRock1 => Instantiate(saturnRock1),
+            EGameObjectType.saturnRock2 => Instantiate(saturnRock2),
+            EGameObjectType.saturnMountain1 => Instantiate(saturnMountain1),
+            EGameObjectType.saturnMountain2 => Instantiate(saturnMountain2),
+            EGameObjectType.standartRock02 => Instantiate(standartRock02),
+            EGameObjectType.standartMountain01 => Instantiate(standartMountain01),
+            EGameObjectType.standartMountain02 => Instantiate(standartMountain02),
+            EGameObjectType.marsRock01 => Instantiate(marsRock01),
             _ => Instantiate(vinc)
         };
         return shape;

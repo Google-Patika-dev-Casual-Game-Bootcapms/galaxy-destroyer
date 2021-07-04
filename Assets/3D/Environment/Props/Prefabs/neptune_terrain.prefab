@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6848609854035495529}
   - component: {fileID: 7540430905723684300}
   - component: {fileID: 5710576133818904838}
+  - component: {fileID: 7360878512672930245}
   m_Layer: 0
   m_Name: neptune_terrain
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7360878512672930245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6071123657650262227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0903cc4c82ab44590889ed0077e3a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 7
