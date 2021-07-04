@@ -20,12 +20,12 @@ namespace SpaceShooterProject.UserInterface
         
         public delegate void RequestPurchaseDelegate(SuperPowerType superPowerType);
         public event RequestPurchaseDelegate OnSuperPowerPurchaseRequest;
-        
 
-        public delegate void ProvisionDelegate();
+        public delegate void ProvisionChangeShipDelegate(bool isNextShip);
+        public event ProvisionChangeShipDelegate OnRequestShipChange;
         
-        public event ProvisionDelegate OnNextShipSelectionRequest;
-        public event ProvisionDelegate OnPreviousShipSelectionRequest;
+        
+        public delegate void ProvisionDelegate();
         public event ProvisionDelegate OnPauseRequest;
         public event ProvisionDelegate OnStartRequest;
 
@@ -33,8 +33,10 @@ namespace SpaceShooterProject.UserInterface
 
         [SerializeField] private RectTransform backgroundImage;
         [SerializeField] private TMP_Text ownedGoldText, health, power;
+        [SerializeField] private Sprite[] spaceShipImageArray;
+        [SerializeField] private Image spaceshipImage;
 
-        [SerializeField]
+            [SerializeField]
         private GameObject[] progressBarArray;
 
         protected override void Init()
@@ -45,26 +47,18 @@ namespace SpaceShooterProject.UserInterface
             
             backgroundImage.sizeDelta = GetCanvasSize();
             ownedGoldText.text = accountComponent.GetOwnedGold().ToString();
+
         }
 
-        public void RequestNextShip()
+        public void OnRequestShipChangeButtonClick(bool isNextShip)
         {
-            if (OnNextShipSelectionRequest != null)
+            if (OnRequestShipChange != null)
             {
-                Debug.Log("On Next Request Send...");
-                OnNextShipSelectionRequest();
+                // TODO : UI CHANGE
+                OnRequestShipChange(isNextShip);
             }
         }
-
-        public void RequestPreviousShip()
-        {
-            if (OnPreviousShipSelectionRequest != null)
-            {
-                Debug.Log("On Previous Request Send...");
-                OnPreviousShipSelectionRequest();
-            }
-        }
-
+        
         public void OnSuperPowerPurchaseButtonClick(int superPowerPartType)
         {
             if (OnSuperPowerPurchaseRequest != null)
