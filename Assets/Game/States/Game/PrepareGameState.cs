@@ -90,6 +90,7 @@ namespace SpaceShooterProject.State
                     accountComponent.SetSelectedSpaceShipId(currentSelectedShip--);
                 }
             }
+            provisionCanvas.OnSpaceShipChangeSucces(accountComponent.GetSelectedSpaceShipId());
         }
         
         private void OnSuperPowerPurchaseRequest(SuperPowerType superPowerType)
