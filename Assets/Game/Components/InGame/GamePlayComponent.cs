@@ -32,6 +32,7 @@ namespace SpaceShooterProject.Component
             player.ComponentContainer = componentContainer;
             player.Init();
             bulletCollector = new BulletCollector();
+            player.InjectBulletCollector(bulletCollector);
 
             enemyFactory = new EnemyFactory(inGameMessageBroadcaster);
             enemyFactory.Init();
@@ -48,7 +49,6 @@ namespace SpaceShooterProject.Component
             Debug.Log("GamePlayComponent is on");
             inputSystem.CallUpdate();
             player.CallUpdate();
-            player.Shoot(bulletCollector);
             bulletCollector.UpdateBullets();
             enemyFactory.CallUpdate();
 

@@ -21,11 +21,20 @@ namespace SpaceShooterProject.Component
         private GameCamera gameCamera;
         private Vector2 screenBounds;
 
+        private float fireTime;
+        private BulletCollector bulletCollector;
+
         public void Init()
         {
             HideShip();
             gameCamera = Camera.main.GetComponent<GameCamera>();
             currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
+            fireTime = 0;
+        }
+
+        public void InjectBulletCollector(BulletCollector bulletCollector) 
+        {
+            this.bulletCollector = bulletCollector;
         }
 
         public void PreInit()
@@ -59,7 +68,9 @@ namespace SpaceShooterProject.Component
 
         public void CallUpdate()
         {
+            fireTime += Time.deltaTime;
             transform.Translate(Vector3.up * gameCamera.CameraSpeed * Time.deltaTime, Space.World);
+            Shoot();
         }
 
         public void OnTouchUp()
@@ -95,9 +106,9 @@ namespace SpaceShooterProject.Component
             inputSystemReferance.OnScreenTouchExit -= OnTouchUp;
         }
 
-        public void Shoot(BulletCollector bulletCollector)
+        private void Shoot()
         {
-            if (Time.time > fireNextSpawn)
+            if (fireTime > fireNextSpawn)
             {
                 Bullet bullet = bulletCollector.GetBullet();
                 bullet.transform.position = transform.position;
