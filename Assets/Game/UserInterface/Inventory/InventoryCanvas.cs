@@ -17,12 +17,18 @@
         public event InventoryRequestDelegate OnSpaceshipShowRequest;
 
         //Fields
-        //[SerializeField] private float animationDuration;
-        //[SerializeField] private int activeCardIndex = 0;
-        //[SerializeField] private int activeSpaceshipIndex = 0;
-        //[SerializeField] private Sprite ownedCardSprite;
         [SerializeField] private List<Button> buttons;
         [SerializeField] private RectTransform backgroundImage;
+
+        [Header("Card Design Tool Fields \t Never Give 0!")]
+        [SerializeField] private int rowNumber = 2;
+        [SerializeField] private int columnNumber = 3;
+        [SerializeField] private float topOffsetMultiplier = 0.1f;
+        [SerializeField] private float bottomOffsetMultiplier = 0.35f;
+        [SerializeField] private float verticalSpaceAreaMultiplier = 0.04f;
+        [SerializeField] private float rightOffsetMultiplier = 0.1f;
+        [SerializeField] private float leftOffsetMultiplier = 0.1f;
+        [SerializeField] private float horizontalSpaceAreaMultiplier = 0.04f;
 
         private InventoryComponent inventoryComponent;
         private CardComponent cardComponent;
@@ -37,12 +43,12 @@
             cardCanvas = FindObjectOfType<CardCanvas>();
 
             backgroundImage.sizeDelta = GetCanvasSize();
-            //CalculateAllCardButtonPlaces(2, 3, 2);
+
+            CalculateAllCardButtonPlaces();
         }
 
-        /*
-        * Transition to CardCanvas
-        */
+        #region Transitions
+
         public void RequestCardShow()
         {
             if (OnCardShowRequest != null)
@@ -52,9 +58,6 @@
             }
         }
 
-        /*
-         * Transition to SpaceshipCanvas
-         */
         public void RequestSpaceshipShow()
         {
             if (OnSpaceshipShowRequest != null)
@@ -63,21 +66,65 @@
             }
         }
 
-        public void CalculateAllCardButtonPlaces(int rowNumber, int columnNumber, int yOffset)
+        #endregion
+
+        // Place the cards automatically on canvas
+        public void CalculateAllCardButtonPlaces()
         {
             Vector2 canvasSize = GetCanvasSize();
-            float xBase = canvasSize.x / (columnNumber + 1);
-            float yBase = canvasSize.y / (rowNumber + 1 + yOffset + 1); // last +1 is for header
 
-            int cardIndex = 0;
-            for (int row = (rowNumber + yOffset); row > rowNumber; row--)
+            //Vertical Info
+            float topOffset = canvasSize.y - (canvasSize.y * topOffsetMultiplier);
+            float bottomOffset = canvasSize.y * bottomOffsetMultiplier;
+            float verticalTotalArea = topOffset - bottomOffset;
+            float verticalNumberOfSpacesBetweenCards = (rowNumber - 1 <= 0 ? 1 : rowNumber - 1);
+            float verticalSpaceAreaBetweenCards = verticalTotalArea * (verticalSpaceAreaMultiplier / verticalNumberOfSpacesBetweenCards);
+
+            //Horizontal Info
+            float rightOffset = canvasSize.x - (canvasSize.x * rightOffsetMultiplier);
+            float leftOffset = canvasSize.x * leftOffsetMultiplier;
+            float horizontalTotalArea = rightOffset - leftOffset;
+            float horizontalNumberOfSpacesBetweenCards = (columnNumber - 1 <= 0 ? 1 : columnNumber - 1);
+            float horizontalSpaceAreaBetweenCards = horizontalTotalArea * (horizontalSpaceAreaMultiplier / horizontalNumberOfSpacesBetweenCards);
+
+            //Card Size Calculations
+            Vector2 rectTransformSizeDelta = buttons[0].GetComponent<RectTransform>().sizeDelta;
+            float cardVerticalSizeMultiplier = (verticalTotalArea - verticalSpaceAreaBetweenCards) / (rectTransformSizeDelta.y * rowNumber);
+            float cardHorizontalSizeMultiplier = (horizontalTotalArea - horizontalSpaceAreaBetweenCards) / (rectTransformSizeDelta.x * columnNumber);
+            float cardSizeMultiplier = Mathf.Min(cardVerticalSizeMultiplier, cardHorizontalSizeMultiplier);
+            Vector2 cardNewSize = rectTransformSizeDelta * cardSizeMultiplier;
+            rectTransformSizeDelta = cardNewSize;
+
+            //Card Position Calculations
+            float cardNewVerticalPosition = topOffset - (rectTransformSizeDelta.y / 2f);
+            float cardNewHorizontalPosition = leftOffset + (rectTransformSizeDelta.x / 2f);
+            Vector2 cardNewPosition;
+
+            bool cardNumberOverflow = false;
+            int rowCount = 1;
+            int columnCount = 1;
+            foreach (Button button in buttons)
             {
-                for (int column = 1; column <= columnNumber; column++)
+                if (cardNumberOverflow) Debug.LogWarning("More Card Buttons than expected! Increase Row or Column Numbers!");
+
+                button.GetComponent<RectTransform>().sizeDelta = cardNewSize;
+                cardNewPosition.y = cardNewVerticalPosition;
+                cardNewPosition.x = cardNewHorizontalPosition;
+                button.GetComponent<RectTransform>().anchoredPosition = cardNewPosition;
+
+                if (columnCount < columnNumber)
                 {
-                    buttons[cardIndex].GetComponent<RectTransform>().anchoredPosition = new Vector3(xBase * column, yBase * row, buttons[cardIndex].transform.position.z);
-                    print("New Position After Function: " + buttons[cardIndex].transform.position);
-                    cardIndex++;
+                    cardNewHorizontalPosition += (rectTransformSizeDelta.x + horizontalSpaceAreaBetweenCards);
+                    columnCount++;
                 }
+                else if (rowCount < rowNumber)
+                {
+                    cardNewVerticalPosition -= (rectTransformSizeDelta.y + verticalSpaceAreaBetweenCards);
+                    rowCount++;
+                    cardNewHorizontalPosition = leftOffset + (rectTransformSizeDelta.x / 2f);
+                    columnCount = 1;
+                }
+                else cardNumberOverflow = true;
             }
         }
 
@@ -115,7 +162,6 @@
             cardCanvas.AdjustTheCanvas(clickedCardIndex);
         }
 
-        //TODO: generate generic function for both permanent and temporary cards to control them easily
         public void ChangeButtonImage(int index, Sprite cardArtwork)
         {
             buttons[index].GetComponent<Image>().sprite = cardArtwork;
