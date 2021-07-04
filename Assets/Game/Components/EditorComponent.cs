@@ -2,15 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Linq;
 using UnityEditor;
-
 
 #if UNITY_EDITOR
 public class EditorComponent : EditorWindow
 {
     private List<string> _savedLevelNames = new List<string>();
     private string NewLevelName = String.Empty;
-
+    
+    #region Variables
     [SerializeField] private GameObject flyEnemyNPCPrefab;
     [SerializeField] private GameObject stableEnemyNPCPrefab;
     [SerializeField] private GameObject nonFlyEnemyNPCPrefab;
@@ -20,8 +21,29 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject marsPrefab;
     [SerializeField] private GameObject neptunePrefab;
     [SerializeField] private GameObject uranusPrefab;
-    [SerializeField] private GameObject saturnPrefab;   
-
+    [SerializeField] private GameObject saturnPrefab;
+    [SerializeField] private GameObject metalCheastBlue;
+    [SerializeField] private GameObject metalCheastRed;
+    [SerializeField] private GameObject metalCheastGrey;
+    [SerializeField] private GameObject metalCheastYellow;
+    [SerializeField] private GameObject metalStand;
+    [SerializeField] private GameObject metalIskele;
+    [SerializeField] private GameObject kazan;
+    [SerializeField] private GameObject dagLow;
+    [SerializeField] private GameObject nukeDoor;
+    [SerializeField] private GameObject tower; 
+    [SerializeField] private GameObject propPipes;
+    [SerializeField] private GameObject rock1;
+    [SerializeField] private GameObject rock2;
+    [SerializeField] private GameObject vinc;
+    [SerializeField] private GameObject metalTower;
+    [SerializeField] private GameObject metalBridge2;
+    [SerializeField] private GameObject armBattery;
+    [SerializeField] private GameObject energyBumb;
+    [SerializeField] private GameObject mountain002;
+    [SerializeField] private GameObject varil;
+    #endregion
+    
     [MenuItem("Tools/LevelEditor")]
     private static void Init()
     {
@@ -45,17 +67,18 @@ public class EditorComponent : EditorWindow
 
         GUILayout.BeginArea(new Rect(10, 150, position.width, position.height));
            
-        for (int i = 0; i < _savedLevelNames.Count; i++)
+        foreach (var t in _savedLevelNames)
         {
-            if (GUILayout.Button(_savedLevelNames[i]))
+            if (GUILayout.Button(t))
             {
-                LoadLevelDataFromJson(_savedLevelNames[i]);
+                LoadLevelDataFromJson(t);
             }
         }
 
         GUILayout.EndArea();
     }
-    public void SaveLevelDataAsJson(string levelName)
+
+    private void SaveLevelDataAsJson(string levelName)
     {
         var itemsToSave = FindObjectsOfType<GameObjectType>();
         string path = Application.dataPath + "/Resources/" + levelName + ".json";
@@ -93,7 +116,7 @@ public class EditorComponent : EditorWindow
         return data;
     }
 
-    public void LoadLevelDataFromJson(string fileName)
+    private void LoadLevelDataFromJson(string fileName)
     {
         string path = Application.dataPath + "/Resources/" + fileName;
         var data = ReadDataFromText(path);
@@ -128,73 +151,64 @@ public class EditorComponent : EditorWindow
         foreach (var levelItem in levelData.LevelCharacters)
         {
             var levelItemObject = InstantiateLevelCharacter(levelItem.Type);
-            var levelItemObjectData = levelItemObject.GetComponent<GameObjectType>();
-            levelItemObjectData.transform.localScale = levelItem.Scale;
-            levelItemObjectData.transform.position = levelItem.Position;
-            levelItemObjectData.transform.eulerAngles = levelItem.Rotation;
+            levelItemObject.transform.localScale = levelItem.Scale;
+            levelItemObject.transform.position = levelItem.Position;
+            levelItemObject.transform.eulerAngles = levelItem.Rotation;
         }
     }
 
     private void ClearScene()
     {
-        var levelItems = GameObject.FindObjectsOfType<GameObjectType>();
+        var levelItems = FindObjectsOfType<GameObjectType>();
         foreach (var rect in levelItems)
             DestroyImmediate(rect.gameObject);
     }
 
-    public List<string> GetLevelNames()
+    private List<string> GetLevelNames()
     {
-        List<string> levelNames = new List<string>();
-
         string partialName = string.Empty;
 
         DirectoryInfo hdDirectoryInWhichToSearch = new DirectoryInfo(Application.dataPath + "/Resources");
         FileSystemInfo[] filesAndDirs = hdDirectoryInWhichToSearch.GetFileSystemInfos("*" + partialName + "*.json");
 
-        foreach (FileSystemInfo foundFile in filesAndDirs)
-        {
-            string fullName = foundFile.Name;
-            levelNames.Add(fullName);
-        }
-        return levelNames;
+        return filesAndDirs.Select(foundFile => foundFile.Name).ToList();
     }
-       
+
     private GameObject InstantiateLevelCharacter(EGameObjectType type)
     {
-        GameObject shape;
-        switch (type)
+        var shape = type switch
         {
-            case EGameObjectType.flyEnemyNPC:
-                shape = Instantiate(flyEnemyNPCPrefab) as GameObject;
-                break;
-            case EGameObjectType.stableEnemyNPC:
-                shape = Instantiate(stableEnemyNPCPrefab) as GameObject;
-                break;
-            case EGameObjectType.nonFlyEnemyNPC:
-                shape = Instantiate(nonFlyEnemyNPCPrefab) as GameObject;
-                break;
-            case EGameObjectType.levelEndMonster:
-                shape = Instantiate(levelEndMonsterPrefab) as GameObject;
-                break;
-            case EGameObjectType.friendNPC:
-                shape = Instantiate(friendNPCPrefab) as GameObject;
-                break;
-            case EGameObjectType.box:
-                shape = Instantiate(boxPrefab) as GameObject;
-                break;
-            case EGameObjectType.mars:
-                shape = Instantiate(marsPrefab) as GameObject;
-                break;
-            case EGameObjectType.neptune:
-                shape = Instantiate(neptunePrefab) as GameObject;
-                break;
-            case EGameObjectType.uranus:
-                shape = Instantiate(uranusPrefab) as GameObject;
-                break;
-            default:
-                shape = Instantiate(saturnPrefab) as GameObject;
-                break;
-        }
+            EGameObjectType.flyEnemyNPC => Instantiate(flyEnemyNPCPrefab),
+            EGameObjectType.stableEnemyNPC => Instantiate(stableEnemyNPCPrefab),
+            EGameObjectType.nonFlyEnemyNPC => Instantiate(nonFlyEnemyNPCPrefab),
+            EGameObjectType.levelEndMonster => Instantiate(levelEndMonsterPrefab),
+            EGameObjectType.friendNPC => Instantiate(friendNPCPrefab),
+            EGameObjectType.box => Instantiate(boxPrefab),
+            EGameObjectType.mars => Instantiate(marsPrefab),
+            EGameObjectType.neptune => Instantiate(neptunePrefab),
+            EGameObjectType.uranus => Instantiate(uranusPrefab),
+            EGameObjectType.saturn => Instantiate(saturnPrefab),
+            EGameObjectType.metalCheastBlue => Instantiate(metalCheastBlue),
+            EGameObjectType.metalCheastRed => Instantiate(metalCheastRed),
+            EGameObjectType.metalCheastGrey => Instantiate(metalCheastGrey),
+            EGameObjectType.metalCheastYellow => Instantiate(metalCheastYellow),
+            EGameObjectType.metalStand => Instantiate(metalStand),
+            EGameObjectType.metalIskele => Instantiate(metalIskele),
+            EGameObjectType.kazan => Instantiate(kazan),
+            EGameObjectType.dagLow => Instantiate(dagLow),
+            EGameObjectType.nukeDoor => Instantiate(nukeDoor),
+            EGameObjectType.tower => Instantiate(tower),
+            EGameObjectType.propPipes => Instantiate(propPipes),
+            EGameObjectType.rock1 => Instantiate(rock1),
+            EGameObjectType.rock2 => Instantiate(rock2),
+            EGameObjectType.metalTower => Instantiate(metalTower),
+            EGameObjectType.metalBridge2 => Instantiate(metalBridge2),
+            EGameObjectType.armBattery => Instantiate(armBattery),
+            EGameObjectType.energyBumb => Instantiate(energyBumb),
+            EGameObjectType.mountain002 => Instantiate(mountain002),
+            EGameObjectType.varil => Instantiate(varil),
+            _ => Instantiate(vinc)
+        };
         return shape;
     }
 }

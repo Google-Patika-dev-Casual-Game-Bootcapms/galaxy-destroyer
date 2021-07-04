@@ -10,7 +10,9 @@ namespace SpaceShooterProject.UserInterface
         [SerializeField]
         private Logo publisherLogo;
         [SerializeField]
-        private Logo appLogo;
+        private Logo patikaLogo;
+        [SerializeField]
+        private Logo[] appLogo;
         [SerializeField]
         private LoadingIcon loadingIcon;
 
@@ -20,7 +22,10 @@ namespace SpaceShooterProject.UserInterface
 
         protected override void Init()
         {
-
+            if (appLogo == null) 
+            {
+                Debug.LogError("App logo reference is null!!!");
+            }
         }
 
         public void PlayIntroAnimation()
@@ -31,7 +36,8 @@ namespace SpaceShooterProject.UserInterface
         private IEnumerator IntroAnimation() 
         {
             loadingIcon.gameObject.SetActive(false);
-            appLogo.gameObject.SetActive(false);
+
+            var logo = appLogo[UnityEngine.Random.Range(0, appLogo.Length)];
 
             publisherLogo.PlayFadeInAnimation(animationTime);
 
@@ -41,8 +47,16 @@ namespace SpaceShooterProject.UserInterface
 
             yield return new WaitForSeconds(animationTime);
 
-            appLogo.gameObject.SetActive(true);
-            appLogo.PlayFadeInAnimation(animationTime);
+            patikaLogo.PlayFadeInAnimation(animationTime);
+
+            yield return new WaitForSeconds(animationTime);
+
+            patikaLogo.PlayFadeOutAnimation(animationTime);
+
+            yield return new WaitForSeconds(animationTime);
+
+            logo.gameObject.SetActive(true);
+            logo.PlayFadeInAnimation(animationTime);
 
             yield return new WaitForSeconds(animationTime);
 

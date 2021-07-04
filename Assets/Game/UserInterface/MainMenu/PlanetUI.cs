@@ -36,6 +36,12 @@ public class PlanetUI : MonoBehaviour
             .OnComplete(() => OnAnimationsCompleted());
     }
 
+    public void KillTweens()
+    {
+        moveTween?.Kill(true);
+        scaleTween?.Kill(true);
+    }
+
     public PlanetUI PreviousPlanet
     {
         get => previousPlanet;

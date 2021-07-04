@@ -152,5 +152,4 @@ namespace SpaceShooterProject.UserInterface
                 .DOScaleY(progressBarArray[(int) superPowerType].transform.localScale.y + 0.25f, .1f);
         }
     }
-
 }

@@ -21,6 +21,7 @@ namespace SpaceShooterProject
         private IntroComponent introComponent;
         private EditorSceneBuilderComponent editorSceneBuilderComponent;
         private InventoryComponent inventoryComponent;
+        private CardComponent cardComponent;
         private MarketComponent marketComponent;
         private CoPilotComponent coPilotComponent;
         private SuperPowerComponent superPowerComponent;
@@ -47,6 +48,7 @@ namespace SpaceShooterProject
             CreateTutorialComponent();
             CreateEditorSceneBuilderComponent();
             CreateInventoryComponent();
+            CreateCardComponent();
             CreateMarketComponent();
             CreateCoPilotComponent();
             CreateSuperPowerComponent();
@@ -124,7 +126,8 @@ namespace SpaceShooterProject
 
         private void CreateEditorSceneBuilderComponent()
         {
-            editorSceneBuilderComponent = new EditorSceneBuilderComponent();
+            //TODO: Make prefab!!!
+            editorSceneBuilderComponent = new GameObject().AddComponent<EditorSceneBuilderComponent>();
             componentContainer.AddComponent("LevelEditorSceneBuilderComponent", editorSceneBuilderComponent);
         }
 
@@ -132,6 +135,12 @@ namespace SpaceShooterProject
         {
             inventoryComponent = gameObject.AddComponent<InventoryComponent>();
             componentContainer.AddComponent("InventoryComponent", inventoryComponent);
+        }
+
+        private void CreateCardComponent()
+        {
+            cardComponent = FindObjectOfType<CardComponent>();
+            componentContainer.AddComponent("CardComponent", cardComponent);
         }
 
         private void CreateCoPilotComponent()
@@ -170,6 +179,7 @@ namespace SpaceShooterProject
             gamePlayComponent.Initialize(componentContainer);
             editorSceneBuilderComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
+            cardComponent.Initialize(componentContainer);
             marketComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
             superPowerComponent.Initialize(componentContainer);
