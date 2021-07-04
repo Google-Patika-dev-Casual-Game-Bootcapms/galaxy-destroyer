@@ -58,7 +58,6 @@ namespace SpaceShooterProject.UserInterface
         {
             if (OnRequestShipChange != null)
             {
-                // TODO : UI CHANGE
                 OnRequestShipChange(isNextShip);
             }
         }
@@ -69,6 +68,11 @@ namespace SpaceShooterProject.UserInterface
             {
                 OnSuperPowerPurchaseRequest((SuperPowerType)superPowerPartType);
             }
+        }
+
+        public void OnSpaceShipChangeSucces(int shipID)
+        {
+            spaceshipImage.sprite = spaceShipImageArray[shipID];
         }
 
         public void RequestPause()
@@ -116,7 +120,7 @@ namespace SpaceShooterProject.UserInterface
                     .DOScaleY(spaceShipSuperPowerData[i] * 0.25f, .1f);
                 superPowerPriceTexts[i].text = superPowerComponent.CalculateSuperPowerPrice((SuperPowerType)i).ToString();
             }
-            
+            spaceshipImage.sprite = spaceShipImageArray[accountComponent.GetSelectedSpaceShipId()];
             ownedGoldText.text = ownedGold.ToString();
         }
 
