@@ -10,7 +10,7 @@ namespace SpaceShooterProject.Component
 
     public class AccountComponent : IComponent, IDestructible
     {
-        private const int MAX_PART_UPGRADE_LEVEL = 27;//Test için 27 verildi
+        private const int MAX_PART_UPGRADE_LEVEL = 41;
 
         #region Variables        
         private AccountData accountData;
