@@ -17,6 +17,7 @@ namespace SpaceShooterProject.Component
         private AccountData accountData;
         private AchievementsComponent achievementsComponent;
         private GamePlayComponent gamePlayComponent;
+        private SuperPowerComponent superPowerComponent;
         private CurrencyComponent currencyComponent;
         private AudioComponent audioComponent;
 
@@ -38,6 +39,7 @@ namespace SpaceShooterProject.Component
         {
             achievementsComponent = componentContainer.GetComponent("AchievementsComponent") as AchievementsComponent;
             gamePlayComponent = componentContainer.GetComponent("GamePlayComponent") as GamePlayComponent;
+            superPowerComponent = componentContainer.GetComponent("SuperPowerComponent") as SuperPowerComponent;
             currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
             audioComponent = componentContainer.GetComponent("AudioComponent") as AudioComponent;
             // TODO: Activate below components when they are created
@@ -244,6 +246,7 @@ namespace SpaceShooterProject.Component
         public int GetSuperPowerItemCount(SuperPowerType superPowerType){
             return accountData.SpaceShipSuperPowerDatas[accountData.SelectedSpaceShipId].SuperPowerItemCounts[(int)superPowerType];
         }
+        
         
         public  SpaceShipSuperPowerData GetCurrentSpaceShipSuperPowerData() 
         {
