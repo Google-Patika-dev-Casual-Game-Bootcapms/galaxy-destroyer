@@ -8,5 +8,6 @@
         //public void Initialize(Enemy minion);
         public void Move(Enemy enemy);
         public void Patrol(Enemy enemy);
+        public void BossPatrol(Enemy enemy);
     }
 }

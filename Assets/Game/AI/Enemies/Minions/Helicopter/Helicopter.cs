@@ -26,7 +26,7 @@ namespace SpaceShooterProject.AI.Enemies
         private float patrolTimeUntilAttack = 3f;
 
         [SerializeField]
-        private float fireRate = 0.01f;
+        private float fireRate = 6f;
 
         [SerializeField]
         private int bulletPerAttack = 4;
@@ -35,6 +35,7 @@ namespace SpaceShooterProject.AI.Enemies
         private bool isPatrolTimeFinished = false;
         private bool isShootingSessionEnd = false;
         private bool isDeath = false;
+        private bool isPatrolRouteInitialized = false;
 
         public override void OnUpdate()
         {
@@ -121,27 +122,37 @@ namespace SpaceShooterProject.AI.Enemies
             Debug.Log("Patrol state enter");
 
             StartCoroutine(PatrolTimer());
-            
-            Vector2 startPoint;
-            startPoint.x = transform.position.x;
-            startPoint.y = transform.position.y;
+            InitializePatrolRoute();
 
-            Vector2 middlePoint;
-            middlePoint.x = transform.position.x - patrolRouteWidth;
-            middlePoint.y = transform.position.y;
 
-            Vector2 endPoint;
-            endPoint.x = transform.position.x - patrolRouteWidth;
-            endPoint.y = transform.position.y - patrolRouteHeight;
-
-            QuadraticRoute patrolRoute = new QuadraticRoute();
-
-            patrolRoute.AddControlPoint(startPoint);
-            patrolRoute.AddControlPoint(middlePoint);
-            patrolRoute.AddControlPoint(endPoint);
-
-            AddRoute(patrolRoute);
             Patrol();
+        }
+
+        private void InitializePatrolRoute()
+        {
+            if (!isPatrolRouteInitialized)
+            {
+                Vector2 startPoint;
+                startPoint.x = transform.position.x;
+                startPoint.y = transform.position.y;
+
+                Vector2 middlePoint;
+                middlePoint.x = transform.position.x - patrolRouteWidth;
+                middlePoint.y = transform.position.y;
+
+                Vector2 endPoint;
+                endPoint.x = transform.position.x - patrolRouteWidth;
+                endPoint.y = transform.position.y - patrolRouteHeight;
+
+                QuadraticRoute patrolRoute = new QuadraticRoute();
+
+                patrolRoute.AddControlPoint(startPoint);
+                patrolRoute.AddControlPoint(middlePoint);
+                patrolRoute.AddControlPoint(endPoint);
+
+                AddRoute(patrolRoute);
+                isPatrolRouteInitialized = true;
+            }
         }
 
 
@@ -214,7 +225,6 @@ namespace SpaceShooterProject.AI.Enemies
 
         public override void RouteFinished()
         {
-            Debug.Log("Route is finished");
             OnEnterTheSceneMovementFinish();
         }
 
@@ -276,7 +286,10 @@ namespace SpaceShooterProject.AI.Enemies
             OnDeath();
         }
 
-        
+        public override void PatrolRouteFinished()
+        {
+            
+        }
     }
 
 }

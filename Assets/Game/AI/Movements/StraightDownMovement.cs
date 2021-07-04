@@ -38,6 +38,11 @@
 
             
         }
+
+        public void BossPatrol(Enemy enemy)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

@@ -21,6 +21,8 @@ namespace SpaceShooterProject.AI.Enemies
 
         public abstract void RouteFinished();
 
+        public abstract void PatrolRouteFinished();
+
         public abstract bool IsMovementInterrupted();
 
         public abstract bool IsMovementContinue();

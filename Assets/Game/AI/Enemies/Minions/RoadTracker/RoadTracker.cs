@@ -94,6 +94,11 @@ namespace SpaceShooterProject.AI.Enemies
         {
             
         }
+
+        public override void PatrolRouteFinished()
+        {
+
+        }
     }
 
 

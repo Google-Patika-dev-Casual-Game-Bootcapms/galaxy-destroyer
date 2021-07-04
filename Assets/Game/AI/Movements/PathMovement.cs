@@ -30,6 +30,14 @@ namespace SpaceShooterProject.AI.Movements
             }
         }
 
+        public void BossPatrol(Enemy enemy)
+        {
+            if (couroutineAllowed && enemy.GetRoutes().Count != 0)
+            {
+                enemy.StartCoroutine(BossPatrol(enemy, currentRouteIndex));
+            }
+        }
+
         public IEnumerator PatrolRoute(Enemy enemy, int routeIndex)
         { 
             couroutineAllowed = false;
@@ -41,10 +49,6 @@ namespace SpaceShooterProject.AI.Movements
                 if (tParam <= 0) tParam = Mathf.Ceil(tParam);
                 while (tParam <= 1 && tParam >= 0)
                 {
-                    if (enemy.IsOutOfScreen())
-                    {
-                        Debug.Log("Out of screen");
-                    }
                     if (enemy.IsMovementInterrupted())
                     {
                         yield return new WaitUntil(() => enemy.IsMovementContinue());
@@ -119,18 +123,57 @@ namespace SpaceShooterProject.AI.Movements
 
             tParam = 0f;
 
-            if (currentRouteIndex < enemy.GetRoutes().Count - 1)
-            {
-                currentRouteIndex++;
-            }
-            else
-            {
-                currentRouteIndex = 0; // When all routes are finished starts again from beginning
-            }
-
             couroutineAllowed = true;
 
             enemy.RouteFinished();
+        }
+
+        public IEnumerator BossPatrol(Enemy enemy, int routeIndex)
+        {
+            couroutineAllowed = false;
+            int currentRouteIndex = 0;
+            
+
+            while (!enemy.IsOutOfScreen())
+            {
+                currentRouteIndex = currentRouteIndex % enemy.GetRoutes().Count;
+                tParam = 0f;
+                while (tParam < 1)
+                {
+
+                    tParam += Time.deltaTime * enemy.GetSpeed();
+
+
+
+                    Vector2 newPosition = enemy.GetRoute(currentRouteIndex).CalculateBezierCurve(tParam);
+
+                    enemy.SetPosition(newPosition);
+
+                    if (enemy.IsOutOfScreen())
+                    {
+                        break;
+                    }
+
+                    yield return new WaitForEndOfFrame();
+                }
+
+                if (enemy.IsOutOfScreen())
+                {
+                    enemy.OnOutOfScreen();
+                    break;
+                }
+
+                enemy.PatrolRouteFinished();
+
+
+                yield return new WaitUntil(() => enemy.IsMovementContinue());
+                currentRouteIndex++;
+            }
+            couroutineAllowed = true;
+            tParam = 0f;
+            
+
+
         }
 
 

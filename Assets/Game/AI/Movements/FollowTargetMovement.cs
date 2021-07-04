@@ -10,6 +10,11 @@ namespace SpaceShooterProject.AI.Movements
 
         [SerializeField] Transform targetObject;
 
+        public void BossPatrol(Enemy enemy)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Initialize(Enemy minion)
         {
             throw new System.NotImplementedException();

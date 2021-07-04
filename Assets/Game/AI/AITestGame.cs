@@ -9,8 +9,6 @@ namespace SpaceShooterProject.AI
 
     public class AITestGame : MonoBehaviour
     {
-        private HelicopterEventContainer helicopterEventContainer;
-        private HelicopterMainState helicopterMainState;
 
         [SerializeField]
         Helicopter helicopter;
@@ -20,6 +18,9 @@ namespace SpaceShooterProject.AI
 
         [SerializeField]
         WaveRoadTracker waveDummy;
+
+        [SerializeField]
+        SimpleBoss boss;
         // Start is called before the first frame update
         void Start()
         {
@@ -28,6 +29,7 @@ namespace SpaceShooterProject.AI
             helicopter.Initialize();
             straightDummy.Initialize();
             waveDummy.Initialize();
+            boss.Initialize();
         }
 
         // Update is called once per frame
@@ -36,6 +38,7 @@ namespace SpaceShooterProject.AI
             helicopter.OnUpdate();
             straightDummy.OnUpdate();
             waveDummy.OnUpdate();
+            boss.OnUpdate();
         }
     }
 }

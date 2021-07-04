@@ -25,7 +25,7 @@
 
         private IEnumerator Move()
         {
-            bool isOutOfScreen;
+
             float translateX = Mathf.Cos(Mathf.Deg2Rad * directionAngle) * bulletSpeed;
             float translateY = Mathf.Sin(Mathf.Deg2Rad * directionAngle) * bulletSpeed;
             Vector2 translationVector;
@@ -34,12 +34,12 @@
             do
             {
                 // Inside screen
-                isOutOfScreen = IsOutOfScreen();
+                
                 
                 _transform.Translate(translationVector);
                 yield return new WaitForEndOfFrame();
 
-            } while (!isOutOfScreen);
+            } while (!IsOutOfScreen());
 
             //Out of screen
             enemyBulletCollector.AddBulletToPool(this);
