@@ -12,6 +12,7 @@ namespace SpaceShooterProject.Component
     {
         private const int MAX_PART_UPGRADE_LEVEL = 10;
         private const int MAX_SUPER_POWER_ITEM_COUNT = 4;
+        private const int MAX_SPACESHIP_COUNT = 5;
 
         #region Variables        
         private AccountData accountData;
@@ -91,9 +92,8 @@ namespace SpaceShooterProject.Component
 
         private void InitializeSpaceShipUpgradeData()
         {
-            const int maxSpaceShipCount = 5;
-
-            accountData.SpaceShipUpgradeDatas = new SpaceShipUpgradeData[maxSpaceShipCount];
+            
+            accountData.SpaceShipUpgradeDatas = new SpaceShipUpgradeData[MAX_SPACESHIP_COUNT];
 
             for (int i = 0; i < accountData.SpaceShipUpgradeDatas.Length; i++)
             {
@@ -103,8 +103,7 @@ namespace SpaceShooterProject.Component
         
         private void InitializeSuperPowerData()
         {
-            const int maxSpaceShipCount = 5;
-
+           
             accountData.SuperPowerItemCounts = new int[(int) SuperPowerType.COUNT];
             
             for (int i = 0; i < (int) SuperPowerType.COUNT; i++)
@@ -112,6 +111,7 @@ namespace SpaceShooterProject.Component
                 accountData.SuperPowerItemCounts[i] = 0;
             }
         }
+        
 
         public void SaveBeforeClosing(){
             // TODO: Activate below when corresponding methods are created.
@@ -259,12 +259,28 @@ namespace SpaceShooterProject.Component
             return accountData.SuperPowerItemCounts;
         }
 
+        public int GetMaxSpaceshipCount()
+        {
+            return MAX_SPACESHIP_COUNT;
+        }
+
+        public int GetSelectedSpaceShipId()
+        {
+            return accountData.SelectedSpaceShipId;
+        }
+        
+        public void SetSelectedSpaceShipId(int newSelectedSpaceShip)
+        {
+            accountData.SelectedSpaceShipId = newSelectedSpaceShip;
+        }
+
+        
         public void OnDestruct()
         {
             SaveBeforeClosing();
         }
 
-#endregion
+        #endregion
     }
 #region Account Data Struct
     [Serializable]
