@@ -31,7 +31,7 @@ namespace SpaceShooterProject.UserInterface
         private RectTransform backgroundImage;
 
         private UpgradeComponent upgradeComponent;
-        
+
         private Vector2 GetCanvasSize()
         {
             Vector2 screenSize = new Vector2(Screen.width, Screen.height);
@@ -47,6 +47,7 @@ namespace SpaceShooterProject.UserInterface
             scaleFactor = Mathf.Pow(2, logWeightedAverage);
 
             return new Vector2(screenSize.x / scaleFactor, screenSize.y / scaleFactor);
+
         }
 
         protected override void Init()
