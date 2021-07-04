@@ -61,6 +61,7 @@ namespace SpaceShooterProject.Component
             }
 
             currencyComponent.EarnGold(FindAchievement(name).Prize);
+            FindAchievement(name).IsAchived = true;
         }
 
         public void Subscribe(IDataObservable<Achievement> observable)

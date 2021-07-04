@@ -29,7 +29,6 @@
                 var achievementCard = Instantiate(achievementCardPrefab).GetComponent<AchievementCard>();
                 achievementCard.transform.SetParent(achievementsContentPanel.transform);
                 achievementCardById.Add(achievementCard.GetInstanceID(), achievementCard);
-
                 achievementCard.OnAchievementButtonClick += CollectAchievement;
             }
         }
@@ -46,6 +45,11 @@
             {
                 achievementsContentPanel.transform.GetChild(i).GetComponent<AchievementCard>().Data = achievementCardData[i];
                 achievementsContentPanel.transform.GetChild(i).GetComponent<AchievementCard>().Init();
+                if (achievementCardData[i].IsAchived)
+                {
+                    achievementsContentPanel.transform.GetChild(i).GetComponent<AchievementCard>().collectButton.interactable = false;
+                }
+                
             }
         }
 
