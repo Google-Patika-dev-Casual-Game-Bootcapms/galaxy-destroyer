@@ -39,6 +39,7 @@ namespace SpaceShooterProject.State
             gamePlayComponent.Player.ShowShip();
             gamePlayComponent.GameCamera.IsAvailable = true;
             inGameCanvas.OnPauseButtonClick += OnPauseButtonClick;
+            
         }
 
         private void OnPauseButtonClick()
@@ -63,6 +64,11 @@ namespace SpaceShooterProject.State
         protected override void OnUpdate()
         {
             gamePlayComponent.CallUpdate();
+            if(Input.GetKeyDown(KeyCode.V))
+            {
+                SendTrigger((int)StateTriggers.GAME_OVER);
+
+            }
         }
     }
 }

@@ -73,6 +73,7 @@ namespace SpaceShooterProject.Component
         public void OnEnter()
         {
             //LOAD Level!
+            
             inputSystem.Init();
             player.Init();
         }

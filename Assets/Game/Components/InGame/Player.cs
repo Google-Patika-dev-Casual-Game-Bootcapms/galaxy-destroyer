@@ -106,7 +106,10 @@ namespace SpaceShooterProject.Component
 
         public void InjectInputSystem(InGameInputSystem inputSystem)
         {
-            inputSystemReferance = inputSystem;
+            if(inputSystemReferance == null)
+            {
+                inputSystemReferance = inputSystem;
+            }
             inputSystemReferance.OnScreenTouch += OnScreenTouch;
             inputSystemReferance.OnScreenTouchEnter += OnTouch;
             inputSystemReferance.OnScreenTouchExit += OnTouchUp;
