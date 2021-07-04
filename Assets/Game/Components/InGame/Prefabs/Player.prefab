@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipSpeed: 20
-  HP: 10
+  HP: 100
   shipSpriteRenderer: {fileID: 5194574757657190685}
   fireRate: 2
   fireNextSpawn: 1

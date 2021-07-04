@@ -1,9 +1,10 @@
 namespace SpaceShooterProject.Component
 {
     using System.Collections.Generic;
+    using Devkit.Base.Object;
     using Devkit.Base.Pattern.ObjectPool;
 
-    public class BulletCollector : IBulletCollector
+    public class BulletCollector : IBulletCollector, IDestructible
     {
         private Pool<Bullet> pool;
         private const string SOURCE_OBJECT_PATH = "Prefabs/FriendlyBulletForPooling";
@@ -37,6 +38,14 @@ namespace SpaceShooterProject.Component
                 if (activeBullet.isActiveAndEnabled)
                     activeBullet.CallUpdate();
             }
+        }
+
+        public void OnDestruct()
+        {
+            //TODO:
+            // remove all live bullets from scene
+                // then send it to the pool
+
         }
     }
 }

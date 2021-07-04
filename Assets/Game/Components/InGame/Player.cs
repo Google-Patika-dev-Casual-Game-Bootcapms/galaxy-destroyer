@@ -6,6 +6,9 @@ namespace SpaceShooterProject.Component
 
     public class Player : MonoBehaviour, IUpdatable, IInitializable, IDestructible
     {
+        public delegate void PlayerDownDelegate();
+        public event PlayerDownDelegate OnPlayerDown;
+
         private InGameInputSystem inputSystemReferance;
 
 
@@ -27,8 +30,17 @@ namespace SpaceShooterProject.Component
         public void Init()
         {
             HideShip();
-            gameCamera = Camera.main.GetComponent<GameCamera>();
-            currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
+
+            if (gameCamera == null) 
+            {
+                gameCamera = Camera.main.GetComponent<GameCamera>();
+            }
+
+            if (currencyComponent == null) 
+            {
+                currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
+            }
+
             fireTime = 0;
         }
 
@@ -71,6 +83,11 @@ namespace SpaceShooterProject.Component
             fireTime += Time.deltaTime;
             transform.Translate(Vector3.up * gameCamera.CameraSpeed * Time.deltaTime, Space.World);
             Shoot();
+
+            if (Input.GetKeyDown(KeyCode.C)) 
+            {
+                GetHit(50);
+            }
         }
 
         public void OnTouchUp()
@@ -120,6 +137,19 @@ namespace SpaceShooterProject.Component
         {
             get => componentContainer;
             set => componentContainer = value;
+        }
+
+        private void GetHit(int damage) 
+        {
+            HP -= damage;
+
+            if (HP <= 0) 
+            {
+                if (OnPlayerDown != null) 
+                {
+                    OnPlayerDown();
+                } 
+            }
         }
     }
 }

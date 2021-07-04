@@ -6,12 +6,15 @@ namespace SpaceShooterProject.Component
     using Devkit.Base.Component;
     using Devkit.Base.Object;
 
-    public class InGameInputSystem : IUpdatable, IComponent
+    public class InGameInputSystem : IUpdatable, IComponent, IDestructible, IInitializable
     {
         public delegate void TouchMessageDelegate();
         public event TouchMessageDelegate OnScreenTouch; 
         public event TouchMessageDelegate OnScreenTouchEnter; 
-        public event TouchMessageDelegate OnScreenTouchExit; 
+        public event TouchMessageDelegate OnScreenTouchExit;
+
+        private bool isInputAvailable = false;
+
         public void CallUpdate()
         {
             if (Input.GetMouseButtonDown(0))
@@ -59,6 +62,18 @@ namespace SpaceShooterProject.Component
         public void Initialize(ComponentContainer componentContainer)
         {
             
+        }
+
+        public void OnDestruct()
+        {
+            //TODO: finish input system
+            isInputAvailable = false;
+        }
+
+        public void Init()
+        {
+            //TODO: initialize the system
+            isInputAvailable = true;
         }
     }
 }

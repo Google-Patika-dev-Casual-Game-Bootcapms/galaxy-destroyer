@@ -21,6 +21,13 @@ namespace SpaceShooterProject.State
             gamePlayComponent = componentContainer.GetComponent("GamePlayComponent") as GamePlayComponent;
             inGameCanvas = uiComponent.GetCanvas(UIComponent.MenuName.IN_GAME) as InGameCanvas;
             currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
+
+            gamePlayComponent.OnGameOver += OnGameOver;
+        }
+
+        private void OnGameOver()
+        {
+            SendTrigger((int)StateTriggers.GAME_OVER);
         }
 
         protected override void OnEnter()

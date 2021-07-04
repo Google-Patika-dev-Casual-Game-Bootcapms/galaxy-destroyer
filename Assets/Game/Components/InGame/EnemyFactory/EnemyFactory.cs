@@ -6,7 +6,7 @@
     using Devkit.Base.Object;
     using System.Collections.Generic;
 
-    public class EnemyFactory : IEnemyFactory, IInitializable, IUpdatable
+    public class EnemyFactory : IEnemyFactory, IInitializable, IUpdatable, IDestructible
     {
 
         private Pool<RoadTracker> roadTrackerPool;
@@ -183,6 +183,12 @@
             {
                 liveEnemies[i].CallUpdate();
             }
+        }
+
+        public void OnDestruct()
+        {
+            //TODO:
+                // remove all live enemies from scene
         }
     }
 

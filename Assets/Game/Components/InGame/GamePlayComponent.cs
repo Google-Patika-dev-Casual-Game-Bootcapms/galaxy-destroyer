@@ -9,6 +9,9 @@ namespace SpaceShooterProject.Component
 
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
+        public delegate void GameOverDelegate();
+        public event GameOverDelegate OnGameOver;
+
         [SerializeField] private Player player;
         [SerializeField] private GameCamera gameCamera;
         private InGameInputSystem inputSystem;
@@ -16,6 +19,7 @@ namespace SpaceShooterProject.Component
         private BulletCollector bulletCollector;
         private EnemyFactory enemyFactory;
         private InGameMessageBroadcaster inGameMessageBroadcaster;
+        
 
 
         public void Initialize(ComponentContainer componentContainer)
@@ -36,6 +40,8 @@ namespace SpaceShooterProject.Component
 
             enemyFactory = new EnemyFactory(inGameMessageBroadcaster);
             enemyFactory.Init();
+
+            player.OnPlayerDown += FinishGame;
         }
 
         private void InitializeWeaponUpgradeComponent(ComponentContainer componentContainer)
@@ -67,10 +73,27 @@ namespace SpaceShooterProject.Component
         public void OnEnter()
         {
             //LOAD Level!
+            inputSystem.Init();
+            player.Init();
         }
 
         public void OnExit()
         {
+            player.OnPlayerDown -= FinishGame;
+        }
+
+        public void FinishGame() 
+        {
+            player.OnDestruct();
+            inputSystem.OnDestruct();
+            bulletCollector.OnDestruct();
+            enemyFactory.OnDestruct();
+            inGameMessageBroadcaster.RemoveAllEvents();//TODO: research!!!
+
+            if (OnGameOver != null) 
+            {
+                OnGameOver();
+            }
         }
 
         public Player Player => player;
