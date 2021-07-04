@@ -16,6 +16,7 @@ namespace SpaceShooterProject.State
         private UIComponent uiComponent;
         private ProvisionCanvas provisionCanvas;
         private AccountComponent accountComponent;
+        
 
         public PrepareGameState(ComponentContainer componentContainer)
         {
@@ -30,8 +31,7 @@ namespace SpaceShooterProject.State
         {
             uiComponent.EnableCanvas(UIComponent.MenuName.PROVISION);
             provisionCanvas.OnSuperPowerPurchaseRequest += OnSuperPowerPurchaseRequest;
-            provisionCanvas.OnNextShipSelectionRequest += RequestNextShip;
-            provisionCanvas.OnPreviousShipSelectionRequest += RequestPreviousShip;
+            provisionCanvas.OnRequestShipChange += RequestShipChange;
             provisionCanvas.OnPauseRequest += RequestPause;
             provisionCanvas.OnStartRequest += RequestInGame;
             superPowerComponent.OnSuperPowerProcessCompleted += OnSuperPowerProcessCompleted;
@@ -41,8 +41,7 @@ namespace SpaceShooterProject.State
         protected override void OnExit()
         {
             provisionCanvas.OnSuperPowerPurchaseRequest -= OnSuperPowerPurchaseRequest;
-            provisionCanvas.OnNextShipSelectionRequest -= RequestNextShip;
-            provisionCanvas.OnPreviousShipSelectionRequest -= RequestPreviousShip;
+            provisionCanvas.OnRequestShipChange -= RequestShipChange;
             provisionCanvas.OnPauseRequest -= RequestPause;
             provisionCanvas.OnStartRequest -= RequestInGame;
             superPowerComponent.OnSuperPowerProcessCompleted -= OnSuperPowerProcessCompleted;
@@ -63,16 +62,36 @@ namespace SpaceShooterProject.State
             SendTrigger((int)StateTriggers.PAUSE_GAME_REQUEST);
         }
 
-        private void RequestNextShip()
+        private void RequestShipChange(bool isNextShip)
         {
-            
+            var maxSpaceshipCount = accountComponent.GetMaxSpaceshipCount();
+            var currentSelectedShip = accountComponent.GetSelectedSpaceShipId();
+            if (isNextShip)
+            {
+                if (currentSelectedShip + 1 >= maxSpaceshipCount)
+                {
+                    accountComponent.SetSelectedSpaceShipId(0);
+                }
+                else
+                {
+                    accountComponent.SetSelectedSpaceShipId(currentSelectedShip++);
+                }
+            }
+
+            // if user selected previous ship
+            else
+            {
+                if (currentSelectedShip - 1 < 0)
+                {
+                    accountComponent.SetSelectedSpaceShipId(maxSpaceshipCount-1);
+                }
+                else
+                {
+                    accountComponent.SetSelectedSpaceShipId(currentSelectedShip--);
+                }
+            }
         }
-
-        private void RequestPreviousShip()
-        {
-
-        }
-
+        
         private void OnSuperPowerPurchaseRequest(SuperPowerType superPowerType)
         {
             superPowerComponent.PurchaseSuperPower(superPowerType);
