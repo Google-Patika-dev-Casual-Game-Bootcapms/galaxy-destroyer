@@ -47,7 +47,7 @@ namespace SpaceShooterProject.UserInterface
             if (index < permanentCardCount)
             {
                 header.text = cardComponent.GetPermanentCardName(index);
-                description.text = cardComponent.GetPermanentCardDescription(index);
+                description.text = "\"" +  cardComponent.GetPermanentCardDescription(index) + "\"";
 
                 cardSprite.GetComponent<Image>().sprite = cardComponent.GetPermanentCardSprite(index);
             }
@@ -56,7 +56,7 @@ namespace SpaceShooterProject.UserInterface
                 index -= permanentCardCount;
 
                 header.text = cardComponent.GetTemporalCardName(index);
-                description.text = cardComponent.GetTemporalCardDescription(index);
+                description.text = "\"" + cardComponent.GetTemporalCardDescription(index) + "\"";
 
                 cardSprite.GetComponent<Image>().sprite = cardComponent.GetTemporalCardSprite(index);
             }

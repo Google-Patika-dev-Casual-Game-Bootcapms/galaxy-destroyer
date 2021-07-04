@@ -51,7 +51,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3772966284526638877}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ad2f6914dfef2984e9828a1c450af0a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ee796e6e05399f4b94f1104d07b440c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
