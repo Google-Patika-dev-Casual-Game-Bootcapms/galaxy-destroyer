@@ -438,7 +438,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   achievementsContentPanel: {fileID: 4726841014443480458}
-  achievementCard: {fileID: 2135305604198531095, guid: 51aa084d33d2725498a77c7feafbbf25, type: 3}
+  achievementCardPrefab: {fileID: 3245321846737125281, guid: 51aa084d33d2725498a77c7feafbbf25, type: 3}
+  achievementCardData: []
 --- !u!1 &5113340188880148191
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,8 +605,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 200}
+  m_AnchoredPosition: {x: 0, y: -0.000015258789}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2464764979439463187
 MonoBehaviour:
@@ -833,7 +834,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: -17}
   m_Pivot: {x: 1, y: 1}
@@ -919,7 +920,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7175767123548157515}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9350649
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
