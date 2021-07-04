@@ -104,12 +104,12 @@ namespace SpaceShooterProject.Component
         private void InitializeSuperPowerData()
         {
             const int maxSpaceShipCount = 5;
+
+            accountData.SuperPowerItemCounts = new int[(int) SuperPowerType.COUNT];
             
-            accountData.SpaceShipSuperPowerDatas = new SpaceShipSuperPowerData[maxSpaceShipCount];
-            
-            for (int i = 0; i < accountData.SpaceShipSuperPowerDatas.Length; i++)
+            for (int i = 0; i < (int) SuperPowerType.COUNT; i++)
             {
-                accountData.SpaceShipSuperPowerDatas[i].SuperPowerItemCounts = new int[(int)SuperPowerType.COUNT];
+                accountData.SuperPowerItemCounts[i] = 0;
             }
         }
 
@@ -237,7 +237,7 @@ namespace SpaceShooterProject.Component
         
         public bool IsSuperPowerPurchaseable(SuperPowerType superPowerType)
         {
-            return accountData.SpaceShipSuperPowerDatas[accountData.SelectedSpaceShipId].SuperPowerItemCounts[(int)superPowerType] < MAX_SUPER_POWER_ITEM_COUNT; 
+            return accountData.SuperPowerItemCounts[(int)superPowerType] < MAX_SUPER_POWER_ITEM_COUNT; 
         }
         
         public void PurchaseSuperPowerItem(SuperPowerType superPowerType)
@@ -246,17 +246,17 @@ namespace SpaceShooterProject.Component
             {
                 return;
             }
-            accountData.SpaceShipSuperPowerDatas[accountData.SelectedSpaceShipId].SuperPowerItemCounts[(int)superPowerType]++;
+            accountData.SuperPowerItemCounts[(int)superPowerType]++;
         }
         
         public int GetSuperPowerItemCount(SuperPowerType superPowerType){
-            return accountData.SpaceShipSuperPowerDatas[accountData.SelectedSpaceShipId].SuperPowerItemCounts[(int)superPowerType];
+            return accountData.SuperPowerItemCounts[(int)superPowerType];
         }
         
-        
-        public  SpaceShipSuperPowerData GetCurrentSpaceShipSuperPowerData() 
+        // TODO: refactor name
+        public int[] GetSuperPowerData() 
         {
-            return accountData.SpaceShipSuperPowerDatas[accountData.SelectedSpaceShipId];
+            return accountData.SuperPowerItemCounts;
         }
 
         public void OnDestruct()
@@ -281,7 +281,7 @@ namespace SpaceShooterProject.Component
         public List<int> OwnedPermanentCards;
         public int[] CollectedSpaceShipParts;
         public SpaceShipUpgradeData[] SpaceShipUpgradeDatas;
-        public SpaceShipSuperPowerData[] SpaceShipSuperPowerDatas;
+        public int[] SuperPowerItemCounts;
         public int[] OwnedCards;// Inventory Component
         public int[] OwnedPowerUps;// Inventory Component
         public int AudioLevel;// Audio Component
@@ -294,12 +294,6 @@ namespace SpaceShooterProject.Component
     public struct SpaceShipUpgradeData
     {
         public int[] PartLevels;
-    }
-    
-    [Serializable]
-    public struct SpaceShipSuperPowerData
-    {
-        public int[] SuperPowerItemCounts;
     }
 
 #endregion

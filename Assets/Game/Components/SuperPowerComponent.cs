@@ -16,14 +16,14 @@ namespace SpaceShooterProject.Component
         //public const int MAX_SUPER_POWER_ITEM_COUNT = 4;
         private int[] superPowerPriceWeights;
         
-        private SpaceShipSuperPowerData superPowerData;
+        private int[] superPowerItemCounts;
         
         public void Initialize(ComponentContainer componentContainer)
         {
             Debug.Log("<color=green>Super Power Component initialized!</color>");
             accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
             currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
-            superPowerData = accountComponent.GetCurrentSpaceShipSuperPowerData();
+            superPowerItemCounts = accountComponent.GetSuperPowerData();
             
             InitializeSuperPowerPriceWeights();
         }

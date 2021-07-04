@@ -110,12 +110,12 @@ namespace SpaceShooterProject.UserInterface
         }
 
         // TODO RE-UPDATE UI WHENEVER USER CHANGES CURRENT SELECTED SHIP
-        public void UpdateUI(SpaceShipSuperPowerData spaceShipSuperPowerData, int ownedGold)
+        public void UpdateUI(int[] spaceShipSuperPowerData, int ownedGold)
         {
             for (var i = 0; i < (int)SuperPowerType.COUNT; i++)
             {
                 progressBarArray[i].transform
-                    .DOScaleY(spaceShipSuperPowerData.SuperPowerItemCounts[i] * 0.25f, .1f);
+                    .DOScaleY(spaceShipSuperPowerData[i] * 0.25f, .1f);
             }
             
             ownedGoldText.text = ownedGold.ToString();

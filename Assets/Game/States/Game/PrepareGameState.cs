@@ -35,7 +35,7 @@ namespace SpaceShooterProject.State
             provisionCanvas.OnPauseRequest += RequestPause;
             provisionCanvas.OnStartRequest += RequestInGame;
             superPowerComponent.OnSuperPowerProcessCompleted += OnSuperPowerProcessCompleted;
-            provisionCanvas.UpdateUI(accountComponent.GetCurrentSpaceShipSuperPowerData(),currencyComponent.GetOwnedGold());
+            provisionCanvas.UpdateUI(accountComponent.GetSuperPowerData(),currencyComponent.GetOwnedGold());
         }
 
         protected override void OnExit()
