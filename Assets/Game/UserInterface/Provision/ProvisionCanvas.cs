@@ -16,6 +16,7 @@ namespace SpaceShooterProject.UserInterface
         
         private CurrencyComponent currencyComponent;
         private InventoryComponent inventoryComponent;
+        private SuperPowerComponent superPowerComponent;
         private AccountComponent accountComponent;
         
         public delegate void RequestPurchaseDelegate(SuperPowerType superPowerType);
@@ -29,6 +30,8 @@ namespace SpaceShooterProject.UserInterface
         public event ProvisionDelegate OnPauseRequest;
         public event ProvisionDelegate OnStartRequest;
 
+        [SerializeField]
+        private TextMeshProUGUI[] superPowerPriceTexts;
 
 
         [SerializeField] private RectTransform backgroundImage;
@@ -42,6 +45,7 @@ namespace SpaceShooterProject.UserInterface
             currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
             inventoryComponent = componentContainer.GetComponent("InventoryComponent") as InventoryComponent;
             accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
+            superPowerComponent = componentContainer.GetComponent("SuperPowerComponent") as SuperPowerComponent;
             
             backgroundImage.sizeDelta = GetCanvasSize();
             ownedGoldText.text = accountComponent.GetOwnedGold().ToString();
@@ -116,6 +120,7 @@ namespace SpaceShooterProject.UserInterface
             {
                 progressBarArray[i].transform
                     .DOScaleY(spaceShipSuperPowerData[i] * 0.25f, .1f);
+                superPowerPriceTexts[i].text = superPowerComponent.CalculateSuperPowerPrice((SuperPowerType)i).ToString();
             }
             
             ownedGoldText.text = ownedGold.ToString();
