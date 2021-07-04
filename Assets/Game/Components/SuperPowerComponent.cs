@@ -76,14 +76,14 @@ namespace SpaceShooterProject.Component
         
         public int CalculateSuperPowerPrice(SuperPowerType superPowerType) 
         {
-            return superPowerPriceWeights[(int)superPowerType] * accountComponent.GetSuperPowerItemCount(superPowerType);
+            return superPowerPriceWeights[(int)superPowerType];
         }
 
         private void InitializeSuperPowerPriceWeights()
         {
             superPowerPriceWeights = new int[]
             { 
-                1, 2, 3
+                20, 30, 40
             };
         }
     }
