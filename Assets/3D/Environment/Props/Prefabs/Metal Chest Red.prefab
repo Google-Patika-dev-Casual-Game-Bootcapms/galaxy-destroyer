@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7756889123737119578}
   - component: {fileID: 6632071732163126527}
   - component: {fileID: 8929843473913139253}
-  - component: {fileID: 8348310808062048330}
   m_Layer: 0
   m_Name: Metal Chest Red
   m_TagString: Untagged
@@ -82,16 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8348310808062048330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6984468549481886176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f0903cc4c82ab44590889ed0077e3a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: 11
