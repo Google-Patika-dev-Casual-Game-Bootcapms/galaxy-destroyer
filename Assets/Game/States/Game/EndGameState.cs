@@ -7,6 +7,7 @@ namespace SpaceShooterProject.State
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
+    using System;
 
     public class EndGameState : StateMachine
     {
@@ -26,12 +27,16 @@ namespace SpaceShooterProject.State
         {
             uiComponent.EnableCanvas(UIComponent.MenuName.END_GAME);
             endGameCanvas.OnRestartButtonClick += OnRestartButtonClick;
+            endGameCanvas.OnMainMenuButtonClick += OnMainMenuButtonClick;
+            endGameCanvas.OnSettingsButtonClick += OnSettingsButtonClick;
             
         }
 
         protected override void OnExit()
         {
             endGameCanvas.OnRestartButtonClick -= OnRestartButtonClick;
+            endGameCanvas.OnMainMenuButtonClick -= OnMainMenuButtonClick;
+            endGameCanvas.OnSettingsButtonClick -= OnSettingsButtonClick;
         }
 
         protected override void OnUpdate()
@@ -43,6 +48,17 @@ namespace SpaceShooterProject.State
             gamePlayComponent.FinishGame();
             SendTrigger((int)StateTriggers.REPLAY_GAME_REQUEST);
 
+        }
+        private void OnMainMenuButtonClick()
+        {
+            gamePlayComponent.FinishGame();
+            SendTrigger((int)StateTriggers.GO_TO_MAIN_MENU_REQUEST);
+
+        }
+        private void OnSettingsButtonClick()
+        {
+            gamePlayComponent.FinishGame();
+            SendTrigger((int)StateTriggers.GO_TO_SETTINGS_REQUEST);
         }
     }
 }

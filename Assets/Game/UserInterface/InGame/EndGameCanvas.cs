@@ -12,6 +12,9 @@ namespace SpaceShooterProject.UserInterface
         public delegate void EndGameCanvasDelegate();
 
         public event EndGameCanvasDelegate OnRestartButtonClick;
+        public event EndGameCanvasDelegate OnMainMenuButtonClick;
+        public event EndGameCanvasDelegate OnSettingsButtonClick;
+
 
         protected override void Init()
         {
@@ -21,6 +24,16 @@ namespace SpaceShooterProject.UserInterface
         {
             if (OnRestartButtonClick != null)
                 OnRestartButtonClick();
+        }
+        public void RequestMainMenu()
+        {
+            if (OnMainMenuButtonClick != null)
+                OnMainMenuButtonClick();
+        }
+        public void RequestSettings()
+        {
+            if (OnSettingsButtonClick != null)
+                OnSettingsButtonClick();
         }
 
         public void UpdateGoldCount(int coinCount)
