@@ -106,6 +106,8 @@
         MISSILE,
         WING_CANNON,
         MAIN_CANNON,
+        FIRE_RATE,
+        SPEED,
         COUNT
     }
 
