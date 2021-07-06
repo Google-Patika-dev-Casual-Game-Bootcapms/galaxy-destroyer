@@ -12,10 +12,6 @@ public class EditorComponent : EditorWindow
     private string NewLevelName = String.Empty;
     
     #region Variables
-    [SerializeField] private GameObject marsParallax;
-    [SerializeField] private GameObject neptuneParallax;
-    [SerializeField] private GameObject uranusParallax;
-    [SerializeField] private GameObject saturnParallax;
     [SerializeField] private GameObject flyEnemyNPCPrefab;
     [SerializeField] private GameObject stableEnemyNPCPrefab;
     [SerializeField] private GameObject nonFlyEnemyNPCPrefab;
@@ -182,10 +178,6 @@ public class EditorComponent : EditorWindow
     {
         var shape = type switch
         {
-            EGameObjectType.marsParallax => Instantiate(marsParallax),
-            EGameObjectType.neptuneParallax => Instantiate(neptuneParallax),
-            EGameObjectType.uranusParallax => Instantiate(uranusParallax),
-            EGameObjectType.saturnParallax => Instantiate(saturnParallax),
             EGameObjectType.flyEnemyNPC => Instantiate(flyEnemyNPCPrefab),
             EGameObjectType.stableEnemyNPC => Instantiate(stableEnemyNPCPrefab),
             EGameObjectType.nonFlyEnemyNPC => Instantiate(nonFlyEnemyNPCPrefab),

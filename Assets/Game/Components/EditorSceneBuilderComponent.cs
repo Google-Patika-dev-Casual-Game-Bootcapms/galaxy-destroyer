@@ -7,10 +7,6 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
 {
     public ComponentContainer MyComponent;
     #region Variables
-    [SerializeField] private GameObject marsParallax;
-    [SerializeField] private GameObject neptuneParallax;
-    [SerializeField] private GameObject uranusParallax;
-    [SerializeField] private GameObject saturnParallax;
     [SerializeField] private GameObject flyEnemyNPCPrefab;
     [SerializeField] private GameObject stableEnemyNPCPrefab;
     [SerializeField] private GameObject nonFlyEnemyNPCPrefab;
@@ -83,10 +79,6 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
     {
         var shape = type switch
         {
-            EGameObjectType.marsParallax => Instantiate(marsParallax),
-            EGameObjectType.neptuneParallax => Instantiate(neptuneParallax),
-            EGameObjectType.uranusParallax => Instantiate(uranusParallax),
-            EGameObjectType.saturnParallax => Instantiate(saturnParallax),
             EGameObjectType.flyEnemyNPC => Instantiate(flyEnemyNPCPrefab),
             EGameObjectType.stableEnemyNPC => Instantiate(stableEnemyNPCPrefab),
             EGameObjectType.nonFlyEnemyNPC => Instantiate(nonFlyEnemyNPCPrefab),
@@ -176,9 +168,5 @@ public enum EGameObjectType
     armBattery,
     energyBumb,
     mountain002,
-    varil,
-    marsParallax,
-    neptuneParallax,
-    uranusParallax,
-    saturnParallax
+    varil
 }
