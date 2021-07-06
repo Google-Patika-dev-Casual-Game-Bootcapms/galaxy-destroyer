@@ -59,6 +59,10 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject standartMountain01;
     [SerializeField] private GameObject standartMountain02;
     [SerializeField] private GameObject marsRock01;
+    [SerializeField] private GameObject marsParallax;
+    [SerializeField] private GameObject neptuneParallax;
+    [SerializeField] private GameObject uranusParallax;
+    [SerializeField] private GameObject saturnParallax;
     #endregion
     
     [MenuItem("Tools/LevelEditor")]
@@ -195,16 +199,20 @@ public class EditorComponent : EditorWindow
     {
         var shape = type switch
         {
+            EGameObjectType.marsTerrain => Instantiate(marsTerrain),
+            EGameObjectType.neptuneTerrain => Instantiate(neptuneTerrain),
+            EGameObjectType.uranusTerrain => Instantiate(uranusTerrain),
+            EGameObjectType.saturnTerrain => Instantiate(saturnTerrain),
+            EGameObjectType.marsParallax => Instantiate(marsParallax),
+            EGameObjectType.neptuneParallax => Instantiate(neptuneParallax),
+            EGameObjectType.uranusParallax => Instantiate(uranusParallax),
+            EGameObjectType.saturnParallax => Instantiate(saturnParallax),
             EGameObjectType.flyEnemyNPC => Instantiate(flyEnemyNPC),
             EGameObjectType.stableEnemyNPC => Instantiate(stableEnemyNPC),
             EGameObjectType.nonFlyEnemyNPC => Instantiate(nonFlyEnemyNPC),
             EGameObjectType.levelEndMonster => Instantiate(levelEndMonster),
             EGameObjectType.friendNPC => Instantiate(friendNPC),
             EGameObjectType.box => Instantiate(boxPrefab),
-            EGameObjectType.marsTerrain => Instantiate(marsTerrain),
-            EGameObjectType.neptuneTerrain => Instantiate(neptuneTerrain),
-            EGameObjectType.uranusTerrain => Instantiate(uranusTerrain),
-            EGameObjectType.saturnTerrain => Instantiate(saturnTerrain),
             EGameObjectType.metalCheastBlue => Instantiate(metalCheastBlue),
             EGameObjectType.metalCheastRed => Instantiate(metalCheastRed),
             EGameObjectType.metalCheastGrey => Instantiate(metalCheastGrey),
