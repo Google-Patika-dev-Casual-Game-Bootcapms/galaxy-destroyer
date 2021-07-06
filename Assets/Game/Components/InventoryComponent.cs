@@ -11,6 +11,8 @@
         private InventoryData inventoryData;
 
         private AccountComponent accountComponent;
+        private string accountDataPath;
+        private string accountDataFile;
 
         private int spaceShipCount;
         private int temporalCardCount;
@@ -22,15 +24,19 @@
 
             // To-Do: Assign values when necessary components are created!
             // spaceShipCount = SpaceShips.GetSpaceShipCount(); ?
-            // temporalCardCount = CardComponent.GetTemporalCardCount();
-            // permanentCardCount = CardComponent.GetPermanentCardCount();
+            // temporalCardCount = Cards.GetTemporalCardCount(); ?
+            // permanentCardCount = Cards.GetPermanentCardCount(); ?
 
-            if (accountComponent.IsFileExist())
+            accountDataFile = "accountData.txt";
+            accountDataPath = Application.persistentDataPath + "/" + accountDataFile;
+
+            if (File.Exists(accountDataPath))
             {
-                inventoryData.OwnedPermanentCards = accountComponent.OwnedPermanentCards();
-                inventoryData.OwnedTemporalCards = accountComponent.OwnedTemporalCards();
-                inventoryData.OwnedSpaceShips = accountComponent.GetOwnedSpaceShips();
-                inventoryData.CollectedSpaceShipParts = accountComponent.CollectedSpaceShipParts();
+                //todo Account Component'e aşağıdaki metodlar yazılınca yorumdan çıkarılacak
+                // inventoryData.OwnedPermanentCards = accountComponent.GetOwnedPermanentCards();
+                // inventoryData.OwnedTemporalCards = accountComponent.GetOwnedTemporalCards();
+                // inventoryData.OwnedSpaceShips = accountComponent.GetOwnedSpaceShips();
+                // inventoryData.CollectedSpaceShipParts = accountComponent.GetCollectedSpaceShipParts();
             }
             else
             {
@@ -72,8 +78,6 @@
             }
         }
 
-        #region Getter Methods
-
         public List<int> GetOwnedPermanentCards()
         {
             return inventoryData.OwnedPermanentCards;
@@ -93,8 +97,6 @@
         {
             return inventoryData.CollectedSpaceShipParts;
         }
-
-        #endregion
     }
 
     [Serializable]

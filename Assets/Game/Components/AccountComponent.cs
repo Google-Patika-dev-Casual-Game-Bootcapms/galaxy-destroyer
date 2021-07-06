@@ -10,7 +10,7 @@ namespace SpaceShooterProject.Component
 
     public class AccountComponent : IComponent, IDestructible
     {
-        private const int MAX_PART_UPGRADE_LEVEL = 10;
+        private const int MAX_PART_UPGRADE_LEVEL = 41;
 
         #region Variables        
         private AccountData accountData;
@@ -116,12 +116,6 @@ namespace SpaceShooterProject.Component
             accountData.OwnedGold = currencyComponent.GetOwnedGold();
             
             saveComponent.Save(accountData, accountDataPath);
-        }
-
-        // Created by Inventory Component to check if JSON file exists in the given directory
-        public bool IsFileExist()
-        {
-            return File.Exists(accountDataPath);
         }
 
 #region Getter Methods for Account Data

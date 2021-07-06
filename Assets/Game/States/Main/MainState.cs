@@ -20,7 +20,6 @@ namespace SpaceShooterProject.State
         private SelectedSpaceshipState selectedSpaceshipState;
         private CoPilotSelectionState coPilotSelectionState;
         private CreditsState creditsState;
-
         public MainState(ComponentContainer componentContainer)
         {
             mainMenuState = new MainMenuState(componentContainer);
