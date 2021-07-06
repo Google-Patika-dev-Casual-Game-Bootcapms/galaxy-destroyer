@@ -24,7 +24,7 @@ MonoImporter:
   - kazan: {fileID: 8936422460899995568, guid: dc0849618bb13744fae87216288a8eb1, type: 3}
   - marsMountain002: {fileID: 6739317301039296849, guid: ed7a000d804d88c4aa9b4a75df7faf79, type: 3}
   - nukeDoor: {fileID: 2368259993911840261, guid: bcde0a5c84755ca4e9c260a2ba5302bf, type: 3}
-  - tower: {fileID: 2304568174163251962, guid: 343eeecd60a4d1e48827e4dbd2e65dac, type: 3}
+  - tower: {fileID: 2304568174163251962, guid: 3e28bb1da77c28a40be3284144d8f1de, type: 3}
   - propPipes: {fileID: 4513935782882622008, guid: 8f68a608f6c6c3a4a9fa776bd2dda310, type: 3}
   - marsRock002: {fileID: 7826702940141577054, guid: 74fe211e6d50b3942a64bbd95d246a92, type: 3}
   - standartRock01: {fileID: 314766146213845124, guid: ea296fe6af3b8e347bdc56305e2857a2, type: 3}
