@@ -408,16 +408,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22261442cb76ffa4db2643fcbdced238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldUpgradeInfo: {fileID: 5373453405587246698}
-  laserUpgradeInfo: {fileID: 471715287011509652}
-  megabombUpgradeInfo: {fileID: 178055394881475689}
-  magnetUpgradeInfo: {fileID: 2050739097260514893}
-  healthUpgradeInfo: {fileID: 3669529012176349290}
-  missileUpgradeInfo: {fileID: 8435870530247433296}
-  wingCannonUpgradeInfo: {fileID: 3412829060524576260}
-  mainCannonUpgradeInfo: {fileID: 9090823988635885741}
-  fireRateUpgradeInfo: {fileID: 3104294934888075875}
-  speedUpgradeInfo: {fileID: 4372074970188563552}
+  shieldUpgradeInfo: {fileID: 8670218135569608501}
+  laserUpgradeInfo: {fileID: 122771104859425265}
+  megabombUpgradeInfo: {fileID: 2187424961309681400}
+  magnetUpgradeInfo: {fileID: 1838033885251095660}
+  healthUpgradeInfo: {fileID: 5521114033171003662}
+  missileUpgradeInfo: {fileID: 2953656974464012496}
+  wingCannonUpgradeInfo: {fileID: 5075605412928626293}
+  mainCannonUpgradeInfo: {fileID: 8582958454189064281}
+  fireRateUpgradeInfo: {fileID: 5978650797217840156}
+  speedUpgradeInfo: {fileID: 4079903881553068326}
   currentCurrencyContainer: {fileID: 8268650965197502025}
   backgroundImage: {fileID: 8175753213965902630}
 --- !u!1 &145902347423453035
@@ -2333,7 +2333,7 @@ GameObject:
   - component: {fileID: 9166069461027805566}
   - component: {fileID: 3412192811007475574}
   - component: {fileID: 2992944069930220320}
-  - component: {fileID: 3104294934888075875}
+  - component: {fileID: 5978650797217840156}
   m_Layer: 5
   m_Name: FireRateUpdatableImages
   m_TagString: Untagged
@@ -2407,7 +2407,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3104294934888075875
+--- !u!114 &5978650797217840156
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2416,7 +2416,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1078697886455010313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Script: {fileID: 11500000, guid: a3c64e1e0fbc7584990e9151e3084a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   majorLevelText: {fileID: 6692834092673580458}
@@ -2428,10 +2428,10 @@ MonoBehaviour:
   - {fileID: 3441324013529383432}
   - {fileID: 415577905705555596}
   upgradeCost: {fileID: 8841893360330669983}
-  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
   activeLinkSprite: {fileID: 21300000, guid: 2bbc0e492f8eaee4c88cfe994607857e, type: 3}
-  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
   activeCircleSprite: {fileID: 21300000, guid: 1acd688937e93054098fa09980fee1e3, type: 3}
+  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
+  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
 --- !u!1 &1192230854461638869
 GameObject:
   m_ObjectHideFlags: 0
@@ -3145,7 +3145,7 @@ GameObject:
   - component: {fileID: 1332388017498689524}
   - component: {fileID: 4198006962555606550}
   - component: {fileID: 6450208108396317298}
-  - component: {fileID: 4372074970188563552}
+  - component: {fileID: 4079903881553068326}
   m_Layer: 5
   m_Name: SpeedUpdatableImages
   m_TagString: Untagged
@@ -3219,7 +3219,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4372074970188563552
+--- !u!114 &4079903881553068326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3228,7 +3228,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1541157026588828072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Script: {fileID: 11500000, guid: a3c64e1e0fbc7584990e9151e3084a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   majorLevelText: {fileID: 8594077293132821675}
@@ -3240,10 +3240,10 @@ MonoBehaviour:
   - {fileID: 5511003520941609144}
   - {fileID: 1001192616031755799}
   upgradeCost: {fileID: 4805801732747005400}
-  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
   activeLinkSprite: {fileID: 21300000, guid: 2bbc0e492f8eaee4c88cfe994607857e, type: 3}
-  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
   activeCircleSprite: {fileID: 21300000, guid: 1acd688937e93054098fa09980fee1e3, type: 3}
+  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
+  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
 --- !u!1 &1681877098373144867
 GameObject:
   m_ObjectHideFlags: 0
@@ -3764,7 +3764,7 @@ GameObject:
   - component: {fileID: 5856159293283992327}
   - component: {fileID: 7109432050723298783}
   - component: {fileID: 1842908805428717637}
-  - component: {fileID: 9090823988635885741}
+  - component: {fileID: 8582958454189064281}
   m_Layer: 5
   m_Name: MainCannonUpdatableImages
   m_TagString: Untagged
@@ -3838,7 +3838,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9090823988635885741
+--- !u!114 &8582958454189064281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3847,7 +3847,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1903912720582190495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Script: {fileID: 11500000, guid: a3c64e1e0fbc7584990e9151e3084a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   majorLevelText: {fileID: 9083123641216464152}
@@ -3859,10 +3859,10 @@ MonoBehaviour:
   - {fileID: 6789586291145725947}
   - {fileID: 6867144607890798380}
   upgradeCost: {fileID: 5417583875878492579}
-  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
   activeLinkSprite: {fileID: 21300000, guid: 2bbc0e492f8eaee4c88cfe994607857e, type: 3}
-  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
   activeCircleSprite: {fileID: 21300000, guid: 1acd688937e93054098fa09980fee1e3, type: 3}
+  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
+  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
 --- !u!1 &1944075697712821288
 GameObject:
   m_ObjectHideFlags: 0
@@ -4533,7 +4533,7 @@ GameObject:
   - component: {fileID: 6001336327957602643}
   - component: {fileID: 174768507603769878}
   - component: {fileID: 453574926024050590}
-  - component: {fileID: 3412829060524576260}
+  - component: {fileID: 5075605412928626293}
   m_Layer: 5
   m_Name: WingCannonUpdatableImages
   m_TagString: Untagged
@@ -4607,7 +4607,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3412829060524576260
+--- !u!114 &5075605412928626293
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4616,7 +4616,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2482787453699570472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Script: {fileID: 11500000, guid: a3c64e1e0fbc7584990e9151e3084a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   majorLevelText: {fileID: 4676015025367607510}
@@ -4628,10 +4628,10 @@ MonoBehaviour:
   - {fileID: 6378473067759221959}
   - {fileID: 7516899159683875978}
   upgradeCost: {fileID: 100666740534861988}
-  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
   activeLinkSprite: {fileID: 21300000, guid: 2bbc0e492f8eaee4c88cfe994607857e, type: 3}
-  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
   activeCircleSprite: {fileID: 21300000, guid: 1acd688937e93054098fa09980fee1e3, type: 3}
+  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
+  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
 --- !u!1 &2507166974805917762
 GameObject:
   m_ObjectHideFlags: 0
@@ -5077,7 +5077,7 @@ GameObject:
   - component: {fileID: 3185921278952412789}
   - component: {fileID: 8945765880229734492}
   - component: {fileID: 5160223145242955684}
-  - component: {fileID: 2050739097260514893}
+  - component: {fileID: 1838033885251095660}
   m_Layer: 5
   m_Name: MagnetUpdatableImages
   m_TagString: Untagged
@@ -5151,7 +5151,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2050739097260514893
+--- !u!114 &1838033885251095660
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5160,7 +5160,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2781837221310540170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Script: {fileID: 11500000, guid: a3c64e1e0fbc7584990e9151e3084a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   majorLevelText: {fileID: 940072520913475061}
@@ -5172,10 +5172,10 @@ MonoBehaviour:
   - {fileID: 1847298116524731019}
   - {fileID: 8249857308118082065}
   upgradeCost: {fileID: 5965578551411579058}
-  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
   activeLinkSprite: {fileID: 21300000, guid: 2bbc0e492f8eaee4c88cfe994607857e, type: 3}
-  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
   activeCircleSprite: {fileID: 21300000, guid: 1acd688937e93054098fa09980fee1e3, type: 3}
+  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
+  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
 --- !u!1 &2846000620804329036
 GameObject:
   m_ObjectHideFlags: 0
@@ -5187,7 +5187,7 @@ GameObject:
   - component: {fileID: 937132221531259092}
   - component: {fileID: 928339867074488526}
   - component: {fileID: 4660693388952519696}
-  - component: {fileID: 178055394881475689}
+  - component: {fileID: 2187424961309681400}
   m_Layer: 5
   m_Name: MegaBombUpdatableImages
   m_TagString: Untagged
@@ -5261,7 +5261,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &178055394881475689
+--- !u!114 &2187424961309681400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5270,7 +5270,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2846000620804329036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Script: {fileID: 11500000, guid: a3c64e1e0fbc7584990e9151e3084a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   majorLevelText: {fileID: 1690348489510662951}
@@ -5282,10 +5282,10 @@ MonoBehaviour:
   - {fileID: 310856190221251681}
   - {fileID: 1560858760944151184}
   upgradeCost: {fileID: 417563886111636707}
-  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
   activeLinkSprite: {fileID: 21300000, guid: 2bbc0e492f8eaee4c88cfe994607857e, type: 3}
-  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
   activeCircleSprite: {fileID: 21300000, guid: 1acd688937e93054098fa09980fee1e3, type: 3}
+  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
+  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
 --- !u!1 &2847844281717352484
 GameObject:
   m_ObjectHideFlags: 0
@@ -8429,7 +8429,7 @@ GameObject:
   - component: {fileID: 3448962988640191147}
   - component: {fileID: 436649810814658354}
   - component: {fileID: 5093125962808308336}
-  - component: {fileID: 8435870530247433296}
+  - component: {fileID: 2953656974464012496}
   m_Layer: 5
   m_Name: MissilesUpdatableImages
   m_TagString: Untagged
@@ -8503,7 +8503,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8435870530247433296
+--- !u!114 &2953656974464012496
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8512,7 +8512,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4288861608781651374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Script: {fileID: 11500000, guid: a3c64e1e0fbc7584990e9151e3084a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   majorLevelText: {fileID: 5373677131991676247}
@@ -8524,10 +8524,10 @@ MonoBehaviour:
   - {fileID: 7333854647665622823}
   - {fileID: 4555654804618316040}
   upgradeCost: {fileID: 7116895484593784070}
-  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
   activeLinkSprite: {fileID: 21300000, guid: 2bbc0e492f8eaee4c88cfe994607857e, type: 3}
-  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
   activeCircleSprite: {fileID: 21300000, guid: 1acd688937e93054098fa09980fee1e3, type: 3}
+  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
+  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
 --- !u!1 &4295161327730301490
 GameObject:
   m_ObjectHideFlags: 0
@@ -12800,7 +12800,7 @@ GameObject:
   - component: {fileID: 6953491093063357792}
   - component: {fileID: 7639642914700640986}
   - component: {fileID: 284878612790315997}
-  - component: {fileID: 471715287011509652}
+  - component: {fileID: 122771104859425265}
   m_Layer: 5
   m_Name: LaserUpdatableImages
   m_TagString: Untagged
@@ -12874,7 +12874,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &471715287011509652
+--- !u!114 &122771104859425265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12883,7 +12883,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6956823509924166687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Script: {fileID: 11500000, guid: a3c64e1e0fbc7584990e9151e3084a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   majorLevelText: {fileID: 6579770572254323779}
@@ -12895,10 +12895,10 @@ MonoBehaviour:
   - {fileID: 8399247458957826273}
   - {fileID: 3035890238186731726}
   upgradeCost: {fileID: 6733638814786730028}
-  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
   activeLinkSprite: {fileID: 21300000, guid: 2bbc0e492f8eaee4c88cfe994607857e, type: 3}
-  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
   activeCircleSprite: {fileID: 21300000, guid: 1acd688937e93054098fa09980fee1e3, type: 3}
+  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
+  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
 --- !u!1 &7030041271833317968
 GameObject:
   m_ObjectHideFlags: 0
@@ -13269,7 +13269,7 @@ GameObject:
   - component: {fileID: 5301332008545264793}
   - component: {fileID: 539395559518285282}
   - component: {fileID: 1667239546280008857}
-  - component: {fileID: 5373453405587246698}
+  - component: {fileID: 8670218135569608501}
   m_Layer: 5
   m_Name: EnergyShieldUpdatableImages
   m_TagString: Untagged
@@ -13343,7 +13343,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5373453405587246698
+--- !u!114 &8670218135569608501
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13352,7 +13352,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7216108716904301345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Script: {fileID: 11500000, guid: a3c64e1e0fbc7584990e9151e3084a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   majorLevelText: {fileID: 130621039290793515}
@@ -13364,10 +13364,10 @@ MonoBehaviour:
   - {fileID: 7042105488868160097}
   - {fileID: 8376638359705725879}
   upgradeCost: {fileID: 2277446958281212392}
-  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
   activeLinkSprite: {fileID: 21300000, guid: 2bbc0e492f8eaee4c88cfe994607857e, type: 3}
-  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
   activeCircleSprite: {fileID: 21300000, guid: 1acd688937e93054098fa09980fee1e3, type: 3}
+  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
+  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
 --- !u!1 &7241555892525279084
 GameObject:
   m_ObjectHideFlags: 0
@@ -13494,7 +13494,7 @@ GameObject:
   - component: {fileID: 6863700178959853105}
   - component: {fileID: 5269614801729469977}
   - component: {fileID: 4699427865544179911}
-  - component: {fileID: 3669529012176349290}
+  - component: {fileID: 5521114033171003662}
   m_Layer: 5
   m_Name: HealthUpdatableImages
   m_TagString: Untagged
@@ -13568,7 +13568,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3669529012176349290
+--- !u!114 &5521114033171003662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13577,7 +13577,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7288491220341950483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19957f69a1231c24dbe7fcc578729c68, type: 3}
+  m_Script: {fileID: 11500000, guid: a3c64e1e0fbc7584990e9151e3084a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   majorLevelText: {fileID: 745420791065948730}
@@ -13589,10 +13589,10 @@ MonoBehaviour:
   - {fileID: 8617419150469749544}
   - {fileID: 2927026297199257398}
   upgradeCost: {fileID: 7704935773750930839}
-  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
   activeLinkSprite: {fileID: 21300000, guid: 2bbc0e492f8eaee4c88cfe994607857e, type: 3}
-  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
   activeCircleSprite: {fileID: 21300000, guid: 1acd688937e93054098fa09980fee1e3, type: 3}
+  passiveLinkSprite: {fileID: 21300000, guid: 61581c957a7bab3478f301838c088729, type: 3}
+  passiveCircleSprite: {fileID: 21300000, guid: 867886dcbfaaee4459ed3904d5585f6e, type: 3}
 --- !u!1 &7481732953088685226
 GameObject:
   m_ObjectHideFlags: 0
