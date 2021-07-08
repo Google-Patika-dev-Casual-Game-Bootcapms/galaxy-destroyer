@@ -85,6 +85,8 @@ namespace SpaceShooterProject.Component
 
         public void OnDestruct()
         {
+            ResetHealth();
+            gameObject.SetActive(false);
         }
 
         public void PreInit()

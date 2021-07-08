@@ -99,11 +99,11 @@ namespace SpaceShooterProject.Component
 
         public void FinishGame() 
         {
-            player.OnDestruct();
+            //player.OnDestruct();
             inputSystem.OnDestruct();
             bulletCollector.OnDestruct();
             enemyFactory.OnDestruct();
-            inGameMessageBroadcaster.RemoveAllEvents();//TODO: research!!!
+            //inGameMessageBroadcaster.RemoveAllEvents();//TODO: research!!!
 
             if (OnGameOver != null) 
             {

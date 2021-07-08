@@ -42,9 +42,12 @@ namespace SpaceShooterProject.Component
 
         public void OnDestruct()
         {
-            //TODO:
-            // remove all live bullets from scene
-                // then send it to the pool
+            for (int i = 0; i < activeBullets.Count; i++)
+            {
+                AddBulletToPool(activeBullets[i]);
+            }
+
+            activeBullets.Clear();
 
         }
     }

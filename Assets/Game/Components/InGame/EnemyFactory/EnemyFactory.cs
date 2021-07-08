@@ -35,7 +35,7 @@
         private Player player;// TODO refactor!!!
         private InGameMessageBroadcaster inGameMessageBroadcaster;
 
-        private List<IUpdatable> liveEnemies;
+        private List<Enemy> liveEnemies;
 
         public EnemyFactory(InGameMessageBroadcaster inGameMessageBroadcaster)
         {
@@ -46,7 +46,7 @@
 
         public void Init()
         {
-            liveEnemies = new List<IUpdatable>();
+            liveEnemies = new List<Enemy>();
             gameCamera = Camera.main;
             player = GameObject.FindObjectOfType<Player>();
             inGameMessageBroadcaster.OnEnemyDestroyed += OnEnemyDestroyed;
@@ -87,6 +87,18 @@
         //TODO solve cyclomatic complexity and casting issues!!! // TODO: refactor
         private void OnEnemyDestroyed(Enemy enemy)
         {
+            AddEnemyToPool(enemy);
+
+            if (liveEnemies.Contains(enemy)) 
+            {
+                enemy.gameObject.SetActive(false);
+                liveEnemies.Remove(enemy);
+            }
+
+        }
+
+        private void AddEnemyToPool(Enemy enemy)
+        {
             switch (enemy.GetEnemyType())
             {
                 case EnemyType.RoadTracker:
@@ -107,13 +119,6 @@
                 default:
                     break;
             }
-
-            if (liveEnemies.Contains(enemy)) 
-            {
-                enemy.gameObject.SetActive(false);
-                liveEnemies.Remove(enemy);
-            }
-
         }
 
         public void PreInit()
@@ -187,8 +192,13 @@
 
         public void OnDestruct()
         {
-            //TODO:
-                // remove all live enemies from scene
+            while (liveEnemies.Count > 0)
+            {
+                liveEnemies[liveEnemies.Count - 1].OnDestruct();
+                OnEnemyDestroyed(liveEnemies[liveEnemies.Count - 1]);
+            }
+
+            liveEnemies.Clear();
         }
     }
 
