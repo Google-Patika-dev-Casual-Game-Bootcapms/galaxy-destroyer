@@ -1,4 +1,6 @@
-﻿namespace SpaceShooterProject.UserInterface
+﻿using UnityEngine.PlayerLoop;
+
+namespace SpaceShooterProject.UserInterface
 {
     using System.Collections.Generic;
     using UnityEngine;
@@ -23,8 +25,8 @@
         [Header("Card Design Tool Fields \t Never Give 0!")]
         [SerializeField] private int rowNumber = 2;
         [SerializeField] private int columnNumber = 3;
-        [SerializeField] private float topOffsetMultiplier = 0.1f;
-        [SerializeField] private float bottomOffsetMultiplier = 0.35f;
+        [SerializeField] private float topOffsetMultiplier = 0.223f;
+        [SerializeField] private float bottomOffsetMultiplier = 0.2f;
         [SerializeField] private float verticalSpaceAreaMultiplier = 0.04f;
         [SerializeField] private float rightOffsetMultiplier = 0.1f;
         [SerializeField] private float leftOffsetMultiplier = 0.1f;
