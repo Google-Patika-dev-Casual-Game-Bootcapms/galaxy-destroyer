@@ -63,6 +63,9 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject neptuneParallax;
     [SerializeField] private GameObject uranusParallax;
     [SerializeField] private GameObject saturnParallax;
+    [SerializeField] private GameObject earthTerrain;
+    [SerializeField] private GameObject earthTree;
+    [SerializeField] private GameObject stackedRock;
     #endregion
     
     [MenuItem("Tools/LevelEditor")]
@@ -207,6 +210,7 @@ public class EditorComponent : EditorWindow
             EGameObjectType.neptuneTerrain => Instantiate(neptuneTerrain),
             EGameObjectType.uranusTerrain => Instantiate(uranusTerrain),
             EGameObjectType.saturnTerrain => Instantiate(saturnTerrain),
+            EGameObjectType.earthTerrain => Instantiate(earthTerrain),
             EGameObjectType.marsParallax => Instantiate(marsParallax),
             EGameObjectType.neptuneParallax => Instantiate(neptuneParallax),
             EGameObjectType.uranusParallax => Instantiate(uranusParallax),
@@ -252,6 +256,8 @@ public class EditorComponent : EditorWindow
             EGameObjectType.standartRock02 => Instantiate(standartRock02),
             EGameObjectType.standartMountain01 => Instantiate(standartMountain01),
             EGameObjectType.standartMountain02 => Instantiate(standartMountain02),
+            EGameObjectType.earthTree => Instantiate(earthTree),
+            EGameObjectType.stackedRock => Instantiate(stackedRock),
             EGameObjectType.marsRock01 => Instantiate(marsRock01),
             _ => Instantiate(vinc)
         };
