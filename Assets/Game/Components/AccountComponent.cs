@@ -79,7 +79,8 @@ namespace SpaceShooterProject.Component
             {
                 Name = "Name", // TODO: Ask for name to the user
                 PlayerLevel = 1,
-                OwnedGold = 1000
+                OwnedGold = 1000,
+                SelectedSpaceShipId = 0
             };
 
             InitializeSpaceShipUpgradeData();
