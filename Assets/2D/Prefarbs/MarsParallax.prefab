@@ -189,9 +189,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3354098345336167005}
-  - component: {fileID: 3609793201096811761}
+  - component: {fileID: 3311130215710968517}
   m_Layer: 0
-  m_Name: MarsParallaxTerrain
+  m_Name: MarsParallax
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,7 +214,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3609793201096811761
+--- !u!114 &3311130215710968517
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
