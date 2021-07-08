@@ -10,7 +10,7 @@ namespace SpaceShooterProject.Component
 
     public class AccountComponent : IComponent, IDestructible
     {
-        private const int MAX_PART_UPGRADE_LEVEL = 10;
+        private const int MAX_PART_UPGRADE_LEVEL = 41;
 
         #region Variables        
         private AccountData accountData;
@@ -64,7 +64,9 @@ namespace SpaceShooterProject.Component
                 //Debug.Log("Initialize for first time");
                 InitializeForFirstTime();
             }
-            
+
+            InitializeSpaceShipUpgradeData();
+
             //Debug.Log("Name:" + GetPlayerName());
 
         }
@@ -77,8 +79,6 @@ namespace SpaceShooterProject.Component
                 PlayerLevel = 1,
                 OwnedGold = 1000
             };
-
-            InitializeSpaceShipUpgradeData();
             
             // TODO: Assign default values for other components in the future
             

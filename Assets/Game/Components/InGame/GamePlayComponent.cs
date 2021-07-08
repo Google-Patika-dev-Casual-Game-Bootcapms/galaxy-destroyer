@@ -13,25 +13,32 @@ namespace SpaceShooterProject.Component
         public event GameOverDelegate OnGameOver;
 
         [SerializeField] private Player player;
+        [SerializeField] private GameObject playerPrefab;
         [SerializeField] private GameCamera gameCamera;
         private InGameInputSystem inputSystem;
         private InGameWeaponUpgradeComponent weaponUpgradeComponent;
         private BulletCollector bulletCollector;
         private EnemyFactory enemyFactory;
         private InGameMessageBroadcaster inGameMessageBroadcaster;
-        
-
+       
 
         public void Initialize(ComponentContainer componentContainer)
         {
+			this.componentContainer = componentContainer;
+			
             inGameMessageBroadcaster = new InGameMessageBroadcaster();
             inGameMessageBroadcaster.Initialize(componentContainer);
-
-            Debug.Log("<color=green>GamePlayComponent initialized!</color>");
+			
+			 Debug.Log("<color=green>GamePlayComponent initialized!</color>");
             inputSystem = componentContainer.GetComponent("InGameInputSystem") as InGameInputSystem;
 
             InitializeWeaponUpgradeComponent(componentContainer);
+			
+		}
 
+        private void CreatePlayer()
+        {
+            player = Instantiate(playerPrefab).GetComponent<Player>();
             player.InjectInputSystem(inputSystem);
             player.ComponentContainer = componentContainer;
             player.Init();
@@ -66,6 +73,11 @@ namespace SpaceShooterProject.Component
 
         private void LateUpdate()
         {
+            if (gameCamera == null) 
+            {
+                return;
+            }
+
             if (gameCamera.IsAvailable)
                 gameCamera.CallLateUpdate();
         }
@@ -105,5 +117,38 @@ namespace SpaceShooterProject.Component
     public interface IBulletCollector
     {
         void AddBulletToPool(Bullet bullet);
+    }
+
+    public class BulletCollector : IBulletCollector
+    {
+        private Pool<Bullet> pool;
+        private const string SOURCE_OBJECT_PATH = "Prefabs/BulletForPooling";
+
+        public BulletCollector()
+        {
+            pool = new Pool<Bullet>(SOURCE_OBJECT_PATH);
+            pool.PopulatePool(20);
+        }
+
+        public Bullet GetBullet()
+        {
+            var bullet = pool.GetObjectFromPool();
+            bullet.InjectBulletCollector(this);
+
+            return bullet;
+        }
+
+        public void AddBulletToPool(Bullet bullet)
+        {
+            pool.AddObjectToPool(bullet);
+        }
+
+        private void SubscribeAllBullets()
+        {
+            foreach (var bullet in pool.GetPool.ToArray())
+            {
+                
+            }
+        }
     }
 }
