@@ -2,10 +2,8 @@ namespace SpaceShooterProject.State
 {
     using Devkit.Base.Component;
     using Devkit.HSM;
-    using SpaceShooterProject.Component;
-    using SpaceShooterProject.UserInterface;
-    using System.Collections;
-    using System.Collections.Generic;
+    using Component;
+    using UserInterface;
     using UnityEngine;
 
     public class GameState : StateMachine
@@ -16,13 +14,14 @@ namespace SpaceShooterProject.State
         private EndGameState endGameState;
 
         private UIComponent uiComponent;
-        private ProvisionCanvas provisionCanvas;
-
+        private InGameCanvas inGameCanvas;
+        private GamePlayComponent gamePlayComponent;
         public GameState(ComponentContainer componentContainer)
         {
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
-            provisionCanvas = uiComponent.GetCanvas(UIComponent.MenuName.PROVISION) as ProvisionCanvas; 
-
+            inGameCanvas = uiComponent.GetCanvas(UIComponent.MenuName.IN_GAME) as InGameCanvas; 
+            gamePlayComponent=componentContainer.GetComponent("GamePlayComponent") as GamePlayComponent;
+            
             prepareGameState = new PrepareGameState(componentContainer);
             inGameState = new InGameState(componentContainer);
             pauseGameState = new PauseGameState(componentContainer);
@@ -33,19 +32,18 @@ namespace SpaceShooterProject.State
             AddSubState(pauseGameState);
             AddSubState(endGameState);
 
-            
             AddTransition(prepareGameState, inGameState, (int)StateTriggers.PLAY_GAME_REQUEST);
             AddTransition(inGameState, pauseGameState, (int)StateTriggers.PAUSE_GAME_REQUEST);
             AddTransition(pauseGameState, inGameState, (int)StateTriggers.RESUME_GAME_REQUEST);
             AddTransition(inGameState, endGameState, (int)StateTriggers.GAME_OVER);
             AddTransition(endGameState, prepareGameState, (int)StateTriggers.REPLAY_GAME_REQUEST);
-            AddTransition(prepareGameState, pauseGameState, (int)StateTriggers.PAUSE_GAME_REQUEST);
 
         }
 
         protected override void OnEnter()
         {
-            uiComponent.EnableCanvas(UIComponent.MenuName.PROVISION);
+            uiComponent.EnableCanvas(UIComponent.MenuName.IN_GAME);
+            inGameCanvas.OnReturnToMainMenu += ReturnToMainMenu;
         }
 
         private void ReturnToMainMenu()
@@ -55,12 +53,12 @@ namespace SpaceShooterProject.State
 
         protected override void OnExit()
         {
-            provisionCanvas.OnReturnToMainMenu -= ReturnToMainMenu;
+            inGameCanvas.OnReturnToMainMenu -= ReturnToMainMenu;
         }
 
         protected override void OnUpdate()
         {
-            
+            Debug.Log("GameState in on ");
         }
     }
 }

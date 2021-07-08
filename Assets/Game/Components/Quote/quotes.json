@@ -1,0 +1,21 @@
+{
+  "quotes":
+  [
+    {
+      "quote": "Developer's quote",
+      "author": "Name Surname"
+    },
+    {
+      "quote": "Example sentence",
+      "author": "Name Surname"
+    },
+    {
+      "quote": "Let's start it ",
+      "author": "Name Surname "
+    },
+    {
+      "quote": "Have a good time",
+      "author": "Name Surname"
+    }
+  ]
+}

@@ -13,6 +13,12 @@ namespace SpaceShooterProject.UserInterface
 
         protected override void Init()
         {
+            if (volumeSlider == null) 
+            {
+                Debug.LogWarning("Volume slider is null!!!");
+                return;
+            }
+
             volumeSlider.onValueChanged.AddListener(delegate (float sliderValue) { OnVolumeValueChanged(sliderValue); });
         }
 

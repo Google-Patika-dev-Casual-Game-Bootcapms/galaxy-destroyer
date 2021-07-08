@@ -1,12 +1,13 @@
 using SpaceShooterProject.Component.CoPilot;
 
-namespace SpaceShooterProject 
+namespace SpaceShooterProject
 {
     using Devkit.Base.Component;
     using SpaceShooterProject.Component;
     using SpaceShooterProject.State;
     using System;
     using UnityEngine;
+
     public class MainComponent : MonoBehaviour
     {
         private ComponentContainer componentContainer;
@@ -18,12 +19,19 @@ namespace SpaceShooterProject
         private NotificationComponent notificationComponent;
         private TutorialComponent tutorialComponent;
         private IntroComponent introComponent;
+        private EditorSceneBuilderComponent editorSceneBuilderComponent;
         private InventoryComponent inventoryComponent;
+        private CardComponent cardComponent;
         private MarketComponent marketComponent;
         private CoPilotComponent coPilotComponent;
         private SuperPowerComponent superPowerComponent;
+
         private GachaComponent gachaComponent;
+        private InGameInputSystem inGameInputSystem;
         private CurrencyComponent currencyComponent;
+        private QuoteComponent quoteComponent;
+        private UpgradeComponent upgradeComponent;
+
 
         private AppState appState;
 
@@ -41,13 +49,20 @@ namespace SpaceShooterProject
             CreateAchievementsComponent();
             CreateAudioComponent();
             CreateNotificationComponent();
+            CreateCurrencyComponent();
             CreateGamePlayComponent();
             CreateTutorialComponent();
+            CreateEditorSceneBuilderComponent();
             CreateInventoryComponent();
+            CreateCardComponent();
             CreateMarketComponent();
             CreateCoPilotComponent();
             CreateSuperPowerComponent();
-            CreateCurrencyComponent();
+
+            CreateInGameInputSystem();
+            CreateQuoteComponent();
+            CreateUpgradeComponent();
+
 
             InitializeComponents();
             CreateAppState();
@@ -57,6 +72,11 @@ namespace SpaceShooterProject
         public void Update()
         {
             appState.Update();
+        }
+
+        public void OnDestroy()
+        {
+            accountComponent.OnDestruct();
         }
 
         private void CreateAccountComponent()
@@ -86,7 +106,7 @@ namespace SpaceShooterProject
 
         private void CreateAchievementsComponent()
         {
-            achievementsComponent = new AchievementsComponent();
+            achievementsComponent = FindObjectOfType<AchievementsComponent>();
             componentContainer.AddComponent("AchievementsComponent", achievementsComponent);
         }
 
@@ -102,6 +122,12 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("NotificationComponent", notificationComponent);
         }
 
+        private void CreateCurrencyComponent()
+        {
+            currencyComponent = new CurrencyComponent();
+            componentContainer.AddComponent("CurrencyComponent", currencyComponent);
+        }
+
         private void CreateGamePlayComponent()
         {
             gamePlayComponent = FindObjectOfType<GamePlayComponent>();
@@ -114,16 +140,29 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("TutorialComponent", tutorialComponent);
         }
 
+        private void CreateEditorSceneBuilderComponent()
+        {
+            //TODO: Make prefab!!!
+            editorSceneBuilderComponent = new GameObject().AddComponent<EditorSceneBuilderComponent>();
+            componentContainer.AddComponent("LevelEditorSceneBuilderComponent", editorSceneBuilderComponent);
+        }
+
         private void CreateInventoryComponent()
         {
             inventoryComponent = gameObject.AddComponent<InventoryComponent>();
             componentContainer.AddComponent("InventoryComponent", inventoryComponent);
         }
-        
+
+        private void CreateCardComponent()
+        {
+            cardComponent = FindObjectOfType<CardComponent>();
+            componentContainer.AddComponent("CardComponent", cardComponent);
+        }
+
         private void CreateCoPilotComponent()
         {
             coPilotComponent = new CoPilotComponent();
-            componentContainer.AddComponent("CoPilotComponent",coPilotComponent);
+            componentContainer.AddComponent("CoPilotComponent", coPilotComponent);
         }
 
         private void CreateSuperPowerComponent()
@@ -138,27 +177,47 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("MarketComponent", marketComponent);
         }
 
-        private void CreateCurrencyComponent()
+
+        private void CreateInGameInputSystem()
         {
-            currencyComponent = new CurrencyComponent();
-            componentContainer.AddComponent("CurrencyComponent", currencyComponent);
+            inGameInputSystem = new InGameInputSystem();
+            componentContainer.AddComponent("InGameInputSystem", inGameInputSystem);
+        }
+
+        private void CreateQuoteComponent() 
+        {
+            quoteComponent = FindObjectOfType<QuoteComponent>();
+            componentContainer.AddComponent("QuoteComponent", quoteComponent);
+        }
+
+        private void CreateUpgradeComponent()
+        {
+            upgradeComponent = new UpgradeComponent();
+            componentContainer.AddComponent("UpgradeComponent", upgradeComponent);
         }
 
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
-            currencyComponent.Initialize(componentContainer);
+
+            
             gachaComponent.Initialize(componentContainer);
+            quoteComponent.Initialize(componentContainer);
+            achievementsComponent.Initialize(componentContainer);
             uIComponent.Initialize(componentContainer);
             introComponent.Initialize(componentContainer);
-            achievementsComponent.Initialize(componentContainer);
             audioComponent.Initialize(componentContainer);
             notificationComponent.Initialize(componentContainer);
+            currencyComponent.Initialize(componentContainer);
             gamePlayComponent.Initialize(componentContainer);
+            editorSceneBuilderComponent.Initialize(componentContainer);
             inventoryComponent.Initialize(componentContainer);
+            cardComponent.Initialize(componentContainer);
             marketComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
             superPowerComponent.Initialize(componentContainer);
+            upgradeComponent.Initialize(componentContainer);
+            inGameInputSystem.Initialize(componentContainer);
         }
 
         private void CreateAppState()
@@ -167,4 +226,3 @@ namespace SpaceShooterProject
         }
     }
 }
-

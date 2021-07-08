@@ -1,15 +1,20 @@
-namespace SpaceShooterProject.Component 
+namespace SpaceShooterProject.Component
 {
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
     using Devkit.Base.Component;
+    using System;
 
     public class CurrencyComponent : IComponent
     {
-            private AccountComponent accountComponent;
-            private int ownedGold,ownedDiamond;
-            private bool isGoldEnough,isDiamondEnough;
+        public delegate void CurrencyChangeDelegate(int currencyCount);
+        public event CurrencyChangeDelegate OnGoldChanged;
+        public event CurrencyChangeDelegate OnDiamondChanged;
+
+        private AccountComponent accountComponent;
+        private int ownedGold;
+        private int ownedDiamond;
 
         public void Initialize(ComponentContainer componentContainer)
         {
@@ -19,62 +24,74 @@ namespace SpaceShooterProject.Component
             ownedGold = accountComponent.GetOwnedGold();
         }
 
-        #region Currency Methods
-            public void EarnGold(int goldIncome)
+        public void EarnGold(int goldIncome)
+        {
+            ownedGold += goldIncome;
+            TriggerGoldCountChange();
+        }
+
+        private void TriggerGoldCountChange()
+        {
+            if (OnGoldChanged != null)
             {
-                ownedGold += goldIncome;
+                OnGoldChanged(ownedGold);
+            }
+        }
+
+        public void EarnDiamond(int diamondIncome)
+        {
+            ownedDiamond += diamondIncome;
+            TriggerDiamondCountChange();
+        }
+
+        private void TriggerDiamondCountChange()
+        {
+            if (OnDiamondChanged != null)
+            {
+                OnDiamondChanged(ownedDiamond);
+            }
+        }
+
+        public void SpendGold(int goldOutcome)
+        {
+            if (!IsGoldAffordable(goldOutcome)) 
+            {
+                return;
             }
 
-            public void EarnDiamond(int diamondIncome)
+            ownedGold -= goldOutcome;
+            TriggerGoldCountChange();
+        }
+
+        public bool IsGoldAffordable(int goldAmount)
+        {
+            return goldAmount <= ownedGold;
+        }
+
+        public bool IsDiamondAffordable(int diamondAmount)
+        {
+            return diamondAmount <= ownedDiamond;
+        }
+
+        public void SpendDiamond(int diamondOutcome)
+        {
+            if (!IsDiamondAffordable(diamondOutcome)) 
             {
-                ownedDiamond += diamondIncome;
+                return;
             }
 
-            public bool SpendGold(int goldOutcome)
-            {
-                if(ownedGold < goldOutcome)
-                {
-                    //TODO give an error
-                    isGoldEnough = false;
-                }
-                else
-                {
-                    ownedGold -= goldOutcome;
-                    isGoldEnough=true;
-                }
-                
-                return isGoldEnough;
-            }
+            ownedDiamond -= diamondOutcome;
+            TriggerDiamondCountChange();
+        }
 
-            public bool SpendDiamond(int diamondOutcome)
-            {
-                if(ownedDiamond < diamondOutcome)
-                {
-                    //TODO give an error
-                    isDiamondEnough=false;
-                }
-                else
-                {
-                    ownedDiamond -= diamondOutcome;
-                    isDiamondEnough = true;
-                }
+        public int GetOwnedGold()
+        {
+            return ownedGold;
+        }
 
-                return isDiamondEnough;
-            }
-
-
-        #endregion
-    
-        #region Getter Methods
-            int GetOwnedGold()
-            {
-                return ownedGold;
-            }
-
-            int GetOwnedDiamond()
-            {
-                return ownedDiamond;
-            }
-        #endregion
+        public int GetOwnedDiamond()
+        {
+            return ownedDiamond;
+        }
     }
 }

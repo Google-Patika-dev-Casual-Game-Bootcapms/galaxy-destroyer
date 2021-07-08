@@ -1,11 +1,9 @@
-namespace SpaceShooterProject.State 
+namespace SpaceShooterProject.State
 {
     using Devkit.Base.Component;
     using Devkit.HSM;
     using SpaceShooterProject.Component;
     using SpaceShooterProject.UserInterface;
-    using System.Collections;
-    using System.Collections.Generic;
     using UnityEngine;
 
     public class AchievementsState : StateMachine
@@ -14,7 +12,7 @@ namespace SpaceShooterProject.State
         private UIComponent uiComponent;
         private AchievementsCanvas achievementsCanvas;
 
-        public AchievementsState(ComponentContainer componentContainer) 
+        public AchievementsState(ComponentContainer componentContainer)
         {
             achievementsComponent = componentContainer.GetComponent("AchievementsComponent") as AchievementsComponent;
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
@@ -25,6 +23,14 @@ namespace SpaceShooterProject.State
         {
             uiComponent.EnableCanvas(UIComponent.MenuName.ACHIEVEMENTS);
             achievementsCanvas.OnReturnToMainMenu += OnReturnToMainMenu;
+            achievementsCanvas.AchievementCompletedEvent += AchievementCompleted;
+
+            achievementsCanvas.SetData(achievementsComponent.GetAchievementsData());
+        }
+
+        private void AchievementCompleted(string name)
+        {
+            achievementsComponent.CompleteAchievement(name);
         }
 
         private void OnReturnToMainMenu()
@@ -35,11 +41,15 @@ namespace SpaceShooterProject.State
         protected override void OnExit()
         {
             achievementsCanvas.OnReturnToMainMenu -= OnReturnToMainMenu;
+            achievementsCanvas.AchievementCompletedEvent -= AchievementCompleted;
         }
 
         protected override void OnUpdate()
         {
-            
+            for (var i = 0; i < achievementsCanvas.achievementsContentPanel.childCount; i++)
+            {
+                achievementsCanvas.achievementsContentPanel.transform.GetChild(i).GetComponent<AchievementCard>().Init();
+            }
         }
     }
 }

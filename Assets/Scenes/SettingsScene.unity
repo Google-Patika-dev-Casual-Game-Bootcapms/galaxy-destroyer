@@ -175,7 +175,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3772966284526638870, guid: 54dffe442b2d3c944a84fd14f211ab6a, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3772966284526638874, guid: 54dffe442b2d3c944a84fd14f211ab6a, type: 3}
       propertyPath: m_Pivot.x
@@ -264,6 +264,10 @@ PrefabInstance:
     - target: {fileID: 3772966284526638877, guid: 54dffe442b2d3c944a84fd14f211ab6a, type: 3}
       propertyPath: m_Name
       value: SpaceshipCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3772966284526638877, guid: 54dffe442b2d3c944a84fd14f211ab6a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54dffe442b2d3c944a84fd14f211ab6a, type: 3}
@@ -373,9 +377,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2266398198231985061, guid: 4b7d42eff1436ee428961f3ab0ac8e2a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2266398198231985062, guid: 4b7d42eff1436ee428961f3ab0ac8e2a, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b7d42eff1436ee428961f3ab0ac8e2a, type: 3}
@@ -512,7 +520,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329951132}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -816,7 +824,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412772968}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -987,6 +995,14 @@ PrefabInstance:
     - target: {fileID: 145902345866918969, guid: 73d910292973201488dffcb07b2972c2, type: 3}
       propertyPath: m_Name
       value: GarageCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 145902345866918969, guid: 73d910292973201488dffcb07b2972c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 145902345866918972, guid: 73d910292973201488dffcb07b2972c2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 145902345866918973, guid: 73d910292973201488dffcb07b2972c2, type: 3}
       propertyPath: m_Pivot.x
@@ -1285,7 +1301,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679317544}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -2166,9 +2182,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4989928153923017189, guid: aacab4be37c987c4d82f7c43c3ce6a1b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4989928153923017198, guid: aacab4be37c987c4d82f7c43c3ce6a1b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aacab4be37c987c4d82f7c43c3ce6a1b, type: 3}
@@ -2334,7 +2354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5527500169095326121, guid: 919ccff412be2a448ac7abad2cb404d3, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5527500169095326122, guid: 919ccff412be2a448ac7abad2cb404d3, type: 3}
       propertyPath: m_Pivot.x
@@ -3535,7 +3555,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602609766}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -3726,7 +3746,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871157740}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -3780,10 +3800,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 132784633704793871, guid: ed7d8371c31ad94438b4cf396c421098, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ca983321c160e444e80ec6b60b802e4d, type: 3}
     - target: {fileID: 6281374909018433179, guid: ed7d8371c31ad94438b4cf396c421098, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3804,10 +3820,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6281374909618194557, guid: ed7d8371c31ad94438b4cf396c421098, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 9f7c195108cbf324f9ba521582f0476a, type: 3}
     - target: {fileID: 6281374910105928115, guid: ed7d8371c31ad94438b4cf396c421098, type: 3}
       propertyPath: m_Name
       value: SettingsCanvas
@@ -3976,7 +3988,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136069481}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

@@ -64,3 +64,6 @@ crashlytics-build.properties
 # Visual Studio files
 .vscode/
 .vsconfig
+Assets/accountData.txt
+UserSettings/EditorUserSettings.asset
+Assets/accountData.txt.meta
