@@ -79,6 +79,9 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
     private void LoadScene(LevelData levelData)
     {
         ClearScene();
+        Camera.main.transform.position = levelData.Position;
+        Camera.main.transform.eulerAngles = levelData.Rotation;
+        Camera.main.fieldOfView = levelData.FieldofView;
 
         foreach (var levelItem in levelData.LevelCharacters)
         {
@@ -159,11 +162,10 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
 [Serializable]
 public class LevelData
 {
+    public Vector3 Position;
+    public Vector3 Rotation;
+    public float FieldofView;
     public List<LevelCharacterData> LevelCharacters;
-
-    public float CameraHeight;
-    public float CameraWidth;
-
     public LevelData()
     {
         LevelCharacters = new List<LevelCharacterData>();

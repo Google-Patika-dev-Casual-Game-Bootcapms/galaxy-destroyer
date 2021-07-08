@@ -119,8 +119,9 @@ public class EditorComponent : EditorWindow
     {
         LevelData levelData = new LevelData();
 
-        levelData.CameraHeight = 2f * Camera.main.orthographicSize;
-        levelData.CameraWidth = levelData.CameraHeight * Camera.main.aspect;
+        levelData.Position = Camera.main.transform.position;
+        levelData.Rotation = Camera.main.transform.eulerAngles;
+        levelData.FieldofView = Camera.main.fieldOfView;
 
         foreach (var item in itemsToSave)
         {
@@ -168,6 +169,9 @@ public class EditorComponent : EditorWindow
     private void LoadScene(LevelData levelData)
     {
         ClearScene();
+        Camera.main.transform.position = levelData.Position;
+        Camera.main.transform.eulerAngles = levelData.Rotation;
+        Camera.main.fieldOfView = levelData.FieldofView;
 
         foreach (var levelItem in levelData.LevelCharacters)
         {
