@@ -74,7 +74,8 @@ namespace SpaceShooterProject.State
                 }
                 else
                 {
-                    accountComponent.SetSelectedSpaceShipId(currentSelectedShip++);
+                    currentSelectedShip++;
+                    accountComponent.SetSelectedSpaceShipId(currentSelectedShip);
                 }
             }
 
@@ -83,13 +84,17 @@ namespace SpaceShooterProject.State
             {
                 if (currentSelectedShip - 1 < 0)
                 {
-                    accountComponent.SetSelectedSpaceShipId(maxSpaceshipCount-1);
+                    maxSpaceshipCount--;
+                    accountComponent.SetSelectedSpaceShipId(maxSpaceshipCount);
                 }
                 else
                 {
-                    accountComponent.SetSelectedSpaceShipId(currentSelectedShip--);
+                    currentSelectedShip--;
+                    accountComponent.SetSelectedSpaceShipId(currentSelectedShip);
                 }
             }
+
+            var accountshipID = accountComponent.GetSelectedSpaceShipId();
             provisionCanvas.OnSpaceShipChangeSucces(accountComponent.GetSelectedSpaceShipId());
         }
         
