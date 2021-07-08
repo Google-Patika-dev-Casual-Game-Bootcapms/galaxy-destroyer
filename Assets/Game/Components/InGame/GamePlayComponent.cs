@@ -10,19 +10,25 @@ namespace SpaceShooterProject.Component
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
         [SerializeField] private Player player;
+        [SerializeField] private GameObject playerPrefab;
         [SerializeField] private GameCamera gameCamera;
         private InGameInputSystem inputSystem;
         private InGameWeaponUpgradeComponent weaponUpgradeComponent;
         private BulletCollector bulletCollector;
-
+        private ComponentContainer componentContainer;
 
         public void Initialize(ComponentContainer componentContainer)
         {
+            this.componentContainer = componentContainer;
             Debug.Log("<color=green>GamePlayComponent initialized!</color>");
             inputSystem = componentContainer.GetComponent("InGameInputSystem") as InGameInputSystem;
 
             InitializeWeaponUpgradeComponent(componentContainer);
+        }
 
+        private void CreatePlayer()
+        {
+            player = Instantiate(playerPrefab).GetComponent<Player>();
             player.InjectInputSystem(inputSystem);
             player.ComponentContainer = componentContainer ;
             player.Init();
@@ -49,6 +55,11 @@ namespace SpaceShooterProject.Component
 
         private void LateUpdate()
         {
+            if (gameCamera == null) 
+            {
+                return;
+            }
+
             if (gameCamera.IsAvailable)
                 gameCamera.CallLateUpdate();
         }
@@ -96,12 +107,12 @@ namespace SpaceShooterProject.Component
             pool.AddObjectToPool(bullet);
         }
 
-        /*private void SubscribeAllBullets()
+        private void SubscribeAllBullets()
         {
             foreach (var bullet in pool.GetPool.ToArray())
             {
                 
             }
-        }*/
+        }
     }
 }
