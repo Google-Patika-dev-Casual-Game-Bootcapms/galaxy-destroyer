@@ -812,8 +812,8 @@ MonoBehaviour:
       - m_Target: {fileID: 2677033186467477823}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.ProvisionCanvas,
           Assembly-CSharp
-        m_MethodName: RequestPreviousShip
-        m_Mode: 1
+        m_MethodName: OnRequestShipChangeButtonClick
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1931,7 +1931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.101960786}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2354,15 +2354,15 @@ MonoBehaviour:
       - m_Target: {fileID: 2677033186467477823}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.ProvisionCanvas,
           Assembly-CSharp
-        m_MethodName: RequestNextShip
-        m_Mode: 1
+        m_MethodName: OnRequestShipChangeButtonClick
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &2677033186210956766
 GameObject:
@@ -3077,10 +3077,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5aea15b1f5b4bfeb010b4ea69ab0ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  superPowerPriceTexts:
+  - {fileID: 2677033186230270304}
+  - {fileID: 207091074836857862}
+  - {fileID: 2677033185295131433}
   backgroundImage: {fileID: 2677033185830807361}
   ownedGoldText: {fileID: 2677033185553776673}
   health: {fileID: 2677033185746992427}
   power: {fileID: 2677033185382414734}
+  spaceShipImageArray:
+  - {fileID: 21300000, guid: 98466282f51e5a2408e9bc3f9528b379, type: 3}
+  - {fileID: 21300000, guid: 64bcb7740ffc6264e8afd2099740d6f5, type: 3}
+  - {fileID: 21300000, guid: 376211db63650254dbe56b03078045c4, type: 3}
+  - {fileID: 21300000, guid: 480641ff712fbdb4da51b7a2795bcf10, type: 3}
+  - {fileID: 21300000, guid: 058685d78b32cec4298d1286d8c1295d, type: 3}
+  spaceshipImage: {fileID: 2677033185353678358}
   progressBarArray:
   - {fileID: 2677033186346737057}
   - {fileID: 6388886115909502575}
@@ -3197,12 +3208,12 @@ MonoBehaviour:
       - m_Target: {fileID: 2677033186467477823}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.ProvisionCanvas,
           Assembly-CSharp
-        m_MethodName: RequestSuperPowerMegaBomb
-        m_Mode: 1
+        m_MethodName: OnSuperPowerPurchaseButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3559,8 +3570,8 @@ MonoBehaviour:
       - m_Target: {fileID: 2677033186467477823}
         m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.ProvisionCanvas,
           Assembly-CSharp
-        m_MethodName: RequestSuperPowerLaser
-        m_Mode: 1
+        m_MethodName: OnSuperPowerPurchaseButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
