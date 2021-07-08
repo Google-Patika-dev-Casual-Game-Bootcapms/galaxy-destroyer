@@ -12,7 +12,7 @@ namespace SpaceShooterProject.Component
     {
         private const int MAX_PART_UPGRADE_LEVEL = 10;
         private const int MAX_SUPER_POWER_ITEM_COUNT = 4;
-        private const int MAX_SPACESHIP_COUNT = 5;
+        private const int MAX_SPACESHIP_COUNT = 6;
 
         #region Variables        
         private AccountData accountData;
