@@ -343,8 +343,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -35, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 287.3854, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2677033184980230291
 CanvasRenderer:
@@ -408,7 +408,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0.65704346, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -919,11 +919,11 @@ RectTransform:
   m_Father: {fileID: 2677033186467477819}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -7, y: 47}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -1666}
   m_SizeDelta: {x: 400, y: 200}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &2677033185291450626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,7 +1383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2677033185473128648
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3083,15 +3083,11 @@ MonoBehaviour:
   - {fileID: 2677033185295131433}
   backgroundImage: {fileID: 2677033185830807361}
   ownedGoldText: {fileID: 2677033185553776673}
+  spaceShipNameText: {fileID: 2677033184980230292}
   health: {fileID: 2677033185746992427}
   power: {fileID: 2677033185382414734}
-  spaceShipImageArray:
-  - {fileID: 21300000, guid: 98466282f51e5a2408e9bc3f9528b379, type: 3}
-  - {fileID: 21300000, guid: 64bcb7740ffc6264e8afd2099740d6f5, type: 3}
-  - {fileID: 21300000, guid: 376211db63650254dbe56b03078045c4, type: 3}
-  - {fileID: 21300000, guid: 480641ff712fbdb4da51b7a2795bcf10, type: 3}
-  - {fileID: 21300000, guid: 058685d78b32cec4298d1286d8c1295d, type: 3}
   spaceshipImage: {fileID: 2677033185353678358}
+  spaceShipContainer: {fileID: 11400000, guid: 33374586697db164381de1eeaeb70416, type: 2}
   progressBarArray:
   - {fileID: 2677033186346737057}
   - {fileID: 6388886115909502575}
@@ -3361,7 +3357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2677033186774751810
 RectTransform:
   m_ObjectHideFlags: 0
