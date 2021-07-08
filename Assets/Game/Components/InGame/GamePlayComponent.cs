@@ -20,7 +20,7 @@ namespace SpaceShooterProject.Component
         private BulletCollector bulletCollector;
         private EnemyFactory enemyFactory;
         private InGameMessageBroadcaster inGameMessageBroadcaster;
-       
+        private ComponentContainer componentContainer;
 
         public void Initialize(ComponentContainer componentContainer)
         {
@@ -33,6 +33,8 @@ namespace SpaceShooterProject.Component
             inputSystem = componentContainer.GetComponent("InGameInputSystem") as InGameInputSystem;
 
             InitializeWeaponUpgradeComponent(componentContainer);
+
+            CreatePlayer();
 			
 		}
 
@@ -117,38 +119,5 @@ namespace SpaceShooterProject.Component
     public interface IBulletCollector
     {
         void AddBulletToPool(Bullet bullet);
-    }
-
-    public class BulletCollector : IBulletCollector
-    {
-        private Pool<Bullet> pool;
-        private const string SOURCE_OBJECT_PATH = "Prefabs/BulletForPooling";
-
-        public BulletCollector()
-        {
-            pool = new Pool<Bullet>(SOURCE_OBJECT_PATH);
-            pool.PopulatePool(20);
-        }
-
-        public Bullet GetBullet()
-        {
-            var bullet = pool.GetObjectFromPool();
-            bullet.InjectBulletCollector(this);
-
-            return bullet;
-        }
-
-        public void AddBulletToPool(Bullet bullet)
-        {
-            pool.AddObjectToPool(bullet);
-        }
-
-        private void SubscribeAllBullets()
-        {
-            foreach (var bullet in pool.GetPool.ToArray())
-            {
-                
-            }
-        }
     }
 }
