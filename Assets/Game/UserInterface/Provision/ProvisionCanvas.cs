@@ -1,4 +1,5 @@
 using DG.Tweening;
+using SpaceShooterProject.Data;
 
 namespace SpaceShooterProject.UserInterface
 {
@@ -35,10 +36,10 @@ namespace SpaceShooterProject.UserInterface
 
 
         [SerializeField] private RectTransform backgroundImage;
-        [SerializeField] private TMP_Text ownedGoldText, health, power;
-        [SerializeField] private Sprite[] spaceShipImageArray;
+        [SerializeField] private TMP_Text ownedGoldText, spaceShipNameText, health, power;
         [SerializeField] private Image spaceshipImage;
-
+        [SerializeField] private SpaceShipContainer spaceShipContainer;
+        
             [SerializeField]
         private GameObject[] progressBarArray;
 
@@ -72,7 +73,8 @@ namespace SpaceShooterProject.UserInterface
 
         public void OnSpaceShipChangeSucces(int shipID)
         {
-            spaceshipImage.sprite = spaceShipImageArray[shipID];
+            spaceshipImage.sprite = spaceShipContainer.GetSpaceShipImage(shipID);
+            spaceShipNameText.text = spaceShipContainer.GetSpaceShipName(shipID);
         }
 
         public void RequestPause()
@@ -120,7 +122,9 @@ namespace SpaceShooterProject.UserInterface
                     .DOScaleY(spaceShipSuperPowerData[i] * 0.25f, .1f);
                 superPowerPriceTexts[i].text = superPowerComponent.CalculateSuperPowerPrice((SuperPowerType)i).ToString();
             }
-            spaceshipImage.sprite = spaceShipImageArray[accountComponent.GetSelectedSpaceShipId()];
+            
+            spaceshipImage.sprite = spaceShipContainer.GetSpaceShipImage(accountComponent.GetSelectedSpaceShipId());
+            spaceShipNameText.text = spaceShipContainer.GetSpaceShipName(accountComponent.GetSelectedSpaceShipId());
             ownedGoldText.text = ownedGold.ToString();
         }
 
