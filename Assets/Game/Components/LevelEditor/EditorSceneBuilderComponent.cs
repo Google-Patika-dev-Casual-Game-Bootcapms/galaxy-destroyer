@@ -89,7 +89,7 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
         }
     }
 
-    private void ClearScene()
+    public void ClearScene()
     {
         var levelItems = FindObjectsOfType<GameObjectType>();
         foreach (var rect in levelItems)
