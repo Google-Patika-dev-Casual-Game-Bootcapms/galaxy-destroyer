@@ -52,7 +52,7 @@ MonoImporter:
   - standartMountain01: {fileID: 2196365343300228249, guid: 3797af2a3503e4e419bda109e39fac15, type: 3}
   - standartMountain02: {fileID: 6739317301039296849, guid: 9c19f5a5da68db64fbf269a5d8b4073b, type: 3}
   - marsRock01: {fileID: 1564833670620029844, guid: 1e4c5e1c8f88dfb409670e5e3066c5b2, type: 3}
-  - marsParallax: {instanceID: 0}
+  - marsParallax: {fileID: 3354098345336167004, guid: a872b9281c425594e91e9d277eb310cf, type: 3}
   - neptuneParallax: {instanceID: 0}
   - uranusParallax: {instanceID: 0}
   - saturnParallax: {instanceID: 0}

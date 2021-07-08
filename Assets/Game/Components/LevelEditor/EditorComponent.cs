@@ -59,10 +59,10 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject standartMountain01;
     [SerializeField] private GameObject standartMountain02;
     [SerializeField] private GameObject marsRock01;
-    [SerializeField] private GameObject marsParallax;
     [SerializeField] private GameObject neptuneParallax;
     [SerializeField] private GameObject uranusParallax;
     [SerializeField] private GameObject saturnParallax;
+    [SerializeField] private GameObject marsParallax;
     [SerializeField] private GameObject earthTerrain;
     [SerializeField] private GameObject earthTree;
     [SerializeField] private GameObject stackedRock;
