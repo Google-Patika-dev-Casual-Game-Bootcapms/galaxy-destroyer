@@ -95,5 +95,10 @@ namespace SpaceShooterProject.UserInterface
         {
             earnedCoin = gainedGold;
         }
+
+        public void CloseCoinScene(){
+           IsCoinSceneActive(false); 
+           IsMarketSceneActive(true);
+        }
     }
 }

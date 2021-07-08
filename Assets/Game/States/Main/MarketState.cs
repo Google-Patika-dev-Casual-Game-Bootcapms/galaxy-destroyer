@@ -8,6 +8,7 @@ namespace SpaceShooterProject.State
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
+    using UnityEngine.EventSystems;
 
     public class MarketState : StateMachine
     {
@@ -50,39 +51,40 @@ namespace SpaceShooterProject.State
         protected override void OnUpdate()
         
         {
-            if ( !isChestOpened ){
-                if(Input.GetMouseButtonUp(0)){
-                var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-                    RaycastHit hit;
-                        if( Physics.Raycast(ray.origin, ray.direction, out hit)){
+            if(!EventSystem.current.IsPointerOverGameObject()){
+                if ( !isChestOpened ){
+                    if(Input.GetMouseButtonUp(0)){
+                    var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+                        RaycastHit hit;
+                            if( Physics.Raycast(ray.origin, ray.direction, out hit)){
 
-                            var chest = hit.collider.GetComponent<ChestAnimation>();
+                                var chest = hit.collider.GetComponent<ChestAnimation>();
 
-                            marketCanvas.OnChestOpenAnimationComplete += OnChestOpenAnimationComplete;
-                            marketCanvas.SetGainedCoinAmount(gachaComponent.OpenChest());
-                            marketCanvas.PlayChestOpenAnimation(chest);
-
-                        }
-                }
-            } 
+                                marketCanvas.OnChestOpenAnimationComplete += OnChestOpenAnimationComplete;
+                                marketCanvas.SetGainedCoinAmount(gachaComponent.OpenChest());
+                                marketCanvas.PlayChestOpenAnimation(chest);
+                                isChestOpened = true;
+                            }
+                    }
+                }   
+            }
+             
             
            
         }
 
         private void OnChestOpenAnimationComplete()
         {
-            //TODO open reward gain scene!!!
             InSceneChange();
             marketCanvas.OnChestOpenAnimationComplete -= OnChestOpenAnimationComplete;
         }
 
-        float UserTimer;
         private void InSceneChange(){
-            Debug.Log("fonksiyona girdi!");
             //TODO refactor!!!
             marketCanvas.IsMarketSceneActive(false);
             marketCanvas.IsCoinSceneActive(true); 
         }
+
     }
 }
 
