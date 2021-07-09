@@ -31,7 +31,7 @@ namespace SpaceShooterProject.UserInterface
         public void ShowQuote()
         {
             QuoteData quoteData = GetComponent<QuoteComponent>().GetRandomQuote();
-            quoteText.text = quoteData.quote +"\n-" +  quoteData.author;
+            quoteText.text = quoteData.quote +"\n\n-" +  quoteData.author;
         }
 
         private Vector2 GetCanvasSize()
