@@ -32,6 +32,8 @@ namespace SpaceShooterProject.UserInterface
         [SerializeField] private float leftOffsetMultiplier = 0.1f;
         [SerializeField] private float horizontalSpaceAreaMultiplier = 0.04f;
 
+        private Animator cardAnimator;
+
         private Dictionary<int, bool> activatableCards;
 
         private InventoryComponent inventoryComponent;
@@ -155,6 +157,11 @@ namespace SpaceShooterProject.UserInterface
 
                     ChangeButtonImage(index, sprite);
                 }
+                else
+                {
+                    cardAnimator = buttons[index].GetComponent<Animator>();
+                    cardAnimator.SetBool("IsActivatable", true);
+                }
             }
 
             foreach (int index in ownedTemporalCards)
@@ -167,6 +174,11 @@ namespace SpaceShooterProject.UserInterface
 
                     ChangeButtonImage(index + permanentCardCount, sprite);
                 }
+                else
+                {
+                    cardAnimator = buttons[index + permanentCardCount].GetComponent<Animator>();
+                    cardAnimator.SetBool("IsActivatable", true);
+                }
             }
         }
 
@@ -177,6 +189,10 @@ namespace SpaceShooterProject.UserInterface
             int clickedCardIndex = buttons.IndexOf(clickedCard);
 
             activatableCards[clickedCardIndex] = true;
+
+            cardAnimator = clickedCard.GetComponent<Animator>();
+            cardAnimator.SetBool("IsActivated", true);
+
             cardCanvas.AdjustTheCanvas(clickedCardIndex);
         }
 
@@ -212,7 +228,7 @@ namespace SpaceShooterProject.UserInterface
 
             foreach (int index in inventoryComponent.GetOwnedTemporalCards())
             {
-                bool isKeyExist = activatableCards.ContainsKey(index);
+                bool isKeyExist = activatableCards.ContainsKey(index + permanentCardCount);
 
                 if (!isKeyExist)
                 {
