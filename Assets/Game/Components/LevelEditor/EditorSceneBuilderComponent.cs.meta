@@ -51,13 +51,15 @@ MonoImporter:
   - standartMountain01: {fileID: 2196365343300228249, guid: 3797af2a3503e4e419bda109e39fac15, type: 3}
   - standartMountain02: {fileID: 6739317301039296849, guid: 9c19f5a5da68db64fbf269a5d8b4073b, type: 3}
   - marsRock01: {fileID: 1564833670620029844, guid: 1e4c5e1c8f88dfb409670e5e3066c5b2, type: 3}
-  - marsParallax: {fileID: 3354098345336167004, guid: a872b9281c425594e91e9d277eb310cf, type: 3}
   - neptuneParallax: {instanceID: 0}
   - uranusParallax: {instanceID: 0}
   - saturnParallax: {instanceID: 0}
+  - marsParallax: {fileID: 3354098345336167004, guid: a872b9281c425594e91e9d277eb310cf, type: 3}
   - earthTerrain: {fileID: 3814660078788601235, guid: 2cbeb066c864aa84589f63e4c7f4ec45, type: 3}
   - earthTree: {fileID: 8456086677702220797, guid: 42a5641549f9e4641b9bb9cf46af1924, type: 3}
   - stackedRock: {fileID: 7290836936978752625, guid: bd4d2c56eea8fd144ae62c45c5d6ae9e, type: 3}
+  - lightHouse: {fileID: 4395554793054174634, guid: 3bec36cc04f33d44e8669f2c7eb3c253, type: 3}
+  - lightHouseWithRocks: {fileID: 8735149435227392448, guid: 78c2bbdf83bdad649acf1d2d5a4b7c2e, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
