@@ -32,6 +32,8 @@ namespace SpaceShooterProject.UserInterface
         [SerializeField] private float leftOffsetMultiplier = 0.1f;
         [SerializeField] private float horizontalSpaceAreaMultiplier = 0.04f;
 
+        private Dictionary<int, bool> activatableCards;
+
         private InventoryComponent inventoryComponent;
         private CardComponent cardComponent;
 
@@ -43,6 +45,9 @@ namespace SpaceShooterProject.UserInterface
             cardComponent = componentContainer.GetComponent("CardComponent") as CardComponent;
 
             cardCanvas = FindObjectOfType<CardCanvas>();
+
+            // Should add into Account Component
+            activatableCards = new Dictionary<int, bool>();
 
             backgroundImage.sizeDelta = GetCanvasSize();
 
@@ -133,6 +138,8 @@ namespace SpaceShooterProject.UserInterface
         // Change owned card's sprites and set the corresponding button active
         public void AdjustTheInventoryCanvas()
         {
+            SetCardsAsActivatable();
+
             List<int> ownedPermanentCards = inventoryComponent.GetOwnedPermanentCards();
             List<int> ownedTemporalCards = inventoryComponent.GetOwnedTemporalCards();
 
@@ -140,18 +147,26 @@ namespace SpaceShooterProject.UserInterface
 
             foreach (int index in ownedPermanentCards)
             {
-                Sprite sprite = cardComponent.GetPermanentCardSprite(index);
-
-                ChangeButtonImage(index, sprite);
                 ActivateButton(index);
+
+                if (activatableCards[index])
+                {
+                    Sprite sprite = cardComponent.GetPermanentCardSprite(index);
+
+                    ChangeButtonImage(index, sprite);
+                }
             }
 
             foreach (int index in ownedTemporalCards)
             {
-                Sprite sprite = cardComponent.GetTemporalCardSprite(index);
-
-                ChangeButtonImage(index + permanentCardCount, sprite);
                 ActivateButton(index + permanentCardCount);
+
+                if (activatableCards[index + permanentCardCount])
+                {
+                    Sprite sprite = cardComponent.GetTemporalCardSprite(index);
+
+                    ChangeButtonImage(index + permanentCardCount, sprite);
+                }
             }
         }
 
@@ -161,6 +176,7 @@ namespace SpaceShooterProject.UserInterface
             Button clickedCard = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
             int clickedCardIndex = buttons.IndexOf(clickedCard);
 
+            activatableCards[clickedCardIndex] = true;
             cardCanvas.AdjustTheCanvas(clickedCardIndex);
         }
 
@@ -177,6 +193,32 @@ namespace SpaceShooterProject.UserInterface
         public void DeactivateButton(int index)
         {
             buttons[index].GetComponent<Button>().enabled = false;
+        }
+
+        // Set owned cards as activatable and show card back for cards until that cards are clicked.
+        private void SetCardsAsActivatable()
+        {
+            int permanentCardCount = cardComponent.GetPermanentCardCount();
+
+            foreach (int index in inventoryComponent.GetOwnedPermanentCards())
+            {
+                bool isKeyExist = activatableCards.ContainsKey(index);
+
+                if (!isKeyExist)
+                {
+                    activatableCards.Add(index, false);
+                }
+            }
+
+            foreach (int index in inventoryComponent.GetOwnedTemporalCards())
+            {
+                bool isKeyExist = activatableCards.ContainsKey(index);
+
+                if (!isKeyExist)
+                {
+                    activatableCards.Add(index + permanentCardCount, false);
+                }
+            }
         }
     }
 }

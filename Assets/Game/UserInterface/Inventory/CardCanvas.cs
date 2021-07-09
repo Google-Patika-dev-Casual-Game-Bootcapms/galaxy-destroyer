@@ -23,11 +23,14 @@ namespace SpaceShooterProject.UserInterface
         [SerializeField] private TMP_Text description;
 
         private CardComponent cardComponent;
+        private InventoryCanvas inventoryCanvas;
 
 
         protected override void Init()
         {
             cardComponent = componentContainer.GetComponent("CardComponent") as CardComponent;
+
+            inventoryCanvas = FindObjectOfType<InventoryCanvas>();
 
             backgroundImage.sizeDelta = GetCanvasSize();
         }
@@ -36,6 +39,7 @@ namespace SpaceShooterProject.UserInterface
         {
             if (OnReturnToInventory != null)
             {
+                inventoryCanvas.AdjustTheInventoryCanvas();
                 OnReturnToInventory();
             }
         }
