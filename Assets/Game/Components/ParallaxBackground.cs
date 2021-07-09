@@ -13,7 +13,7 @@ public class ParallaxBackground : MonoBehaviour
         SetBackgroundPosition();
         GetBackgroundValues();
     }
-
+    //TODO: Refactor use callupdate in inGameState 
     public void Update()
     {
         TriggerParallaxEffect();
