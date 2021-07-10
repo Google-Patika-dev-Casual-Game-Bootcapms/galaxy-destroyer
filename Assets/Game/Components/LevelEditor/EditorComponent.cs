@@ -18,6 +18,7 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject levelEndMonster;
     [SerializeField] private GameObject friendNPC;
     [SerializeField] private GameObject boxPrefab;
+    [SerializeField] private GameObject backupTerrain;
     [SerializeField] private GameObject marsTerrain;
     [SerializeField] private GameObject neptuneTerrain;
     [SerializeField] private GameObject uranusTerrain;
@@ -213,6 +214,7 @@ public class EditorComponent : EditorWindow
             EGameObjectType.uranusTerrain => Instantiate(uranusTerrain),
             EGameObjectType.saturnTerrain => Instantiate(saturnTerrain),
             EGameObjectType.earthTerrain => Instantiate(earthTerrain),
+            EGameObjectType.backupTerrain => Instantiate(backupTerrain),
             EGameObjectType.marsParallax => Instantiate(marsParallax),
             EGameObjectType.neptuneParallax => Instantiate(neptuneParallax),
             EGameObjectType.uranusParallax => Instantiate(uranusParallax),
