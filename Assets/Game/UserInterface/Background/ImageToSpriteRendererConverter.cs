@@ -46,14 +46,11 @@ namespace Game.UserInterface.Background
             var spriteWidth = newSpriteRenderer.sprite.bounds.size.x;
             var spriteHeight = newSpriteRenderer.sprite.bounds.size.y;
 
-            var worldScreenHeight = Camera.main.orthographicSize * 2f;
+            var worldScreenHeight = orthographicSize * 2f;
             var worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
             
             if (overrideSettings)
             {
-                worldScreenHeight = orthographicSize * 2f;
-                worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
-                
                 newObject.transform.localPosition = offset;
                 newObject.transform.localScale = scale;
             }
@@ -61,14 +58,11 @@ namespace Game.UserInterface.Background
             {
                 var localScale =newObject.transform.localScale;
                 localScale.x = worldScreenWidth / spriteWidth;
-                localScale.y = worldScreenHeight*2 / spriteHeight;
+                localScale.y = worldScreenHeight / spriteHeight;
+                localScale.x *= 2f;
                 newObject.transform.localScale = localScale;
             }
-
-           
-
-           
-
+            
             if (destroyAtFinish)
             {
                 Destroy(gameObject);
