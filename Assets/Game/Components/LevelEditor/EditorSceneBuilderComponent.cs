@@ -67,13 +67,8 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
     #endregion
 
     public void Initialize(ComponentContainer componentContainer)
-    {
-        if (MyComponent == null) {
-            MyComponent = componentContainer;
-            DontDestroyOnLoad (gameObject);
-        }
-        else if (MyComponent != componentContainer)
-            Destroy (gameObject);
+    {       
+        MyComponent = componentContainer;
     }
     
     public void BuildLevel(string levelNumber)
