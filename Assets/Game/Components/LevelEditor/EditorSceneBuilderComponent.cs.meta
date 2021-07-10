@@ -10,6 +10,7 @@ MonoImporter:
   - levelEndMonster: {instanceID: 0}
   - friendNPC: {instanceID: 0}
   - boxPrefab: {instanceID: 0}
+  - backupTerrain: {fileID: 2351032357086477468, guid: be7d62a9df1e54d4ab961c6a6beea49a, type: 3}
   - marsTerrain: {fileID: 6713248665539118835, guid: d285983420d874048bb39fd6a3f29cce, type: 3}
   - neptuneTerrain: {fileID: 6071123657650262227, guid: 071c82226589aa14bb1012b3a153e9fd, type: 3}
   - uranusTerrain: {fileID: 3064993165806385121, guid: deb03bc8e8f935a4d8ff893457206343, type: 3}
