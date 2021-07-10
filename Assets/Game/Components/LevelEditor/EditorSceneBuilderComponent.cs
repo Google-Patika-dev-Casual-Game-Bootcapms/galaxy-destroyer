@@ -61,6 +61,8 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
     [SerializeField] private GameObject earthTerrain;
     [SerializeField] private GameObject earthTree;
     [SerializeField] private GameObject stackedRock;
+    [SerializeField] private GameObject lightHouse;
+    [SerializeField] private GameObject lightHouseWithRocks;
     #endregion
 
     public void Initialize(ComponentContainer componentContainer)
@@ -159,6 +161,8 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
             EGameObjectType.earthTree => Instantiate(earthTree),
             EGameObjectType.stackedRock => Instantiate(stackedRock),
             EGameObjectType.marsRock01 => Instantiate(marsRock01),
+            EGameObjectType.lightHouse => Instantiate(lightHouse),
+            EGameObjectType.lightHouseWithRocks => Instantiate(lightHouseWithRocks),
             _ => Instantiate(vinc)
         };
         return shape;
@@ -242,5 +246,7 @@ public enum EGameObjectType
     saturnParallax,
     earthTerrain,
     earthTree,
-    stackedRock
+    stackedRock,
+    lightHouse,
+    lightHouseWithRocks
 }

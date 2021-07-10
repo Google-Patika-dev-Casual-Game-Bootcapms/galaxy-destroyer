@@ -66,6 +66,8 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject earthTerrain;
     [SerializeField] private GameObject earthTree;
     [SerializeField] private GameObject stackedRock;
+    [SerializeField] private GameObject lightHouse;
+    [SerializeField] private GameObject lightHouseWithRocks;
     #endregion
     
     [MenuItem("Tools/LevelEditor")]
@@ -259,6 +261,8 @@ public class EditorComponent : EditorWindow
             EGameObjectType.earthTree => Instantiate(earthTree),
             EGameObjectType.stackedRock => Instantiate(stackedRock),
             EGameObjectType.marsRock01 => Instantiate(marsRock01),
+            EGameObjectType.lightHouse => Instantiate(lightHouse),
+            EGameObjectType.lightHouseWithRocks => Instantiate(lightHouseWithRocks),
             _ => Instantiate(vinc)
         };
         return shape;
