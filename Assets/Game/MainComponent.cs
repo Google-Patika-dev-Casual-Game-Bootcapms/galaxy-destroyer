@@ -25,8 +25,13 @@ namespace SpaceShooterProject
         private MarketComponent marketComponent;
         private CoPilotComponent coPilotComponent;
         private SuperPowerComponent superPowerComponent;
+
+        private GachaComponent gachaComponent;
         private InGameInputSystem inGameInputSystem;
         private CurrencyComponent currencyComponent;
+        private QuoteComponent quoteComponent;
+        private UpgradeComponent upgradeComponent;
+
 
         private AppState appState;
 
@@ -38,6 +43,7 @@ namespace SpaceShooterProject
         private void Start()
         {
             CreateAccountComponent();
+            CreateGachaComponent();
             CreateUIComponent();
             CreateIntroComponent();
             CreateAchievementsComponent();
@@ -52,7 +58,11 @@ namespace SpaceShooterProject
             CreateMarketComponent();
             CreateCoPilotComponent();
             CreateSuperPowerComponent();
+
             CreateInGameInputSystem();
+            CreateQuoteComponent();
+            CreateUpgradeComponent();
+
 
             InitializeComponents();
             CreateAppState();
@@ -75,6 +85,12 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("AccountComponent", accountComponent);
         }
 
+        private void CreateGachaComponent()
+        {
+            gachaComponent = new GachaComponent();
+            componentContainer.AddComponent("GachaComponent", gachaComponent);
+        }
+
         private void CreateUIComponent()
         {
             uIComponent = FindObjectOfType<UIComponent>();
@@ -90,7 +106,8 @@ namespace SpaceShooterProject
 
         private void CreateAchievementsComponent()
         {
-            achievementsComponent = new AchievementsComponent();
+            achievementsComponent = FindObjectOfType<AchievementsComponent>();
+
             componentContainer.AddComponent("AchievementsComponent", achievementsComponent);
         }
 
@@ -126,7 +143,7 @@ namespace SpaceShooterProject
 
         private void CreateEditorSceneBuilderComponent()
         {
-            editorSceneBuilderComponent = new EditorSceneBuilderComponent();
+            editorSceneBuilderComponent = new GameObject().AddComponent<EditorSceneBuilderComponent>();
             componentContainer.AddComponent("LevelEditorSceneBuilderComponent", editorSceneBuilderComponent);
         }
 
@@ -160,18 +177,35 @@ namespace SpaceShooterProject
             componentContainer.AddComponent("MarketComponent", marketComponent);
         }
 
+
         private void CreateInGameInputSystem()
         {
             inGameInputSystem = new InGameInputSystem();
             componentContainer.AddComponent("InGameInputSystem", inGameInputSystem);
         }
 
+        private void CreateQuoteComponent() 
+        {
+            quoteComponent = FindObjectOfType<QuoteComponent>();
+            componentContainer.AddComponent("QuoteComponent", quoteComponent);
+        }
+
+        private void CreateUpgradeComponent()
+        {
+            upgradeComponent = new UpgradeComponent();
+            componentContainer.AddComponent("UpgradeComponent", upgradeComponent);
+        }
+
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
+
+            
+            gachaComponent.Initialize(componentContainer);
+            quoteComponent.Initialize(componentContainer);
+            achievementsComponent.Initialize(componentContainer);
             uIComponent.Initialize(componentContainer);
             introComponent.Initialize(componentContainer);
-            achievementsComponent.Initialize(componentContainer);
             audioComponent.Initialize(componentContainer);
             notificationComponent.Initialize(componentContainer);
             currencyComponent.Initialize(componentContainer);
@@ -182,6 +216,7 @@ namespace SpaceShooterProject
             marketComponent.Initialize(componentContainer);
             coPilotComponent.Initialize(componentContainer);
             superPowerComponent.Initialize(componentContainer);
+            upgradeComponent.Initialize(componentContainer);
             inGameInputSystem.Initialize(componentContainer);
         }
 

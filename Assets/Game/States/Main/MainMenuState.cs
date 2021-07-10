@@ -103,7 +103,7 @@ namespace SpaceShooterProject.State
 
         protected override void OnUpdate()
         {
-            Debug.Log("MainMenuState OnUpdate");
+            
         }
     }
 }

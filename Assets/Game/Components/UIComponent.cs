@@ -11,7 +11,7 @@ namespace SpaceShooterProject.Component
             SPLASH, MAIN_MENU,QUOTE, IN_GAME, 
             SETTINGS, ACHIEVEMENTS, MARKET, 
             CO_PILOT, CREDITS, PROVISION,
-            INVENTORY, CARD, SPACESHIP, GARAGE, 
+            INVENTORY, CARD, SPACESHIP, GARAGE, END_GAME,
         }
 
         [SerializeField]
@@ -42,8 +42,11 @@ namespace SpaceShooterProject.Component
         private BaseCanvas creditsCanvas = null;
         [SerializeField]
         private BaseCanvas provisionCanvas = null;
+        [SerializeField]
+        private BaseCanvas endGameCanvas = null;
 
         private BaseCanvas activeCanvas = null;
+        
 
         public void Initialize(ComponentContainer componentContainer)
         {
@@ -61,6 +64,7 @@ namespace SpaceShooterProject.Component
             coPilotCanvas.Initialize(componentContainer);
             creditsCanvas.Initialize(componentContainer);
             provisionCanvas.Initialize(componentContainer);
+            endGameCanvas.Initialize(componentContainer);
 
             DeactivateCanvas(splashCanvas);
             DeactivateCanvas(mainMenuCanvas);
@@ -76,6 +80,7 @@ namespace SpaceShooterProject.Component
             DeactivateCanvas(coPilotCanvas);
             DeactivateCanvas(creditsCanvas);
             DeactivateCanvas(provisionCanvas);
+            DeactivateCanvas(endGameCanvas);
         }
 
         public BaseCanvas GetCanvas(MenuName canvas)
@@ -110,6 +115,8 @@ namespace SpaceShooterProject.Component
                     return creditsCanvas;
                 case MenuName.PROVISION:
                     return provisionCanvas;
+                case MenuName.END_GAME:
+                    return endGameCanvas;    
                 default:
                     return null;
             }
@@ -174,6 +181,9 @@ namespace SpaceShooterProject.Component
                     break;
                 case MenuName.PROVISION:
                     activeCanvas = provisionCanvas;
+                    break;
+                case MenuName.END_GAME:
+                    activeCanvas = endGameCanvas;
                     break;
             }
 
