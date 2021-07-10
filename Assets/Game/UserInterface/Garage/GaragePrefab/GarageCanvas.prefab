@@ -183,10 +183,10 @@ RectTransform:
   m_Father: {fileID: 145902345866918973}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 92.17566, y: -1797.8488}
-  m_SizeDelta: {x: 113.5628, y: 113.5628}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -447.82434, y: -837.84875}
+  m_SizeDelta: {x: 113.562805, y: 113.562744}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &145902345648278965
 CanvasRenderer:
@@ -420,6 +420,7 @@ MonoBehaviour:
   spaceShipContainer: {fileID: 11400000, guid: 33374586697db164381de1eeaeb70416, type: 2}
   currentCurrencyContainer: {fileID: 8268650965197502025}
   backgroundImage: {fileID: 8175753213965902630}
+  spaceShipImage: {fileID: 6011546330515937230}
 --- !u!1 &162237730762597052
 GameObject:
   m_ObjectHideFlags: 0
@@ -4196,7 +4197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7909706930804743965
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4213,7 +4214,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 185.7, y: 604.8}
+  m_AnchoredPosition: {x: 0, y: 625}
   m_SizeDelta: {x: 440, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1123764172505959046
@@ -4244,7 +4245,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f5b327990fb8fe445afa27fdf150027a, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -7168,7 +7169,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5720034716504394741}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 145902345866918974}
+        m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
+          Assembly-CSharp
+        m_MethodName: OnRequestSpaceShipCahngeButtonClick
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3729646914521552925
 GameObject:
   m_ObjectHideFlags: 0
@@ -7767,7 +7781,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 60a49a4b8ffd2754e9358f4992863a29, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae21f244b27be914fb7678ff97f9d499, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -7911,6 +7925,81 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &3916477394981220648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5243010711650664958}
+  - component: {fileID: 5424210413679622224}
+  - component: {fileID: 3537558504488834842}
+  m_Layer: 5
+  m_Name: SuperPowerBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5243010711650664958
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3916477394981220648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3925356069611409444}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -7.5, y: -431}
+  m_SizeDelta: {x: 863.2835, y: 123.507}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5424210413679622224
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3916477394981220648}
+  m_CullTransparentMesh: 1
+--- !u!114 &3537558504488834842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3916477394981220648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: c269d165eb04d7842b2f84e15f861f8a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3926981488852549300
 GameObject:
   m_ObjectHideFlags: 0
@@ -9860,7 +9949,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 150352792910235444}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 145902345866918974}
+        m_TargetAssemblyTypeName: SpaceShooterProject.UserInterface.GarageCanvas,
+          Assembly-CSharp
+        m_MethodName: OnRequestSpaceShipCahngeButtonClick
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4997630712924155277
 GameObject:
   m_ObjectHideFlags: 0
@@ -12701,6 +12803,7 @@ RectTransform:
   - {fileID: 6487680251289534985}
   - {fileID: 8981415948090237366}
   - {fileID: 8054487197414215717}
+  - {fileID: 5243010711650664958}
   m_Father: {fileID: 145902345866918973}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
