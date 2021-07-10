@@ -71,12 +71,12 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
         MyComponent = componentContainer;
     }
     
-    public void BuildLevel(string levelNumber)
+    public void BuildLevel(string levelName)
     {
-        var data = Resources.Load(levelNumber) as TextAsset;
+        var data = Resources.Load(levelName) as TextAsset;
         if (data is null)
         {
-            Debug.LogWarning( "File named "+levelNumber+" not found in Resources File");
+            Debug.LogWarning( "File named "+levelName+" not found in Resources File");
             return;
         }
         var levelData = JsonUtility.FromJson<LevelData>(data.text);
