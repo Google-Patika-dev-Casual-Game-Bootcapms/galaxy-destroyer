@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5777020632512451050
+--- !u!1001 &3796441275722331827
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -93,7 +93,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5233499832866637938, guid: 8e189a9dcf51617419b334092bf8554e, type: 3}
       propertyPath: m_Name
-      value: Bullet
+      value: EnemyBulletForPooling
+      objectReference: {fileID: 0}
+    - target: {fileID: 5233499832866637938, guid: 8e189a9dcf51617419b334092bf8554e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5233499832866637938, guid: 8e189a9dcf51617419b334092bf8554e, type: 3}
+      propertyPath: m_TagString
+      value: EnemyBullet
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e189a9dcf51617419b334092bf8554e, type: 3}

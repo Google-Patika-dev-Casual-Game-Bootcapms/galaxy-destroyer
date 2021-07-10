@@ -107,6 +107,7 @@ namespace SpaceShooterProject
         private void CreateAchievementsComponent()
         {
             achievementsComponent = FindObjectOfType<AchievementsComponent>();
+
             componentContainer.AddComponent("AchievementsComponent", achievementsComponent);
         }
 
