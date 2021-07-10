@@ -6,12 +6,16 @@ namespace SpaceShooterProject.UserInterface
     using SpaceShooterProject.Component;
     using TMPro;
     using Devkit.Base.Component;
+    using SpaceShooterProject.Data;
 
     public class GarageCanvas : BaseCanvas
     {
         public delegate void RequestUpdateDelegate(UpgradablePartType upgradablePartType);
         public event RequestUpdateDelegate OnPartUpgradeRequest;
-      
+
+        public delegate void GarageChangeSpaceShipDelegate(bool isNextShip);
+        public event GarageChangeSpaceShipDelegate OnRequestSpaceShipCahnge;
+
         [SerializeField] private GarageUIHexagonUpgrader shieldUpgradeInfo;
         [SerializeField] private GarageUIHexagonUpgrader laserUpgradeInfo;
         [SerializeField] private GarageUIHexagonUpgrader megabombUpgradeInfo;
@@ -23,6 +27,7 @@ namespace SpaceShooterProject.UserInterface
         [SerializeField] private GarageUIHexagonUpgrader fireRateUpgradeInfo;
         [SerializeField] private GarageUIHexagonUpgrader speedUpgradeInfo;
 
+        [SerializeField] private SpaceShipContainer spaceShipContainer;
 
         [SerializeField]
         private TextMeshProUGUI currentCurrencyContainer;

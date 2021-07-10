@@ -417,6 +417,7 @@ MonoBehaviour:
   mainCannonUpgradeInfo: {fileID: 8582958454189064281}
   fireRateUpgradeInfo: {fileID: 5978650797217840156}
   speedUpgradeInfo: {fileID: 4079903881553068326}
+  spaceShipContainer: {fileID: 11400000, guid: 33374586697db164381de1eeaeb70416, type: 2}
   currentCurrencyContainer: {fileID: 8268650965197502025}
   backgroundImage: {fileID: 8175753213965902630}
 --- !u!1 &162237730762597052
