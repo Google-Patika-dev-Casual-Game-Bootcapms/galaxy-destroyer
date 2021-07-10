@@ -67,21 +67,16 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
     #endregion
 
     public void Initialize(ComponentContainer componentContainer)
-    {
-        if (MyComponent == null) {
-            MyComponent = componentContainer;
-            DontDestroyOnLoad (gameObject);
-        }
-        else if (MyComponent != componentContainer)
-            Destroy (gameObject);
+    {       
+        MyComponent = componentContainer;
     }
     
-    public void BuildLevel(string levelNumber)
+    public void BuildLevel(string levelName)
     {
-        var data = Resources.Load(levelNumber) as TextAsset;
+        var data = Resources.Load(levelName) as TextAsset;
         if (data is null)
         {
-            Debug.LogWarning( "File named "+levelNumber+" not found in Resources File");
+            Debug.LogWarning( "File named "+levelName+" not found in Resources File");
             return;
         }
         var levelData = JsonUtility.FromJson<LevelData>(data.text);
