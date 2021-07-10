@@ -14,6 +14,7 @@ namespace Game.UserInterface.Background
     public class ImageToSpriteRendererConverter : MonoBehaviour
     {
 
+        public bool playOnAwake;
         public bool destroyAtFinish;
         public Vector3 offset = new Vector3(-540, -960, 0);
         public Vector3 scale = new Vector3(0.044f, 0.044f, 0.044f);
@@ -21,12 +22,14 @@ namespace Game.UserInterface.Background
         
         private void Awake()
         {
-            var targetImage = GetComponent<Image>();
-            ConvertToSprite(targetImage);
+            if (playOnAwake)
+            {
+                var targetImage = GetComponent<Image>();
+                ConvertToSprite(targetImage);
+            }
+           
         }
-
-
-
+        
         public void ConvertToSprite(Image targetImage)
         {
             var targetSprite = targetImage.sprite;
