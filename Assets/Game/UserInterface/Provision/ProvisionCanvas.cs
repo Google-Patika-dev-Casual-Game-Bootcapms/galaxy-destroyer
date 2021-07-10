@@ -1,3 +1,6 @@
+using DG.Tweening;
+using SpaceShooterProject.Data;
+
 namespace SpaceShooterProject.UserInterface
 {
     using System.Collections.Generic;
@@ -14,78 +17,64 @@ namespace SpaceShooterProject.UserInterface
         
         private CurrencyComponent currencyComponent;
         private InventoryComponent inventoryComponent;
+        private SuperPowerComponent superPowerComponent;
         private AccountComponent accountComponent;
         
+        public delegate void RequestPurchaseDelegate(SuperPowerType superPowerType);
+        public event RequestPurchaseDelegate OnSuperPowerPurchaseRequest;
 
+        public delegate void ProvisionChangeShipDelegate(bool isNextShip);
+        public event ProvisionChangeShipDelegate OnRequestShipChange;
+        
+        
         public delegate void ProvisionDelegate();
-        public delegate void ProvisionSuperPowerDelegate(SuperPowerComponent.SuperPowerType type);
-        public event ProvisionDelegate OnNextShipSelectionRequest;
-        public event ProvisionDelegate OnPreviousShipSelectionRequest;
-        public event ProvisionSuperPowerDelegate OnSuperPowerLaserRequest;
-        public event ProvisionSuperPowerDelegate OnSuperPowerShieldRequest;
-        public event ProvisionSuperPowerDelegate OnSuperPowerMegaBombRequest;
         public event ProvisionDelegate OnPauseRequest;
         public event ProvisionDelegate OnStartRequest;
 
+        [SerializeField]
+        private TextMeshProUGUI[] superPowerPriceTexts;
 
 
         [SerializeField] private RectTransform backgroundImage;
-        [SerializeField] private TMP_Text ownedGold, health, power;
+        [SerializeField] private TMP_Text ownedGoldText, spaceShipNameText, health, power;
+        [SerializeField] private Image spaceshipImage;
+        [SerializeField] private SpaceShipContainer spaceShipContainer;
         
+            [SerializeField]
+        private GameObject[] progressBarArray;
 
         protected override void Init()
         {
             currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
             inventoryComponent = componentContainer.GetComponent("InventoryComponent") as InventoryComponent;
             accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
+            superPowerComponent = componentContainer.GetComponent("SuperPowerComponent") as SuperPowerComponent;
             
             backgroundImage.sizeDelta = GetCanvasSize();
-            ownedGold.text = accountComponent.GetOwnedGold().ToString();
+            ownedGoldText.text = accountComponent.GetOwnedGold().ToString();
+
         }
 
-        public void RequestNextShip()
+        public void OnRequestShipChangeButtonClick(bool isNextShip)
         {
-            if (OnNextShipSelectionRequest != null)
+            if (OnRequestShipChange != null)
             {
-                Debug.Log("On Next Request Send...");
-                OnNextShipSelectionRequest();
+                OnRequestShipChange(isNextShip);
+            }
+        }
+        
+        public void OnSuperPowerPurchaseButtonClick(int superPowerPartType)
+        {
+            if (OnSuperPowerPurchaseRequest != null)
+            {
+                OnSuperPowerPurchaseRequest((SuperPowerType)superPowerPartType);
             }
         }
 
-        public void RequestPreviousShip()
+        public void OnSpaceShipChangeSucces(int shipID)
         {
-            if (OnPreviousShipSelectionRequest != null)
-            {
-                Debug.Log("On Previous Request Send...");
-                OnPreviousShipSelectionRequest();
-            }
-        }
-
-        public void RequestSuperPowerLaser()
-        {
-            if (OnSuperPowerLaserRequest != null)
-            {
-                Debug.Log("On Super Power Laser Request Send...");
-                OnSuperPowerLaserRequest(SuperPowerComponent.SuperPowerType.Laser);
-            }
-        }
-
-        public void RequestSuperPowerShield()
-        {
-            if (OnSuperPowerShieldRequest != null)
-            {
-                Debug.Log("On Super Power Shield Request Send...");
-                OnSuperPowerShieldRequest(SuperPowerComponent.SuperPowerType.Shield);
-            }
-        }
-
-        public void RequestSuperPowerMegaBomb()
-        {
-            if (OnSuperPowerMegaBombRequest != null)
-            {
-                Debug.Log("On Super Power Mega Bomb Request Send...");
-                OnSuperPowerMegaBombRequest(SuperPowerComponent.SuperPowerType.MegaBomb);
-            }
+            spaceshipImage.sprite = spaceShipContainer.GetSpaceShipImage(shipID);
+            spaceShipNameText.text = spaceShipContainer.GetSpaceShipName(shipID);
         }
 
         public void RequestPause()
@@ -123,7 +112,51 @@ namespace SpaceShooterProject.UserInterface
 
             return new Vector2(screenSize.x / scaleFactor, screenSize.y / scaleFactor);
         }
+
+        // TODO RE-UPDATE UI WHENEVER USER CHANGES CURRENT SELECTED SHIP
+        public void UpdateUI(int[] spaceShipSuperPowerData, int ownedGold)
+        {
+            for (var i = 0; i < (int)SuperPowerType.COUNT; i++)
+            {
+                progressBarArray[i].transform
+                    .DOScaleY(spaceShipSuperPowerData[i] * 0.25f, .1f);
+                superPowerPriceTexts[i].text = superPowerComponent.CalculateSuperPowerPrice((SuperPowerType)i).ToString();
+            }
+            
+            spaceshipImage.sprite = spaceShipContainer.GetSpaceShipImage(accountComponent.GetSelectedSpaceShipId());
+            spaceShipNameText.text = spaceShipContainer.GetSpaceShipName(accountComponent.GetSelectedSpaceShipId());
+            ownedGoldText.text = ownedGold.ToString();
+        }
+
+        public void OnSuperPowerPurchaseCompleted(SuperPowerPurchaseProcessData superPowerPurchaseProcessData, int ownedGold)
+        {
+            switch (superPowerPurchaseProcessData.ProcessStatus)
+            {
+                case SuperPowerProcessStatus.NOT_ENOUGH_GOLD:
+                    //TODO: handle
+                    break;
+                case SuperPowerProcessStatus.MAXIMUM_SUPER_POWER_ITEM_COUNT:
+                    //TODO: 
+                    break;
+                case SuperPowerProcessStatus.SUCCESS:
+                    SuperPowerPurchased(superPowerPurchaseProcessData.SuperPowerType);
+                    ownedGoldText.text = ownedGold.ToString();
+                    ownedGoldText.rectTransform.DOScale(new Vector3(1.1f,1.1f, 1.1f), .1f).SetEase(Ease.InOutBounce).OnComplete(
+                        () =>
+                        {
+                            ownedGoldText.rectTransform.DOScale(new Vector3(1f, 1f, 1f), .1f)
+                                .SetEase(Ease.InOutBounce);
+                        });
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void SuperPowerPurchased(SuperPowerType superPowerType)
+        {
+            progressBarArray[(int) superPowerType].transform
+                .DOScaleY(progressBarArray[(int) superPowerType].transform.localScale.y + 0.25f, .1f);
+        }
     }
-
-
 }

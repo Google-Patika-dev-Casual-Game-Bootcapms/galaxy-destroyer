@@ -65,3 +65,7 @@ crashlytics-build.properties
 .vscode/
 .vsconfig
 Assets/accountData.txt
+Packages/manifest.json
+Packages/packages-lock.json
+UserSettings/EditorUserSettings.asset
+Assets/accountData.txt.meta

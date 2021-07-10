@@ -1,4 +1,5 @@
 using Devkit.Base.Object;
+using System;
 using UnityEngine;
 
 namespace SpaceShooterProject.Component
@@ -25,5 +26,10 @@ namespace SpaceShooterProject.Component
         public float CameraSpeed => cameraSpeed;
 
         public Camera MainCamera => mainCamera;
+
+        public Vector3 ScreenToWorldPoint(Vector3 mousePosition)
+        {
+            return mainCamera.ScreenToWorldPoint(mousePosition);
+        }
     }
 }

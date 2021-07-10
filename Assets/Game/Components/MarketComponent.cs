@@ -11,6 +11,8 @@ namespace SpaceShooterProject.Component
         [SerializeField]
         private ChestAnimation[] chests;
 
+        
+
 
         public void Initialize(ComponentContainer componentContainer)
         {

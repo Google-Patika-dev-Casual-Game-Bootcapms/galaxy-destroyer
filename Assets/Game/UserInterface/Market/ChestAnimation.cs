@@ -15,7 +15,7 @@ namespace SpaceShooterProject.UserInterface.Market{
             animator.SetBool("isOpening", false);
         }
 
-        public void OpenChest(){
+        public void OpenChestAnimation(){
             animator.SetBool("isOpening",true);
         }
         public void Activate()
@@ -26,6 +26,23 @@ namespace SpaceShooterProject.UserInterface.Market{
         internal void Deactivate()
         {
             gameObject.SetActive(false);
+        }
+
+        public float GetAnimationPlayTime() 
+        {
+            if (animator == null) 
+            {
+                return 0;
+            }
+
+            var animationClips = animator.runtimeAnimatorController.animationClips;
+
+            if (animationClips.Length == 0) 
+            {
+                return 0;
+            }
+
+            return animationClips[0].length;
         }
     }
 }

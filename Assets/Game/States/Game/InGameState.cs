@@ -21,6 +21,13 @@ namespace SpaceShooterProject.State
             gamePlayComponent = componentContainer.GetComponent("GamePlayComponent") as GamePlayComponent;
             inGameCanvas = uiComponent.GetCanvas(UIComponent.MenuName.IN_GAME) as InGameCanvas;
             currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
+
+            gamePlayComponent.OnGameOver += OnGameOver;
+        }
+
+        private void OnGameOver()
+        {
+            SendTrigger((int)StateTriggers.GAME_OVER);
         }
 
         protected override void OnEnter()
@@ -31,6 +38,13 @@ namespace SpaceShooterProject.State
             uiComponent.EnableCanvas(UIComponent.MenuName.IN_GAME);
             gamePlayComponent.Player.ShowShip();
             gamePlayComponent.GameCamera.IsAvailable = true;
+            inGameCanvas.OnPauseButtonClick += OnPauseButtonClick;
+            
+        }
+
+        private void OnPauseButtonClick()
+        {
+            SendTrigger((int) StateTriggers.PAUSE_GAME_REQUEST);
         }
 
         private void OnGoldChanged(int currencyCount)
@@ -44,11 +58,17 @@ namespace SpaceShooterProject.State
             currencyComponent.OnGoldChanged -= OnGoldChanged;
             gamePlayComponent.Player.HideShip();
             gamePlayComponent.GameCamera.IsAvailable = false;
+            inGameCanvas.OnPauseButtonClick -= OnPauseButtonClick;
         }
 
         protected override void OnUpdate()
         {
             gamePlayComponent.CallUpdate();
+            if(Input.GetKeyDown(KeyCode.V))
+            {
+                SendTrigger((int)StateTriggers.GAME_OVER);
+
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-namespace SpaceShooterProject.UserInterface 
+namespace SpaceShooterProject.UserInterface
 {
     using UnityEngine.UI;
     using TMPro;
@@ -6,17 +6,25 @@ namespace SpaceShooterProject.UserInterface
 
     public class InGameCanvas : BaseCanvas
     {
-        [SerializeField]
-        private TextMeshProUGUI coinContainer;
+        [SerializeField] private TextMeshProUGUI coinContainer;
+
+        public delegate void InGameCanvasDelegate();
+
+        public event InGameCanvasDelegate OnPauseButtonClick;
 
         protected override void Init()
         {
-            
         }
 
-        public void UpdateGoldCount(int coinCount) 
+        public void RequestPause()
         {
-            if (coinContainer == null) 
+            if (OnPauseButtonClick != null)
+                OnPauseButtonClick();
+        }
+
+        public void UpdateGoldCount(int coinCount)
+        {
+            if (coinContainer == null)
             {
                 Debug.LogError("Coin container reference is null!!!");
                 return;
@@ -26,4 +34,3 @@ namespace SpaceShooterProject.UserInterface
         }
     }
 }
-

@@ -2,6 +2,7 @@ namespace Devkit.Base.Pattern.ObjectPool
 {
     using System.Collections;
     using System.Collections.Generic;
+    using SpaceShooterProject.Component;
     using UnityEngine;
 
     public class SampleObject : MonoBehaviour, IPoolable
@@ -20,6 +21,11 @@ namespace Devkit.Base.Pattern.ObjectPool
         {
             //TODO get components
             //TODO set initial colors
+        }
+
+        public void InjectBulletCollector(BulletCollector bulletCollector)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

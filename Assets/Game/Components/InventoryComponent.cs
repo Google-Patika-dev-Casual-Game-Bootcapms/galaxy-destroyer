@@ -11,32 +11,18 @@
         private InventoryData inventoryData;
 
         private AccountComponent accountComponent;
-        private string accountDataPath;
-        private string accountDataFile;
-
-        private int spaceShipCount;
-        private int temporalCardCount;
-        private int permanentCardCount;
 
         public void Initialize(ComponentContainer componentContainer)
         {
             accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
 
-            // To-Do: Assign values when necessary components are created!
-            // spaceShipCount = SpaceShips.GetSpaceShipCount(); ?
-            // temporalCardCount = Cards.GetTemporalCardCount(); ?
-            // permanentCardCount = Cards.GetPermanentCardCount(); ?
 
-            accountDataFile = "accountData.txt";
-            accountDataPath = Application.persistentDataPath + "/" + accountDataFile;
-
-            if (File.Exists(accountDataPath))
+            if (accountComponent.IsFileExist())
             {
-                //todo Account Component'e aşağıdaki metodlar yazılınca yorumdan çıkarılacak
-                // inventoryData.OwnedPermanentCards = accountComponent.GetOwnedPermanentCards();
-                // inventoryData.OwnedTemporalCards = accountComponent.GetOwnedTemporalCards();
-                // inventoryData.OwnedSpaceShips = accountComponent.GetOwnedSpaceShips();
-                // inventoryData.CollectedSpaceShipParts = accountComponent.GetCollectedSpaceShipParts();
+                inventoryData.OwnedPermanentCards = accountComponent.OwnedPermanentCards();
+                inventoryData.OwnedTemporalCards = accountComponent.OwnedTemporalCards();
+                inventoryData.OwnedSpaceShips = accountComponent.GetOwnedSpaceShips();
+                inventoryData.CollectedSpaceShipParts = accountComponent.CollectedSpaceShipParts();
             }
             else
             {
@@ -51,32 +37,43 @@
             inventoryData.OwnedPermanentCards = new List<int>();
             inventoryData.OwnedTemporalCards = new List<int>();
             inventoryData.OwnedSpaceShips = new List<int>();
-            inventoryData.CollectedSpaceShipParts = new int[spaceShipCount];
+            inventoryData.CollectedSpaceShipParts = new int[4];
+
+            // Add cards in order to show in inventory canvas
+            AddPermanentCard(0);
+            AddPermanentCard(1);
+            AddPermanentCard(2);
+            AddPermanentCard(3);
+
+            AddTemporalCard(0);
+            AddTemporalCard(1);
         }
 
-        // Get return value from Gacha Component and add looted item to inventory
-        public void AddItem(int chestReturn)
+        #region Setter Methods
+
+        public void AddPermanentCard(int index)
         {
-            if (chestReturn < permanentCardCount)
-            {
-                inventoryData.OwnedPermanentCards.Add(chestReturn);
-            }
-            else if (chestReturn >= 10 && chestReturn < temporalCardCount + 10)
-            {
-                inventoryData.OwnedTemporalCards.Add(chestReturn - 10);
-            }
-            else if (chestReturn >= 20 && chestReturn < spaceShipCount * 4)
-            {
-                int index = chestReturn - 20;
+            inventoryData.OwnedPermanentCards.Add(index);
+        }
 
-                while (index > spaceShipCount)
-                {
-                    index -= 4;
-                }
+        public void AddTemporalCard(int index)
+        {
+            inventoryData.OwnedTemporalCards.Add(index);
+        }
 
-                inventoryData.CollectedSpaceShipParts[index]++;
+        public void AddSpaceshipPart(int index)
+        {
+            inventoryData.CollectedSpaceShipParts[index] += 1;
+
+            if (inventoryData.CollectedSpaceShipParts[index] == 3)
+            {
+                inventoryData.OwnedSpaceShips.Add(index);
             }
         }
+
+        #endregion
+
+        #region Getter Methods
 
         public List<int> GetOwnedPermanentCards()
         {
@@ -97,6 +94,8 @@
         {
             return inventoryData.CollectedSpaceShipParts;
         }
+
+        #endregion
     }
 
     [Serializable]

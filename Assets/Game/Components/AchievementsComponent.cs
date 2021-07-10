@@ -1,38 +1,36 @@
-using Devkit.Base.Component;
-using UnityEngine;
-using System;
-using System.Collections.Generic;
-
 namespace SpaceShooterProject.Component
 {
-    public class AchievementsComponent : IComponent, IObserver<Achievement>
+    using Devkit.Base.Component;
+    using UnityEngine;
+    using System;
+    using System.Collections.Generic;
+
+    public class AchievementsComponent : MonoBehaviour, IComponent, IDataObserver<Achievement>
     {
-        public ComponentContainer container;
-        string path = "Achievements";//we create a folder in Resources folder called Achievements to keep scriptable objects
-        public List<Achievement> achievementsList = new List<Achievement>();
+        public List<Achievement> achievementsList;
+        CurrencyComponent currencyComponent;
 
         public void Initialize(ComponentContainer componentContainer)
         {
-            container = componentContainer;
+            currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
             LoadAchievementsAndAddToList();
         }
 
-        //List the achievements and subscribe them as achievement observer..
+        //Subscribe AchievementsComponent as achievement observer..
         public void LoadAchievementsAndAddToList()
         {
-            Debug.Log("AchievementsLoaded");
-            var achievements = Resources.LoadAll<Achievement>(path);
+            Debug.Log($"<color=black>{achievementsList.Count}</color>");
 
-            for (int i = 0; i < achievements.Length; i++)
+            for (int i = 0; i < achievementsList.Count; i++)
             {
-                achievementsList.Add(achievements[i]);
+                Subscribe(achievementsList[i]);
             }
         }
 
         //we progress the achievenemt count which we find with FindAchievementByName function..
-        public void ProgressAchievementWithName(string name)
+        public void IncreaseAchievement(string name)
         {
-            Achievement achievement = FindAchievementByName(name);
+            Achievement achievement = FindAchievement(name);
 
             if (achievement == null)
                 return;
@@ -40,10 +38,14 @@ namespace SpaceShooterProject.Component
             achievement.RaiseCurrentCount();
         }
 
-        //to find the achievement..
-        private Achievement FindAchievementByName(string name)
+        public List<Achievement> GetAchievementsData()
         {
-            Debug.Log($"<color=black>{achievementsList.Count}</color>");
+            return achievementsList;
+        }
+
+        //to find the achievement..
+        private Achievement FindAchievement(string name)
+        {
             foreach (var a in achievementsList)
             {
                 if (a.Name == name) return a;
@@ -51,19 +53,25 @@ namespace SpaceShooterProject.Component
             return null;
         }
 
-        public void OnNext(Achievement value)
+        public void CompleteAchievement(string name)
         {
-            value.IsAchived = true;
+            if (currencyComponent == null) 
+            {
+                return;
+            }
+
+            currencyComponent.EarnGold(FindAchievement(name).Prize);
+            FindAchievement(name).IsAchived = true;
         }
 
-        public void OnCompleted()
+        public void Subscribe(IDataObservable<Achievement> observable)
         {
-            throw new NotImplementedException();
+            observable.Attach(this);
         }
 
-        public void OnError(Exception error)
+        public void OnNotify()
         {
-            throw new NotImplementedException();
+           
         }
     }
 }

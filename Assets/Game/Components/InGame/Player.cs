@@ -6,27 +6,53 @@ namespace SpaceShooterProject.Component
 
     public class Player : MonoBehaviour, IUpdatable, IInitializable, IDestructible
     {
+        public delegate void PlayerDownDelegate();
+        public event PlayerDownDelegate OnPlayerDown;
+
         private InGameInputSystem inputSystemReferance;
+        private Transform playerTransform;
 
 
         //[SerializeField] private ObjectPooler ObjectPooler;
-
-        private Transform myTransform;
         [SerializeField] private float shipSpeed = 20f;
+        [SerializeField] private int HP = 100;
         [SerializeField] private SpriteRenderer shipSpriteRenderer;
         private ComponentContainer componentContainer;
         private CurrencyComponent currencyComponent;
-        private float frameRate = 0;
-        private float fireRate = 20;
+        public float fireRate = 1.0f;
+        public float fireNextSpawn = 2.0f;
 
         private GameCamera gameCamera;
-        private bool a = true;
+        private Vector2 screenBounds;
+
+        private float fireTime;
+        private BulletCollector bulletCollector;
 
         public void Init()
         {
             HideShip();
-            gameCamera = Camera.main.GetComponent<GameCamera>();
-            currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
+
+            if (gameCamera == null) 
+            {
+                gameCamera = Camera.main.GetComponent<GameCamera>();
+            }
+
+            if (currencyComponent == null) 
+            {
+                currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
+            }
+
+            if (playerTransform == null) 
+            {
+                playerTransform = GetComponent<Transform>();
+            }
+
+            fireTime = 0;
+        }
+
+        public void InjectBulletCollector(BulletCollector bulletCollector) 
+        {
+            this.bulletCollector = bulletCollector;
         }
 
         public void PreInit()
@@ -42,59 +68,54 @@ namespace SpaceShooterProject.Component
         {
             shipSpriteRenderer.enabled = false;
         }
+
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            //TODO: currencyComponent MainComponent'in içinde Initialize edilecek.
             if (collider.gameObject.CompareTag("Coin"))
             {
                 currencyComponent.EarnGold(10);
                 Destroy(collider.gameObject);
             }
 
+            if (collider.gameObject.CompareTag("EnemyBullet"))
+            {
+                var bullet = collider.gameObject.GetComponent<Bullet>();
+                HP -= bullet.GetDamage();
+            }
         }
+
         public void CallUpdate()
         {
-            transform.Translate(Vector3.up * gameCamera.CameraSpeed * Time.deltaTime, Space.World);
+            fireTime += Time.deltaTime;
+            playerTransform.Translate(Vector3.up * gameCamera.CameraSpeed * Time.deltaTime, Space.World);
+            Shoot();
+
+            if (Input.GetKeyDown(KeyCode.C)) 
+            {
+                GetHit(50);
+            }
         }
 
-        public void CallFixedUpdate()
-        {
-        }
-
-        public void CallLateUpdate()
-        {
-        }
         public void OnTouchUp()
         {
             Time.timeScale = 0.5f;
         }
 
-        public float FrameRate
-        {
-            get => frameRate;
-            set => frameRate = value;
-        }
-
-        public float FireRate => fireRate;
-
         public void OnTouch()
         {
             Time.timeScale = 1f;
-            var screenPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            gameObject.transform.position = Vector2.Lerp(transform.position, screenPos, shipSpeed * Time.deltaTime);
+            var screenPos = gameCamera.ScreenToWorldPoint(Input.mousePosition);
+            playerTransform.position = Vector2.Lerp(playerTransform.position, screenPos, shipSpeed * Time.deltaTime);
 
-            // var screenLimitX = Screen.width/Screen.currentResolution.width;
-            // var screenLimitY = Screen.height/Screen.currentResolution.height;
             // TODO min max ekran değerleri için fonksiyon yazılacak
-
-            // gameObject.transform.position = new Vector2(Mathf.Clamp(gameObject.transform.position.x,-2.5f,2.5f),
-            //     Mathf.Clamp(gameObject.transform.position.y,-4.5f,4.5f));
-
         }
 
         public void InjectInputSystem(InGameInputSystem inputSystem)
         {
-            inputSystemReferance = inputSystem;
+            if(inputSystemReferance == null)
+            {
+                inputSystemReferance = inputSystem;
+            }
             inputSystemReferance.OnScreenTouch += OnScreenTouch;
             inputSystemReferance.OnScreenTouchEnter += OnTouch;
             inputSystemReferance.OnScreenTouchExit += OnTouchUp;
@@ -111,9 +132,14 @@ namespace SpaceShooterProject.Component
             inputSystemReferance.OnScreenTouchExit -= OnTouchUp;
         }
 
-        public void Shoot(Bullet bullet)
+        private void Shoot()
         {
-            bullet.transform.position = transform.position;
+            if (fireTime > fireNextSpawn)
+            {
+                Bullet bullet = bulletCollector.GetBullet();
+                bullet.transform.position = transform.position;
+                fireNextSpawn += fireRate;
+            }
         }
 
         public ComponentContainer ComponentContainer
@@ -122,5 +148,17 @@ namespace SpaceShooterProject.Component
             set => componentContainer = value;
         }
 
+        private void GetHit(int damage) 
+        {
+            HP -= damage;
+
+            if (HP <= 0) 
+            {
+                if (OnPlayerDown != null) 
+                {
+                    OnPlayerDown();
+                } 
+            }
+        }
     }
 }
