@@ -59,7 +59,6 @@ namespace SpaceShooterProject.AI.Enemies
 
         public void OnDeathStateEnter()
         {
-            Debug.Log("I am dead");
             Destroy(gameObject); //Change
         }
 
@@ -86,7 +85,6 @@ namespace SpaceShooterProject.AI.Enemies
 
         public override void OnOutOfScreen()
         {
-            Debug.Log("Is death true");
             isDeath = true;
         }
 

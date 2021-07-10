@@ -119,7 +119,6 @@ namespace SpaceShooterProject.AI.Enemies
 
         public void OnPatrolStateEnter()
         {
-            Debug.Log("Patrol state enter");
 
             StartCoroutine(PatrolTimer());
             InitializePatrolRoute();

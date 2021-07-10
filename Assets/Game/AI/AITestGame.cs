@@ -24,8 +24,6 @@ namespace SpaceShooterProject.AI
         // Start is called before the first frame update
         void Start()
         {
-            Debug.Log("Merhaba");
-
             helicopter.Initialize();
             straightDummy.Initialize();
             waveDummy.Initialize();

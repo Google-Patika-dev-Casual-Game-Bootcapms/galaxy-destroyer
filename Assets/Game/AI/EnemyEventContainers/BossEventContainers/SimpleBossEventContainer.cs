@@ -37,7 +37,6 @@ namespace SpaceShooterProject.AI
         public void TriggerEnterTheScene()
         {
 
-            Debug.Log("trigger enter the scene");
             if (OnEnterSceneStateEnter != null)
             {
                 OnEnterSceneStateEnter();

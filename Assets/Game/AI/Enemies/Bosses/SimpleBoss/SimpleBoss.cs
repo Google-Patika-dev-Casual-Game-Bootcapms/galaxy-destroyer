@@ -108,7 +108,6 @@ namespace SpaceShooterProject.AI.Enemies
         private void OnDeathStateEnter()
         {
             GetRoutes().Clear();
-            Debug.Log("I am dead boss");
         }
 
         private void OnAttackStateEnter()
@@ -154,7 +153,6 @@ namespace SpaceShooterProject.AI.Enemies
 
         public void FireBullets()
         {
-            Debug.Log("firing bullets");
             Vector2 initialPosition;
             initialPosition.x = transform.position.x;
             initialPosition.y = transform.position.y;
