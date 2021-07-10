@@ -82,6 +82,11 @@ namespace SpaceShooterProject.Component
                 var bullet = collider.gameObject.GetComponent<Bullet>();
                 HP -= bullet.GetDamage();
             }
+
+            if (collider.gameObject.CompareTag("Enemy"))
+            {
+                GetHit(100);
+            }
         }
 
         public void CallUpdate()
