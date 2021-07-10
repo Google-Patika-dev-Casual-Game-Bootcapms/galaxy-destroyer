@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2499970266552885342
+--- !u!114 &-1214939164051680371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,14 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4602510159390037400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2586eccd7b614729b894d415499f720, type: 3}
+  m_Script: {fileID: 11500000, guid: eb4c860c2d6928d40b90c85797c4f976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipSpeed: 20
-  hp: 10
+  speed: 0.7
+  health: 20
   shipSpriteRender: {fileID: 0}
-  frameRate: 0
-  fireRate: 20
+  mainCamera: {fileID: 0}
+  initialDistance: 100
+  patrolRouteWidth: -150
+  patrolRouteHeight: 150
+  patrolTimeUntilAttack: 2
+  fireRate: 6
+  bulletPerAttack: 6
 --- !u!1001 &30457927216663048
 PrefabInstance:
   m_ObjectHideFlags: 0

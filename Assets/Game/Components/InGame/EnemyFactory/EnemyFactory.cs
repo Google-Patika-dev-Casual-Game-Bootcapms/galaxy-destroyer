@@ -5,23 +5,28 @@
     using Devkit.Base.Pattern.ObjectPool;
     using Devkit.Base.Object;
     using System.Collections.Generic;
+    using SpaceShooterProject.AI;
+    using SpaceShooterProject.AI.Enemies;
 
     public class EnemyFactory : IEnemyFactory, IInitializable, IUpdatable, IDestructible
     {
 
-        private Pool<RoadTracker> roadTrackerPool;
-        private const string ROADTRACKER_OBJECT_PATH = "Prefabs/RoadTracker";
 
-        private Pool<Kamikaze> kamikazePool;
-        private const string KAMIKAZE_OBJECT_PATH = "Prefabs/Kamikaze";
 
-        private Pool<FlameThrower> flameThrowerPool;
-        private const string FLAMETHROWER_OBJECT_PATH = "Prefabs/FlameThrower";
 
-        private Pool<HeliA14> heliA14Pool;
+        private Pool<StraightRoadTracker> straightRoadTrackerPool;
+        private const string STRAIGHT_ROADTRACKER_OBJECT_PATH = "Prefabs/StraightRoadTracker";
+
+        private Pool<WaveRoadTracker> waveRoadTrackerPool;
+        private const string WAVE_ROADTRACKER_OBJECT_PATH = "Prefabs/WaveRoadTracker";
+
+        //private Pool<FlameThrower> flameThrowerPool;
+        //private const string FLAMETHROWER_OBJECT_PATH = "Prefabs/FlameThrower";
+
+        private Pool<Helicopter> heliA14Pool;
         private const string HELIA14_OBJECT_PATH = "Prefabs/HeliA14";
 
-        private Pool<HeliA17> heliA17Pool;
+        private Pool<Helicopter> heliA17Pool;
         private const string HELIA17_OBJECT_PATH = "Prefabs/HeliA17";
 
         private WaveData waveData1;
@@ -57,29 +62,30 @@
 
             waveData1.waveInfo[1] = 5;
 
-            waveData1.waveInfo[2] = 4;
+            waveData1.waveInfo[2] = 2;// 4;
 
-            waveData1.waveInfo[3] = 5;
-
-            waveData1.waveInfo[4] = 6;
+            waveData1.waveInfo[3] = 0;// 5;
 
             levelWaveData = new LevelWaveData(1);
 
             levelWaveData.SetLevelWaveData(0, waveData1);
 
-            roadTrackerPool = new Pool<RoadTracker>(ROADTRACKER_OBJECT_PATH);
-            roadTrackerPool.PopulatePool(5);
+            straightRoadTrackerPool = new Pool<StraightRoadTracker>(STRAIGHT_ROADTRACKER_OBJECT_PATH);
+            straightRoadTrackerPool.PopulatePool(5);
 
-            kamikazePool = new Pool<Kamikaze>(KAMIKAZE_OBJECT_PATH);
-            kamikazePool.PopulatePool(5);
+            waveRoadTrackerPool = new Pool<WaveRoadTracker>(WAVE_ROADTRACKER_OBJECT_PATH);
+            waveRoadTrackerPool.PopulatePool(5);
 
-            flameThrowerPool = new Pool<FlameThrower>(FLAMETHROWER_OBJECT_PATH);
-            flameThrowerPool.PopulatePool(5);
+            //kamikazePool = new Pool<Kamikaze>(KAMIKAZE_OBJECT_PATH);
+            //kamikazePool.PopulatePool(5);
 
-            heliA14Pool = new Pool<HeliA14>(HELIA14_OBJECT_PATH);
+            //flameThrowerPool = new Pool<FlameThrower>(FLAMETHROWER_OBJECT_PATH);
+            //flameThrowerPool.PopulatePool(5);
+
+            heliA14Pool = new Pool<Helicopter>(HELIA14_OBJECT_PATH);
             heliA14Pool.PopulatePool(5);
 
-            heliA17Pool = new Pool<HeliA17>(HELIA17_OBJECT_PATH);
+            heliA17Pool = new Pool<Helicopter>(HELIA17_OBJECT_PATH);
             heliA17Pool.PopulatePool(5);
 
         }
@@ -101,20 +107,17 @@
         {
             switch (enemy.GetEnemyType())
             {
-                case EnemyType.RoadTracker:
-                    roadTrackerPool.AddObjectToPool((RoadTracker)enemy);
+                case EnemyType.StraightRoadTracker:
+                    straightRoadTrackerPool.AddObjectToPool((StraightRoadTracker)enemy);
                     break;
-                case EnemyType.Kamikaze:
-                    kamikazePool.AddObjectToPool((Kamikaze)enemy);
-                    break;
-                case EnemyType.FlameThrower:
-                    flameThrowerPool.AddObjectToPool((FlameThrower)enemy);
+                case EnemyType.WaveRoadTracker:
+                    waveRoadTrackerPool.AddObjectToPool((WaveRoadTracker)enemy);
                     break;
                 case EnemyType.HeliA14:
-                    heliA14Pool.AddObjectToPool((HeliA14)enemy);
+                    heliA14Pool.AddObjectToPool((Helicopter)enemy);
                     break;
                 case EnemyType.HeliA17:
-                    heliA17Pool.AddObjectToPool((HeliA17)enemy);
+                    heliA17Pool.AddObjectToPool((Helicopter)enemy);
                     break;
                 default:
                     break;
@@ -131,14 +134,11 @@
             Enemy enemy = null;
             switch (type)
             {
-                case EnemyType.RoadTracker:
-                    enemy = roadTrackerPool.GetObjectFromPool();
+                case EnemyType.StraightRoadTracker:
+                    enemy = straightRoadTrackerPool.GetObjectFromPool();
                     break;
-                case EnemyType.Kamikaze:
-                    enemy = kamikazePool.GetObjectFromPool();
-                    break;
-                case EnemyType.FlameThrower:
-                    enemy = flameThrowerPool.GetObjectFromPool();
+                case EnemyType.WaveRoadTracker:
+                    enemy = waveRoadTrackerPool.GetObjectFromPool();
                     break;
                 case EnemyType.HeliA14:
                     enemy = heliA14Pool.GetObjectFromPool();
@@ -152,6 +152,7 @@
             enemy.SetType(type);//TODO call when the object is initialized!!!
             enemy.InjectMessageBroadcaster(inGameMessageBroadcaster);
             enemy.gameObject.SetActive(true);
+            enemy.OnInitialize();
             liveEnemies.Add(enemy);
             return enemy;
         }
@@ -172,7 +173,7 @@
                 for (int j = 0; j < currentWaveData.waveInfo[i]; j++)
                 {
                     var enemy = ProduceEnemy((EnemyType)i);
-                    enemy.transform.position = spawnEnemyPosition;
+                    enemy.SetPosition(spawnEnemyPosition);
                     spawnEnemyPosition = new Vector2(enemy.transform.position.x + width * 0.1f, spawnHeight);
                 }
             }

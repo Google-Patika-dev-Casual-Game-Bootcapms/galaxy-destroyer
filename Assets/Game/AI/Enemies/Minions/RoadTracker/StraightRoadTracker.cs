@@ -4,7 +4,7 @@
     using SpaceShooterProject.AI.Movements;
     public class StraightRoadTracker : RoadTracker
     {
-        public override void OnInitialize()
+        public override void OnInit()
         {
             movement = new StraightDownMovement();
         }

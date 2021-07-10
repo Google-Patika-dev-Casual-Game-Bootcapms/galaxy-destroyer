@@ -5,7 +5,7 @@
     public class WaveRoadTracker : RoadTracker
     {
 
-        public override void OnInitialize()
+        public override void OnInit()
         {
             movement = new WaveMovement();
         }

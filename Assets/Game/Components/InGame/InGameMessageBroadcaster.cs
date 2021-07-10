@@ -4,6 +4,7 @@ namespace SpaceShooterProject.Component
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using SpaceShooterProject.AI.Enemies;
     using UnityEngine;
 
     public class InGameMessageBroadcaster : IComponent

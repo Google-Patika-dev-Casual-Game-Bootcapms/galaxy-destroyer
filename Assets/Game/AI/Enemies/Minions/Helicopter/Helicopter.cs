@@ -42,7 +42,7 @@ namespace SpaceShooterProject.AI.Enemies
             helicopterMainState.Update();
         }
 
-        public void Initialize()
+        public override void OnInitialize()
         {
             mainCamera = Camera.main;
             movement = new PathMovement();
@@ -172,8 +172,7 @@ namespace SpaceShooterProject.AI.Enemies
 
         public void OnDeathStateEnter()
         {
-            //TODO: Destory or put into pool
-            Debug.Log("Heli dead");
+            inGameMessageBroadcaster.TriggerEnemyDeath(this);
         }
 
         public void OnDeathStateExit()

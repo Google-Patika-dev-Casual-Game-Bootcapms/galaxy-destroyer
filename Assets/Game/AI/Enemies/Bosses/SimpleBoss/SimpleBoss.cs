@@ -54,7 +54,7 @@ namespace SpaceShooterProject.AI.Enemies
             simpleBossMainState.Update();
         }
 
-        public void Initialize()
+        public override void OnInitialize()
         {
             mainCamera = Camera.main;
             movement = new PathMovement();

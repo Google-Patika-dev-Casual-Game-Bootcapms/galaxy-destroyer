@@ -3,21 +3,29 @@ namespace SpaceShooterProject.AI.Enemies
     using System.Collections;
     using System.Collections.Generic;
     using SpaceShooterProject.AI.Movements;
+    using Devkit.Base.Object;
+    using SpaceShooterProject.Component;
     using UnityEngine;
 
-    public abstract class Enemy : MonoBehaviour, IEnemy
+    public abstract class Enemy : MonoBehaviour, IEnemy, IUpdatable
     {
         private List<Route> routes = new List<Route>();
         [SerializeField] private float speed;
         [SerializeField] private int health;
+        //[SerializeField] private float frameRate = 0;
 
-        [SerializeField]
-        Sprite enemySprite;
+        protected const int defaultHP = 10;
 
-        [SerializeField]
+        //[SerializeField] private SpriteRenderer shipSpriteRender;
         protected Camera mainCamera;
 
+        protected InGameMessageBroadcaster inGameMessageBroadcaster;
+        protected EnemyType enemyType;
+
         protected IMovement movement;
+
+
+        public abstract void OnInitialize();
 
         public abstract void RouteFinished();
 
@@ -51,6 +59,17 @@ namespace SpaceShooterProject.AI.Enemies
             movement.Patrol(this);
         }
 
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            if (collider.gameObject.CompareTag("FriendlyBullet"))
+            {
+                var bullet = collider.gameObject.GetComponent<Bullet>();
+                GetHit(bullet.GetDamage());
+                bullet.OnHitEnemy();
+            }
+        }
+
+
         public float GetSpeed()
         {
             return speed;
@@ -81,6 +100,71 @@ namespace SpaceShooterProject.AI.Enemies
             routes.Add(newRoute);
         }
 
+        public void CallUpdate()
+        {
+            OnUpdate();
+        }
+
+        public void GetHit(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Init()
+        {
+            
+        }
+
+        public void OnDestruct()
+        {
+            ResetHealth();
+            gameObject.SetActive(false);
+        }
+
+        public void Activate()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Deactivate()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public void PreInit()
+        {
+        }
+
+        public void Initialize()
+        {
+            OnInitialize();
+        }
+
+
+        public void InjectBulletCollector(BulletCollector bulletCollector)
+        {
+            
+        }
+
+        public void SetType(EnemyType enemyType)
+        {
+            this.enemyType = enemyType;
+        }
+
+        public EnemyType GetEnemyType()
+        {
+            return enemyType;
+        }
+
+        public void ResetHealth()
+        {
+            health = defaultHP;
+        }
+
+        public void InjectMessageBroadcaster(InGameMessageBroadcaster inGameMessageBroadcaster)
+        {
+            this.inGameMessageBroadcaster = inGameMessageBroadcaster;
+        }
     }
 }
 

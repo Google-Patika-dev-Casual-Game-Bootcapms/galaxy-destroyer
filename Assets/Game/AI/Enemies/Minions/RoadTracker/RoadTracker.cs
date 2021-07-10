@@ -13,16 +13,16 @@ namespace SpaceShooterProject.AI.Enemies
 
         private bool isDeath = false;
 
-        public abstract void OnInitialize();
+        public abstract void OnInit();
 
-        public void Initialize()
+        public override void OnInitialize()
         {
             mainCamera = Camera.main;
             roadTrackerEventContainer = new RoadTrackerEventContainer();
             roadTrackerMainState = new RoadTrackerMainState(this, roadTrackerEventContainer);
             InitializeEvents();
 
-            OnInitialize();
+            OnInit();
             roadTrackerMainState.Enter();
         }
 
@@ -59,7 +59,7 @@ namespace SpaceShooterProject.AI.Enemies
 
         public void OnDeathStateEnter()
         {
-            Destroy(gameObject); //Change
+            inGameMessageBroadcaster.TriggerEnemyDeath(this);
         }
 
         public void OnDeathStateExit()
