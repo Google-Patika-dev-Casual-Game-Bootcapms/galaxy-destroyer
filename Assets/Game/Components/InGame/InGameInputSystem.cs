@@ -30,12 +30,11 @@ namespace SpaceShooterProject.Component
 
             if (Input.GetMouseButton(0))
             {
-                Debug.Log("Mouse's position="+Input.mousePosition);
+                
                 if (OnScreenTouchEnter != null) 
                 {
                     OnScreenTouchEnter();
                 }
-                
 
             }
 

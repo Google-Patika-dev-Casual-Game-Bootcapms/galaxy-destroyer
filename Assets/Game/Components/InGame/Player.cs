@@ -10,6 +10,7 @@ namespace SpaceShooterProject.Component
         public event PlayerDownDelegate OnPlayerDown;
 
         private InGameInputSystem inputSystemReferance;
+        private Transform playerTransform;
 
 
         //[SerializeField] private ObjectPooler ObjectPooler;
@@ -39,6 +40,11 @@ namespace SpaceShooterProject.Component
             if (currencyComponent == null) 
             {
                 currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
+            }
+
+            if (playerTransform == null) 
+            {
+                playerTransform = GetComponent<Transform>();
             }
 
             fireTime = 0;
@@ -81,7 +87,7 @@ namespace SpaceShooterProject.Component
         public void CallUpdate()
         {
             fireTime += Time.deltaTime;
-            transform.Translate(Vector3.up * gameCamera.CameraSpeed * Time.deltaTime, Space.World);
+            playerTransform.Translate(Vector3.up * gameCamera.CameraSpeed * Time.deltaTime, Space.World);
             Shoot();
 
             if (Input.GetKeyDown(KeyCode.C)) 
@@ -98,8 +104,8 @@ namespace SpaceShooterProject.Component
         public void OnTouch()
         {
             Time.timeScale = 1f;
-            var screenPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            gameObject.transform.position = Vector2.Lerp(transform.position, screenPos, shipSpeed * Time.deltaTime);
+            var screenPos = gameCamera.ScreenToWorldPoint(Input.mousePosition);
+            playerTransform.position = Vector2.Lerp(playerTransform.position, screenPos, shipSpeed * Time.deltaTime);
 
             // TODO min max ekran değerleri için fonksiyon yazılacak
         }
