@@ -39,6 +39,8 @@ namespace SpaceShooterProject.Component
         // TODO Check: if chest's return 10-19,Temporal Card
         // TODO Check: if chest's return 20-29, Spaceship Part
 
+        private CurrencyComponent currencyComponent;
+
         public void Initialize(ComponentContainer componentContainer)
         {
             // TODO Add necessary components
@@ -50,6 +52,8 @@ namespace SpaceShooterProject.Component
             // TODO Update json list when chest functions called
             SetUpEnds();
             AddItemsToList();
+
+            currencyComponent = componentContainer.GetComponent("CurrencyComponent") as CurrencyComponent;
         }
         
         private void SetUpEnds()
@@ -167,6 +171,13 @@ namespace SpaceShooterProject.Component
             if (_dice == 0)
                 return GetGold();
             return GetTemporalCard();
+        }
+
+        public int OpenChest()
+        {
+            int goldAmount = UnityEngine.Random.Range(50, 1000);
+            currencyComponent.EarnGold(goldAmount);
+            return goldAmount;
         }
     }
 }

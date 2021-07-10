@@ -129,7 +129,7 @@ namespace SpaceShooterProject.State
 
         protected override void OnUpdate()
         {
-            Debug.Log("MainState OnUpdate");
+            
         }
     }
 }

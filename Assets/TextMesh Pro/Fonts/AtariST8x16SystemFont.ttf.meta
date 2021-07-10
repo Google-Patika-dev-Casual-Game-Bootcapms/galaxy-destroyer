@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0599a5702f2e1b64c986dc1f6e4a73e4
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Atari ST 8x16 System Font
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3879b7b46345fae41b590c74a3fcfd95, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

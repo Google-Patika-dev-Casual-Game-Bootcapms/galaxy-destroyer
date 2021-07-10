@@ -8,18 +8,23 @@ namespace SpaceShooterProject.State
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
+    using UnityEngine.EventSystems;
 
     public class MarketState : StateMachine
     {
         private UIComponent uiComponent;
         private MarketCanvas marketCanvas;
         private MarketComponent marketComponent;
+        private GachaComponent gachaComponent;
+
+        private bool isChestOpened;
         
         public MarketState(ComponentContainer componentContainer)
         {
             marketComponent = componentContainer.GetComponent("MarketComponent") as MarketComponent;
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
             marketCanvas = uiComponent.GetCanvas(UIComponent.MenuName.MARKET) as MarketCanvas;
+            gachaComponent = componentContainer.GetComponent("GachaComponent") as GachaComponent;
         }
 
         protected override void OnEnter()
@@ -40,22 +45,46 @@ namespace SpaceShooterProject.State
             marketComponent.OnMarketDeactivated();
             marketCanvas.OnReturnToMainMenu -= OnReturnToMainMenu;
             marketCanvas.IsBackgroundActive(false);
+            isChestOpened = false;
         }
 
         protected override void OnUpdate()
+        
         {
-            if(Input.GetMouseButtonUp(0)){
-                var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-                    RaycastHit hit;
-                        if( Physics.Raycast(ray.origin, ray.direction, out hit)){
-                            var chest = hit.collider.GetComponent<ChestAnimation>();
-                                if(chest){
-                                    chest.OpenChest();
-                                } 
-                        }
+            if(!EventSystem.current.IsPointerOverGameObject()){
+                if ( !isChestOpened ){
+                    if(Input.GetMouseButtonUp(0)){
+                    var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+                        RaycastHit hit;
+                            if( Physics.Raycast(ray.origin, ray.direction, out hit)){
+
+                                var chest = hit.collider.GetComponent<ChestAnimation>();
+
+                                marketCanvas.OnChestOpenAnimationComplete += OnChestOpenAnimationComplete;
+                                marketCanvas.SetGainedCoinAmount(gachaComponent.OpenChest());
+                                marketCanvas.PlayChestOpenAnimation(chest);
+                                isChestOpened = true;
+                            }
+                    }
+                }   
             }
+             
+            
            
         }
+
+        private void OnChestOpenAnimationComplete()
+        {
+            InSceneChange();
+            marketCanvas.OnChestOpenAnimationComplete -= OnChestOpenAnimationComplete;
+        }
+
+        private void InSceneChange(){
+            //TODO refactor!!!
+            marketCanvas.IsMarketSceneActive(false);
+            marketCanvas.IsCoinSceneActive(true); 
+        }
+
     }
 }
 

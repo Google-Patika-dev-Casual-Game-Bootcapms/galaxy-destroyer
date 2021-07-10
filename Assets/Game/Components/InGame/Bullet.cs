@@ -1,69 +1,66 @@
-using System;
-using System.Collections;
-using System.Security.Cryptography;
-using Devkit.Base.Object;
-using Devkit.Base.Pattern.ObjectPool;
-using DG.Tweening;
-using SpaceShooterProject.Component;
-using UnityEngine;
-using Random = UnityEngine.Random;
-
-public class Bullet : MonoBehaviour, IPoolable
+namespace SpaceShooterProject.Component
 {
-    [SerializeField] private float speed = 3f;
-    [SerializeField] private RectTransform _transform;
+    using Devkit.Base.Object;
+    using Devkit.Base.Pattern.ObjectPool;
+    using UnityEngine;
+    using Random = UnityEngine.Random;
 
-    public delegate void BulletTriggerDelegate();
-
-    public delegate void BulletPoolDelegate(Bullet bullet);
-
-    public BulletTriggerDelegate OnHitEnemy;
-    public BulletPoolDelegate OnBulletOutOfScreen;
-
-    private IBulletCollector bulletCollectorReference;
-    private GameCamera gameCamera;
-
-    private void Update()
+    public class Bullet : MonoBehaviour, IPoolable, IUpdatable
     {
-        _transform.Translate(Vector3.up * (speed + gameCamera.CameraSpeed) * Time.deltaTime,
-            Space.World);
-        if (_transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(Random.value, 1)).y) 
+        [SerializeField] private float speed = 3f;
+        [SerializeField] private int damage = 10;
+        [SerializeField] private RectTransform _transform;
+
+
+        public delegate void BulletPoolDelegate(Bullet bullet);
+
+        public BulletPoolDelegate OnBulletOutOfScreen;
+
+        private IBulletCollector bulletCollectorReference;
+        private GameCamera gameCamera;
+
+        public void Initialize()
+        {
+            gameCamera = Camera.main.GetComponent<GameCamera>();
+        }
+
+        public void CallUpdate()
+        {
+            _transform.Translate(Vector3.up * (speed + gameCamera.CameraSpeed) * Time.deltaTime,
+                Space.World);
+            if (_transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(Random.value, 1)).y)
+            {
+                bulletCollectorReference.AddBulletToPool(this);
+            }
+        }
+
+        public void InjectBulletCollector(BulletCollector bulletCollector)
+        {
+            if (bulletCollectorReference != null)
+            {
+                return;
+            }
+
+            bulletCollectorReference = bulletCollector;
+        }
+
+        public void Activate()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Deactivate()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public int GetDamage()
+        {
+            return damage;
+        }
+        public void OnHitEnemy()
         {
             bulletCollectorReference.AddBulletToPool(this);
         }
-           
-    }
-
-    public void InjectBulletCollector(IBulletCollector bulletCollector) 
-    {
-        if (bulletCollectorReference != null) 
-        {
-            return;
-        }
-
-        bulletCollectorReference = bulletCollector;
-    }
-
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            OnHitEnemy();
-        }
-    }
-
-    public void Activate()
-    {
-        gameObject.SetActive(true);
-    }
-
-    public void Deactivate()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public void Initialize()
-    {
-        gameCamera = Camera.main.GetComponent<GameCamera>();
     }
 }

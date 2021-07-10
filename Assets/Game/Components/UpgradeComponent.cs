@@ -1,4 +1,4 @@
-﻿namespace SpaceShooterProject.Component 
+﻿namespace SpaceShooterProject.Component
 {
     using Devkit.Base.Component;
     using System;
@@ -33,11 +33,11 @@
             InitializePartPriceWeights();
         }
 
-        public void UpgradePart(UpgradablePartType upgradablePartType) 
+        public void UpgradePart(UpgradablePartType upgradablePartType)
         {
-            if (!accountComponent.IsPartUpgradable(upgradablePartType)) 
+            if (!accountComponent.IsPartUpgradable(upgradablePartType))
             {
-                if (OnUpgradeProcessCompleted != null) 
+                if (OnUpgradeProcessCompleted != null)
                 {
                     UpgradeProcessData upgradeProcessData = new UpgradeProcessData
                     {
@@ -50,7 +50,7 @@
                 return;
             }
 
-            if (!currencyComponent.IsGoldAffordable(CalculatePartUpgradePrice(upgradablePartType))) 
+            if (!currencyComponent.IsGoldAffordable(CalculatePartUpgradePrice(upgradablePartType)))
             {
                 if (OnUpgradeProcessCompleted != null)
                 {
@@ -65,8 +65,9 @@
                 return;
             }
 
-            accountComponent.UpgradePart(upgradablePartType);
             currencyComponent.SpendGold(CalculatePartUpgradePrice(upgradablePartType));
+            accountComponent.UpgradePart(upgradablePartType);
+
 
             if (OnUpgradeProcessCompleted != null)
             {
@@ -79,25 +80,28 @@
 
                 OnUpgradeProcessCompleted(upgradeProcessData);
             }
+
+
         }
 
-        public int CalculatePartUpgradePrice(UpgradablePartType upgradablePartType) 
+
+        public int CalculatePartUpgradePrice(UpgradablePartType upgradablePartType)
         {
-            return partPriceWeights[(int)upgradablePartType] * accountComponent.GetPartLevel(upgradablePartType);
+            return partPriceWeights[(int)upgradablePartType] * (accountComponent.GetPartLevel(upgradablePartType) + 1);
         }
 
         private void InitializePartPriceWeights()
         {
             partPriceWeights = new int[]
-            { 
-                1, 3, 4, 1, 2, 2, 4, 6
+            {
+                1, 3, 4, 1, 2, 2, 4, 6, 7, 3
             };
 
         }
     }
 
-    public enum UpgradablePartType 
-    { 
+    public enum UpgradablePartType
+    {
         SHIELD,
         LASER,
         MEGABOMB,
@@ -106,6 +110,8 @@
         MISSILE,
         WING_CANNON,
         MAIN_CANNON,
+        FIRE_RATE,
+        SPEED,
         COUNT
     }
 
@@ -116,7 +122,7 @@
         public int CurrentPartLevel;
     }
 
-    public enum UpgradeProcessStatus 
+    public enum UpgradeProcessStatus
     {
         NONE,
         NOT_ENOUGH_GOLD,

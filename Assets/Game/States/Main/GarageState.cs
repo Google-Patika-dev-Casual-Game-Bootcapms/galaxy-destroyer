@@ -32,9 +32,8 @@ namespace SpaceShooterProject.State
             garageCanvas.OnReturnToMainMenu += OnReturnToMainMenu;
             garageCanvas.OnPartUpgradeRequest += OnPartUpgradeRequest;
             upgradeComponent.OnUpgradeProcessCompleted += OnUpgradeProcessCompleted;
-
-            garageCanvas.UpdateUI(accountComponent.GetCurrentSpaceShipUpgradePartData(),currencyComponent.GetOwnedGold());
         }
+            
 
         private void OnPartUpgradeRequest(UpgradablePartType upgradablePartType)
         {
@@ -60,8 +59,9 @@ namespace SpaceShooterProject.State
 
         protected override void OnUpdate()
         {
-            
+            garageCanvas.UpdateUI(accountComponent.GetCurrentSpaceShipUpgradePartData(), currencyComponent.GetOwnedGold());//TODO : Refactor
         }
+    
     }
 
 }

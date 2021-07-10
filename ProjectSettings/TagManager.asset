@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - EnemyBullet
   - Bullet
+  - Coin
+  - FriendlyBullet
   layers:
   - Default
   - TransparentFX
@@ -13,8 +16,8 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - 
+  - Enemy
+  - Collectable
   - 
   - 
   - 
