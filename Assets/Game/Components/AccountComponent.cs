@@ -10,9 +10,9 @@ namespace SpaceShooterProject.Component
 
     public class AccountComponent : IComponent, IDestructible
     {
-        private const int MAX_PART_UPGRADE_LEVEL = 10;
         private const int MAX_SUPER_POWER_ITEM_COUNT = 4;
         private const int MAX_SPACESHIP_COUNT = 6;
+        private const int MAX_PART_UPGRADE_LEVEL = 41;
 
         #region Variables        
         private AccountData accountData;
@@ -68,7 +68,9 @@ namespace SpaceShooterProject.Component
                 //Debug.Log("Initialize for first time");
                 InitializeForFirstTime();
             }
-            
+
+            InitializeSpaceShipUpgradeData();
+
             //Debug.Log("Name:" + GetPlayerName());
 
         }
