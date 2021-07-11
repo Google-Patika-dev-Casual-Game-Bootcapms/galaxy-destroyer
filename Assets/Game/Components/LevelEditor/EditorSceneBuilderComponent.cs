@@ -77,14 +77,13 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
 
     public void BuildPlanet(int planetID)
     {
-        //TODO: refactor
         switch (planetID)
         {
             case 0:
                 BuildLevel("EarthParallax");
                 break;
             case 1:
-                BuildLevel("MarsParallax"); // TODO Add Saturn
+                BuildLevel("SaturnParallax");
                 break;
             case 2:
                 BuildLevel("NeptuneParallax");
@@ -92,11 +91,8 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
             case 3:
                 BuildLevel("MarsParallax");
                 break;
-            case 4:
-                BuildLevel("UranusParallax");
-                break;
             default:
-                BuildLevel("EarthParallax");
+                BuildLevel("UranusParallax");
                 break;
         }
     }
