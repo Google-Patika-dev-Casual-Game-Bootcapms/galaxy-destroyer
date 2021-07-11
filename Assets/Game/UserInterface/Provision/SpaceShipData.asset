@@ -25,4 +25,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 376211db63650254dbe56b03078045c4, type: 3}
   - {fileID: 21300000, guid: 480641ff712fbdb4da51b7a2795bcf10, type: 3}
   - {fileID: 21300000, guid: c7a52fc32d8aea642bc678ab0f29438d, type: 3}
-  - {fileID: 21300000, guid: 26cbf20a49ecce74281ccc88d51aaf2d, type: 3}
+  - {fileID: 21300000, guid: fe25b9be1619780468c5d9f9acbaa5f6, type: 3}
+  spaceShipCodeImageArray:
+  - {fileID: 21300000, guid: 00503584b3327a34b9478ed5e3c6a9ad, type: 3}
+  - {fileID: 21300000, guid: a04d54a53d497dd4ba5b754629161515, type: 3}
+  - {fileID: 21300000, guid: 7107e778ecff5cf439a0c1c35c41b155, type: 3}
+  - {fileID: 21300000, guid: 0571ea0887a06ff4db16967d7516c06d, type: 3}
+  - {fileID: 21300000, guid: 292f802d7a30bdb418fe720b9e9945d0, type: 3}
+  - {fileID: 21300000, guid: 5afd68c53a80fa4428ec04e06a6ce883, type: 3}

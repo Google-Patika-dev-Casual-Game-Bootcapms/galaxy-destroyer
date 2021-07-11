@@ -69,7 +69,7 @@ namespace SpaceShooterProject.Component
                 InitializeForFirstTime();
             }
 
-            InitializeSpaceShipUpgradeData();
+            //InitializeSpaceShipUpgradeData(); 
 
             //Debug.Log("Name:" + GetPlayerName());
 
