@@ -28,7 +28,7 @@ namespace SpaceShooterProject.Component
         {
             _transform.Translate(Vector3.up * (speed + gameCamera.CameraSpeed) * Time.deltaTime,
                 Space.World);
-            if (_transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(Random.value, 1)).y)
+            if (_transform.position.y > gameCamera.ViewportToWorldPoint(new Vector2(0, 1)).y)
             {
                 bulletCollectorReference.AddBulletToPool(this);
             }

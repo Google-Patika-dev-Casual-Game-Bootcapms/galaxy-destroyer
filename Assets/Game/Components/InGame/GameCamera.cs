@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SpaceShooterProject.Component
 {
-    public class GameCamera : MonoBehaviour, ILateUpdatable
+    public class GameCamera : MonoBehaviour, ILateUpdatable, IGameCamera
     {
         [SerializeField] private Camera mainCamera;
         [SerializeField] private float cameraSpeed;
@@ -30,6 +30,21 @@ namespace SpaceShooterProject.Component
         public Vector3 ScreenToWorldPoint(Vector3 mousePosition)
         {
             return mainCamera.ScreenToWorldPoint(mousePosition);
+        }
+
+        public Vector3 ViewportToWorldPoint(Vector3 position)
+        {
+            return mainCamera.ViewportToWorldPoint(position);
+        }
+
+        public float GetOrtographicSize()
+        {
+            return mainCamera.orthographicSize;
+        }
+
+        public float GetAspect()
+        {
+            return mainCamera.aspect;
         }
     }
 }

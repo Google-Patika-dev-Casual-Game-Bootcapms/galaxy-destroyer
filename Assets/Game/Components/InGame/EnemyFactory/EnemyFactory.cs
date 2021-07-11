@@ -7,8 +7,11 @@
     using System.Collections.Generic;
     using SpaceShooterProject.AI;
     using SpaceShooterProject.AI.Enemies;
+    using Devkit.Base.Component;
 
-    public class EnemyFactory : IEnemyFactory, IInitializable, IUpdatable, IDestructible
+
+    //TODO: refactor seperate enemy factory and enemy spawn logic - Enemy Spawn system
+    public class EnemyFactory : IEnemyFactory, IUpdatable, IDestructible
     {
 
 
@@ -35,12 +38,18 @@
 
         private LevelWaveData levelWaveData;
         
-        private Camera gameCamera = null;
+        private GameCamera gameCamera = null;
 
         private Player player;// TODO refactor!!!
         private InGameMessageBroadcaster inGameMessageBroadcaster;
 
         private List<Enemy> liveEnemies;
+
+        private int currentLevelIndex = 0;
+
+        private int currentEnemyCount = 0;
+
+        private GamePlayComponent gamePlayComponent;
 
         public EnemyFactory(InGameMessageBroadcaster inGameMessageBroadcaster)
         {
@@ -49,22 +58,24 @@
 
         private EnemyFactory() { }
 
-        public void Init()
+        public void Init(ComponentContainer componentContainer)
         {
             liveEnemies = new List<Enemy>();
-            gameCamera = Camera.main;
+            gameCamera = GameObject.FindObjectOfType<GameCamera>();
             player = GameObject.FindObjectOfType<Player>();
+
+            gamePlayComponent = componentContainer.GetComponent("GamePlayComponent") as GamePlayComponent;
+
             inGameMessageBroadcaster.OnEnemyDestroyed += OnEnemyDestroyed;
+            inGameMessageBroadcaster.OnEnemyOutOfScreen += OnEnemyOutOfScreen;
 
             waveData1 = new WaveData();
 
             waveData1.waveInfo[0] = 3;
-
             waveData1.waveInfo[1] = 5;
-
             waveData1.waveInfo[2] = 2;// 4;
-
             waveData1.waveInfo[3] = 0;// 5;
+
 
             levelWaveData = new LevelWaveData(1);
 
@@ -90,17 +101,33 @@
 
         }
 
-        //TODO solve cyclomatic complexity and casting issues!!! // TODO: refactor
-        private void OnEnemyDestroyed(Enemy enemy)
+        private void OnEnemyOutOfScreen(Enemy enemy)
         {
+            enemy.ResetEnemy();
             AddEnemyToPool(enemy);
+            RemoveEnemyFromLiveEnemies(enemy);
+        }
 
-            if (liveEnemies.Contains(enemy)) 
+        private void RemoveEnemyFromLiveEnemies(Enemy enemy) 
+        {
+            if (liveEnemies.Contains(enemy))
             {
                 enemy.gameObject.SetActive(false);
                 liveEnemies.Remove(enemy);
+                currentEnemyCount--;
             }
+        }
 
+        public void ResetSpawnLogic()
+        {
+            currentLevelIndex = 0;
+            currentEnemyCount = 0;
+        }
+
+        private void OnEnemyDestroyed(Enemy enemy)
+        {
+            AddEnemyToPool(enemy);
+            RemoveEnemyFromLiveEnemies(enemy);
         }
 
         private void AddEnemyToPool(Enemy enemy)
@@ -157,12 +184,23 @@
             return enemy;
         }
 
-        public void SpawnWaveEnemies(LevelWaveData levelWaveData, int levelIndex)
+        private bool SpawnWaveEnemies(LevelWaveData levelWaveData, int levelIndex)
         {
-            float height = 2f * gameCamera.orthographicSize;
-            float width = height * gameCamera.aspect;            
+            if (levelIndex < 0)
+            {
+                return false;
+            }
+
+            if (levelIndex >= levelWaveData.waveDatas.Length) 
+            {
+                return false;
+            }
+
+            float height = 2f * gameCamera.GetOrtographicSize();
+            float width = height * gameCamera.GetAspect();            
 
             var spawnEnemyPosition = new Vector2(0, player.transform.position.y + height * .7f);
+
 
             var currentWaveData = levelWaveData.waveDatas[levelIndex];
 
@@ -174,13 +212,14 @@
                 {
                     var enemy = ProduceEnemy((EnemyType)i);
                     enemy.SetPosition(spawnEnemyPosition);
+                    enemy.InjectGameCameraReference(gameCamera);
+                    enemy.Init();
                     spawnEnemyPosition = new Vector2(enemy.transform.position.x + width * 0.1f, spawnHeight);
+                    currentEnemyCount++;
                 }
             }
-        }
-        public void SpawnEnemies()
-        {
-            SpawnWaveEnemies(levelWaveData,0);
+
+            return true;
         }
 
         public void CallUpdate()
@@ -188,6 +227,29 @@
             for (int i = 0; i < liveEnemies.Count; i++)
             {
                 liveEnemies[i].CallUpdate();
+            }
+
+            CheckNextWaveSpawn();
+
+        }
+
+        private void CheckNextWaveSpawn()
+        {
+            if (currentEnemyCount <= 0) 
+            {
+                SpawnNextEnemyWave();
+            }
+        }
+
+        public void SpawnNextEnemyWave()
+        {
+            if (SpawnWaveEnemies(levelWaveData, currentLevelIndex))
+            {
+                currentLevelIndex++;
+            }
+            else
+            {
+                gamePlayComponent.TriggerLevelCompleted();
             }
         }
 

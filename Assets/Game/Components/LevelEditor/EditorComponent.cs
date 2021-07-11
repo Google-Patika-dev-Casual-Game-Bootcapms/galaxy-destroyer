@@ -69,6 +69,7 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject stackedRock;
     [SerializeField] private GameObject lightHouse;
     [SerializeField] private GameObject lightHouseWithRocks;
+    [SerializeField] private GameObject earthParallax;
     #endregion
     
     [MenuItem("Tools/LevelEditor")]
@@ -219,6 +220,7 @@ public class EditorComponent : EditorWindow
             EGameObjectType.neptuneParallax => Instantiate(neptuneParallax),
             EGameObjectType.uranusParallax => Instantiate(uranusParallax),
             EGameObjectType.saturnParallax => Instantiate(saturnParallax),
+            EGameObjectType.earthParallax => Instantiate(earthParallax),
             EGameObjectType.flyEnemyNPC => Instantiate(flyEnemyNPC),
             EGameObjectType.stableEnemyNPC => Instantiate(stableEnemyNPC),
             EGameObjectType.nonFlyEnemyNPC => Instantiate(nonFlyEnemyNPC),
