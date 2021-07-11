@@ -64,6 +64,8 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
     [SerializeField] private GameObject stackedRock;
     [SerializeField] private GameObject lightHouse;
     [SerializeField] private GameObject lightHouseWithRocks;
+    [SerializeField] private GameObject earthParallax;
+    
     #endregion
 
     public void Initialize(ComponentContainer componentContainer)
@@ -119,6 +121,7 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
             EGameObjectType.neptuneParallax => Instantiate(neptuneParallax),
             EGameObjectType.uranusParallax => Instantiate(uranusParallax),
             EGameObjectType.saturnParallax => Instantiate(saturnParallax),
+            EGameObjectType.earthParallax => Instantiate(earthParallax),
             EGameObjectType.flyEnemyNPC => Instantiate(flyEnemyNPC),
             EGameObjectType.stableEnemyNPC => Instantiate(stableEnemyNPC),
             EGameObjectType.nonFlyEnemyNPC => Instantiate(nonFlyEnemyNPC),
@@ -251,5 +254,6 @@ public enum EGameObjectType
     stackedRock,
     lightHouse,
     lightHouseWithRocks,
-    backupTerrain
+    backupTerrain,
+    earthParallax
 }
