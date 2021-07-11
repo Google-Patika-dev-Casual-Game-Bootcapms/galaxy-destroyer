@@ -143,8 +143,8 @@ namespace SpaceShooterProject
 
         private void CreateEditorSceneBuilderComponent()
         {
-            editorSceneBuilderComponent = new GameObject().AddComponent<EditorSceneBuilderComponent>();
-            componentContainer.AddComponent("LevelEditorSceneBuilderComponent", editorSceneBuilderComponent);
+            editorSceneBuilderComponent = FindObjectOfType<EditorSceneBuilderComponent>();
+            componentContainer.AddComponent("EditorSceneBuilderComponent", editorSceneBuilderComponent);
         }
 
         private void CreateInventoryComponent()
