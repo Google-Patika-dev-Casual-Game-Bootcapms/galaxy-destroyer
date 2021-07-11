@@ -44,15 +44,24 @@ namespace SpaceShooterProject.AI.Enemies
 
         public override void OnInitialize()
         {
-            mainCamera = Camera.main;
             movement = new PathMovement();
             enemyBulletCollector = new EnemyBulletCollector();
             helicopterEventContainer = new HelicopterEventContainer();
             helicopterMainState = new HelicopterMainState(this, helicopterEventContainer);
             InitializeEvents();
+            
+            
+        }
+
+        public override void EnterMainState()
+        {
+            // TODO: If you call destroy events call initialize events here
+            helicopterMainState.SetDefaultState();
             helicopterMainState.Enter();
             
         }
+
+
 
         public void InitializeEvents()
         {
@@ -172,6 +181,8 @@ namespace SpaceShooterProject.AI.Enemies
 
         public void OnDeathStateEnter()
         {
+            GetRoutes().Clear();
+            isPatrolRouteInitialized = false;
             inGameMessageBroadcaster.TriggerEnemyDeath(this);
         }
 
@@ -282,6 +293,7 @@ namespace SpaceShooterProject.AI.Enemies
         public override void OnOutOfScreen()
         {
             OnDeath();
+            inGameMessageBroadcaster.TriggerEnemyOutOfScreen(this);
         }
 
         public override void PatrolRouteFinished()

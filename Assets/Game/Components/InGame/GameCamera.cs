@@ -37,6 +37,11 @@ namespace SpaceShooterProject.Component
             return mainCamera.ViewportToWorldPoint(position);
         }
 
+        public Vector3 WorldToViewportPoint(Vector3 position)
+        {
+            return mainCamera.WorldToViewportPoint(position);
+        }
+
         public float GetOrtographicSize()
         {
             return mainCamera.orthographicSize;

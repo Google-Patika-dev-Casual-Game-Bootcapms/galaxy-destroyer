@@ -16,8 +16,8 @@ namespace SpaceShooterProject.AI.Enemies
 
         protected const int defaultHP = 10;
 
-        //[SerializeField] private SpriteRenderer shipSpriteRender;
-        protected Camera mainCamera;
+        protected IGameCamera gameCamera;
+        protected Transform enemyTransform;
 
         protected InGameMessageBroadcaster inGameMessageBroadcaster;
         protected EnemyType enemyType;
@@ -39,9 +39,16 @@ namespace SpaceShooterProject.AI.Enemies
 
         public abstract void OnUpdate();
 
+        public abstract void EnterMainState();
+
         public virtual bool IsOutOfScreen()
         {
-            Vector2 normalizedPosition = mainCamera.WorldToViewportPoint(transform.position);
+            if(gameCamera == null)
+            {
+                Debug.Log("broken : " + enemyType);
+                Debug.Log("Enemy game camera is null");
+            }
+            Vector2 normalizedPosition = gameCamera.WorldToViewportPoint(transform.position);
             return (normalizedPosition.x < 0 || normalizedPosition.x > 1) ||
                 (normalizedPosition.y < 0 );
         }
@@ -112,7 +119,7 @@ namespace SpaceShooterProject.AI.Enemies
 
         public void Init()
         {
-            
+            enemyTransform = GetComponent<Transform>();
         }
 
         public void OnDestruct()
@@ -164,6 +171,17 @@ namespace SpaceShooterProject.AI.Enemies
         public void InjectMessageBroadcaster(InGameMessageBroadcaster inGameMessageBroadcaster)
         {
             this.inGameMessageBroadcaster = inGameMessageBroadcaster;
+        }
+
+        public void InjectGameCameraReference(IGameCamera gameCamera)
+        {
+            this.gameCamera = gameCamera;
+        }
+
+        internal void ResetEnemy()
+        {
+            ResetHealth();
+            gameObject.SetActive(false);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace SpaceShooterProject.Component
     {
         Vector3 ScreenToWorldPoint(Vector3 position);
         Vector3 ViewportToWorldPoint(Vector3 position);
+        Vector3 WorldToViewportPoint(Vector3 position);
     }
 }
 

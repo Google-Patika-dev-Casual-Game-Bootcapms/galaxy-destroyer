@@ -34,6 +34,7 @@ namespace SpaceShooterProject.AI.State
             {
                 SendTrigger((int)RoadTrackerState.DEATH_STATE);
             }
+            
         }
     }
 }

@@ -17,13 +17,19 @@ namespace SpaceShooterProject.AI.Enemies
 
         public override void OnInitialize()
         {
-            mainCamera = Camera.main;
             roadTrackerEventContainer = new RoadTrackerEventContainer();
             roadTrackerMainState = new RoadTrackerMainState(this, roadTrackerEventContainer);
             InitializeEvents();
-
             OnInit();
+        }
+
+
+        public override void EnterMainState()
+        {
+            // TODO: If you call destroy events call initialize events here
+            roadTrackerMainState.SetDefaultState();
             roadTrackerMainState.Enter();
+
         }
 
         public override void OnUpdate()
@@ -86,6 +92,7 @@ namespace SpaceShooterProject.AI.Enemies
         public override void OnOutOfScreen()
         {
             isDeath = true;
+            inGameMessageBroadcaster.TriggerEnemyOutOfScreen(this);
         }
 
         public override void RouteFinished()

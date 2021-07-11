@@ -56,13 +56,19 @@ namespace SpaceShooterProject.AI.Enemies
 
         public override void OnInitialize()
         {
-            mainCamera = Camera.main;
             movement = new PathMovement();
             enemyBulletCollector = new EnemyBulletCollector();
             enemyMissileCollector = new MissileCollector();
             simpleBossEventContainer = new SimpleBossEventContainer();
             simpleBossMainState = new SimpleBossMainState(this, simpleBossEventContainer);
             InitializeEvents();
+
+        }
+
+        public override void EnterMainState()
+        {
+            // TODO: If you call destroy events call initialize events here
+            simpleBossMainState.SetDefaultState();
             simpleBossMainState.Enter();
 
         }
@@ -98,6 +104,7 @@ namespace SpaceShooterProject.AI.Enemies
         private void OnDeathStateExit()
         {
             DestroyEvents();
+            
         }
 
         private void OnAttackStateExit()
@@ -108,6 +115,7 @@ namespace SpaceShooterProject.AI.Enemies
         private void OnDeathStateEnter()
         {
             GetRoutes().Clear();
+            inGameMessageBroadcaster.TriggerEnemyDeath(this);
         }
 
         private void OnAttackStateEnter()
@@ -264,6 +272,7 @@ namespace SpaceShooterProject.AI.Enemies
         public override void OnOutOfScreen()
         {
             isDeath = true;
+            inGameMessageBroadcaster.TriggerEnemyOutOfScreen(this);
         }
 
         public override void RouteFinished()

@@ -71,9 +71,9 @@
 
             waveData1 = new WaveData();
 
-            waveData1.waveInfo[0] = 3;
-            waveData1.waveInfo[1] = 5;
-            waveData1.waveInfo[2] = 2;// 4;
+            waveData1.waveInfo[0] = 0;
+            waveData1.waveInfo[1] = 0;// 5
+            waveData1.waveInfo[2] = 4;// 4;
             waveData1.waveInfo[3] = 0;// 5;
 
 
@@ -178,8 +178,9 @@
             enemy.ResetHealth();
             enemy.SetType(type);//TODO call when the object is initialized!!!
             enemy.InjectMessageBroadcaster(inGameMessageBroadcaster);
+            enemy.InjectGameCameraReference(gameCamera);
             enemy.gameObject.SetActive(true);
-            enemy.OnInitialize();
+
             liveEnemies.Add(enemy);
             return enemy;
         }
@@ -212,8 +213,8 @@
                 {
                     var enemy = ProduceEnemy((EnemyType)i);
                     enemy.SetPosition(spawnEnemyPosition);
-                    enemy.InjectGameCameraReference(gameCamera);
                     enemy.Init();
+                    enemy.EnterMainState();
                     spawnEnemyPosition = new Vector2(enemy.transform.position.x + width * 0.1f, spawnHeight);
                     currentEnemyCount++;
                 }

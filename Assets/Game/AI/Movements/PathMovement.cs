@@ -11,22 +11,26 @@ namespace SpaceShooterProject.AI.Movements
         protected float tParam;
         protected bool couroutineAllowed = true;
 
-        //public abstract void Initialize(Enemy minion);
+        public PathMovement()
+        {
+            currentRouteIndex = 0;
+        }
 
 
         public void Move(Enemy enemy)
         {
             if (couroutineAllowed && enemy.GetRoutes().Count != 0)
             {
-                enemy.StartCoroutine(FollowRoute(enemy, currentRouteIndex));
+                enemy.StartCoroutine(FollowRoute(enemy, 0));
             }
         }
 
         public void Patrol(Enemy enemy)
         {
+            Debug.Log("Heli:" + currentRouteIndex);
             if (couroutineAllowed && enemy.GetRoutes().Count != 0)
             {
-                enemy.StartCoroutine(PatrolRoute(enemy, currentRouteIndex));
+                enemy.StartCoroutine(PatrolRoute(enemy, 0));
             }
         }
 
@@ -76,16 +80,6 @@ namespace SpaceShooterProject.AI.Movements
                 isReverse = !isReverse;
                 
                 
-            }
-
-
-            if (currentRouteIndex < enemy.GetRoutes().Count - 1)
-            {
-                currentRouteIndex++;
-            }
-            else
-            {
-                currentRouteIndex = 0; // When all routes are finished starts again from beginning
             }
 
 

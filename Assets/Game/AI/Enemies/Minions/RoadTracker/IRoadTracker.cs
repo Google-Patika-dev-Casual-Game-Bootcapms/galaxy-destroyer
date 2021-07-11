@@ -4,6 +4,7 @@
     public interface IRoadTracker
     {
         bool IsDeath();
+        void Movement();
     }
 }
 

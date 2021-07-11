@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4c860c2d6928d40b90c85797c4f976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 0.7
   health: 10
-  initialDistance: 10
-  patrolRouteWidth: 0
-  patrolRouteHeight: 10
-  patrolTimeUntilAttack: 3
+  initialDistance: 0.1
+  patrolRouteWidth: 1
+  patrolRouteHeight: 2
+  patrolTimeUntilAttack: 0.5
   fireRate: 6
   bulletPerAttack: 4
 --- !u!1001 &30457927216663048
