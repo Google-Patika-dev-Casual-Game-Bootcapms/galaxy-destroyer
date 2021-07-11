@@ -2420,6 +2420,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 246390188825770356, guid: 9f5dab1237e985044afb896406f4a07e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 886039049}
+    - target: {fileID: 246390188825770356, guid: 9f5dab1237e985044afb896406f4a07e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 246390188825770356, guid: 9f5dab1237e985044afb896406f4a07e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SpaceShooterProject.UserInterface.EndGameCanvas, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1261671666820687528, guid: 9f5dab1237e985044afb896406f4a07e, type: 3}
       propertyPath: coinContainer
       value: 
@@ -2519,6 +2531,18 @@ PrefabInstance:
     - target: {fileID: 6613157829834009913, guid: 9f5dab1237e985044afb896406f4a07e, type: 3}
       propertyPath: m_Name
       value: EndGameCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947488925009368589, guid: 9f5dab1237e985044afb896406f4a07e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 886039049}
+    - target: {fileID: 6947488925009368589, guid: 9f5dab1237e985044afb896406f4a07e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestSettings
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947488925009368589, guid: 9f5dab1237e985044afb896406f4a07e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SpaceShooterProject.UserInterface.EndGameCanvas, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5dab1237e985044afb896406f4a07e, type: 3}
