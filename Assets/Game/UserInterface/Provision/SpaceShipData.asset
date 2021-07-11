@@ -19,6 +19,7 @@ MonoBehaviour:
   - Calypso
   - Domninus
   - Goda
+  - Phoenix
   spaceShipImageArray:
   - {fileID: 21300000, guid: 98466282f51e5a2408e9bc3f9528b379, type: 3}
   - {fileID: 21300000, guid: 64bcb7740ffc6264e8afd2099740d6f5, type: 3}
@@ -26,3 +27,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 480641ff712fbdb4da51b7a2795bcf10, type: 3}
   - {fileID: 21300000, guid: c7a52fc32d8aea642bc678ab0f29438d, type: 3}
   - {fileID: 21300000, guid: 26cbf20a49ecce74281ccc88d51aaf2d, type: 3}
+  - {fileID: 21300000, guid: f44686935d0975944ad5c12941c930f3, type: 3}
