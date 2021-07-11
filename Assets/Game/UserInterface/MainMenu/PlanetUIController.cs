@@ -22,6 +22,8 @@ public class PlanetUIController : MonoBehaviour, IInitializable
         planets = GetComponentsInChildren<PlanetUI>().ToList();
 
         SetPlanetNeighbors(planets);
+
+        ActivatePlanet(0);
     }
 
     public void SubscribeAllPlanetAnimationCompletionEvents()
@@ -119,6 +121,8 @@ public class PlanetUIController : MonoBehaviour, IInitializable
 
     public void UpdateUI(int selectedPlanetId)
     {
+        return;//TODO: remove work-around
+
         if (selectedPlanetId < 0) 
         {
             selectedPlanetId = 0;
@@ -134,8 +138,8 @@ public class PlanetUIController : MonoBehaviour, IInitializable
 
     private void ActivatePlanet(int planetIndex)
     {
-        activePlanet = planets[planetIndex];
-        planets[planetIndex].IsActive = true;
-        planets[planetIndex].ScaleManually();
+        activePlanet = planets[0];
+        planets[0].IsActive = true;
+        planets[0].ScaleManually();
     }
 }
