@@ -11,7 +11,7 @@ namespace SpaceShooterProject.Component
     public class AccountComponent : IComponent, IDestructible
     {
         private const int MAX_SUPER_POWER_ITEM_COUNT = 4;
-        private const int MAX_SPACESHIP_COUNT = 6;
+        private const int MAX_SPACESHIP_COUNT = 7;
         private const int MAX_PART_UPGRADE_LEVEL = 41;
 
         #region Variables        
