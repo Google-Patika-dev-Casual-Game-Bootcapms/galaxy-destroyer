@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -60,6 +61,11 @@ namespace SpaceShooterProject.UserInterface
             }
         }
 
+        public void RegisterUIEvents()
+        {
+            planetUIController.SubscribeAllPlanetAnimationCompletionEvents();
+        }
+
         public void RequestMarketMenu()
         {
             if (OnMarketMenuRequest != null)
@@ -75,6 +81,16 @@ namespace SpaceShooterProject.UserInterface
                 inventoryCanvas.AdjustTheInventoryCanvas();
                 OnInventoryMenuRequest();
             }
+        }
+
+        public void ShowPreviosPlanet()
+        {
+            planetUIController.PreviousPlanet();
+        }
+
+        public void ShowNextPlanet()
+        {
+            planetUIController.NextPlanet();
         }
 
         public void RequestGarageMenu()
@@ -113,6 +129,26 @@ namespace SpaceShooterProject.UserInterface
                 OnPreviousPlanetButtonRequest();
         }
 
-        public PlanetUIController PlanetUIController => planetUIController;
+        public int GetCurrentSelectedPlanetId() 
+        {
+            return planetUIController.GetSelectedPlanetIndex();
+        }
+
+        public void UpdateCurrentSelectedPlanetUI(int selectedPlanetId) 
+        {
+            //TODO: refactor UI side
+            planetUIController.UpdateUI(0);//TODO: delete work-around
+            //planetUIController.UpdateUI(selectedPlanetId);
+        }
+
+        public void UnRegisterFromUIEvents()
+        {
+            planetUIController.UnSubscribeAllPlanetAnimationCompletionEvents();
+        }
+
+        public void CompleteAllUIAnimations()
+        {
+            planetUIController.CompleteAllPlanetAnimations();
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace Game.UserInterface.Background
         public bool overrideSettings;
         public Vector3 offset = new Vector3(-540, -960, 0);
         public Vector3 scale = new Vector3(0.044f, 0.044f, 0.044f);
-        public float orthographicSize=5f;
+        //public float orthographicSize=5f;
         
         private void Awake()
         {
@@ -42,12 +42,6 @@ namespace Game.UserInterface.Background
             var newSpriteRenderer =newObject.AddComponent<SpriteRenderer>();
             newSpriteRenderer.sprite = targetSprite;
             newSpriteRenderer.sortingOrder = -10;
-
-            var spriteWidth = newSpriteRenderer.sprite.bounds.size.x;
-            var spriteHeight = newSpriteRenderer.sprite.bounds.size.y;
-
-            var worldScreenHeight = orthographicSize * 2f;
-            var worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
             
             if (overrideSettings)
             {
@@ -56,11 +50,20 @@ namespace Game.UserInterface.Background
             }
             else
             {
-                var localScale =newObject.transform.localScale;
-                localScale.x = worldScreenWidth / spriteWidth;
-                localScale.y = worldScreenHeight / spriteHeight;
-                localScale.x *= 2f;
-                newObject.transform.localScale = localScale;
+                // var spriteWidth = newSpriteRenderer.sprite.bounds.size.x;
+                // var spriteHeight = newSpriteRenderer.sprite.bounds.size.y;
+                //
+                // var worldScreenHeight =  Camera.main.orthographicSize * 2f;
+                // var worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
+                //
+                // var localScale =newObject.transform.localScale;
+                // localScale.x = worldScreenWidth / spriteWidth;
+                // localScale.y = worldScreenHeight / spriteHeight;
+                // localScale.x *= 2f;
+                // newObject.transform.localScale = localScale;
+                newObject.AddComponent<SpriteScaler>().Scale();
+                
+                
             }
             
             if (destroyAtFinish)
