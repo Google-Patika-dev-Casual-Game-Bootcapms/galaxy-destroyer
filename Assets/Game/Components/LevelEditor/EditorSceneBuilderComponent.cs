@@ -204,11 +204,7 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
 [Serializable]
 public class LevelData
 {
-    public Vector3 Position;
-    public Vector3 Rotation;
-    public float FieldofView;
     public List<LevelCharacterData> LevelCharacters;
-
     public LevelData()
     {
         LevelCharacters = new List<LevelCharacterData>();
