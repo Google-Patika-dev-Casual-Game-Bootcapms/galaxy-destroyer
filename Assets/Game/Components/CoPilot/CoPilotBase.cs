@@ -15,7 +15,8 @@ namespace SpaceShooterProject.Component.CoPilot
             CoPilot2,
             CoPilot3,
             CoPilot4,
-            CoPilot5
+            CoPilot5,
+            COUNT
         }
 
         public CoPilotBase(CoPilotType targetType)

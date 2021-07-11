@@ -28,15 +28,9 @@ public class CoPilotSelectionState : StateMachine
         coPilotCanvas.OnReturnToMainMenu += OnReturnToMainMenu;
         coPilotComponent.OnCurrentCoPilotSelectedEvent += OnCoPilotSelected;
         coPilotCanvas.OnCoPilotSelected += OnCoPilotSelected;
-    }
-
-    private void OnCoPilotSelected(CoPilotBase.CoPilotType coPilotType)
-    {
-        coPilotComponent.SelectCoPilot(coPilotType);
-    }
-    private void OnCoPilotSelected(CoPilotBase coPilotBase)
-    {
-        coPilotCanvas.SelectCoPilot(coPilotBase);
+        coPilotCanvas.OnNextCoPilotRequest += OnNextCoPilotButtonClick;
+        coPilotCanvas.OnPreviousCoPilotRequest += OnPreviousCoPilotButtonClick;
+        coPilotCanvas.OnCoPilotSelected += OnSelectCoPilotButtonClick;
     }
 
     private void OnReturnToMainMenu()
@@ -44,11 +38,39 @@ public class CoPilotSelectionState : StateMachine
         SendTrigger((int)StateTriggers.GO_TO_MAIN_MENU_REQUEST);
     }
 
+    private void OnCoPilotSelected(CoPilotBase coPilotBase)
+    {
+        coPilotCanvas.SelectCoPilot(coPilotBase);
+    }
+
+    private void OnCoPilotSelected(int coPilotType)
+    {
+        coPilotComponent.SelectCoPilot(coPilotType);
+    }
+
+    private void OnNextCoPilotButtonClick()
+    {
+        coPilotCanvas.NextCopilot();
+    }
+
+    private void OnPreviousCoPilotButtonClick()
+    {
+        coPilotCanvas.PreviousPilot();
+    }
+
+    private void OnSelectCoPilotButtonClick(int coPilotIndex)
+    {
+        coPilotComponent.SelectCoPilot((CoPilotBase.CoPilotType)coPilotIndex);
+    }
+
     protected override void OnExit()
     {
         coPilotCanvas.OnReturnToMainMenu -= OnReturnToMainMenu;
         coPilotComponent.OnCurrentCoPilotSelectedEvent -= OnCoPilotSelected;
         coPilotCanvas.OnCoPilotSelected -= OnCoPilotSelected;
+        coPilotCanvas.OnNextCoPilotRequest -= OnNextCoPilotButtonClick;
+        coPilotCanvas.OnPreviousCoPilotRequest -= OnPreviousCoPilotButtonClick;
+        coPilotCanvas.OnCoPilotSelected -= OnSelectCoPilotButtonClick;
     }
 
     protected override void OnUpdate()

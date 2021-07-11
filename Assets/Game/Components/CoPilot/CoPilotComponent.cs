@@ -35,7 +35,7 @@ namespace SpaceShooterProject.Component.CoPilot
 		public void SelectCoPilot(CoPilotBase.CoPilotType targetCoPilotType)
 		{
 			activeCoPilot = coPilotDict[targetCoPilotType];
-
+			Debug.LogError((int)targetCoPilotType + "'a değişti");
 			if(OnCurrentCoPilotSelectedEvent != null)
 			{
 				OnCurrentCoPilotSelectedEvent(activeCoPilot);

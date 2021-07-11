@@ -7,16 +7,17 @@ namespace SpaceShooterProject.UserInterface
 
     public class CoPilotCanvas : BaseCanvas
     {
-        public delegate void RequestNextCoPilotDelegate();
-        public delegate void SelectCoPilotDelegate(CoPilotBase.CoPilotType coPilotType);
+        public delegate void RequestChangeCoPilotDelegate();
+        public delegate void SelectCoPilotDelegate(int coPilotIndex);
         public delegate void  RequestMainMenuDelegate();
-        public event RequestNextCoPilotDelegate OnNextCoPilotRequest;
-        public event RequestNextCoPilotDelegate OnPreviousCoPilotRequest;
+        public event RequestChangeCoPilotDelegate OnNextCoPilotRequest;
+        public event RequestChangeCoPilotDelegate OnPreviousCoPilotRequest;
         public event SelectCoPilotDelegate OnCoPilotSelected;
 
         [SerializeField]
         private CoPilotAvatar[] coPilotAvatarList;
-        private CoPilotAvatar selectedCoPilot;
+        private int activeCoPilotIndex;
+        private int currentOnCanvasCoPilot;
         
         [SerializeField]
         private TextMeshProUGUI coPilotNameContainer;
@@ -38,6 +39,7 @@ namespace SpaceShooterProject.UserInterface
             }
 
             coPilotAvatarList[selectedCoPilotIndex].Activate();
+            activeCoPilotIndex = selectedCoPilotIndex;
         }
 
         public void SetCurrentCoPilotData(/*CoPilotData data*/) //TODO Pass co pilot data into this method!!!
@@ -61,11 +63,11 @@ namespace SpaceShooterProject.UserInterface
             }
         }
 
-        public void OnCoPilotSelectButtonClick(int coPilotId)
+        public void OnCoPilotSelectButtonClick()
         {
             if (OnCoPilotSelected != null)
             {
-                OnCoPilotSelected((CoPilotBase.CoPilotType)coPilotId);
+                OnCoPilotSelected(activeCoPilotIndex);
             }
         }
 
@@ -76,7 +78,37 @@ namespace SpaceShooterProject.UserInterface
 
         public void SelectCoPilot(int type)
         {
+            activeCoPilotIndex = type;
+        }
 
+        public void NextCopilot()
+        {
+            coPilotAvatarList[activeCoPilotIndex].Deactivate();
+            activeCoPilotIndex++;
+            if(activeCoPilotIndex == (int)CoPilotBase.CoPilotType.COUNT)
+            {
+                activeCoPilotIndex = 0;
+                coPilotAvatarList[activeCoPilotIndex].Activate();
+            }
+            else
+            {
+                coPilotAvatarList[activeCoPilotIndex].Activate();
+            }
+        }
+
+        public void PreviousPilot()
+        {
+            coPilotAvatarList[activeCoPilotIndex].Deactivate();
+            activeCoPilotIndex--;
+            if(activeCoPilotIndex < 0)
+            {
+                activeCoPilotIndex = (int)CoPilotBase.CoPilotType.COUNT - 1;
+                coPilotAvatarList[activeCoPilotIndex].Activate();
+            }
+            else
+            {
+                coPilotAvatarList[activeCoPilotIndex].Activate();
+            }
         }
     }
 }
