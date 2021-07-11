@@ -51,7 +51,7 @@ namespace SpaceShooterProject.State
             var currentSelectedShip = accountComponent.GetSelectedSpaceShipId();
             if (isNextShip)
             {
-                if (maxSpaceshipCount < currentSelectedShip)
+                if (currentSelectedShip == maxSpaceshipCount -1)
                 {
                     accountComponent.SetSelectedSpaceShipId(0);
                 }
@@ -65,10 +65,9 @@ namespace SpaceShooterProject.State
             // if user selected previous ship
             else
             {
-                if (currentSelectedShip - 1 < 0)//TODO : Refactor if state
+                if (currentSelectedShip == 0)//TODO : Refactor if state
                 {
-                    maxSpaceshipCount--;
-                    accountComponent.SetSelectedSpaceShipId(maxSpaceshipCount);
+                    accountComponent.SetSelectedSpaceShipId(maxSpaceshipCount -1);
                 }
                 else
                 {
