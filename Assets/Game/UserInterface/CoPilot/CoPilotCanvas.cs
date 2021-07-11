@@ -1,17 +1,22 @@
 namespace SpaceShooterProject.UserInterface 
 {
     using UnityEngine;
+    using System;
+    using SpaceShooterProject.Component.CoPilot;
 
     public class CoPilotCanvas : BaseCanvas
     {
         public delegate void RequestNextCoPilotDelegate();
-        public delegate void SelectCoPilotDelegate();
+        public delegate void SelectCoPilotDelegate(CoPilotBase.CoPilotType coPilotType);
+        public delegate void  RequestMainMenuDelegate();
         public event RequestNextCoPilotDelegate OnNextCoPilotRequest;
         public event RequestNextCoPilotDelegate OnPreviousCoPilotRequest;
         public event SelectCoPilotDelegate OnCoPilotSelected;
 
         [SerializeField]
-        private CoPilotAvatar coPilotAvatar;
+        private CoPilotAvatar[] coPilotAvatarList;
+        private CoPilotAvatar selectedCoPilot;
+
 
         public void SetCurrentCoPilotData(/*CoPilotData data*/) //TODO Pass co pilot data into this method!!!
         {
@@ -34,14 +39,23 @@ namespace SpaceShooterProject.UserInterface
             }
         }
 
-        public void OnCoPilotSelectButtonClick()
+        public void OnCoPilotSelectButtonClick(int coPilotId)
         {
             if (OnCoPilotSelected != null)
             {
-                OnCoPilotSelected();
+                OnCoPilotSelected((CoPilotBase.CoPilotType)coPilotId);
             }
         }
 
+        public void SelectCoPilot(CoPilotBase coPilotBase)
+        {
+            //TODO seçilen co pilot'ı UI'da gösterir!!!
+        }
+
+        public void SelectCoPilot(int type)
+        {
+            
+        }
     }
 }
 
