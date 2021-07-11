@@ -50,18 +50,18 @@ namespace Game.UserInterface.Background
             }
             else
             {
-                // var spriteWidth = newSpriteRenderer.sprite.bounds.size.x;
-                // var spriteHeight = newSpriteRenderer.sprite.bounds.size.y;
-                //
-                // var worldScreenHeight =  Camera.main.orthographicSize * 2f;
-                // var worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
-                //
-                // var localScale =newObject.transform.localScale;
-                // localScale.x = worldScreenWidth / spriteWidth;
-                // localScale.y = worldScreenHeight / spriteHeight;
-                // localScale.x *= 2f;
-                // newObject.transform.localScale = localScale;
-                newObject.AddComponent<SpriteScaler>().Scale();
+                var spriteWidth = newSpriteRenderer.sprite.bounds.size.x;
+                var spriteHeight = newSpriteRenderer.sprite.bounds.size.y;
+                
+                var worldScreenHeight =  Camera.main.orthographicSize * 2f;
+                var worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
+                
+                var localScale =newObject.transform.localScale;
+                localScale.x = worldScreenWidth / spriteWidth;
+                localScale.y = worldScreenHeight / spriteHeight;
+                localScale.x *= 2f;
+                newObject.transform.localScale = localScale;
+                //newObject.AddComponent<SpriteScaler>().Scale();
                 
                 
             }
