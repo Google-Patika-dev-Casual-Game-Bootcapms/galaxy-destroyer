@@ -84,18 +84,18 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
                 BuildLevel("EarthParallax");
                 break;
             case 1:
-                BuildLevel("UranusParallax");
-                break;
-            case 2:
-                BuildLevel("MarsParallax");
-                break;
-            case 3:
-                BuildLevel("NeptuneParallax");
-                break;
-            case 4:
                 BuildLevel("MarsParallax"); // TODO Add Saturn
                 break;
-            default: 
+            case 2:
+                BuildLevel("NeptuneParallax");
+                break;
+            case 3:
+                BuildLevel("MarsParallax");
+                break;
+            case 4:
+                BuildLevel("UranusParallax");
+                break;
+            default:
                 BuildLevel("EarthParallax");
                 break;
         }
