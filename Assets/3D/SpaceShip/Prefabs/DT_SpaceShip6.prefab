@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3820117062467536757
+--- !u!1 &83370695483490163
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,36 +8,66 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4456086811821680822}
-  - component: {fileID: 8286384061999848801}
+  - component: {fileID: 6597992851549828287}
   m_Layer: 0
-  m_Name: YY_01
+  m_Name: joint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4456086811821680822
+--- !u!4 &6597992851549828287
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3820117062467536757}
+  m_GameObject: {fileID: 83370695483490163}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7190510537785124240}
+  m_Father: {fileID: 6884161969670610034}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &8286384061999848801
+--- !u!1 &353539109545569470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1810392461447717233}
+  - component: {fileID: 3761598118483064926}
+  m_Layer: 0
+  m_Name: DT_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1810392461447717233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353539109545569470}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6884161969670610034}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &3761598118483064926
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3820117062467536757}
+  m_GameObject: {fileID: 353539109545569470}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -50,7 +80,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6024607734026837268, guid: 2672dc2f20530bf43953910ef7c2abbf, type: 3}
+  - {fileID: 2100000, guid: 60299ec43db2da04396e4a960afbc1f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,16 +105,16 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 2147192535024961815, guid: 2672dc2f20530bf43953910ef7c2abbf, type: 3}
+  m_Mesh: {fileID: 5978261689554770986, guid: 20a7973127dd6334a9cbab14caca0692, type: 3}
   m_Bones:
-  - {fileID: 7480584949434371421}
+  - {fileID: 6597992851549828287}
   m_BlendShapeWeights: []
-  m_RootBone: {fileID: 7480584949434371421}
+  m_RootBone: {fileID: 6597992851549828287}
   m_AABB:
-    m_Center: {x: 0, y: 0.23732293, z: 0}
-    m_Extent: {x: 1.4581418, y: 0.63751715, z: 1.5601764}
+    m_Center: {x: 0, y: 0.00000011920929, z: 0}
+    m_Extent: {x: 1.7947335, y: 0.21429092, z: 1.5348811}
   m_DirtyAABB: 0
---- !u!1 &4424952515945203345
+--- !u!1 &6107624892600420040
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,69 +122,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7480584949434371421}
+  - component: {fileID: 6884161969670610034}
+  - component: {fileID: 6342138834631093452}
   m_Layer: 0
-  m_Name: joint1
+  m_Name: DT_SpaceShip6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7480584949434371421
+--- !u!4 &6884161969670610034
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4424952515945203345}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7190510537785124240}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7530585444679089962
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7190510537785124240}
-  - component: {fileID: 7224735058815051636}
-  m_Layer: 0
-  m_Name: YY_01_SpaceSip3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7190510537785124240
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530585444679089962}
+  m_GameObject: {fileID: 6107624892600420040}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -4.022, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7480584949434371421}
-  - {fileID: 4456086811821680822}
+  - {fileID: 1810392461447717233}
+  - {fileID: 6597992851549828287}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!95 &7224735058815051636
+--- !u!95 &6342138834631093452
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530585444679089962}
+  m_GameObject: {fileID: 6107624892600420040}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7e787da620585c242b6105f7aeb08c63, type: 2}

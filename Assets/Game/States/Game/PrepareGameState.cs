@@ -16,6 +16,7 @@ namespace SpaceShooterProject.State
         private UIComponent uiComponent;
         private ProvisionCanvas provisionCanvas;
         private AccountComponent accountComponent;
+        private GamePlayComponent gamePlayComponent;
         
 
         public PrepareGameState(ComponentContainer componentContainer)

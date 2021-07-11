@@ -3,6 +3,7 @@ namespace SpaceShooterProject.Component
     using UnityEngine;
     using Devkit.Base.Object;
     using Devkit.Base.Component;
+    using System;
 
     public class Player : MonoBehaviour, IUpdatable, IInitializable, IDestructible
     {
@@ -16,7 +17,9 @@ namespace SpaceShooterProject.Component
         //[SerializeField] private ObjectPooler ObjectPooler;
         [SerializeField] private float shipSpeed = 20f;
         [SerializeField] private int HP = 100;
-        [SerializeField] private SpriteRenderer shipSpriteRenderer;
+        [SerializeField] private Transform[] skinArray;
+        private int selectedSkin;
+
         private ComponentContainer componentContainer;
         private CurrencyComponent currencyComponent;
         public float fireRate = 1.0f;
@@ -27,6 +30,11 @@ namespace SpaceShooterProject.Component
 
         private float fireTime;
         private BulletCollector bulletCollector;
+
+        public void SetSelectedSkin(int skinIndex) 
+        {
+            selectedSkin = skinIndex;
+        }
 
         public void Init()
         {
@@ -61,12 +69,31 @@ namespace SpaceShooterProject.Component
 
         public void ShowShip()
         {
-            shipSpriteRenderer.enabled = true;
+            SetVisibilityOfChildren(false);
+            SetVisibilityOfSelectedSkin(true);
         }
 
         public void HideShip()
         {
-            shipSpriteRenderer.enabled = false;
+            SetVisibilityOfChildren(false);
+        }
+
+        private void SetVisibilityOfChildren(bool visibility) 
+        {
+            for (int skinIndex = 0; skinIndex < skinArray.Length; skinIndex++)
+            {
+                skinArray[skinIndex].gameObject.SetActive(visibility);
+            }
+        }
+
+        private void SetVisibilityOfSelectedSkin(bool visibility)
+        {
+            if (selectedSkin >= skinArray.Length) 
+            {
+                selectedSkin = 0;
+            }
+
+            skinArray[selectedSkin].gameObject.SetActive(visibility);
         }
 
         private void OnTriggerEnter2D(Collider2D collider)

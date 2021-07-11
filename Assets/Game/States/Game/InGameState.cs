@@ -42,9 +42,9 @@ namespace SpaceShooterProject.State
             currencyComponent.OnGoldChanged += OnGoldChanged;
             inGameCanvas.UpdateGoldCount(currencyComponent.GetOwnedGold());
             uiComponent.EnableCanvas(UIComponent.MenuName.IN_GAME);
-            gamePlayComponent.Player.ShowShip();
             gamePlayComponent.GameCamera.IsAvailable = true;
             gamePlayComponent.SendGameIsStartedMessage();
+            gamePlayComponent.Player.ShowShip();
             gamePlayComponent.TriggerSpawnEnemies();
 
             inGameCanvas.OnPauseButtonClick += OnPauseButtonClick;

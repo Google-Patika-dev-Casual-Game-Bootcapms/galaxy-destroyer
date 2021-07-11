@@ -23,12 +23,15 @@ namespace SpaceShooterProject.Component
         private EnemyFactory enemyFactory;
         private InGameMessageBroadcaster inGameMessageBroadcaster;
         private ComponentContainer componentContainer;
+        private AccountComponent accountComponent;
         private bool isGameOver;
 
         public void Initialize(ComponentContainer componentContainer)
         {
 			this.componentContainer = componentContainer;
-			
+
+            accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
+
             inGameMessageBroadcaster = new InGameMessageBroadcaster();
             inGameMessageBroadcaster.Initialize(componentContainer);
 			
@@ -58,6 +61,7 @@ namespace SpaceShooterProject.Component
 
         public void SendGameIsStartedMessage()
         {
+            player.SetSelectedSkin(accountComponent.GetSelectedSpaceShipId());
             isGameOver = false;
             enemyFactory.ResetSpawnLogic();
         }
