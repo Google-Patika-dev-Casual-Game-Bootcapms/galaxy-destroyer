@@ -18,6 +18,8 @@ namespace SpaceShooterProject.Component
 
         protected InGameMessageBroadcaster inGameMessageBroadcaster;
         protected EnemyType enemyType;
+        protected Transform enemyTransform;
+        protected IGameCamera gameCamera;
 
         public void Activate()
         {
@@ -64,6 +66,16 @@ namespace SpaceShooterProject.Component
             {
                 Death();
             }
+
+            CheckIsOutOfScreen();
+        }
+
+        private void CheckIsOutOfScreen()
+        {
+            if (enemyTransform.position.y < gameCamera.ViewportToWorldPoint(new Vector2(0, 0)).y && gameObject.activeSelf)
+            {
+                inGameMessageBroadcaster.TriggerEnemyOutOfScreen(this);
+            }
         }
 
         public void Deactivate()
@@ -73,6 +85,7 @@ namespace SpaceShooterProject.Component
 
         public void Init()
         {
+            enemyTransform = GetComponent<Transform>();
         }
 
         public void Initialize()
@@ -98,9 +111,20 @@ namespace SpaceShooterProject.Component
             this.inGameMessageBroadcaster = inGameMessageBroadcaster;
         }
 
+        public void InjectGameCameraReference(IGameCamera gameCamera) 
+        {
+            this.gameCamera = gameCamera;
+        }
+
         public EnemyType GetEnemyType() 
         {
             return enemyType;
+        }
+
+        internal void ResetEnemy()
+        {
+            ResetHealth();
+            gameObject.SetActive(false);
         }
 
         public void ResetHealth() 
