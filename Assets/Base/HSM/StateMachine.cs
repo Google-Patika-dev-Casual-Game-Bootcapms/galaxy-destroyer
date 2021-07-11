@@ -20,34 +20,34 @@ namespace Devkit.HSM
         protected abstract void OnUpdate();
         protected abstract void OnExit();
 
-        public void Enter() 
+        public void Enter()
         {
             OnEnter();
 
-            if (currentSubState == null && defaultSubState != null) 
+            if (currentSubState == null && defaultSubState != null)
             {
                 currentSubState = defaultSubState;
             }
 
-            if(currentSubState != null) 
+            if (currentSubState != null)
             {
                 currentSubState.Enter();
             }
-        } 
+        }
 
-        public void Update() 
+        public void Update()
         {
             OnUpdate();
 
-            if (currentSubState != null) 
+            if (currentSubState != null)
             {
                 currentSubState.Update();
             }
         }
 
-        public void Exit() 
+        public void Exit()
         {
-            if (currentSubState != null) 
+            if (currentSubState != null)
             {
                 currentSubState.Exit();
             }
@@ -55,9 +55,9 @@ namespace Devkit.HSM
             OnExit();
         }
 
-        public void AddTransition(StateMachine sourceStateMachine, StateMachine targetStateMachine, int trigger) 
+        public void AddTransition(StateMachine sourceStateMachine, StateMachine targetStateMachine, int trigger)
         {
-            if (sourceStateMachine.transitions.ContainsKey(trigger)) 
+            if (sourceStateMachine.transitions.ContainsKey(trigger))
             {
                 Debug.LogWarning("Duplicated transition! : " + trigger);
                 return;
@@ -75,7 +75,7 @@ namespace Devkit.HSM
 
             subState.parent = this;
 
-            if (subStates.ContainsKey(subState.GetType())) 
+            if (subStates.ContainsKey(subState.GetType()))
             {
                 Debug.LogWarning("Duplicated sub state : " + subState.GetType());
                 return;
@@ -107,14 +107,19 @@ namespace Devkit.HSM
 
         private void ChangeSubState(StateMachine state)
         {
-            if (currentSubState != null) 
+            if (currentSubState != null)
             {
                 currentSubState.Exit();
             }
-            
+
             var nextState = subStates[state.GetType()];
             currentSubState = nextState;
             nextState.Enter();
+        }
+
+        public void SetDefaultState() 
+        {
+            ChangeSubState(defaultSubState);
         }
 
     }
