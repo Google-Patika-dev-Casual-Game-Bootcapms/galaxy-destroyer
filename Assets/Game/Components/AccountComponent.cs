@@ -69,7 +69,7 @@ namespace SpaceShooterProject.Component
                 InitializeForFirstTime();
             }
 
-            InitializeSpaceShipUpgradeData();
+            //InitializeSpaceShipUpgradeData(); 
 
             //Debug.Log("Name:" + GetPlayerName());
 
@@ -114,7 +114,16 @@ namespace SpaceShooterProject.Component
                 accountData.SuperPowerItemCounts[i] = 0;
             }
         }
-        
+
+        public void SetSelectedPlanetId(int selectedPlanetId)
+        {
+            accountData.SelectedPlanetId = selectedPlanetId;
+        }
+
+        public int GetSelectedPlanetId() 
+        {
+            return accountData.SelectedPlanetId;
+        }
 
         public void SaveBeforeClosing(){
             // TODO: Activate below when corresponding methods are created.
@@ -307,6 +316,7 @@ namespace SpaceShooterProject.Component
         public int OwnedGold;// Currency Component
         public int OwnedDiamond;// Currency Component
         public int[] CopilotSetting;// Copilot Component
+        public int SelectedPlanetId;
     }
 
     [Serializable]

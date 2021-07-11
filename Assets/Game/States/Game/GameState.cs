@@ -54,6 +54,7 @@ namespace SpaceShooterProject.State
         protected override void OnExit()
         {
             inGameCanvas.OnReturnToMainMenu -= ReturnToMainMenu;
+            SetDefaultState();
         }
 
         protected override void OnUpdate()

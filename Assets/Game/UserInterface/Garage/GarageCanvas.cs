@@ -6,12 +6,16 @@ namespace SpaceShooterProject.UserInterface
     using SpaceShooterProject.Component;
     using TMPro;
     using Devkit.Base.Component;
+    using SpaceShooterProject.Data;
 
     public class GarageCanvas : BaseCanvas
     {
         public delegate void RequestUpdateDelegate(UpgradablePartType upgradablePartType);
         public event RequestUpdateDelegate OnPartUpgradeRequest;
-      
+
+        public delegate void GarageChangeSpaceShipDelegate(bool isNextShip);
+        public event GarageChangeSpaceShipDelegate OnRequestSpaceShipChange;
+
         [SerializeField] private GarageUIHexagonUpgrader shieldUpgradeInfo;
         [SerializeField] private GarageUIHexagonUpgrader laserUpgradeInfo;
         [SerializeField] private GarageUIHexagonUpgrader megabombUpgradeInfo;
@@ -23,6 +27,7 @@ namespace SpaceShooterProject.UserInterface
         [SerializeField] private GarageUIHexagonUpgrader fireRateUpgradeInfo;
         [SerializeField] private GarageUIHexagonUpgrader speedUpgradeInfo;
 
+        [SerializeField] private SpaceShipContainer spaceShipContainer;
 
         [SerializeField]
         private TextMeshProUGUI currentCurrencyContainer;
@@ -30,9 +35,14 @@ namespace SpaceShooterProject.UserInterface
         [SerializeField] 
         private RectTransform backgroundImage;
 
+        [SerializeField]
+        private Image spaceShipImage;
+        [SerializeField]
+        private Image spaceShipCodeImage;
+
         private UpgradeComponent upgradeComponent;
 
-        private Vector2 GetCanvasSize()
+       /* private Vector2 GetCanvasSize()
         {
             Vector2 screenSize = new Vector2(Screen.width, Screen.height);
             CanvasScaler canvasScaler = GetComponent<CanvasScaler>();
@@ -48,7 +58,7 @@ namespace SpaceShooterProject.UserInterface
 
             return new Vector2(screenSize.x / scaleFactor, screenSize.y / scaleFactor);
 
-        }
+        }*/
 
         protected override void Init()
         {
@@ -81,6 +91,20 @@ namespace SpaceShooterProject.UserInterface
                     break;
             }
             
+        }
+
+        public void OnRequestSpaceShipCahngeButtonClick(bool isNextShip)
+        {
+            if(OnRequestSpaceShipChange != null)
+            {
+                OnRequestSpaceShipChange(isNextShip);
+            }
+        }
+        public void OnSpaceShipChangeSucces(int shipID)
+        {
+            spaceShipImage.sprite = spaceShipContainer.GetSpaceShipImage(shipID);
+            spaceShipCodeImage.sprite = spaceShipContainer.GetSpaceShipCodeImage(shipID);
+            //spaceShipNameText.text = spaceShipContainer.GetSpaceShipName(shipID);
         }
 
         public void OnPartUpgradeButtonClick(int upgradablePartType)
@@ -130,7 +154,7 @@ namespace SpaceShooterProject.UserInterface
 
         }
 
-        public void UpdateUI(SpaceShipUpgradeData spaceShipUpgradeData, int ownedGold) 
+        public void UpdateUI(SpaceShipUpgradeData spaceShipUpgradeData, int ownedGold,int spaceShipID) 
         {
             //TODO update UI
             shieldUpgradeInfo.UpdateMinorAndMajorLevels(spaceShipUpgradeData.PartLevels[(int)UpgradablePartType.SHIELD]);
@@ -174,6 +198,8 @@ namespace SpaceShooterProject.UserInterface
             speedUpgradeInfo.UpdateCost(upgradeComponent.CalculatePartUpgradePrice(UpgradablePartType.SPEED));
 
             currentCurrencyContainer.text = ownedGold.ToString();
+            spaceShipImage.sprite = spaceShipContainer.GetSpaceShipImage(spaceShipID);
+            spaceShipCodeImage.sprite = spaceShipContainer.GetSpaceShipCodeImage(spaceShipID);
 
         }
 

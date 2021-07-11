@@ -9,6 +9,9 @@ namespace SpaceShooterProject.Data
 
         [SerializeField] private Sprite[] spaceShipImageArray;
 
+        [SerializeField] private Sprite[] spaceShipCodeImageArray;
+
+
         public string GetSpaceShipName(int spaceShipId) 
         {
             if (spaceShipId < -1) 
@@ -38,6 +41,21 @@ namespace SpaceShooterProject.Data
 
             return spaceShipImageArray[spaceShipId];
         }
+
+        public Sprite GetSpaceShipCodeImage(int spaceShipId)
+        {
+            if (spaceShipId < -1)
+            {
+                return null;
+            }
+
+            if (spaceShipId > spaceShipNameArray.Length - 1)
+            {
+                return null;
+            }
+            return spaceShipCodeImageArray[spaceShipId];
+        }
+        
     }
 }
 
