@@ -22,8 +22,12 @@ namespace Game.UserInterface.Background
 
             var worldScreenHeight = Camera.main.orthographicSize * 2f;
             var worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
-            
-            
+
+
+            var localPos = transform.localPosition;
+            localPos.x = -Screen.width / 2f;
+            localPos.y = -Screen.height / 2f;
+            transform.localPosition = localPos;
             
             var localScale = transform.localScale;
             localScale.x = worldScreenWidth / spriteWidth;
@@ -31,11 +35,6 @@ namespace Game.UserInterface.Background
             //localScale.x *= 2f;
             transform.localScale = localScale;
 
-
-            var localPos =transform.localPosition;
-            localPos.z -= 200;
-            transform.localPosition = localPos;
-            
         }
         
         
