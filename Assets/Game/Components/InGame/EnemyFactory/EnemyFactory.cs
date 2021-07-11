@@ -71,8 +71,8 @@
 
             waveData1 = new WaveData();
 
-            waveData1.waveInfo[0] = 0;
-            waveData1.waveInfo[1] = 0;// 5
+            waveData1.waveInfo[0] = 6;// 6
+            waveData1.waveInfo[1] = 5;// 5
             waveData1.waveInfo[2] = 4;// 4;
             waveData1.waveInfo[3] = 0;// 5;
 
