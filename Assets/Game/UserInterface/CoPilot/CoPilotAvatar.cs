@@ -7,7 +7,7 @@ namespace SpaceShooterProject.UserInterface
     using UnityEngine;
     using UnityEngine.UI;
 
-    public class CoPilotAvatar : MonoBehaviour, ICanvasElement, IInitializable
+    public class CoPilotAvatar : MonoBehaviour, IInitializable
     {
         [SerializeField]
         private Image coPilotAvatarImage;

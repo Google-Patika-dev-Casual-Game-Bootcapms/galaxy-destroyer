@@ -26,15 +26,20 @@ namespace SpaceShooterProject.UserInterface
 
         protected override void Init()
         {
-            coPilotAvatarList[0].Activate();
-            coPilotAvatarList[1].Deactivate();
-            coPilotAvatarList[2].Deactivate();
-            coPilotAvatarList[3].Deactivate();
-            coPilotAvatarList[4].Deactivate();
-            
+            ActivateCoPilot(0);
             coPilotNameContainer.text = "Success!!!";
         }
-        
+
+        private void ActivateCoPilot(int selectedCoPilotIndex)
+        {
+            for (int coPilotIndex = 0; coPilotIndex < coPilotAvatarList.Length; coPilotIndex++)
+            {
+                coPilotAvatarList[coPilotIndex].Deactivate();
+            }
+
+            coPilotAvatarList[selectedCoPilotIndex].Activate();
+        }
+
         public void SetCurrentCoPilotData(/*CoPilotData data*/) //TODO Pass co pilot data into this method!!!
         {
             
