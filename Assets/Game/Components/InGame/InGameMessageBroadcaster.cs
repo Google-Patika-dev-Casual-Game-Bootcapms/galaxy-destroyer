@@ -9,45 +9,77 @@ namespace SpaceShooterProject.Component
     public class InGameMessageBroadcaster : IComponent
     {
         public delegate void EnemyDestroyedDelegate(Enemy enemy);
+        public delegate void EnemyOutOfScreenDelegate(Enemy enemy);
 
         private event EnemyDestroyedDelegate onEnemyDestroyed;
+        private event EnemyOutOfScreenDelegate onEnemyOutOfScreen;
 
-        private List<EnemyDestroyedDelegate> delegates;
+        private List<EnemyDestroyedDelegate> enemyDestroyDelegates;
+        private List<EnemyOutOfScreenDelegate> enemyOutOfScreenDelegates;
 
         public event EnemyDestroyedDelegate OnEnemyDestroyed
         {
-            add 
+            add
             {
                 onEnemyDestroyed += value;
-                delegates.Add(value);
+                enemyDestroyDelegates.Add(value);
             }
-            remove 
+            remove
             {
                 onEnemyDestroyed -= value;
-                delegates.Remove(value);
+                enemyDestroyDelegates.Remove(value);
             }
         }
 
-        public void RemoveAllEvents() 
+        public event EnemyOutOfScreenDelegate OnEnemyOutOfScreen
         {
-            foreach (var item in delegates)
+            add
             {
-                onEnemyDestroyed -= item;
+                onEnemyOutOfScreen += value;
+                enemyOutOfScreenDelegates.Add(value);
+            }
+            remove
+            {
+                onEnemyOutOfScreen -= value;
+                enemyOutOfScreenDelegates.Remove(value);
+            }
+        }
+
+        public void RemoveAllEvents()
+        {
+            foreach (var enemyDestroyEvent in enemyDestroyDelegates)
+            {
+                onEnemyDestroyed -= enemyDestroyEvent;
             }
 
-            delegates.Clear();
+            foreach (var enemyOutOfScreenDelegate in enemyOutOfScreenDelegates)
+            {
+                onEnemyOutOfScreen -= enemyOutOfScreenDelegate;
+            }
+
+            enemyDestroyDelegates.Clear();
+            enemyOutOfScreenDelegates.Clear();
         }
 
         public void Initialize(ComponentContainer componentContainer)
         {
-            delegates = new List<EnemyDestroyedDelegate>();
+            enemyDestroyDelegates = new List<EnemyDestroyedDelegate>();
+            enemyOutOfScreenDelegates = new List<EnemyOutOfScreenDelegate>();
         }
 
         public void TriggerEnemyDeath(Enemy enemy)
         {
-            if (onEnemyDestroyed != null) 
+            if (onEnemyDestroyed != null)
             {
                 onEnemyDestroyed(enemy);
+            }
+        }
+
+        public void TriggerEnemyOutOfScreen(Enemy enemy) 
+        {
+            if (onEnemyOutOfScreen != null) 
+            {
+                onEnemyOutOfScreen(enemy);
             }
         }
     }
