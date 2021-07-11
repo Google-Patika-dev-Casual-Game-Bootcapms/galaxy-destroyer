@@ -32,6 +32,7 @@ namespace SpaceShooterProject.State
             garageCanvas.OnReturnToMainMenu += OnReturnToMainMenu;
             garageCanvas.OnPartUpgradeRequest += OnPartUpgradeRequest;
             upgradeComponent.OnUpgradeProcessCompleted += OnUpgradeProcessCompleted;
+            garageCanvas.OnRequestSpaceShipChange += RequestShipChange;
         }
             
 
@@ -44,6 +45,40 @@ namespace SpaceShooterProject.State
         {
             garageCanvas.OnUpgradeProcessCompleted(upgradeProcessData,currencyComponent.GetOwnedGold());
         }
+        private void RequestShipChange(bool isNextShip)
+        {
+            var maxSpaceshipCount = accountComponent.GetMaxSpaceshipCount();
+            var currentSelectedShip = accountComponent.GetSelectedSpaceShipId();
+            if (isNextShip)
+            {
+                if (currentSelectedShip == maxSpaceshipCount -1)
+                {
+                    accountComponent.SetSelectedSpaceShipId(0);
+                }
+                else
+                {
+                    currentSelectedShip++;
+                    accountComponent.SetSelectedSpaceShipId(currentSelectedShip);
+                }
+            }
+
+            // if user selected previous ship
+            else
+            {
+                if (currentSelectedShip == 0)//TODO : Refactor if state
+                {
+                    accountComponent.SetSelectedSpaceShipId(maxSpaceshipCount -1);
+                }
+                else
+                {
+                    currentSelectedShip--;
+                    accountComponent.SetSelectedSpaceShipId(currentSelectedShip);
+                }
+            }
+
+            //var accountshipID = accountComponent.GetSelectedSpaceShipId();
+            garageCanvas.OnSpaceShipChangeSucces(accountComponent.GetSelectedSpaceShipId());
+        }
 
         private void OnReturnToMainMenu()
         {
@@ -55,11 +90,12 @@ namespace SpaceShooterProject.State
             garageCanvas.OnReturnToMainMenu -= OnReturnToMainMenu;
             garageCanvas.OnPartUpgradeRequest -= OnPartUpgradeRequest;
             upgradeComponent.OnUpgradeProcessCompleted -= OnUpgradeProcessCompleted;
+            garageCanvas.OnRequestSpaceShipChange -= RequestShipChange;
         }
 
         protected override void OnUpdate()
         {
-            garageCanvas.UpdateUI(accountComponent.GetCurrentSpaceShipUpgradePartData(), currencyComponent.GetOwnedGold());//TODO : Refactor
+            garageCanvas.UpdateUI(accountComponent.GetCurrentSpaceShipUpgradePartData(), currencyComponent.GetOwnedGold(),accountComponent.GetSelectedSpaceShipId());//TODO : Refactor
         }
     
     }

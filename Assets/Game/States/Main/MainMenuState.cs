@@ -12,9 +12,11 @@ namespace SpaceShooterProject.State
     {
         private UIComponent uiComponent;
         private MainMenuCanvas mainMenuCanvas;
+        private AccountComponent accountComponent;
 
         public MainMenuState(ComponentContainer componentContainer)
         {
+            accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
             mainMenuCanvas = uiComponent.GetCanvas(UIComponent.MenuName.MAIN_MENU) as MainMenuCanvas;
         }
@@ -32,10 +34,27 @@ namespace SpaceShooterProject.State
             mainMenuCanvas.OnCreditsMenuRequest += OnCreditsMenuRequest;
             mainMenuCanvas.OnQuoteMenuRequest += OnQuoteMenuRequest;
 
-            mainMenuCanvas.OnNextPlanetButtonRequest += mainMenuCanvas.PlanetUIController.NextPlanet;
-            mainMenuCanvas.OnPreviousPlanetButtonRequest += mainMenuCanvas.PlanetUIController.PreviousPlanet;
-            mainMenuCanvas.PlanetUIController.SubscribeAllPlanetAnimationCompletionEvents();
+            mainMenuCanvas.OnNextPlanetButtonRequest += OnNextPlanetButtonRequest;
+            mainMenuCanvas.OnPreviousPlanetButtonRequest += OnPreviousPlanetButtonRequest;
+
+            mainMenuCanvas.RegisterUIEvents();
+
+            mainMenuCanvas.UpdateCurrentSelectedPlanetUI(accountComponent.GetSelectedPlanetId());
             Debug.Log("MainMenuState OnEnter");
+        }
+
+        private void OnPreviousPlanetButtonRequest()
+        {
+
+            mainMenuCanvas.ShowNextPlanet();
+            accountComponent.SetSelectedPlanetId(mainMenuCanvas.GetCurrentSelectedPlanetId());
+            
+        }
+
+        private void OnNextPlanetButtonRequest()
+        {
+            mainMenuCanvas.ShowPreviosPlanet();
+            accountComponent.SetSelectedPlanetId(mainMenuCanvas.GetCurrentSelectedPlanetId());
         }
 
         private void OnCreditsMenuRequest()
@@ -93,10 +112,10 @@ namespace SpaceShooterProject.State
             mainMenuCanvas.OnCreditsMenuRequest -= OnCreditsMenuRequest;
             mainMenuCanvas.OnQuoteMenuRequest -= OnQuoteMenuRequest;
 
-            mainMenuCanvas.OnNextPlanetButtonRequest -= mainMenuCanvas.PlanetUIController.NextPlanet;
-            mainMenuCanvas.OnPreviousPlanetButtonRequest -= mainMenuCanvas.PlanetUIController.PreviousPlanet;
-            mainMenuCanvas.PlanetUIController.UnSubscribeAllPlanetAnimationCompletionEvents();
-            mainMenuCanvas.PlanetUIController.CompleteAllPlanetAnimations();
+            mainMenuCanvas.OnNextPlanetButtonRequest -= OnNextPlanetButtonRequest;
+            mainMenuCanvas.OnPreviousPlanetButtonRequest -= OnPreviousPlanetButtonRequest;
+            mainMenuCanvas.UnRegisterFromUIEvents();
+            mainMenuCanvas.CompleteAllUIAnimations();
 
             Debug.Log("MainMenuState OnExit");
         }

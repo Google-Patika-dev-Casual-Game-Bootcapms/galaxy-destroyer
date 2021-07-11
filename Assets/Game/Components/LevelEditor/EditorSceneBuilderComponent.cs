@@ -64,24 +64,21 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
     [SerializeField] private GameObject stackedRock;
     [SerializeField] private GameObject lightHouse;
     [SerializeField] private GameObject lightHouseWithRocks;
+    [SerializeField] private GameObject earthParallax;
+    
     #endregion
 
     public void Initialize(ComponentContainer componentContainer)
-    {
-        if (MyComponent == null) {
-            MyComponent = componentContainer;
-            DontDestroyOnLoad (gameObject);
-        }
-        else if (MyComponent != componentContainer)
-            Destroy (gameObject);
+    {       
+        MyComponent = componentContainer;
     }
     
-    public void BuildLevel(string levelNumber)
+    public void BuildLevel(string levelName)
     {
-        var data = Resources.Load(levelNumber) as TextAsset;
+        var data = Resources.Load(levelName) as TextAsset;
         if (data is null)
         {
-            Debug.LogWarning( "File named "+levelNumber+" not found in Resources File");
+            Debug.LogWarning( "File named "+levelName+" not found in Resources File");
             return;
         }
         var levelData = JsonUtility.FromJson<LevelData>(data.text);
@@ -124,6 +121,7 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
             EGameObjectType.neptuneParallax => Instantiate(neptuneParallax),
             EGameObjectType.uranusParallax => Instantiate(uranusParallax),
             EGameObjectType.saturnParallax => Instantiate(saturnParallax),
+            EGameObjectType.earthParallax => Instantiate(earthParallax),
             EGameObjectType.flyEnemyNPC => Instantiate(flyEnemyNPC),
             EGameObjectType.stableEnemyNPC => Instantiate(stableEnemyNPC),
             EGameObjectType.nonFlyEnemyNPC => Instantiate(nonFlyEnemyNPC),
@@ -256,5 +254,6 @@ public enum EGameObjectType
     stackedRock,
     lightHouse,
     lightHouseWithRocks,
-    backupTerrain
+    backupTerrain,
+    earthParallax
 }

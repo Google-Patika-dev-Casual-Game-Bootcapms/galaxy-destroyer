@@ -37,7 +37,6 @@ namespace SpaceShooterProject.State
             creditsState = new CreditsState(componentContainer);
 
             this.AddSubState(mainMenuState);            
-            this.AddSubState(quoteState);
             this.AddSubState(marketState);
             this.AddSubState(spaceShipSelectionState);
             this.AddSubState(spaceShipUpgradeState);
@@ -48,6 +47,7 @@ namespace SpaceShooterProject.State
             this.AddSubState(selectedSpaceshipState);
             this.AddSubState(coPilotSelectionState);
             this.AddSubState(creditsState);
+            this.AddSubState(quoteState);
 
             SetupMarketTransitions();
             SetupQuoteTransitions();
@@ -69,6 +69,7 @@ namespace SpaceShooterProject.State
         private void SetupQuoteTransitions()
         {
             this.AddTransition(mainMenuState, quoteState, (int)StateTriggers.GO_TO_QUOTE_REQUEST);
+            this.AddTransition(quoteState, mainMenuState, (int)StateTriggers.PLAY_GAME_REQUEST);
         }
 
         private void SetupAchievementsTransitions()
@@ -120,6 +121,7 @@ namespace SpaceShooterProject.State
         protected override void OnEnter()
         {
             Debug.Log("MainState OnEnter");
+            SetDefaultState();
         }
 
         protected override void OnExit()

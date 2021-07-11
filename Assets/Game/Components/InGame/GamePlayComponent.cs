@@ -10,7 +10,9 @@ namespace SpaceShooterProject.Component
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
         public delegate void GameOverDelegate();
+        public delegate void LevelCompletedDelegate();
         public event GameOverDelegate OnGameOver;
+        public event LevelCompletedDelegate OnLevelCompleted;
 
         [SerializeField] private Player player;
         [SerializeField] private GameObject playerPrefab;
@@ -21,6 +23,7 @@ namespace SpaceShooterProject.Component
         private EnemyFactory enemyFactory;
         private InGameMessageBroadcaster inGameMessageBroadcaster;
         private ComponentContainer componentContainer;
+        private bool isGameOver;
 
         public void Initialize(ComponentContainer componentContainer)
         {
@@ -48,9 +51,20 @@ namespace SpaceShooterProject.Component
             player.InjectBulletCollector(bulletCollector);
 
             enemyFactory = new EnemyFactory(inGameMessageBroadcaster);
-            enemyFactory.Init();
+            enemyFactory.Init(componentContainer);
 
             player.OnPlayerDown += FinishGame;
+        }
+
+        public void SendGameIsStartedMessage()
+        {
+            isGameOver = false;
+            enemyFactory.ResetSpawnLogic();
+        }
+
+        public void TriggerSpawnEnemies()
+        {
+            enemyFactory.SpawnNextEnemyWave();
         }
 
         private void InitializeWeaponUpgradeComponent(ComponentContainer componentContainer)
@@ -66,11 +80,17 @@ namespace SpaceShooterProject.Component
             player.CallUpdate();
             bulletCollector.UpdateBullets();
             enemyFactory.CallUpdate();
+        }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                enemyFactory.SpawnEnemies();
-            }
+        public bool GetLastGameResult()
+        {
+            //TODO: configure
+            return true;
+        }
+
+        public bool IsGameOver()
+        {
+            return isGameOver;
         }
 
         private void LateUpdate()
@@ -103,11 +123,20 @@ namespace SpaceShooterProject.Component
             inputSystem.OnDestruct();
             bulletCollector.OnDestruct();
             enemyFactory.OnDestruct();
+            isGameOver = true;
             //inGameMessageBroadcaster.RemoveAllEvents();//TODO: research!!!
 
             if (OnGameOver != null) 
             {
                 OnGameOver();
+            }
+        }
+
+        public void TriggerLevelCompleted() 
+        {
+            if (OnLevelCompleted != null) 
+            {
+                OnLevelCompleted();
             }
         }
 

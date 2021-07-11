@@ -20,12 +20,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BlueTex:
-        m_Texture: {fileID: 2800000, guid: 50df091e8c858084e8257570e5fbf73c, type: 3}
-        m_Scale: {x: 2, y: 2}
+        m_Texture: {fileID: 2800000, guid: 894ef30d9f0fa8e4793a2eb82ecf6321, type: 3}
+        m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - _GreenTex:
         m_Texture: {fileID: 2800000, guid: 894ef30d9f0fa8e4793a2eb82ecf6321, type: 3}
-        m_Scale: {x: 2, y: 2}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _RedTex:
         m_Texture: {fileID: 2800000, guid: 894ef30d9f0fa8e4793a2eb82ecf6321, type: 3}
@@ -35,5 +35,5 @@ Material:
     - _Glossiness: 0
     - _Metallic: 0
     m_Colors:
-    - _Color: {r: 0.6415094, g: 0.62133616, b: 0.62133616, a: 1}
+    - _Color: {r: 0.764151, g: 0.60921663, b: 0.45176217, a: 1}
   m_BuildTextureStacks: []
