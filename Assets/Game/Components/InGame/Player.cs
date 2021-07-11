@@ -16,6 +16,11 @@ namespace SpaceShooterProject.Component
         //[SerializeField] private ObjectPooler ObjectPooler;
         [SerializeField] private float shipSpeed = 20f;
         [SerializeField] private int HP = 100;
+
+        [SerializeField]
+        private GameObject[] skinArray;
+        private int selectedSkin;
+        
         [SerializeField] private SpriteRenderer shipSpriteRenderer;
         private ComponentContainer componentContainer;
         private CurrencyComponent currencyComponent;
@@ -28,6 +33,11 @@ namespace SpaceShooterProject.Component
         private float fireTime;
         private BulletCollector bulletCollector;
 
+        public void SetSelectedSkin(int skinIndex)
+        {
+            selectedSkin = skinIndex;
+        }
+        
         public void Init()
         {
             HideShip();
@@ -61,14 +71,33 @@ namespace SpaceShooterProject.Component
 
         public void ShowShip()
         {
-            shipSpriteRenderer.enabled = true;
+            SetVisibilityOfChildren(false);
+            SetVisibilityOfSelectedSkin(true);
         }
 
         public void HideShip()
         {
-            shipSpriteRenderer.enabled = false;
+            SetVisibilityOfChildren(false);
         }
 
+        private void SetVisibilityOfChildren(bool visibility) 
+        {
+            for (int skinIndex = 0; skinIndex < skinArray.Length; skinIndex++)
+            {
+                skinArray[skinIndex].SetActive(visibility);
+            }
+        }
+
+        private void SetVisibilityOfSelectedSkin(bool visibility)
+        {
+            if (selectedSkin >= skinArray.Length) 
+            {
+                selectedSkin = 0;
+            }
+
+            skinArray[selectedSkin].SetActive(visibility);
+        }
+        
         private void OnTriggerEnter2D(Collider2D collider)
         {
             if (collider.gameObject.CompareTag("Coin"))
