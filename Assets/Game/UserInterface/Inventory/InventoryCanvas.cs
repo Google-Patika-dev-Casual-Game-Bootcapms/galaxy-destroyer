@@ -216,29 +216,23 @@ namespace SpaceShooterProject.UserInterface
         {
             int permanentCardCount = cardComponent.GetPermanentCardCount();
 
-            if (inventoryComponent.GetOwnedPermanentCards().Count != 0)
+            foreach (int index in inventoryComponent.GetOwnedPermanentCards())
             {
-                foreach (int index in inventoryComponent.GetOwnedPermanentCards())
-                {
-                    bool isKeyExist = activatableCards.ContainsKey(index);
+                bool isKeyExist = activatableCards.ContainsKey(index);
 
-                    if (!isKeyExist)
-                    {
-                        activatableCards.Add(index, false);
-                    }
+                if (!isKeyExist)
+                {
+                    activatableCards.Add(index, false);
                 }
             }
 
-            if (inventoryComponent.GetOwnedTemporalCards().Count != 0)
+            foreach (int index in inventoryComponent.GetOwnedTemporalCards())
             {
-                foreach (int index in inventoryComponent.GetOwnedTemporalCards())
-                {
-                    bool isKeyExist = activatableCards.ContainsKey(index + permanentCardCount);
+                bool isKeyExist = activatableCards.ContainsKey(index + permanentCardCount);
 
-                    if (!isKeyExist)
-                    {
-                        activatableCards.Add(index + permanentCardCount, false);
-                    }
+                if (!isKeyExist)
+                {
+                    activatableCards.Add(index + permanentCardCount, false);
                 }
             }
         }
