@@ -144,7 +144,16 @@ namespace SpaceShooterProject.Component
             return File.Exists(accountDataPath);
         }
 
-#region Getter Methods for Account Data
+        public void SetSelectedPlanetId(int selectedPlanetId)
+        {
+            accountData.SelectedPlanetId = selectedPlanetId;
+        }
+
+        public int GetSelectedPlanetId()
+        {
+            return accountData.SelectedPlanetId;
+        }
+
         public string GetPlayerName() {
             return accountData.Name;
         }
@@ -282,10 +291,8 @@ namespace SpaceShooterProject.Component
         {
             SaveBeforeClosing();
         }
-
-        #endregion
     }
-#region Account Data Struct
+
     [Serializable]
     public struct AccountData 
     {
@@ -307,6 +314,7 @@ namespace SpaceShooterProject.Component
         public int OwnedGold;// Currency Component
         public int OwnedDiamond;// Currency Component
         public int[] CopilotSetting;// Copilot Component
+        public int SelectedPlanetId;
     }
 
     [Serializable]
@@ -315,7 +323,6 @@ namespace SpaceShooterProject.Component
         public int[] PartLevels;
     }
 
-#endregion
 
 }
 
