@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Coin
   - FriendlyBullet
+  - Enemy
+  - Environment
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Player
   - Enemy
   - Collectable
-  - 
+  - Environment
   - 
   - 
   - 

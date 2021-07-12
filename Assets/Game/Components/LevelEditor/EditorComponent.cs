@@ -176,9 +176,9 @@ public class EditorComponent : EditorWindow
     private void LoadScene(LevelData levelData)
     {
         ClearScene();
-        Camera.main.transform.position = levelData.Position;
-        Camera.main.transform.eulerAngles = levelData.Rotation;
-        Camera.main.fieldOfView = levelData.FieldofView;
+        //Camera.main.transform.position = levelData.Position;
+        //Camera.main.transform.eulerAngles = levelData.Rotation;
+        //Camera.main.fieldOfView = levelData.FieldofView;
 
         foreach (var levelItem in levelData.LevelCharacters)
         {

@@ -6,8 +6,8 @@ using System;
 public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
 {
     private ComponentContainer MyComponent;
-    #region Variables
-        [SerializeField] private GameObject flyEnemyNPC;
+    [SerializeField] private GameObject[] terrains;//TODO: delete this work-around!!!
+    [SerializeField] private GameObject flyEnemyNPC;
     [SerializeField] private GameObject stableEnemyNPC;
     [SerializeField] private GameObject nonFlyEnemyNPC;
     [SerializeField] private GameObject levelEndMonster;
@@ -65,12 +65,30 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
     [SerializeField] private GameObject lightHouse;
     [SerializeField] private GameObject lightHouseWithRocks;
     [SerializeField] private GameObject earthParallax;
-    
-    #endregion
 
     public void Initialize(ComponentContainer componentContainer)
     {       
         MyComponent = componentContainer;
+    }
+
+    public void ShowLevel(int levelIndex) 
+    {
+        if (levelIndex < 0) 
+        {
+            levelIndex = 0;
+        }
+
+        if (levelIndex >= terrains.Length) 
+        {
+            levelIndex = 0;
+        }
+
+        for (int terrainIndex = 0; terrainIndex < terrains.Length; terrainIndex++)
+        {
+            terrains[terrainIndex].SetActive(false);
+        }
+
+        terrains[levelIndex].SetActive(true);
     }
     
     public void BuildLevel(string levelName)
@@ -87,9 +105,9 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
     private void LoadScene(LevelData levelData)
     {
         ClearScene();
-        Camera.main.transform.position = levelData.Position;
-        Camera.main.transform.eulerAngles = levelData.Rotation;
-        Camera.main.fieldOfView = levelData.FieldofView;
+        //Camera.main.transform.position = levelData.Position;
+        //Camera.main.transform.eulerAngles = levelData.Rotation;
+        //Camera.main.fieldOfView = levelData.FieldofView;
 
         foreach (var levelItem in levelData.LevelCharacters)
         {

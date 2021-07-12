@@ -24,6 +24,7 @@ namespace SpaceShooterProject.Component
         private InGameMessageBroadcaster inGameMessageBroadcaster;
         private ComponentContainer componentContainer;
         private AccountComponent accountComponent;
+        private EditorSceneBuilderComponent editorSceneBuilderComponent;
         private bool isGameOver;
 
         public void Initialize(ComponentContainer componentContainer)
@@ -31,6 +32,7 @@ namespace SpaceShooterProject.Component
 			this.componentContainer = componentContainer;
 
             accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
+            editorSceneBuilderComponent = componentContainer.GetComponent("EditorSceneBuilderComponent") as EditorSceneBuilderComponent;
 
             inGameMessageBroadcaster = new InGameMessageBroadcaster();
             inGameMessageBroadcaster.Initialize(componentContainer);
