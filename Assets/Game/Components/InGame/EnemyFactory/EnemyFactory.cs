@@ -63,17 +63,7 @@
             inGameMessageBroadcaster.OnEnemyDestroyed += OnEnemyDestroyed;
             inGameMessageBroadcaster.OnEnemyOutOfScreen += OnEnemyOutOfScreen;
 
-            waveData1 = new WaveData();
-
-            waveData1.waveInfo[0] = 3;
-            waveData1.waveInfo[1] = 5;
-            waveData1.waveInfo[2] = 4;
-            waveData1.waveInfo[3] = 5;
-            waveData1.waveInfo[4] = 6;
-
-            levelWaveData = new LevelWaveData(1);
-
-            levelWaveData.SetLevelWaveData(0, waveData1);
+            CreateWaveData();
 
             roadTrackerPool = new Pool<RoadTracker>(ROADTRACKER_OBJECT_PATH);
             roadTrackerPool.PopulatePool(5);
@@ -90,6 +80,24 @@
             heliA17Pool = new Pool<HeliA17>(HELIA17_OBJECT_PATH);
             heliA17Pool.PopulatePool(5);
 
+        }
+
+        private void CreateWaveData()
+        {
+            levelWaveData = new LevelWaveData(10);
+
+            for (int i = 0; i < 10; i++)
+            {
+                var waveData = new WaveData();
+                waveData.waveInfo[0] = UnityEngine.Random.Range(1, 3);
+                waveData.waveInfo[1] = UnityEngine.Random.Range(1, 3);
+                waveData.waveInfo[2] = UnityEngine.Random.Range(1, 3);
+                waveData.waveInfo[3] = UnityEngine.Random.Range(1, 3);
+                waveData.waveInfo[4] = UnityEngine.Random.Range(1, 3);
+
+                levelWaveData.SetLevelWaveData(i, waveData);
+            }
+            
         }
 
         private void OnEnemyOutOfScreen(Enemy enemy)
@@ -202,7 +210,7 @@
 
             for (int i = 0; i < (int)EnemyType.COUNT; i++)
             {
-                spawnEnemyPosition = new Vector2(-width * 0.17f, player.transform.position.y + height * .7f + i * height * 0.1f);
+                spawnEnemyPosition = new Vector2(-width * 0.15f, player.transform.position.y + height * .7f + i * height * 0.1f);
                 var spawnHeight = spawnEnemyPosition.y;
                 for (int j = 0; j < currentWaveData.waveInfo[i]; j++)
                 {
@@ -210,7 +218,7 @@
                     enemy.InjectGameCameraReference(gameCamera);
                     enemy.Init();
                     enemy.transform.position = spawnEnemyPosition;
-                    spawnEnemyPosition = new Vector2(enemy.transform.position.x + width * 0.1f, spawnHeight);
+                    spawnEnemyPosition = new Vector2(enemy.transform.position.x + width * 0.18f, spawnHeight);
                     currentEnemyCount++;
                 }
             }
