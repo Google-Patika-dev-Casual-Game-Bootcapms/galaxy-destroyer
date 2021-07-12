@@ -7,4 +7,5 @@ public class CardData : ScriptableObject
     public string cardDescription;
 
     public Sprite cardArtwork;
+    public Sprite CardArtworkBorders;
 }
