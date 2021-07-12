@@ -63,17 +63,7 @@
             inGameMessageBroadcaster.OnEnemyDestroyed += OnEnemyDestroyed;
             inGameMessageBroadcaster.OnEnemyOutOfScreen += OnEnemyOutOfScreen;
 
-            waveData1 = new WaveData();
-
-            waveData1.waveInfo[0] = 3;
-            waveData1.waveInfo[1] = 5;
-            waveData1.waveInfo[2] = 4;
-            waveData1.waveInfo[3] = 5;
-            waveData1.waveInfo[4] = 6;
-
-            levelWaveData = new LevelWaveData(1);
-
-            levelWaveData.SetLevelWaveData(0, waveData1);
+            CreateLevelWaveDatas();
 
             roadTrackerPool = new Pool<RoadTracker>(ROADTRACKER_OBJECT_PATH);
             roadTrackerPool.PopulatePool(5);
@@ -90,6 +80,22 @@
             heliA17Pool = new Pool<HeliA17>(HELIA17_OBJECT_PATH);
             heliA17Pool.PopulatePool(5);
 
+        }
+
+        private void CreateLevelWaveDatas()
+        {
+            levelWaveData = new LevelWaveData(10);
+
+            for (int i = 0; i < 10; i++)
+            {
+                var waveData = new WaveData();
+                waveData.waveInfo[0] = UnityEngine.Random.Range(0, 6); 
+                waveData.waveInfo[1] = UnityEngine.Random.Range(0, 6);
+                waveData.waveInfo[2] = UnityEngine.Random.Range(0, 6);
+                waveData.waveInfo[3] = UnityEngine.Random.Range(0, 6);
+                waveData.waveInfo[4] = UnityEngine.Random.Range(0, 6);
+                levelWaveData.SetLevelWaveData(i, waveData);
+            }
         }
 
         private void OnEnemyOutOfScreen(Enemy enemy)

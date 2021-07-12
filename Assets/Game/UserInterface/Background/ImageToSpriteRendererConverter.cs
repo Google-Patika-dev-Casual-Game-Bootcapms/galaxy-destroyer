@@ -1,7 +1,4 @@
-
-
-
-
+#if UNITY_EDITOR
 using System;
 using UnityEditor;
 using UnityEngine.UIElements;
@@ -100,3 +97,4 @@ namespace Game.UserInterface.Background
     }
     
 }
+#endif
