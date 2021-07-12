@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Brisk Reflexes
   cardDescription: With the new upgrades on your ship, you can move 15% faster.
-  cardArtwork: {fileID: 21300000, guid: 94fed44f5d8a72a46a47f09a1f4a3c14, type: 3}
+  cardArtwork: {fileID: 0}
+  CardArtworkBorders: {fileID: 21300000, guid: 94fed44f5d8a72a46a47f09a1f4a3c14, type: 3}
