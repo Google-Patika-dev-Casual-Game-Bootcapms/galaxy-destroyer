@@ -153,7 +153,7 @@ namespace SpaceShooterProject.UserInterface
 
                 if (activatableCards[index])
                 {
-                    Sprite sprite = cardComponent.GetPermanentCardSprite(index);
+                    Sprite sprite = cardComponent.GetPermanentCardSpriteWithBorders(index);
 
                     ChangeButtonImage(index, sprite);
                 }
@@ -170,7 +170,7 @@ namespace SpaceShooterProject.UserInterface
 
                 if (activatableCards[index + permanentCardCount])
                 {
-                    Sprite sprite = cardComponent.GetTemporalCardSprite(index);
+                    Sprite sprite = cardComponent.GetTemporalCardSpriteWithBorders(index);
 
                     ChangeButtonImage(index + permanentCardCount, sprite);
                 }
