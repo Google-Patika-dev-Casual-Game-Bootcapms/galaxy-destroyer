@@ -28,7 +28,8 @@ namespace SpaceShooterProject.UserInterface
         protected override void Init()
         {
             ActivateCoPilot(0);
-            coPilotNameContainer.text = "Success!!!";
+            coPilotNameContainer.text = "SOON!!";
+            coPilotInfoContainer.text = "It will be amazing things here";
         }
 
         private void ActivateCoPilot(int selectedCoPilotIndex)

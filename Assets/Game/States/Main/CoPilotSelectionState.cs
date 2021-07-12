@@ -45,7 +45,7 @@ public class CoPilotSelectionState : StateMachine
 
     private void OnCoPilotSelected(int coPilotType)
     {
-        coPilotComponent.SelectCoPilot(coPilotType);
+        coPilotComponent.SelectCoPilot((CoPilotBase.CoPilotType)coPilotType);
     }
 
     private void OnNextCoPilotButtonClick()
