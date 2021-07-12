@@ -73,6 +73,8 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
 
     public void ShowLevel(int levelIndex) 
     {
+        levelIndex--;
+
         if (levelIndex < 0) 
         {
             levelIndex = 0;

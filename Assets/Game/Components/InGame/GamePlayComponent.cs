@@ -64,6 +64,7 @@ namespace SpaceShooterProject.Component
         public void SendGameIsStartedMessage()
         {
             player.SetSelectedSkin(accountComponent.GetSelectedSpaceShipId());
+            editorSceneBuilderComponent.ShowLevel(accountComponent.GetSelectedPlanetId());
             isGameOver = false;
             enemyFactory.ResetSpawnLogic();
         }

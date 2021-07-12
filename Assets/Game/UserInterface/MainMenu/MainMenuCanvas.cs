@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -75,6 +76,11 @@ namespace SpaceShooterProject.UserInterface
                 inventoryCanvas.AdjustTheInventoryCanvas();
                 OnInventoryMenuRequest();
             }
+        }
+
+        public int GetCurrentSelectedPlanetId()
+        {
+            return planetUIController.GetSelectedPlanetIndex();
         }
 
         public void RequestGarageMenu()
