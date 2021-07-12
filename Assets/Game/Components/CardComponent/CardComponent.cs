@@ -54,6 +54,11 @@
             return permanentCardList[index].cardArtwork;
         }
 
+        public Sprite GetPermanentCardSpriteWithBorders(int index)
+        {
+            return permanentCardList[index].CardArtworkBorders;
+        }
+
         public string GetTemporalCardName(int index)
         {
             return temporalCardList[index].cardName;
@@ -67,6 +72,11 @@
         public Sprite GetTemporalCardSprite(int index)
         {
             return temporalCardList[index].cardArtwork;
+        }
+
+        public Sprite GetTemporalCardSpriteWithBorders(int index)
+        {
+            return temporalCardList[index].CardArtworkBorders;
         }
 
         #endregion

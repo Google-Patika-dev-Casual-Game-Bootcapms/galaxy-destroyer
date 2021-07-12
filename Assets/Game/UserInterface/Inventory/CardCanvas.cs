@@ -22,6 +22,8 @@ namespace SpaceShooterProject.UserInterface
         [SerializeField] private TMP_Text header;
         [SerializeField] private TMP_Text description;
 
+        private Animator canvasAnimator;
+
         private CardComponent cardComponent;
         private InventoryCanvas inventoryCanvas;
 
@@ -32,6 +34,8 @@ namespace SpaceShooterProject.UserInterface
 
             inventoryCanvas = FindObjectOfType<InventoryCanvas>();
 
+            canvasAnimator = GetComponentInChildren<Animator>();
+
             backgroundImage.sizeDelta = GetCanvasSize();
         }
 
@@ -40,12 +44,16 @@ namespace SpaceShooterProject.UserInterface
             if (OnReturnToInventory != null)
             {
                 inventoryCanvas.AdjustTheInventoryCanvas();
+                canvasAnimator.ResetTrigger("Opening");
+                canvasAnimator.SetTrigger("Idle");
                 OnReturnToInventory();
             }
         }
 
         public void AdjustTheCanvas(int index)
         {
+            canvasAnimator.ResetTrigger("Idle");
+
             int permanentCardCount = cardComponent.GetPermanentCardCount();
 
             if (index < permanentCardCount)
@@ -64,6 +72,8 @@ namespace SpaceShooterProject.UserInterface
 
                 cardSprite.GetComponent<Image>().sprite = cardComponent.GetTemporalCardSprite(index);
             }
+
+            canvasAnimator.SetTrigger("Opening");
         }
     }
 }

@@ -15,4 +15,5 @@ MonoBehaviour:
   cardName: Last Chance
   cardDescription: Destroying a galaxy isn't easy, so, a shield will protect you
     for 3 seconds when you take lethal damage.
-  cardArtwork: {fileID: 21300000, guid: 014df047cd7db764188acddbbc4ae131, type: 3}
+  cardArtwork: {fileID: 21300000, guid: 35e3e140cb3ae624faf29e487ac1a1fa, type: 3}
+  CardArtworkBorders: {fileID: 21300000, guid: 102a5745fda1da54886afd7c274f55ec, type: 3}
