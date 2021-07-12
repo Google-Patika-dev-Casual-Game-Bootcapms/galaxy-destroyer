@@ -23,6 +23,8 @@
                 inventoryData.OwnedTemporalCards = accountComponent.OwnedTemporalCards();
                 inventoryData.OwnedSpaceShips = accountComponent.GetOwnedSpaceShips();
                 inventoryData.CollectedSpaceShipParts = accountComponent.CollectedSpaceShipParts();
+
+                AddCardsToInventory();
             }
             else
             {
@@ -39,7 +41,12 @@
             inventoryData.OwnedSpaceShips = new List<int>();
             inventoryData.CollectedSpaceShipParts = new int[4];
 
-            // Add cards in order to show in inventory canvas
+            AddCardsToInventory();
+        }
+
+        // Add cards in order to show in inventory canvas
+        private void AddCardsToInventory()
+        {
             AddPermanentCard(0);
             AddPermanentCard(1);
             AddPermanentCard(2);
