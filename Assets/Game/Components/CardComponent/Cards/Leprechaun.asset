@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Leprechaun
   cardDescription: Well, look at this. Apparently, you can find %15 more gold.
-  cardArtwork: {fileID: 21300000, guid: acc52c3ecec1c1b4abc01de23eb2388d, type: 3}
+  cardArtwork: {fileID: 21300000, guid: 5a8df745db8327f4688dc61c189479d1, type: 3}
