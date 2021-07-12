@@ -91,6 +91,9 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
             case 3:
                 BuildLevel("MarsParallax");
                 break;
+            case 4:
+                BuildLevel("uranusParallax");
+                break;
             default:
                 BuildLevel("UranusParallax");
                 break;

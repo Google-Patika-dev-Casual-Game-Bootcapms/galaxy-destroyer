@@ -648,10 +648,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1146569937553916705, guid: 1ce1355b95588214f9c43e37a900ad1e, type: 3}
-      propertyPath: saturnParallax
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7156032541432447808, guid: 1ce1355b95588214f9c43e37a900ad1e, type: 3}
       propertyPath: m_Name
       value: LevelEditor
@@ -662,15 +658,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7156032541432447814, guid: 1ce1355b95588214f9c43e37a900ad1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.088814
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7156032541432447814, guid: 1ce1355b95588214f9c43e37a900ad1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 48.01554
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7156032541432447814, guid: 1ce1355b95588214f9c43e37a900ad1e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -60.98719
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7156032541432447814, guid: 1ce1355b95588214f9c43e37a900ad1e, type: 3}
       propertyPath: m_LocalRotation.w
