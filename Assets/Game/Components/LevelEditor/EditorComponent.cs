@@ -10,14 +10,15 @@ public class EditorComponent : EditorWindow
 {
     private List<string> _savedLevelNames = new List<string>();
     private string NewLevelName = String.Empty;
-    
+
     #region Variables
-    [SerializeField] private GameObject flyEnemyNPC;
-    [SerializeField] private GameObject stableEnemyNPC;
-    [SerializeField] private GameObject nonFlyEnemyNPC;
-    [SerializeField] private GameObject levelEndMonster;
-    [SerializeField] private GameObject friendNPC;
-    [SerializeField] private GameObject boxPrefab;
+
+    [SerializeField] private GameObject ThreeDMarsParallax;
+    [SerializeField] private GameObject threeDNeptuneParallax;
+    [SerializeField] private GameObject threeDUranusParallax;
+    [SerializeField] private GameObject threeDSaturnParallax;
+    [SerializeField] private GameObject threeDEarthParallax;
+    [SerializeField] private GameObject threeDBackupParallax;
     [SerializeField] private GameObject backupTerrain;
     [SerializeField] private GameObject marsTerrain;
     [SerializeField] private GameObject neptuneTerrain;
@@ -32,7 +33,7 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject kazan;
     [SerializeField] private GameObject marsMountain002;
     [SerializeField] private GameObject nukeDoor;
-    [SerializeField] private GameObject tower; 
+    [SerializeField] private GameObject tower;
     [SerializeField] private GameObject propPipes;
     [SerializeField] private GameObject marsRock002;
     [SerializeField] private GameObject standartRock01;
@@ -70,12 +71,13 @@ public class EditorComponent : EditorWindow
     [SerializeField] private GameObject lightHouse;
     [SerializeField] private GameObject lightHouseWithRocks;
     [SerializeField] private GameObject earthParallax;
+
     #endregion
-    
+
     [MenuItem("Tools/LevelEditor")]
     private static void Init()
     {
-        EditorComponent window = (EditorComponent)EditorWindow.GetWindow(typeof(EditorComponent));
+        EditorComponent window = (EditorComponent) EditorWindow.GetWindow(typeof(EditorComponent));
         window.Show();
     }
 
@@ -89,12 +91,12 @@ public class EditorComponent : EditorWindow
         }
 
         if (GUI.Button(new Rect(10, 70, position.width, 20), "Show Saved Levels"))
-        {           
+        {
             _savedLevelNames = GetLevelNames();
         }
 
         GUILayout.BeginArea(new Rect(10, 150, position.width, position.height));
-           
+
         foreach (var t in _savedLevelNames)
         {
             if (GUILayout.Button(t))
@@ -109,8 +111,9 @@ public class EditorComponent : EditorWindow
     private void SaveLevelDataAsJson(string levelName)
     {
         var itemsToSave = FindObjectsOfType<GameObjectType>();
+        var sortedItemsToSave = itemsToSave.OrderBy(x => x.transform.position.z).ToArray();
         string path = Application.dataPath + "/Resources/" + levelName + ".json";
-        var data = SerializeMapData(itemsToSave);
+        var data = SerializeMapData(sortedItemsToSave);
 
         using (FileStream fs = new FileStream(path, FileMode.Create))
         {
@@ -119,17 +122,13 @@ public class EditorComponent : EditorWindow
                 writer.Write(data);
             }
         }
+
         AssetDatabase.Refresh();
     }
 
     private string SerializeMapData(GameObjectType[] itemsToSave)
     {
         LevelData levelData = new LevelData();
-
-        levelData.Position = Camera.main.transform.position;
-        levelData.Rotation = Camera.main.transform.eulerAngles;
-        levelData.FieldofView = Camera.main.fieldOfView;
-
         foreach (var item in itemsToSave)
         {
             LevelCharacterData levelItemData = new LevelCharacterData();
@@ -170,16 +169,13 @@ public class EditorComponent : EditorWindow
         {
             Debug.Log(ex);
         }
+
         return data;
     }
 
     private void LoadScene(LevelData levelData)
     {
         ClearScene();
-        Camera.main.transform.position = levelData.Position;
-        Camera.main.transform.eulerAngles = levelData.Rotation;
-        Camera.main.fieldOfView = levelData.FieldofView;
-
         foreach (var levelItem in levelData.LevelCharacters)
         {
             var levelItemObject = InstantiateLevelCharacter(levelItem.Type);
@@ -189,7 +185,7 @@ public class EditorComponent : EditorWindow
         }
     }
 
-    private void ClearScene()
+    private static void ClearScene()
     {
         var levelItems = FindObjectsOfType<GameObjectType>();
         foreach (var rect in levelItems)
@@ -221,12 +217,12 @@ public class EditorComponent : EditorWindow
             EGameObjectType.uranusParallax => Instantiate(uranusParallax),
             EGameObjectType.saturnParallax => Instantiate(saturnParallax),
             EGameObjectType.earthParallax => Instantiate(earthParallax),
-            EGameObjectType.flyEnemyNPC => Instantiate(flyEnemyNPC),
-            EGameObjectType.stableEnemyNPC => Instantiate(stableEnemyNPC),
-            EGameObjectType.nonFlyEnemyNPC => Instantiate(nonFlyEnemyNPC),
-            EGameObjectType.levelEndMonster => Instantiate(levelEndMonster),
-            EGameObjectType.friendNPC => Instantiate(friendNPC),
-            EGameObjectType.box => Instantiate(boxPrefab),
+            EGameObjectType.ThreeDMarsParallax => Instantiate(ThreeDMarsParallax),
+            EGameObjectType.threeDNeptuneParallax => Instantiate(threeDNeptuneParallax),
+            EGameObjectType.threeDUranusParallax => Instantiate(threeDUranusParallax),
+            EGameObjectType.threeDSaturnParallax => Instantiate(threeDSaturnParallax),
+            EGameObjectType.threeDEarthParallax => Instantiate(threeDEarthParallax),
+            EGameObjectType.threeDBackupParallax => Instantiate(threeDBackupParallax),
             EGameObjectType.metalCheastBlue => Instantiate(metalCheastBlue),
             EGameObjectType.metalCheastRed => Instantiate(metalCheastRed),
             EGameObjectType.metalCheastGrey => Instantiate(metalCheastGrey),

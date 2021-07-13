@@ -5,12 +5,12 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - m_ViewDataDictionary: {instanceID: 0}
-  - flyEnemyNPC: {instanceID: 0}
-  - stableEnemyNPC: {instanceID: 0}
-  - nonFlyEnemyNPC: {instanceID: 0}
-  - levelEndMonster: {instanceID: 0}
-  - friendNPC: {instanceID: 0}
-  - boxPrefab: {instanceID: 0}
+  - ThreeDMarsParallax: {fileID: 8309787503409178926, guid: 65ff9ca507e80294c9e1ea0baa9b8230, type: 3}
+  - threeDNeptuneParallax: {fileID: 1902356384082382714, guid: 190de98f0b40b4f4984f82a1bd79cda3, type: 3}
+  - threeDUranusParallax: {instanceID: 0}
+  - threeDSaturnParallax: {instanceID: 0}
+  - threeDEarthParallax: {instanceID: 0}
+  - threeDBackupParallax: {fileID: 6088857945143332878, guid: 41a6c5971d860854680795741d186175, type: 3}
   - backupTerrain: {fileID: 2351032357086477468, guid: be7d62a9df1e54d4ab961c6a6beea49a, type: 3}
   - marsTerrain: {fileID: 6713248665539118835, guid: d285983420d874048bb39fd6a3f29cce, type: 3}
   - neptuneTerrain: {fileID: 6071123657650262227, guid: 071c82226589aa14bb1012b3a153e9fd, type: 3}
