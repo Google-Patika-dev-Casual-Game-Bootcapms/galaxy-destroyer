@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7156032541432447814}
   - component: {fileID: 1146569937553916705}
+  - component: {fileID: 3464945189771483146}
   m_Layer: 0
   m_Name: LevelEditor
   m_TagString: Untagged
@@ -43,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36ac5e12d73d5a4dbeba8bb26fa36a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyEnemyNPC: {fileID: 0}
-  stableEnemyNPC: {fileID: 0}
-  nonFlyEnemyNPC: {fileID: 0}
-  levelEndMonster: {fileID: 0}
-  friendNPC: {fileID: 0}
-  boxPrefab: {fileID: 0}
+  threeDMarsParallax: {fileID: 8309787503409178926, guid: 65ff9ca507e80294c9e1ea0baa9b8230, type: 3}
+  threeDNeptuneParallax: {fileID: 1902356384082382714, guid: 190de98f0b40b4f4984f82a1bd79cda3, type: 3}
+  threeDUranusParallax: {fileID: 0}
+  threeDSaturnParallax: {fileID: 0}
+  threeDEarthParallax: {fileID: 0}
+  threeDBackupParallax: {fileID: 6088857945143332878, guid: 41a6c5971d860854680795741d186175, type: 3}
   backupTerrain: {fileID: 2351032357086477468, guid: be7d62a9df1e54d4ab961c6a6beea49a, type: 3}
   marsTerrain: {fileID: 6713248665539118835, guid: d285983420d874048bb39fd6a3f29cce, type: 3}
   neptuneTerrain: {fileID: 6071123657650262227, guid: 071c82226589aa14bb1012b3a153e9fd, type: 3}
@@ -101,3 +102,16 @@ MonoBehaviour:
   lightHouse: {fileID: 4395554793054174634, guid: 3bec36cc04f33d44e8669f2c7eb3c253, type: 3}
   lightHouseWithRocks: {fileID: 8735149435227392448, guid: 78c2bbdf83bdad649acf1d2d5a4b7c2e, type: 3}
   earthParallax: {fileID: 290813965199092046, guid: a0a5affdf7ec07842a6e5ea3d8ecef80, type: 3}
+--- !u!114 &3464945189771483146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156032541432447808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20aabdae464256b42b25aa5a46f950aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelNumber: 0
