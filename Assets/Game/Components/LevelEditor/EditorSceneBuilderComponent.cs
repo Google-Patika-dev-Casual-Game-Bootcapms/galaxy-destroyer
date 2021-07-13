@@ -6,13 +6,15 @@ using System;
 public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
 {
     private ComponentContainer MyComponent;
+
     #region Variables
-        [SerializeField] private GameObject flyEnemyNPC;
-    [SerializeField] private GameObject stableEnemyNPC;
-    [SerializeField] private GameObject nonFlyEnemyNPC;
-    [SerializeField] private GameObject levelEndMonster;
-    [SerializeField] private GameObject friendNPC;
-    [SerializeField] private GameObject boxPrefab;
+
+    [SerializeField] private GameObject threeDMarsParallax;
+    [SerializeField] private GameObject threeDNeptuneParallax;
+    [SerializeField] private GameObject threeDUranusParallax;
+    [SerializeField] private GameObject threeDSaturnParallax;
+    [SerializeField] private GameObject threeDEarthParallax;
+    [SerializeField] private GameObject threeDBackupParallax;
     [SerializeField] private GameObject backupTerrain;
     [SerializeField] private GameObject marsTerrain;
     [SerializeField] private GameObject neptuneTerrain;
@@ -27,7 +29,7 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
     [SerializeField] private GameObject kazan;
     [SerializeField] private GameObject marsMountain002;
     [SerializeField] private GameObject nukeDoor;
-    [SerializeField] private GameObject tower; 
+    [SerializeField] private GameObject tower;
     [SerializeField] private GameObject propPipes;
     [SerializeField] private GameObject marsRock002;
     [SerializeField] private GameObject standartRock01;
@@ -65,31 +67,37 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
     [SerializeField] private GameObject lightHouse;
     [SerializeField] private GameObject lightHouseWithRocks;
     [SerializeField] private GameObject earthParallax;
-    
+
     #endregion
 
     public void Initialize(ComponentContainer componentContainer)
-    {       
+    {
         MyComponent = componentContainer;
     }
-    
+
+    public LevelData Pull3DParallaxData(string levelName)
+    {
+        var data = Resources.Load(levelName) as TextAsset;
+        var levelData = JsonUtility.FromJson<LevelData>(data.text);
+        return levelData;
+    }
+
     public void BuildLevel(string levelName)
     {
         var data = Resources.Load(levelName) as TextAsset;
         if (data is null)
         {
-            Debug.LogWarning( "File named "+levelName+" not found in Resources File");
+            Debug.LogWarning("File named " + levelName + " not found in Resources File");
             return;
         }
+
         var levelData = JsonUtility.FromJson<LevelData>(data.text);
         LoadScene(levelData);
     }
+
     private void LoadScene(LevelData levelData)
     {
         ClearScene();
-        Camera.main.transform.position = levelData.Position;
-        Camera.main.transform.eulerAngles = levelData.Rotation;
-        Camera.main.fieldOfView = levelData.FieldofView;
 
         foreach (var levelItem in levelData.LevelCharacters)
         {
@@ -107,10 +115,10 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
             DestroyImmediate(rect.gameObject);
     }
 
-    private GameObject InstantiateLevelCharacter(EGameObjectType type)
+    public GameObject InstantiateLevelCharacter(EGameObjectType type)
     {
         var shape = type switch
-        { 
+        {
             EGameObjectType.marsTerrain => Instantiate(marsTerrain),
             EGameObjectType.neptuneTerrain => Instantiate(neptuneTerrain),
             EGameObjectType.uranusTerrain => Instantiate(uranusTerrain),
@@ -122,12 +130,12 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
             EGameObjectType.uranusParallax => Instantiate(uranusParallax),
             EGameObjectType.saturnParallax => Instantiate(saturnParallax),
             EGameObjectType.earthParallax => Instantiate(earthParallax),
-            EGameObjectType.flyEnemyNPC => Instantiate(flyEnemyNPC),
-            EGameObjectType.stableEnemyNPC => Instantiate(stableEnemyNPC),
-            EGameObjectType.nonFlyEnemyNPC => Instantiate(nonFlyEnemyNPC),
-            EGameObjectType.levelEndMonster => Instantiate(levelEndMonster),
-            EGameObjectType.friendNPC => Instantiate(friendNPC),
-            EGameObjectType.box => Instantiate(boxPrefab),
+            EGameObjectType.ThreeDMarsParallax => Instantiate(threeDMarsParallax),
+            EGameObjectType.threeDNeptuneParallax => Instantiate(threeDNeptuneParallax),
+            EGameObjectType.threeDUranusParallax => Instantiate(threeDUranusParallax),
+            EGameObjectType.threeDSaturnParallax => Instantiate(threeDSaturnParallax),
+            EGameObjectType.threeDEarthParallax => Instantiate(threeDEarthParallax),
+            EGameObjectType.threeDBackupParallax => Instantiate(threeDBackupParallax),
             EGameObjectType.metalCheastBlue => Instantiate(metalCheastBlue),
             EGameObjectType.metalCheastRed => Instantiate(metalCheastRed),
             EGameObjectType.metalCheastGrey => Instantiate(metalCheastGrey),
@@ -177,10 +185,8 @@ public class EditorSceneBuilderComponent : MonoBehaviour, IComponent
 [Serializable]
 public class LevelData
 {
-    public Vector3 Position;
-    public Vector3 Rotation;
-    public float FieldofView;
     public List<LevelCharacterData> LevelCharacters;
+
     public LevelData()
     {
         LevelCharacters = new List<LevelCharacterData>();
@@ -198,12 +204,12 @@ public class LevelCharacterData
 
 public enum EGameObjectType
 {
-    flyEnemyNPC,
-    stableEnemyNPC,
-    nonFlyEnemyNPC,
-    levelEndMonster,
-    friendNPC,
-    box,
+    ThreeDMarsParallax,
+    threeDNeptuneParallax,
+    threeDUranusParallax,
+    threeDSaturnParallax,
+    threeDEarthParallax,
+    threeDBackupParallax,
     marsTerrain,
     neptuneTerrain,
     uranusTerrain,
@@ -255,5 +261,6 @@ public enum EGameObjectType
     lightHouse,
     lightHouseWithRocks,
     backupTerrain,
-    earthParallax
+    earthParallax,
+    enumLastIndex
 }
