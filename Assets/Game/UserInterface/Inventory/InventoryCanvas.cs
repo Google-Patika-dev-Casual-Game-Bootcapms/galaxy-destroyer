@@ -4,8 +4,6 @@ namespace SpaceShooterProject.UserInterface
 {
     using System.Collections.Generic;
     using UnityEngine;
-    using DG.Tweening;
-    using TMPro;
     using UnityEngine.UI;
     using Devkit.Base.Component;
     using SpaceShooterProject.Component;
@@ -19,7 +17,7 @@ namespace SpaceShooterProject.UserInterface
         public event InventoryRequestDelegate OnSpaceshipShowRequest;
 
         //Fields
-        [SerializeField] private List<Button> buttons;
+        [SerializeField] private List<Button> buttons;//TODO: rename
         [SerializeField] private RectTransform backgroundImage;
 
         [Header("Card Design Tool Fields \t Never Give 0!")]
@@ -39,14 +37,10 @@ namespace SpaceShooterProject.UserInterface
         private InventoryComponent inventoryComponent;
         private CardComponent cardComponent;
 
-        private CardCanvas cardCanvas;
-
         protected override void Init()
         {
             inventoryComponent = componentContainer.GetComponent("InventoryComponent") as InventoryComponent;
             cardComponent = componentContainer.GetComponent("CardComponent") as CardComponent;
-
-            cardCanvas = FindObjectOfType<CardCanvas>();
 
             // Should add into Account Component
             activatableCards = new Dictionary<int, bool>();
@@ -55,8 +49,6 @@ namespace SpaceShooterProject.UserInterface
 
             CalculateAllCardButtonPlaces();
         }
-
-        #region Transitions
 
         public void RequestCardShow()
         {
@@ -74,8 +66,6 @@ namespace SpaceShooterProject.UserInterface
                 OnSpaceshipShowRequest();
             }
         }
-
-        #endregion
 
         // Place the cards automatically on canvas
         public void CalculateAllCardButtonPlaces()
@@ -182,6 +172,7 @@ namespace SpaceShooterProject.UserInterface
             }
         }
 
+        //TODO: rename
         // With clicked card index adjust the selected card's canvas
         private void AdjustTheCardCanvas()
         {
@@ -193,7 +184,7 @@ namespace SpaceShooterProject.UserInterface
             cardAnimator = clickedCard.GetComponent<Animator>();
             cardAnimator.SetBool("IsActivated", true);
 
-            cardCanvas.AdjustTheCanvas(clickedCardIndex);
+            inventoryComponent.SetCurrentSelectedCardIndex(clickedCardIndex);
         }
 
         public void ChangeButtonImage(int index, Sprite cardArtwork)
