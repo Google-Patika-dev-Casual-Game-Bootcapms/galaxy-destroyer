@@ -15,4 +15,5 @@ MonoBehaviour:
   cardName: Missile Damage
   cardDescription: ...some minor upgrades and voila! Now your missiles do %15 more
     damage.
-  cardArtwork: {fileID: 21300000, guid: a54c3b1c1c277af4f80ec1c0842f6115, type: 3}
+  cardArtwork: {fileID: 21300000, guid: 30c280f12b69051429950e79c38ac2fa, type: 3}
+  CardArtworkBorders: {fileID: 21300000, guid: ec3b7f3aa1d91b04886cd346a20ccdac, type: 3}

@@ -23,7 +23,9 @@ namespace SpaceShooterProject.Component
         private AudioComponent audioComponent;
 
         //TODO: Add inventory system reference when inventory component created!!!
-            // private InventoryComponent inventoryComponent;
+        // private InventoryComponent inventoryComponent;
+
+        private bool isInitializedForFirstTime = false;
 
         //TODO: Add copilot system reference when inventory component created!!!
             // private CopilotComponent copilotComponent;
@@ -87,7 +89,9 @@ namespace SpaceShooterProject.Component
 
             InitializeSpaceShipUpgradeData();
             InitializeSuperPowerData();
-            
+
+            isInitializedForFirstTime = true;
+
             // TODO: Assign default values for other components in the future
             
             saveComponent.Save(accountData, accountDataPath);
@@ -147,10 +151,10 @@ namespace SpaceShooterProject.Component
             saveComponent.Save(accountData, accountDataPath);
         }
 
-        // Created by Inventory Component to check if JSON file exists in the given directory
-        public bool IsFileExist()
+        // Created by Inventory Component to check if Inventory Data exists in file 
+        public bool IsInitializedForFirstTime()
         {
-            return File.Exists(accountDataPath);
+            return isInitializedForFirstTime;
         }
 
 #region Getter Methods for Account Data

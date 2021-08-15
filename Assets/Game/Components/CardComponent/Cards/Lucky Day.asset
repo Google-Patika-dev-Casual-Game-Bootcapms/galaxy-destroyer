@@ -15,4 +15,5 @@ MonoBehaviour:
   cardName: Lucky Day
   cardDescription: It's dangerous to go alone! Take this. Now you have a random power-up
     when you start your mission.
-  cardArtwork: {fileID: 21300000, guid: ae3fd0b806eef3c4aa30fcc7b1007b5d, type: 3}
+  cardArtwork: {fileID: 21300000, guid: 9cc8208c4f337fe408906606bc18bff7, type: 3}
+  CardArtworkBorders: {fileID: 21300000, guid: 3b4aac0a3e4ce334a911d69c31c15603, type: 3}
