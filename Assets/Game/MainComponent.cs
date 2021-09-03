@@ -199,8 +199,6 @@ namespace SpaceShooterProject
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
-
-            
             gachaComponent.Initialize(componentContainer);
             quoteComponent.Initialize(componentContainer);
             achievementsComponent.Initialize(componentContainer);
