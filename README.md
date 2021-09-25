@@ -3,7 +3,7 @@
 Galaxy Destroyer, Unity3D ile geliştirilmeye devam eden, açık kaynak bir space shooter klonudur. Kafayı kırmış bir uzay pilotunun, Galaxy'yi yok etmeye karar vermesini konu alır.
 Alışılmışın dışında, oyuncuya kötü karakteri oynama deneyimi sunar. 
 
-[Tanıtım Videosu](https://drive.google.com/file/d/1ZR0T1g3s9U3V488jrQ8rlns9Xh99wEUF/view)
+[Tanıtım Videosu](https://youtu.be/DCTl63yNcfk)
 
 # Proje Kurulum
 
