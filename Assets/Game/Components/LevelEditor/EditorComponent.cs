@@ -125,23 +125,16 @@ public class EditorComponent : EditorWindow
     private string SerializeMapData(GameObjectType[] itemsToSave)
     {
         LevelData levelData = new LevelData();
-
-        levelData.Position = Camera.main.transform.position;
-        levelData.Rotation = Camera.main.transform.eulerAngles;
-        levelData.FieldofView = Camera.main.fieldOfView;
-
         foreach (var item in itemsToSave)
         {
             LevelCharacterData levelItemData = new LevelCharacterData();
             levelItemData.Type = item.Type;
             levelItemData.Scale = item.transform.localScale;
             levelItemData.Position = item.transform.position;           
-            levelItemData.Rotation = item.transform.eulerAngles;         //TODO :Rotation value is wrong in json but it's true in world
+            levelItemData.Rotation = item.transform.eulerAngles;
             levelData.LevelCharacters.Add(levelItemData);
         }
-
         var data = JsonUtility.ToJson(levelData);
-
         return data;
     }
 
@@ -176,10 +169,6 @@ public class EditorComponent : EditorWindow
     private void LoadScene(LevelData levelData)
     {
         ClearScene();
-        Camera.main.transform.position = levelData.Position;
-        Camera.main.transform.eulerAngles = levelData.Rotation;
-        Camera.main.fieldOfView = levelData.FieldofView;
-
         foreach (var levelItem in levelData.LevelCharacters)
         {
             var levelItemObject = InstantiateLevelCharacter(levelItem.Type);

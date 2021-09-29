@@ -143,8 +143,8 @@ namespace SpaceShooterProject
 
         private void CreateEditorSceneBuilderComponent()
         {
-            editorSceneBuilderComponent = new GameObject().AddComponent<EditorSceneBuilderComponent>();
-            componentContainer.AddComponent("LevelEditorSceneBuilderComponent", editorSceneBuilderComponent);
+            editorSceneBuilderComponent = FindObjectOfType<EditorSceneBuilderComponent>();
+            componentContainer.AddComponent("EditorSceneBuilderComponent", editorSceneBuilderComponent);
         }
 
         private void CreateInventoryComponent()
@@ -199,8 +199,6 @@ namespace SpaceShooterProject
         private void InitializeComponents()
         {
             accountComponent.Initialize(componentContainer);
-
-            
             gachaComponent.Initialize(componentContainer);
             quoteComponent.Initialize(componentContainer);
             achievementsComponent.Initialize(componentContainer);

@@ -10,16 +10,19 @@ namespace SpaceShooterProject.State
     {
         private UIComponent uiComponent;
         private CardCanvas cardCanvas;
+        private InventoryComponent inventoryComponent;
 
         public SelectedCardState(ComponentContainer componentContainer)
         {
             uiComponent = componentContainer.GetComponent("UIComponent") as UIComponent;
             cardCanvas = uiComponent.GetCanvas(UIComponent.MenuName.CARD) as CardCanvas;
+            inventoryComponent = componentContainer.GetComponent("InventoryComponent") as InventoryComponent;
         }
 
         protected override void OnEnter()
         {
             uiComponent.EnableCanvas(UIComponent.MenuName.CARD);
+            cardCanvas.AdjustTheCanvas(inventoryComponent.GetSelectedCardIndex());
             cardCanvas.OnReturnToInventory += OnReturnToInventory;
         }
         private void OnReturnToInventory()

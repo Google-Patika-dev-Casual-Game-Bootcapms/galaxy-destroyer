@@ -15,6 +15,7 @@
 
         private int permanentCardCount;
         private int temporalCardCount;
+        private int currentSelectedCardIndex;
 
         public void Initialize(ComponentContainer componentContainer)
         {
@@ -40,6 +41,16 @@
             AddCardsToInventory();
 
             Debug.Log("<color=green>Inventory Component initialized!</color>");
+        }
+
+        public int GetSelectedCardIndex()
+        {
+            return currentSelectedCardIndex;
+        }
+
+        public void SetCurrentSelectedCardIndex(int selectedCardIndex) 
+        {
+            currentSelectedCardIndex = selectedCardIndex;
         }
 
         public void FirstInitialization()
@@ -75,8 +86,6 @@
             }
         }
 
-        #region Setter Methods
-
         public void AddPermanentCard(int index)
         {
             inventoryData.OwnedPermanentCards.Add(index);
@@ -97,10 +106,6 @@
             }
         }
 
-        #endregion
-
-        #region Getter Methods
-
         public List<int> GetOwnedPermanentCards()
         {
             return inventoryData.OwnedPermanentCards;
@@ -120,8 +125,6 @@
         {
             return inventoryData.CollectedSpaceShipParts;
         }
-
-        #endregion
     }
 
     [Serializable]

@@ -267,6 +267,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0a5affdf7ec07842a6e5ea3d8ecef80, type: 3}
+--- !u!1001 &2371443246129779386
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2371443245769619780, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371443245769619780, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371443245769619780, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371443245769619780, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371443245769619780, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371443245769619780, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371443245769619780, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371443245769619780, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371443245769619780, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371443245769619780, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371443245769619780, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371443245769619783, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_Name
+      value: SaturnParallax
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371443245769619783, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
 --- !u!1001 &2919129680438215651
 PrefabInstance:
   m_ObjectHideFlags: 0

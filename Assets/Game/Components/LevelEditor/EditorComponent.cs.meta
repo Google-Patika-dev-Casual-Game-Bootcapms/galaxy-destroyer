@@ -55,7 +55,7 @@ MonoImporter:
   - marsRock01: {fileID: 1564833670620029844, guid: 1e4c5e1c8f88dfb409670e5e3066c5b2, type: 3}
   - neptuneParallax: {fileID: 5146603265996128355, guid: 7570c6fbd484a6141acad1f5db60df7d, type: 3}
   - uranusParallax: {fileID: 8569885342808392262, guid: 4798c8364ed7ad240b8814c736483862, type: 3}
-  - saturnParallax: {instanceID: 0}
+  - saturnParallax: {fileID: 2371443245769619783, guid: 60d1ed40d143202449078cebb02728cb, type: 3}
   - marsParallax: {fileID: 2919129679454712549, guid: de71d9fabf424244291bd35d1d9a98a1, type: 3}
   - earthTerrain: {fileID: 3814660078788601235, guid: 2cbeb066c864aa84589f63e4c7f4ec45, type: 3}
   - earthTree: {fileID: 8456086677702220797, guid: 42a5641549f9e4641b9bb9cf46af1924, type: 3}

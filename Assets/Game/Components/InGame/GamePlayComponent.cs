@@ -10,7 +10,9 @@ namespace SpaceShooterProject.Component
     public class GamePlayComponent : MonoBehaviour, IComponent, IUpdatable
     {
         public delegate void GameOverDelegate();
+
         public delegate void LevelCompletedDelegate();
+
         public event GameOverDelegate OnGameOver;
         public event LevelCompletedDelegate OnLevelCompleted;
 
@@ -23,23 +25,29 @@ namespace SpaceShooterProject.Component
         private EnemyFactory enemyFactory;
         private InGameMessageBroadcaster inGameMessageBroadcaster;
         private ComponentContainer componentContainer;
+        private AccountComponent accountComponent;
+        private EditorSceneBuilderComponent editorSceneBuilderComponent;
         private bool isGameOver;
 
         public void Initialize(ComponentContainer componentContainer)
         {
-			this.componentContainer = componentContainer;
-			
+            this.componentContainer = componentContainer;
+
+            accountComponent = componentContainer.GetComponent("AccountComponent") as AccountComponent;
+
             inGameMessageBroadcaster = new InGameMessageBroadcaster();
             inGameMessageBroadcaster.Initialize(componentContainer);
-			
-			 Debug.Log("<color=green>GamePlayComponent initialized!</color>");
+
+            Debug.Log("<color=green>GamePlayComponent initialized!</color>");
             inputSystem = componentContainer.GetComponent("InGameInputSystem") as InGameInputSystem;
+
+            editorSceneBuilderComponent =
+                componentContainer.GetComponent("EditorSceneBuilderComponent") as EditorSceneBuilderComponent;
 
             InitializeWeaponUpgradeComponent(componentContainer);
 
             CreatePlayer();
-			
-		}
+        }
 
         private void CreatePlayer()
         {
@@ -56,8 +64,16 @@ namespace SpaceShooterProject.Component
             player.OnPlayerDown += FinishGame;
         }
 
+        private void CreateParallaxBackground()
+        {
+            editorSceneBuilderComponent.BuildPlanet(accountComponent.GetSelectedPlanetId()); //TODO: refactor
+        }
+
+
         public void SendGameIsStartedMessage()
         {
+            CreateParallaxBackground();
+            player.SetSelectedSkin(accountComponent.GetSelectedSpaceShipId());
             isGameOver = false;
             enemyFactory.ResetSpawnLogic();
         }
@@ -95,7 +111,7 @@ namespace SpaceShooterProject.Component
 
         private void LateUpdate()
         {
-            if (gameCamera == null) 
+            if (gameCamera == null)
             {
                 return;
             }
@@ -107,7 +123,7 @@ namespace SpaceShooterProject.Component
         public void OnEnter()
         {
             //LOAD Level!
-            
+
             inputSystem.Init();
             player.Init();
         }
@@ -117,8 +133,9 @@ namespace SpaceShooterProject.Component
             player.OnPlayerDown -= FinishGame;
         }
 
-        public void FinishGame() 
+        public void FinishGame()
         {
+            editorSceneBuilderComponent.ClearScene(); // TODO: refactor
             //player.OnDestruct();
             inputSystem.OnDestruct();
             bulletCollector.OnDestruct();
@@ -126,15 +143,15 @@ namespace SpaceShooterProject.Component
             isGameOver = true;
             //inGameMessageBroadcaster.RemoveAllEvents();//TODO: research!!!
 
-            if (OnGameOver != null) 
+            if (OnGameOver != null)
             {
                 OnGameOver();
             }
         }
 
-        public void TriggerLevelCompleted() 
+        public void TriggerLevelCompleted()
         {
-            if (OnLevelCompleted != null) 
+            if (OnLevelCompleted != null)
             {
                 OnLevelCompleted();
             }
